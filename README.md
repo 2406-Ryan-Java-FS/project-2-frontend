@@ -1,3 +1,4 @@
-Editing the readme
 
-Editing from rsc local repo
+## Creates tailwind css files
+
+```npx tailwindcss -i ./src/index.css -o ./src/output.css --watch```
