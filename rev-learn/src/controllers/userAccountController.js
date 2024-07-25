@@ -16,6 +16,7 @@ export default class userAccountController
     static newUserCreated=null
 
     //this should be removed and a gateway on the server should re-direct requests
+    //React build can also be used to prepend all project urls with /project-2/ for example
     static tempUrl=""//"http://localhost:8080"
 
     /**
