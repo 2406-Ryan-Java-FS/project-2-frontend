@@ -3,21 +3,25 @@
     npm run test command looks for files with .test.js extensions
 */
 
+const { default: uac } = require("./controllers/userAccountController")
+
 it('Registers, login, logout',async()=>{
 
-    /*
-        This will avoid CORS errors and we won't need to 
-        configure the server to allow cross origin since
-        all requests will go through nginx port 80 on server
+    
+        const response=await fetch(`/project-2-back/clear-all`,{method:"DELETE"})
+        expect(await response.text()).toBe("Cleared all database tables");
 
-        nginx.conf to redirect /project-2-back/ to localhost:8080/
-        location /project2-back/ {
-			proxy_pass http://localhost:8080/;
-		}
-    */
-    let response=await fetch(`project-2-back/development`)
-    let body=await response.text()
-    console.log(`response text body=`,body)
+    await uac.signup("testFirstName","testLastName","testEmail","testPass")
+    expect(uac.newUserCreated.firstName).toBe("testFirstName")
+    expect(uac.newUserCreated.lastName) .toBe("testLastName")
+    expect(uac.newUserCreated.email)    .toBe("testEmail")
+    expect(uac.newUserCreated.password) .toBe(undefined)
 
-    expect(response.status).toBe(200)
+    
+
+    // let response=await fetch(`project-2-back/development`)
+    // let body=await response.text()
+    // console.log(`response text body=`,body)
+
+    //expect(response.status).toBe(200)
 })

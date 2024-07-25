@@ -19,25 +19,39 @@ export default class userAccountController
     //React build can also be used to prepend all project urls with /project-2/ for example
     static tempUrl=""//"http://localhost:8080"
 
+    /*
+        This will avoid CORS errors and we won't need to 
+        configure the server to allow cross origin since
+        all requests will go through nginx port 80 on server
+
+        nginx.conf to redirect /project-2-back/ to localhost:8080/
+        location /project2-back/ {
+			proxy_pass http://localhost:8080/;
+		}
+    */
+
     /**
      * Registers a new user initialized with the given username and password
      */
-    static async register(username,password,secretInformation="default secret info")
+    static async signup(firstName,lastName,email,password)
     {
-        console.log(`userAccountController register() ${username} ${password} ${secretInformation}`)
-        const response=await fetch(`${userAccountController.tempUrl}/users/register`,{
+        console.log(`userAccountController signup() ${firstName} ${lastName} ${email} ${password}`)
+        const response=await fetch(`/project-2-back/signup`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
-                "name":username,
-                "password":password,
-                "secretInformation":secretInformation
+                "firstName":firstName,
+                "lastName":lastName,
+                "email":email,
+                "password":password
             })
         })
-        let body=await response.json()
-
+        
         if(response.status!=200)
-            throw new Error(`response status ${response.status} `+JSON.stringify(body.errorMessage))
+            throw new Error(JSON.stringify(response,null,2))
+            //throw new Error(`response status ${response.status} ${response.statusText} ${await response.text()}`)
+
+        let body=await response.json()
 
         userAccountController.newUserCreated=body
         console.log(`userAccountController.newUserCreated=`,userAccountController.newUserCreated)
