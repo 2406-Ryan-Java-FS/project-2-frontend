@@ -14,9 +14,9 @@ export default class userAccountController
 {
     static loggedInUser=null
     static newUserCreated=null
-    ///project1-back
+
     //this should be removed and a gateway on the server should re-direct requests
-    static tempUrl="http://localhost:8080"
+    static tempUrl=""//"http://localhost:8080"
 
     /**
      * Registers a new user initialized with the given username and password

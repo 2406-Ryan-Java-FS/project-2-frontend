@@ -36,7 +36,8 @@
     transform: rotate(360deg);
   }
 }
-button{
+/* Commented out to maybe allow */
+/* button{
   margin: 5px;
   padding: 5px;
 }
@@ -45,4 +46,4 @@ table{
   padding: 4px;
   background-color: rgb(79, 150, 231);
   border-radius: 8px;
-}
+} */
