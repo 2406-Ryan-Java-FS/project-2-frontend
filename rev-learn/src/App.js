@@ -3,8 +3,8 @@ import './App.css';
 import {Route,Routes} from 'react-router-dom';
 import { BrowserRouter,Link } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
-import Register from './components/Register';
 import Login from './components/Login';
+import Signup from './components/Signup';
 
 export default function App() {
   return (
@@ -17,7 +17,7 @@ export default function App() {
         </nav>
         <Routes>
           <Route path='' element={<HomeComponent />} />
-          <Route path='/register' element={<Register/>}/>
+          <Route path='/register' element={<Signup/>}/>
           <Route path='/login' element={<Login/>}/>
         </Routes>
       </BrowserRouter>

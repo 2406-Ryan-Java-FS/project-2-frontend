@@ -15,26 +15,13 @@ export default class userAccountController
     static loggedInUser=null
     static newUserCreated=null
 
-    //this should be removed and a gateway on the server should re-direct requests
-    //React build can also be used to prepend all project urls with /project-2/ for example
-    static tempUrl=""//"http://localhost:8080"
-
-    /*
-        This will avoid CORS errors and we won't need to 
-        configure the server to allow cross origin since
-        all requests will go through nginx port 80 on server
-
-        nginx.conf to redirect /project-2-back/ to localhost:8080/
-        location /project2-back/ {
-			proxy_pass http://localhost:8080/;
-		}
-    */
-
     /**
      * Registers a new user initialized with the given username and password
      */
-    static async signup(firstName,lastName,email,password)
+    static async signup(firstName,lastName,email,password,passwordConfirm)
     {
+        //Need to do password confirm check
+
         console.log(`userAccountController signup() ${firstName} ${lastName} ${email} ${password}`)
         const response=await fetch(`/project-2-back/signup`,{
             method:"POST",
