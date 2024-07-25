@@ -1,18 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import {Route,Routes} from 'react-router-dom';
+import { BrowserRouter,Link } from 'react-router-dom';
+import HomeComponent from './components/HomeComponent';
+import Register from './components/Register';
+import Login from './components/Login';
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-
-      <div>
-        <h2>Welcome to the RevLearn Application for Revature Project 2</h2>
-      </div>
+      <BrowserRouter>
+        <nav id="navbar">
+          <Link to="/">Home</Link>{" ~ "}
+          <Link to="/login">Login</Link>{" ~ "}
+          <Link to="/register">Register</Link>
+        </nav>
+        <Routes>
+          <Route path='' element={<HomeComponent />} />
+          <Route path='/register' element={<Register/>}/>
+          <Route path='/login' element={<Login/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
-
-export default App;
