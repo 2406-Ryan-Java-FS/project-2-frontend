@@ -1,8 +1,12 @@
 import {useState} from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import CourseDetailDescription from './course-detail-description';
+import CourseDetailEducator from './course-detail-educator';
+import CourseDetailContent from './course-detail-content';
+import CourseDetailReview from './course-detail-review';
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -33,8 +37,8 @@ function CustomTabPanel(props) {
     };
   }
 
-export default function CourseDetailTabs(){
-    const [value, setValue] = React.useState(0);
+export default function CourseDetailTabs({course}){
+    const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -51,16 +55,16 @@ export default function CourseDetailTabs(){
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        Description
+        <CourseDetailDescription description={course.description} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        About Educator
+        <CourseDetailEducator educatorId={course.educatorId}/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        Content
+        <CourseDetailContent />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={3}>
-        Review
+        <CourseDetailReview courseId={course.courseId}/>
       </CustomTabPanel>
     </Box>
   );

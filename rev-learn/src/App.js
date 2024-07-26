@@ -1,17 +1,30 @@
 import logo from './logo.svg';
 import './App.css';
+import {Route, Routes} from 'react-router-dom';
+import CourseDetailView from './components/course-detail/course-detail-view'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
+    <>
+      <Routes>
 
-      <div>
-        <h2>Welcome to the RevLearn Application for Revature Project 2</h2>
-      </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+        
+        {/* TODO: course detail view/ need to add id in the param at the end */}
+        <Route path='course/detail' element={<CourseDetailView/>} />
+
+      </Routes>
+    </>
   );
 }
 
