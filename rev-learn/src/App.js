@@ -11,8 +11,8 @@ export default function App() {
     <div className="App">
       <BrowserRouter>
         <nav id="navbar">
-          <Link to="/">Home</Link>{" ~ "}
-          <Link to="/login">Login</Link>{" ~ "}
+          <Link to="/">Home</Link>
+          <Link to="/login">Login</Link>
           <Link to="/register">Register</Link>
         </nav>
         <Routes>
