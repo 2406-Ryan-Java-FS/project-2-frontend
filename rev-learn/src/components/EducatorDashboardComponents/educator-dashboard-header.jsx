@@ -1,5 +1,4 @@
-import { IconButton } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import EducatorDashboardHeaderDropdown from "./educator-dashboard-header-dropdown";
 
 export default function EducatorDashboardHeader() {
   return (
@@ -13,9 +12,7 @@ export default function EducatorDashboardHeader() {
         }}
       >
         Educator's Dashboard
-        <IconButton sx={{ position: "absolute", right: 8, color: "black" }}>
-          <MoreVertIcon />
-        </IconButton>
+        <EducatorDashboardHeaderDropdown />
       </h1>
       <hr style={{ marginLeft: "8px", marginRight: "8px" }} />
     </>

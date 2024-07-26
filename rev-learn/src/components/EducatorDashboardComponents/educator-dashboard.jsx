@@ -9,11 +9,12 @@ import {
 } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import EditIcon from "@mui/icons-material/Edit";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import placeholderImage from "../../images/blank.png";
 import EducatorDashboardHeader from "./educator-dashboard-header";
+import EducatorDashboardCoursCardDropdown from "./educator-dashboard-course-card-dropdown";
 
 export default function EducatorDashboard() {
+  // Some dummy values to test
   const courseDetails = [
     {
       courseId: 1,
@@ -27,7 +28,7 @@ export default function EducatorDashboard() {
     },
     {
       courseId: 3,
-      cardTitle: "Adnroid Mobile Development",
+      cardTitle: "Android Mobile Development",
       educatorName: "Educator - Lionel Messi",
     },
   ];
@@ -55,16 +56,7 @@ export default function EducatorDashboard() {
               height="150"
               image={placeholderImage}
             />
-            <IconButton
-              sx={{
-                position: "absolute",
-                top: 8,
-                right: 8,
-                color: "white",
-              }}
-            >
-              <MoreVertIcon />
-            </IconButton>
+            <EducatorDashboardCoursCardDropdown />
             <CardContent sx={{ paddingBottom: 0, paddingLeft: 1 }}>
               <Typography sx={{ textAlign: "left" }} variant="h6">
                 {course.courseId} - {course.cardTitle} <br />
