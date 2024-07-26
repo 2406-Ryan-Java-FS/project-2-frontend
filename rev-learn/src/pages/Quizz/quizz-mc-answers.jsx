@@ -12,8 +12,6 @@ import { quizzAnswers } from './quizz-data';
 
 const QuizzMultipleChoiceAnswers = ({item}) => {
   const answersList = quizzAnswers[item].answers;
-
-  console.log("🚀 ~ QuizzMultipleChoiceAnswers ~ answersList:", answersList);
   
   return (
     <div>

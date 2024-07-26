@@ -27,4 +27,3 @@ const QuizzPage = () => {
 }
 
 export default QuizzPage
-
