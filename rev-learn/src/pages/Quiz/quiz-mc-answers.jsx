@@ -6,18 +6,22 @@ import { Checkbox } from '@mui/material'
 
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import { quizzAnswers } from './quizz-data';
+import { quizAnswers } from './quiz-data';
 
-// const answersList = ['Answer A', 'Answer B', 'Answer C', 'Answer D', 'Answer E'];
+// const tmpAnswersList = ['Answer A', 'Answer B', 'Answer C', 'Answer D', 'Answer E'];
 
-const QuizzMultipleChoiceAnswers = ({item}) => {
-  const answersList = quizzAnswers[item].answers;
+const QuizMultipleChoiceAnswers = ({item}) => {
+  
+  console.log("🚀 ~ QuizMultipleChoiceAnswers ~ item:", item)
+  // console.log("quizAnswers: ", quizAnswers[item].answers);
+  // const answersList = quizAnswers[item].answers;
+  const tmpAnswersList = ['Answer A', 'Answer B', 'Answer C', 'Answer D', 'Answer E'];
   
   return (
     <div>
       <ol>
         {
-          answersList.map((ans, idxal) => (
+          tmpAnswersList.map((ans, idxal) => (
             <li key={idxal}>
               <p className='answer-item'>
                 <span><Checkbox/></span>
@@ -32,4 +36,4 @@ const QuizzMultipleChoiceAnswers = ({item}) => {
   )
 }
 
-export default QuizzMultipleChoiceAnswers
+export default QuizMultipleChoiceAnswers

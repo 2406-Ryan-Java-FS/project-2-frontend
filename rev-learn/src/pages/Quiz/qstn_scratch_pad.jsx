@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material'
 import React from 'react'
 
-import "./quizz.css";
+import "./quiz.css";
 
 const QuestionScratchPad = () => {
   return (
