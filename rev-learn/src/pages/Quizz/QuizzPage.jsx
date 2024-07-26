@@ -16,7 +16,7 @@ const QuizzPage = () => {
         <h3>Quizz Page</h3>
         <QuizzNavigationBar/>
         <div className='question-item'>
-          <QuizItem mode='educator' item={currentQuestion}/>
+          <QuizItem mode='student' item={currentQuestion}/>
           <div className='qtn-navigation-btn'>
             <QuestionNavigationButton/>
           </div>
