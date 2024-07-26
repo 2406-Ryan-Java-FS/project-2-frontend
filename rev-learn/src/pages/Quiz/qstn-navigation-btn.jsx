@@ -1,11 +1,11 @@
 import React from 'react'
 
-import "./quizz.css";
-import { quizzQuestions } from './quizz-data';
-import { Button, Link } from '@mui/material';
+import "./quiz.css";
+import { quizQuestions } from './quiz-data';
+import { Button } from '@mui/material';
 
 const QuestionNavigationButton = () => {
-  const questionButton = quizzQuestions;
+  const questionButton = quizQuestions;
   
   console.log("🚀 ~ QuestionNavigationButton ~ questionButton:", questionButton)
   
