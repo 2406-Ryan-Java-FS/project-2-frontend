@@ -24,9 +24,9 @@ export default function ResponsiveDrawer() {
         {['Home', 'Courses', 'Discussions', 'Messages'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
-               <ListItemIcon>
-                { index === 3 ? <InboxIcon /> : ""}
-              </ListItemIcon> 
+              <ListItemIcon>
+                {index === 3 ? <InboxIcon /> : ""}
+              </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>

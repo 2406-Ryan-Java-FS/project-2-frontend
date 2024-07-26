@@ -7,16 +7,13 @@ export default function StudentProfile() {
     return (
         <>
 
-<br />
-      <br />
-      <br />
+            <br />
+            <br />
             {<ResponsiveDrawer />}
             <br />
-      <br />
-      <br />
+            <br />
             {<StudentAppBar />}
             {<BasicTable />}
-            
 
         </>
     );
