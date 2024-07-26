@@ -1,8 +1,5 @@
-import '../styles/course-styles.css'
+import '../../styles/course-styles.css'
 import CourseCard from './CourseCard'
-// import FilterSidebar from './FilterSidebar'
-
-//title, description, category, price, rating, reviews
 
 let courseList = [
     {
@@ -17,14 +14,14 @@ let courseList = [
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices blandit sapien, in placerat nunc efficitur eu. Cras non ligula eu orci molestie sagittis. Ut vel ornare tellus. Quisque cursus odio ut urna varius, in ultricies ex posuere. Fusce aliquam laoreet ipsum ac rhoncus. Mauris tincidunt ac diam eget maximus. Phasellus posuere libero eu mauris egestas viverra. Vestibulum metus diam, pulvinar quis elementum sit amet, consequat quis lectus. Cras ut ornare felis. Nunc fringilla arcu ex. Mauris eu dolor id ex lobortis viverra. Pellentesque iaculis, purus sed bibendum tincidunt, nunc neque commodo risus, convallis facilisis tortor leo nec augue. Curabitur pellentesque purus sed lacus hendrerit gravida. Ut a libero nunc. Maecenas id magna velit. Nulla ut accumsan lacus.",
         category: "Javascript",
         price: "$1.50",
-        rating: 4.3
+        // rating: 4.3
     },
     {
         title: "Intro To Java",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices blandit sapien, in placerat nunc efficitur eu. Cras non ligula eu orci molestie sagittis. Ut vel ornare tellus. Quisque cursus odio ut urna varius, in ultricies ex posuere. Fusce aliquam laoreet ipsum ac rhoncus. Mauris tincidunt ac diam eget maximus. Phasellus posuere libero eu mauris egestas viverra. Vestibulum metus diam, pulvinar quis elementum sit amet, consequat quis lectus. Cras ut ornare felis. Nunc fringilla arcu ex. Mauris eu dolor id ex lobortis viverra. Pellentesque iaculis, purus sed bibendum tincidunt, nunc neque commodo risus, convallis facilisis tortor leo nec augue. Curabitur pellentesque purus sed lacus hendrerit gravida. Ut a libero nunc. Maecenas id magna velit. Nulla ut accumsan lacus.",
         category: "Java",
         price: "$499.99",
-        rating: 4.1
+        // rating: 4.1
     },
     {
         title: "Python for Experts",
@@ -57,7 +54,6 @@ export default function UserCourseCatalog () {
     return (
         <>
             <div className="userCourseCatalogOutterContainer">
-                {/* <FilterSidebar /> */}
                 <div className='userCourseCatalogMainContainer'>
 
                     <h1 className='title'>RevLearn Courses</h1>
@@ -77,11 +73,6 @@ export default function UserCourseCatalog () {
                                 role={role}
                                 />
                             ))}
-
-                            {/* <CourseCard />
-                            <CourseCard />
-                            <CourseCard />
-                            <CourseCard /> */}
                         </div>
                     </div>
                 </div>

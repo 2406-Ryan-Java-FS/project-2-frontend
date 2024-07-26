@@ -1,6 +1,6 @@
 body {
     /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; */
-/* font-family: OpenSans, Arial, sans-serif; */
+    /* font-family: OpenSans, Arial, sans-serif; */
     }
 
 .container {
@@ -11,7 +11,8 @@ body {
     position: relative;
     /* width: 440px; */
     width: 400px;
-    background-color: #d4d4d8;
+    /* background-color: #d4d4d8; */
+    background-color: #e4e4e7;
     border-radius: 0.5rem;
 }
 
@@ -51,7 +52,7 @@ body {
 }
 
 .course-description {
-    height: 100px; /* Adjust the height as needed */
+    height: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -83,6 +84,11 @@ body {
 
 .reviews {
     color: #525252;
+}
+
+.noReviews {
+    font-weight:400;
+    /* color:#71717a; */
 }
 
 .course-price {
