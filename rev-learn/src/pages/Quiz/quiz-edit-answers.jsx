@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-const QuizzAnswerEdit = () => {
-  const [newQuizzAnswers, setNewQuizzAnswer] = useState([]);
+const QuizAnswerEdit = () => {
+  const [newQuizAnswers, setNewQuizAnswer] = useState([]);
 
   return (
     <div className='qtn-edit'>
@@ -16,4 +16,4 @@ const QuizzAnswerEdit = () => {
   )
 }
 
-export default QuizzAnswerEdit
+export default QuizAnswerEdit

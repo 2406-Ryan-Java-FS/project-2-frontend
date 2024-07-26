@@ -1,9 +1,9 @@
 
-export const quizzQuestions = [
-  {'seq': 1, 'qtn': 'What is the correct syntax to output "Hello World" in JavaScript?'},
-  {'seq': 2, 'qtn': 'How do you create a function in JavaScript?'},
-  {'seq': 3, 'qtn': 'What is the correct way to write a for loop in JavaScript?'},
-  {'seq': 4, 'qtn': 'What is the correct way to write a comment in JavaScript?'},
+export const quizQuestions = [
+  {'seq': 1, 'question': 'What is the correct syntax to output "Hello World" in JavaScript?', 'correct-answer' : 1},
+  {'seq': 2, 'question': 'How do you create a function in JavaScript?', 'correct-answer' : 1},
+  {'seq': 3, 'question': 'What is the correct way to write a for loop in JavaScript?', 'correct-answer' : 1},
+  {'seq': 4, 'question': 'What is the correct way to write a comment in JavaScript?', 'correct-answer' : 1},
 ]
 
 // ['2', 'What is it'],
@@ -17,7 +17,7 @@ export const quizzQuestions = [
 // ['10', 'What is it']
 
 
-export const quizzAnswers = [
+export const quizAnswers = [
   {'seq': 1, 'answers': ['echo("Hello World");', 'print("Hello World");', 'console.log("Hello World");', 'document.write("Hello World");', 'System.out.println("Hello World");']},
   {'seq': 2, 'answers': ['function myFunction() {}', 'def myFunction() {}', 'create myFunction() {}', 'function:myFunction() {}', 'myFunction function() {}']},
   {'seq': 3, 'answers': ['for (var i = 0; i < 5; i++) {}', 'for var i = 0; i < 5; i++ {}', 'for (i < 5; i++) {var i = 0;}', 'for (var i = 0; i++) {}', 'for (i++) {var i = 0; i < 5;']}
