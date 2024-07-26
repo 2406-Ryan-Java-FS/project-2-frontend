@@ -1,8 +1,10 @@
 import { Button, Card, CardContent, CardHeader } from "@mui/material";
 import uac from "../controllers/userAccountController";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup()
 {
+    let naviageUsingReact=useNavigate()
 return(<>
 <center>
 {/* <Card varient="outlined" sx={{ maxWidth: 345 }}>
@@ -21,14 +23,16 @@ return(<>
     <tr><td colSpan={2}>
         <center>
         <button onClick={
-            ()=>uac.signup(
-                document.getElementById("SignupFirstName").value,
-                document.getElementById("SignupLastName").value,
-                document.getElementById("SignupEmail").value,
-                document.getElementById("SignupPassword").value,
-                document.getElementById("SignupPasswordConfirm").value
-            )
-            
+            async()=>{
+                await uac.signup(
+                    document.getElementById("SignupFirstName").value,
+                    document.getElementById("SignupLastName").value,
+                    document.getElementById("SignupEmail").value,
+                    document.getElementById("SignupPassword").value,
+                    document.getElementById("SignupPasswordConfirm").value
+                )
+                naviageUsingReact('/signin')
+            }
         }>Sign me up ! !</button>
         </center>
     </td></tr>

@@ -23,7 +23,7 @@ export default class userAccountController
         //Need to do password confirm check
 
         console.log(`userAccountController signup() ${firstName} ${lastName} ${email} ${password}`)
-        const response=await fetch(`/project-2-back/signup`,{
+        const response=await fetch(`/project-2-back/users`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
@@ -34,7 +34,7 @@ export default class userAccountController
             })
         })
         
-        if(response.status!=200)
+        if(response.status!=201)
             throw new Error(JSON.stringify(response,null,2))
             //throw new Error(`response status ${response.status} ${response.statusText} ${await response.text()}`)
 
@@ -47,23 +47,27 @@ export default class userAccountController
     /**
      * Sets the logged in user if the username and password works
      */
-    static async login(username,password)
+    static async signin(email,password)
     {
-        console.log(`userAccountController login() ${username} ${password}`)
-        const response=await fetch(`${userAccountController.tempUrl}/users/login`,{
+        console.log(`userAccountController login() ${email} ${password}`)
+        const response=await fetch(`/project-2-back/users/login`,{
             method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-                "username":username,
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                "firstName":"Dont have it",
+                "lastName":"Dont have it",
+                "email":email,
+                "username":"Dont have it",
                 "password":password
-            }
+            })
         })
-        let body=await response.json()
-
+        
         if(response.status!=200)
-            throw new Error(`response status ${response.status} `+JSON.stringify(body.errorMessage))
+            throw new Error(JSON.stringify(response,null,2))
 
-        userAccountController.loggedInUser=body
+        let body=await response.json()
+        userAccountController.loggedInUser=body.user
+        userAccountController.loggedInUser.token=body.token
         console.log(`userAccountController.loggedInUser=`,userAccountController.loggedInUser)
     }
 

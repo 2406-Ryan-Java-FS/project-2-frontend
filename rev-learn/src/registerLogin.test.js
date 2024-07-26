@@ -5,11 +5,10 @@
 
 const { default: uac } = require("./controllers/userAccountController")
 
-it('Registers, login, logout',async()=>{
-
-    
-        const response=await fetch(`/project-2-back/clear-all`,{method:"DELETE"})
-        expect(await response.text()).toBe("Cleared all database tables");
+it('Registers, login, logout',async()=>
+{
+    const response=await fetch(`/project-2-back/clear-all`,{method:"DELETE"})
+    expect(await response.text()).toBe("Cleared all database tables");
 
     await uac.signup("testFirstName","testLastName","testEmail","testPass","testPass")
     expect(uac.newUserCreated.firstName).toBe("testFirstName")
@@ -17,7 +16,8 @@ it('Registers, login, logout',async()=>{
     expect(uac.newUserCreated.email)    .toBe("testEmail")
     expect(uac.newUserCreated.password) .toBe(undefined)
 
-    
+    await uac.signin("testEmail","testPass")
+    console.log(`uac.loggedInUser=`,uac.loggedInUser)
 
     // let response=await fetch(`project-2-back/development`)
     // let body=await response.text()
