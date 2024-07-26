@@ -5,7 +5,7 @@ import HomeComponent from './components/HomeComponent';
 import Register from './components/Register';
 import Login from './components/Login';
 // import CourseCard from './components/CourseCard';
-import EducatorDashboard from './components/EducatorDashboardComponents/educator-dashboard';
+import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
 
 export default function App() {
   return (

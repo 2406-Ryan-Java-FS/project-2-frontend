@@ -1,4 +1,4 @@
-import EducatorDashboardHeaderDropdown from "./educator-dashboard-header-add-new-course";
+import EducatorDashboardHeaderAddNewCourse from "./educator-dashboard-header-add-new-course";
 
 export default function EducatorDashboardHeader() {
   return (
@@ -12,7 +12,7 @@ export default function EducatorDashboardHeader() {
         }}
       >
         Educator's Dashboard
-        <EducatorDashboardHeaderDropdown />
+        <EducatorDashboardHeaderAddNewCourse />
       </h1>
       <hr style={{ marginLeft: "8px", marginRight: "8px" }} />
     </>
