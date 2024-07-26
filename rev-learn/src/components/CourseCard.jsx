@@ -4,7 +4,7 @@ import '../styles/course-styles.css'
 export default function CourseCard ( props ) {
 
     // Student props
-    const { role, title, description, category, price, rating } = props;
+    const { image, role, title, description, category, price, rating } = props;
 
 
     const courseTitle = "Javascript for cats"
@@ -25,7 +25,7 @@ export default function CourseCard ( props ) {
                             <div className="course-header">
                                 <div className="course-title">{title}</div>
                             </div>
-                            <div className="course-description">{description}</div>
+                            <div className="course-description"> <span className='descriptionSpan'>Description:</span> {description}</div>
                             <div className="course-rating">
                                 <div>{rating}</div>
                                 <div className="stars">
@@ -36,7 +36,7 @@ export default function CourseCard ( props ) {
                                     ))}
                                 </div>
                             </div>
-                            <div className="course-price">{role == "Student" && price}</div>
+                            <div className="course-price">{role === "Student" && price}</div>
                         </div>
                     </div>
                 </div>

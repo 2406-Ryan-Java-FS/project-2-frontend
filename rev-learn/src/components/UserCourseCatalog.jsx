@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import '../styles/course-styles.css'
 import CourseCard from './CourseCard'
-import FilterSidebar from './FilterSidebar'
+// import FilterSidebar from './FilterSidebar'
 
 //title, description, category, price, rating, reviews
 
@@ -11,7 +10,7 @@ let courseList = [
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices blandit sapien, in placerat nunc efficitur eu. Cras non ligula eu orci molestie sagittis. Ut vel ornare tellus. Quisque cursus odio ut urna varius, in ultricies ex posuere. Fusce aliquam laoreet ipsum ac rhoncus. Mauris tincidunt ac diam eget maximus. Phasellus posuere libero eu mauris egestas viverra. Vestibulum metus diam, pulvinar quis elementum sit amet, consequat quis lectus. Cras ut ornare felis. Nunc fringilla arcu ex. Mauris eu dolor id ex lobortis viverra. Pellentesque iaculis, purus sed bibendum tincidunt, nunc neque commodo risus, convallis facilisis tortor leo nec augue. Curabitur pellentesque purus sed lacus hendrerit gravida. Ut a libero nunc. Maecenas id magna velit. Nulla ut accumsan lacus.",
         category: "Python",
         price: "$1,000",
-        rating: 5
+        rating: 4.2
     },
     {
         title: "JS for Everyone",
@@ -36,14 +35,14 @@ let courseList = [
     },
     {
         title: "Medium Python",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices blandit sapien, in placerat nunc efficitur eu. Cras non ligula eu orci molestie sagittis. Ut vel ornare tellus. Quisque cursus odio ut urna varius, in ultricies ex posuere. Fusce aliquam laoreet ipsum ac rhoncus. Mauris tincidunt ac diam eget maximus. Phasellus posuere libero eu mauris egestas viverra. Vestibulum metus diam, pulvinar quis elementum sit amet, consequat quis lectus. Cras ut ornare felis. Nunc fringilla arcu ex. Mauris eu dolor id ex lobortis viverra. Pellentesque iaculis, purus sed bibendum tincidunt, nunc neque commodo risus, convallis facilisis tortor leo nec augue. Curabitur pellentesque purus sed lacus hendrerit gravida. Ut a libero nunc. Maecenas id magna velit. Nulla ut accumsan lacus.",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices blandit sapien, in placerat nunc efficitur eu. Cras non ligula eu orci molestie sagittis. Ut vel ornare tellus. Quisque cursus odio ut urna varius, in ultricies ex posuere. Fusce aliquam laoreet ipsum ac rhoncus. Mauris tincidunt ac diam eget maximus. Phasellus posuere libero eu mauris egestas viverra. Vestibulum metus diam, pulvinar quis ilPellentesque iaculis, purus sed bibendum tincidunt, nunc neque commodo risus, convallis facilisis tortor leo nec augue. Curabitur pellentesque purus sed lacus hendrerit gravida. Ut a libero nunc. Maecenas id magna velit. Nulla ut accumsan lacus.",
         category: "Python",
         price: "$50",
         rating: 4.9
     },
     {
         title: "Hard Javascript 2",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices blandit sapien, in placerat nunc efficitur eu. Cras non ligula eu orci molestie sagittis. Ut vel ornare tellus. Quisque cursus odio ut urna varius, in ultricies ex posuere. Fusce aliquam laoreet ipsum ac rhoncus. Mauris tincidunt ac diam eget maximus. Phasellus posuere libero eu mauris egestas viverra. Vestibulum metus diam, pulvinar quis elementum sit amet, consequat quis lectus. Cras ut ornare felis. Nunc fringilla arcu ex. Mauris eu dolor id ex lobortis viverra. Pellentesque iaculis, purus sed bibendum tincidunt, nunc neque commodo risus, convallis facilisis tortor leo nec augue. Curabitur pellentesque purus sed lacus hendrerit gravida. Ut a libero nunc. Maecenas id magna velit. Nulla ut accumsan lacus.",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ultrices blandit sapien, in placerat nunc efficitur eu. Cras non ligula eu orci molestie sagittis. Ut vel ornare tellus. Quisque cursus odio ut urna varius, in ultricies ex posuere. Fusce aliquam laoreet ipsum ac rhoncus. Mauris tincidunt ac diam eget maximus. Phasellus posuere libero eu mauris egestas viverra. Vestibulum metus diam, pulvinar quis cu ex. Mapurus sed bibendum tincidunt, nunc neque commodo risus, convallis facilisis tortor leo nec augue. Curabitur pellentesque purus sed lacus hendrerit gravida. Ut a libero nunc. Maecenas id magna velit. Nulla ut accumsan lacus.",
         category: "Javascript",
         price: "$50,000",
         rating: 1.0
@@ -52,7 +51,7 @@ let courseList = [
 
 export default function UserCourseCatalog () {
 
-    const [role, setRole] = useState("Student");
+    const role = "Student";
 
 
     return (
