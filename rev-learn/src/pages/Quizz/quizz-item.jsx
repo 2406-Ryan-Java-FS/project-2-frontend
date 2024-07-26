@@ -27,23 +27,21 @@ console.log("🚀 ~ QuizItem ~ mode:", mode)
               readOnly: allowEdit,
             }}
           />
-        <div >
-          <div className='qi-middle-row'>
-            <div className='question-mcq'>
-              { mode === 'student' 
-                ? <QuizzMultipleChoiceAnswers item={item}/>
-                : <QuizzAnswerEdit />
-              }
-            </div>
+        <div className='qi-middle-row'>
+          <div className='question-mcq'>
+            { mode === 'student' 
+              ? <QuizzMultipleChoiceAnswers item={item}/>
+              : <QuizzAnswerEdit />
+            }
           </div>
+        </div>
+        <div>
           <div>
-            <div>
-              <QuestionScratchPad/>
-            </div>
-            <div className='quizz-buttons'>
-              <Button id='quizz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Mark</Button>
-              <Button id='quizz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Submit</Button>
-            </div>
+            <QuestionScratchPad/>
+          </div>
+          <div className='quizz-buttons'>
+            <Button id='quizz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Mark</Button>
+            <Button id='quizz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Submit</Button>
           </div>
         </div>
       </div>
