@@ -17,7 +17,7 @@ import Textarea from "@mui/joy/Textarea";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 
-export default function EducatorDashboardHeaderDropdown() {
+export default function EducatorDashboardHeaderAddNewCourse() {
   const [openModal, setOpenModal] = useState(false);
   const [category, setCategory] = useState("");
   const [courseDate, setCourseDate] = useState("");

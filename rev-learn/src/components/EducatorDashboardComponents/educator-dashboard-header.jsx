@@ -1,4 +1,4 @@
-import EducatorDashboardHeaderDropdown from "./educator-dashboard-header-dropdown";
+import EducatorDashboardHeaderDropdown from "./educator-dashboard-header-add-new-course";
 
 export default function EducatorDashboardHeader() {
   return (
