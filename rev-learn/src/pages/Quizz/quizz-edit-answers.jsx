@@ -4,7 +4,7 @@ const QuizzAnswerEdit = () => {
   const [newQuizzAnswers, setNewQuizzAnswer] = useState([]);
 
   return (
-    <div>
+    <div className='qtn-edit'>
       <ol>
         <li><p>Question 1:   <input type="text"></input></p></li>
         <li><p>Question 2:   <input type="text"></input></p></li>

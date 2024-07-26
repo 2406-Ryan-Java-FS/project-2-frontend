@@ -46,6 +46,13 @@
   margin: 10px;
 }
 
+.qtn-edit {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  
+}
+
 .quizz-buttons {
   display: flex;
   justify-content: space-evenly;
