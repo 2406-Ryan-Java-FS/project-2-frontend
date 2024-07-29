@@ -1,7 +1,5 @@
 /// import logo from './logo.svg';
-//This is a new push
-//New comment from front-end
-// Comment from Eugene
+//I'm removing al comments
 import './App.css';
 import {Route,Routes} from 'react-router-dom';
 import { BrowserRouter,Link } from 'react-router-dom';
