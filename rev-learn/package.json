@@ -16,6 +16,7 @@
     "react-router-dom": "^6.25.0",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.12",
+    "tailwindcss-animate": "^1.0.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
