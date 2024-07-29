@@ -6,8 +6,8 @@ import HomeComponent from "./components/HomeComponent";
 import Register from "./components/Register";
 import Login from "./components/Login";
 // import CourseCard from './components/CourseCard';
-import QuizzPage from "./pages/Quizz/QuizzPage";
-import QuizItem from "./pages/Quizz/quizz-item";
+import QuizItem from "./pages/Quiz/quiz-item";
+import QuizPage from "./pages/Quiz/QuizPage";
 import UserCourseCatalog from "./components/UserCourseCatalog";
 
 export default function App() {
@@ -36,7 +36,7 @@ export default function App() {
         <Route path="" element={<HomeComponent />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/quizz" element={<QuizzPage />} />
+        <Route path="/quiz" element={<QuizPage />} />
         <Route
           path="/edit-question"
           element={<QuizItem mode="educator" item={2} />}
