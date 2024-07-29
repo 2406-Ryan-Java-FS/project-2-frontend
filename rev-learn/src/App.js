@@ -13,38 +13,36 @@ import UserCourseCatalog from "./components/UserCourseCatalog";
 export default function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <nav id="navbar">
-          <Link to="/" style={{ margin: "15px" }}>
-            Home
-          </Link>
-          {" ~ "}
-          <Link to="/register" style={{ margin: "15px" }}>
-            Register
-          </Link>
-          <Link to="/login" style={{ margin: "15px" }}>
-            Login
-          </Link>
-          {" ~ "}
-          <Link to="/quizz" style={{ margin: "15px" }}>
-            Quizz
-          </Link>
-          <Link to="/edit-question" style={{ margin: "15px" }}>
-            Edit Question
-          </Link>
-        </nav>
-        <Routes>
-          <Route path="" element={<HomeComponent />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/quizz" element={<QuizzPage />} />
-          <Route
-            path="/edit-question"
-            element={<QuizItem mode="educator" item={2} />}
-          />
-          <Route path="/course-catalog" element={<UserCourseCatalog />} />
-        </Routes>
-      </BrowserRouter>
+      <nav id="navbar">
+        <Link to="/" style={{ margin: "15px" }}>
+          Home
+        </Link>
+        {" ~ "}
+        <Link to="/register" style={{ margin: "15px" }}>
+          Register
+        </Link>
+        <Link to="/login" style={{ margin: "15px" }}>
+          Login
+        </Link>
+        {" ~ "}
+        <Link to="/quizz" style={{ margin: "15px" }}>
+          Quizz
+        </Link>
+        <Link to="/edit-question" style={{ margin: "15px" }}>
+          Edit Question
+        </Link>
+      </nav>
+      <Routes>
+        <Route path="" element={<HomeComponent />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/quizz" element={<QuizzPage />} />
+        <Route
+          path="/edit-question"
+          element={<QuizItem mode="educator" item={2} />}
+        />
+        <Route path="/course-catalog" element={<UserCourseCatalog />} />
+      </Routes>
     </div>
   );
 }
