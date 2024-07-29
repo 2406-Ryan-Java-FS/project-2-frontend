@@ -1,5 +1,5 @@
-import cat from '../images/placeholder-image.jpg'
-import '../styles/course-styles.css'
+import cat from '../../images/placeholder-image.jpg'
+import '../../styles/course-styles.css'
 
 export default function CourseCard ( props ) {
 

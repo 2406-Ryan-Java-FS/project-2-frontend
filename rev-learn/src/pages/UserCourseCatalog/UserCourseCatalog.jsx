@@ -1,5 +1,5 @@
 import '../../styles/course-styles.css'
-import CourseCard from '../../components/CourseCard'
+import CourseCard from './CourseCard'
 
 let courseList = [
     {
