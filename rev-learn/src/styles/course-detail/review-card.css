@@ -1,0 +1,23 @@
+.review-card{
+    padding: 10px;
+    border: 2px solid #eee;
+}
+.review-top{
+    display: flex
+}
+.user-profile{
+    margin-right: 20px;
+}
+
+.user-profile img{
+    border-radius: 50px;
+}
+
+.review-username{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.review-username span{
+    font-size: 20px;
+    font-weight: bold;
+}

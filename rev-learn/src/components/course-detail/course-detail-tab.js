@@ -49,7 +49,7 @@ export default function CourseDetailTabs({course}){
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <Tab label="descripton" {...a11yProps(0)} />
-          <Tab label="aboutEducator" {...a11yProps(1)} />
+          <Tab label="Instructor" {...a11yProps(1)} />
           <Tab label="Content" {...a11yProps(2)} />
           <Tab label="Review" {...a11yProps(3)} />
         </Tabs>

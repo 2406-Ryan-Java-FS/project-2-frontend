@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import CourseDetailReviewCard from './course-detail-review-card';
 
 export default function CourseDetailReview({courseId}){
 
@@ -14,9 +15,18 @@ export default function CourseDetailReview({courseId}){
     //      })
 
     // },[])
+
+    
+
    
     return(<>
         {/* will map enrollment list  */}
-        <div>reviews</div>
+        <h2>Reviews</h2>
+        {/* Send each enrollment enformation to a review card */}
+        {/* {enrollmentList & enrollmentList.length >0?? enrollmentList.map(enrollment => (
+            <CourseDetailReviewCard enrollment={enrollment}/>
+        )) } */}
+        <CourseDetailReviewCard />
+        
     </>)
 }
