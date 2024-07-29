@@ -60,6 +60,7 @@ export default function EducatorDashboard() {
           <Card
             key={course.courseId}
             sx={{ position: "relative", width: 440, margin: "8px" }}
+            raised="true"
           >
             <CardMedia
               component="img"
