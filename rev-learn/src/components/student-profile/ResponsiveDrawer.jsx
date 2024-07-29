@@ -11,6 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+
 export default function ResponsiveDrawer() {
   const [open, setOpen] = React.useState(false);
 
@@ -51,6 +52,7 @@ export default function ResponsiveDrawer() {
   return (
     <div>
       <Button variant='contained' onClick={toggleDrawer(true)}>Open Menu</Button>
+
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
