@@ -8,24 +8,24 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { quizAnswers } from './quiz-data';
 
-// const tmpAnswersList = ['Answer A', 'Answer B', 'Answer C', 'Answer D', 'Answer E'];
-
 const QuizMultipleChoiceAnswers = ({item}) => {
   
-  console.log("🚀 ~ QuizMultipleChoiceAnswers ~ item:", item)
-  // console.log("quizAnswers: ", quizAnswers[item].answers);
-  // const answersList = quizAnswers[item].answers;
-  const tmpAnswersList = ['Answer A', 'Answer B', 'Answer C', 'Answer D', 'Answer E'];
+  const answersList = quizAnswers[item].answers;
+  // const answersList = ['Answer A', 'Answer B', 'Answer C', 'Answer D', 'Answer E'];
   
+  // console.log("🚀 ~ QuizMultipleChoiceAnswers ~ item:", item)
+  // console.log("🚀 ~ QuizMultipleChoiceAnswers ~ quizAnswers[item].answers:", quizAnswers[item].answers[0].ans_text);
+  // console.log("quizAnswers: ", quizAnswers[item].answers);
+
   return (
     <div>
       <ol>
         {
-          tmpAnswersList.map((ans, idxal) => (
+          answersList.map((ans, idxal) => (
             <li key={idxal}>
               <p className='answer-item'>
                 <span><Checkbox/></span>
-                {ans}
+                {ans.ans_text}
                 <span>{idxal === 1 ? <HighlightOffIcon/> : <>{idxal === 3 ? <CheckCircleOutlineIcon/> : <></>}</>}</span>
               </p>
             </li>

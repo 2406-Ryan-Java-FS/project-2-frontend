@@ -64,6 +64,10 @@
   margin: 10px;
 }
 
+.quiz-start {
+  margin : 10px;
+}
+
 .qtn-edit {
   display: flex;
   justify-content:center;
@@ -89,8 +93,9 @@
 }
 
 .qtn-navigation-btn {
-  margin: 82px 5px 40px 5px;
+  margin: 72px 5px 40px 5px;
 }
+
 .answer-item {
   width: 300px;
   display: flex;

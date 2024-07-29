@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 const QuestionNavigationButton = () => {
   const questionButton = quizQuestions;
   
-  console.log("🚀 ~ QuestionNavigationButton ~ questionButton:", questionButton)
+  // console.log("🚀 ~ QuestionNavigationButton ~ questionButton:", questionButton)
   
   return (
     <div className='questions-nav-buttons'>

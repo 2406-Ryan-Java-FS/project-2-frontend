@@ -12,29 +12,31 @@ const QuizNavigationBar = () => {
   const { quizQuestionId, updateQuizQuestionId } = useContext(AppContext);
 
   function moveQuestionsLeft(id) {
-    console.log("🎆 ~ moveQuestionsLeft -- id:", id)
-    id = Number(id);
+    id = Number(id);      // the arrow id clicked.
+
     if( id === 1 && quizQuestionId > 0) {
       updateQuizQuestionId(quizQuestionId - 1);
-      console.log("🎆 ~ moveQuestionsLeft - 1 ~~ quizQuestionId:", quizQuestionId, id)
-    } else {
+      console.log("🎆 ~ moveQuestionsLeft - 1 ~~ quizQuestionId:", quizQuestionId, id);
+    } else if( id === 0 ) {
       updateQuizQuestionId(0);
-      console.log("🎆 ~ moveQuestionsLeft (first) ~~ quizQuestionId:", quizQuestionId)
+      console.log("🎆 ~ moveQuestionsLeft (first) ~~ quizQuestionId:", quizQuestionId);
     }
+    console.log("final quizQuestionId:", quizQuestionId);
   }
 
   // console.log("quizQuestionId", quizQuestionId);
   
   function moveQuestionsRight(id) {
-    console.log("🎇 ~ moveQuestionsRight ++ id:", id)
-    id = Number(id);
-    if( id === 0 && quizQuestionId < quizQuestions.length) {
+    id = Number(id);      // the arrow id clicked.
+
+    if( id === 0 && quizQuestionId < quizQuestions.length - 1) {
       updateQuizQuestionId(quizQuestionId + 1);
-      console.log("🎇 ~ moveQuestionsRight + 1 ~~ quizQuestionId:", quizQuestionId)
-    } else {
-      updateQuizQuestionId(quizQuestions.length-1);
-      console.log("🎇 ~ moveQuestionsRight + (end) ~~ quizQuestionId:", quizQuestionId)
+      console.log("🎇 ~ moveQuestionsRight + 1 ~~ quizQuestionId:", quizQuestionId);
+    } else if( id === 1 ) {
+      updateQuizQuestionId(quizQuestions.length - 1);
+      console.log("🎇 ~ moveQuestionsRight + (end) ~~ quizQuestionId:", quizQuestionId);
     }
+    console.log("final quizQuestionId:", quizQuestionId);
   }
 
   return (
