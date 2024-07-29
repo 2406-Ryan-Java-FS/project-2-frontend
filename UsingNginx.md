@@ -10,6 +10,12 @@ WHY?
 
 Download stable nginx command line tool https://nginx.org/en/download.html
 
+```
+cd ~
+curl -O https://nginx.org/download/nginx-1.27.0.tar.gz
+tar -xf nginx-1.27.0.tar.gz
+```
+
 1. Extract files to your home folder ~/
 
 2. create and place nginx.exe into a bin folder at ~/bin/nginx.exe
