@@ -1,12 +1,11 @@
-import cat from '../../images/placeholder-image.jpg'
 import '../../styles/course-styles.css'
 
 export default function CourseCard ( props ) {
 
     // Student props
     // const { image, role, title, description, category, price, rating } = props;
-    const { role, title, description, price, rating } = props;
-    const courseImage = cat;
+    const { image, imageStatic, role, title, description, price, rating } = props;
+    // const courseImage = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
 
     return (
 
@@ -14,10 +13,10 @@ export default function CourseCard ( props ) {
             <div className="container">
                 <div className="course-card">
                     <div>
-                        <img className="course-image" src={courseImage} alt={title} draggable='false' />
-                        {/* <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="three-dots" viewBox="0 0 16 16">
-                            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0" />
-                        </svg> */}
+                        <div className='courseImageContainer'>
+                            <img className="course-image" src={image ? image : imageStatic} alt={title} draggable='false'
+                            />
+                        </div>
                         <div className="course-content">
                             <div className="course-header">
                                 <div className="course-title">{title}</div>
