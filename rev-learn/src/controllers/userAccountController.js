@@ -23,14 +23,19 @@ export default class userAccountController
         //Need to do password confirm check
 
         console.log(`userAccountController signup() ${firstName} ${lastName} ${email} ${password}`)
-        const response=await fetch(`/project-2-back/users`,{
+        const response=await fetch(`/project-2-back/users2/signup`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
-                "firstName":firstName,
-                "lastName":lastName,
-                "email":email,
-                "password":password
+                "user":{
+                    "firstName":firstName,
+                    "lastName":lastName,
+                    "email":email,
+                    "password":password
+                },
+                "educator":{
+
+                }
             })
         })
         
@@ -39,9 +44,9 @@ export default class userAccountController
             //throw new Error(`response status ${response.status} ${response.statusText} ${await response.text()}`)
 
         let body=await response.json()
-
-        userAccountController.newUserCreated=body
-        console.log(`userAccountController.newUserCreated=`,userAccountController.newUserCreated)
+        userAccountController.newUserCreated=body.user
+        userAccountController.newUserCreated.token=body.token
+        console.log(`newUserCreated=`,userAccountController.newUserCreated)
     }
 
     /**
@@ -50,15 +55,20 @@ export default class userAccountController
     static async signin(email,password)
     {
         console.log(`userAccountController login() ${email} ${password}`)
-        const response=await fetch(`/project-2-back/users/login`,{
+        const response=await fetch(`/project-2-back/users2/signin`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
-                "firstName":"Dont have it",
-                "lastName":"Dont have it",
-                "email":email,
-                "username":"Dont have it",
-                "password":password
+                "user":{
+                    "firstName":"Dont have it",
+                    "lastName":"Dont have it",
+                    "email":email,
+                    "username":"Dont have it",
+                    "password":password
+                },
+                "educator":{
+
+                }
             })
         })
         
@@ -72,37 +82,14 @@ export default class userAccountController
     }
 
     /**
-     * Fetches and stores the private information of the currently logged in user
-     */
-    static async myPrivateInfo()
-    {
-        console.log(`userAccountController myPrivateInfo()`)
-        if(userAccountController.loggedInUser==null)return ""
-
-        const response=await fetch(`${userAccountController.tempUrl}/users/my-private-info`,{
-            method:"GET",
-            headers:{
-                "Content-Type":"application/json",
-                tokenId:        userAccountController.loggedInUser.tokenId,
-                tokenPassword:  userAccountController.loggedInUser.tokenPassword
-            }
-        })
-        let body=await response.json()
-
-        if(response.status!=200)
-            throw new Error(`response status ${response.status} `+JSON.stringify(body.errorMessage))
-        userAccountController.loggedInUser.secretInformation=body.secretInformation
-    }
-
-    /**
      * Logs out the currently logged in user
      */
-    static async logout()
+    static async signout()
     {
         console.log(`userAccountController logout()`)
         if(userAccountController.loggedInUser==null)return
 
-        const response=await fetch(`${userAccountController.tempUrl}/users/logout`,{
+        const response=await fetch(`${userAccountController.tempUrl}/users2/signout`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
