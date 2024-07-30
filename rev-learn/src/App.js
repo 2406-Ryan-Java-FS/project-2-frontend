@@ -26,6 +26,9 @@ export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        {/* This was used to navigate through course related components */}
+        {/* <SideBar /> */}
+        
         <nav id="navbar">
           <Link to="/">Home</Link>
           <Link to="/register">Register</Link>
@@ -53,7 +56,7 @@ export default function App() {
           <Route path='/course-discussions' element={<CourseDiscussions />} />
           <Route path='/course-quizzes' element={<CourseQuizzes />} />
           
-          {/* <Route path="/course-sidebar" element={<SideBar />} /> */}
+          
           <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
           <Route path="/course-catalog" element={<UserCourseCatalog />} />

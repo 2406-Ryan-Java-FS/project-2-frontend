@@ -18,7 +18,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { Link } from 'react-router-dom';
 
 export default function SideBar() {
-  const drawerWidth = 350;
+  const drawerWidth = 300;
 
   const menuItems1 = [
     { text: 'Home', icon: <HomeIcon />, link:'/courses/:courseId' },

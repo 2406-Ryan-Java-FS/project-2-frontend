@@ -1,5 +1,5 @@
 import { Button, TextField } from '@mui/material'
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import QuizMultipleChoiceAnswers from './quiz-mc-answers'
 import QuestionScratchPad from './qstn_scratch_pad'
 
