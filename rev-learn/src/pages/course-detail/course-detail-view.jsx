@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import CourseDetailTabs from "./course-detail-tab";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -6,6 +6,8 @@ import CategoryCrumb from "./category-crumb";
 import '../../styles/course-detail/course-detail-view.css';
 
 export default function CourseDetailView(){
+
+    // const {user} = useContext();
     //Routes: /courses/{id} or /courses/detail/{id}
     //considering each course data will be delivered from the course catalog.
     const course = {
@@ -20,14 +22,20 @@ export default function CourseDetailView(){
     }
 
     // const [course,SetCourse] = useState([]);
+    // const [enrollment, SetEnrollment] = useState([]);
 
     //TODO: Fetch course object!
     // useEffect(() => {
-    //     fetch()
+    //     fetch("http://localhost:8080/courses/{courseId}")
     //     .then(res => res.json())
     //     .then(setCourse)
     //     .catch(error => console.error(error))
-    // },[courseId])
+
+            // fetch(`http://localhost:8080/enrollments/students/{user.userId}`)
+            // .then(res => res.json())
+            // .then(setEnrollment)
+            // .catch(error => console.error(error))
+    // },[courseId, user])
 
 
 
@@ -42,10 +50,13 @@ export default function CourseDetailView(){
     function pendingEnroll(){
     //     // POST Enrollment DATA => for 
 
-    //     const enrollment = {
+    //     const newEnrollment = {
     //         studentId: user.userId,
     //         courseId: course.courseId,
-    //         paymentStatus: 'pending'
+    //         paymentStatus: 'pending',
+            //    enrollmentStatus: false,
+            //    courseRating: null,
+            //    courseReview: null
 
     //     }
 
@@ -54,14 +65,14 @@ export default function CourseDetailView(){
     //         header:{
     //             'content-Type': 'application/json',
     //         },
-    //         body: JSON.stringify(enrollment)
+    //         body: JSON.stringify(newEnrollment)
     //     };
 
-    //     fetch(,config)
+    //     fetch("http://localhost:8080/enrollments",config)
     //     .then(res => {
     //         if(res.ok){
     //             toast.success("Added to a cart succesfully")
-    //             navigate("to a cart page?")
+    //          
     //         }else{
     //             return res.json();
     //         }

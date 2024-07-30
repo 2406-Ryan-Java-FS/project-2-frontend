@@ -1,5 +1,4 @@
 import './App.css';
-import CourseDetailView from './components/course-detail/course-detail-view'
 import {Route,Routes} from 'react-router-dom';
 import { BrowserRouter,Link } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
@@ -10,6 +9,7 @@ import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dash
 // import CourseCard from './components/CourseCard';
 import QuizPage from './pages/Quiz/QuizPage';
 import QuizItem from './pages/Quiz/quiz-item';
+import CourseDetailView from './pages/course-detail/course-detail-view'
 
 export default function App() {
   return (
