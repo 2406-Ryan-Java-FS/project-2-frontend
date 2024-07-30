@@ -15,12 +15,13 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import QuizIcon from '@mui/icons-material/Quiz';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import { Link } from 'react-router-dom';
 
 export default function SideBar() {
   const drawerWidth = 350;
 
   const menuItems1 = [
-    { text: 'Home', icon: <HomeIcon /> },
+    { text: 'Home', icon: <HomeIcon />, link:'/courses/:courseId' },
     { text: 'Syllabus', icon: <DescriptionIcon /> },
     { text: 'Grades', icon: <GradeIcon /> },
     { text: 'Discussions', icon: <ForumIcon /> },
@@ -28,7 +29,7 @@ export default function SideBar() {
 
   const menuItems2 = [
     { text: 'Assignments', icon: <AssignmentIcon /> },
-    { text: 'Quizzes', icon: <QuizIcon /> },
+    { text: 'Quizzes', icon: <QuizIcon />, link: '/courses/:courseId/quizzes' },
     { text: 'Announcements', icon: <AnnouncementIcon /> },
     { text: 'Resources', icon: <MenuBookIcon /> },
   ];
@@ -38,7 +39,7 @@ export default function SideBar() {
       <List>
         {menuItems1.map((item, index) => (
           <ListItem key={item.text} disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} to={item.link}>
               <ListItemIcon>
                 {item.icon}
               </ListItemIcon>
@@ -51,7 +52,7 @@ export default function SideBar() {
       <List>
         {menuItems2.map((item, index) => (
           <ListItem key={item.text} disablePadding>
-            <ListItemButton>
+            <ListItemButton component={Link} to={item.link}>
               <ListItemIcon>
                 {item.icon}
               </ListItemIcon>
