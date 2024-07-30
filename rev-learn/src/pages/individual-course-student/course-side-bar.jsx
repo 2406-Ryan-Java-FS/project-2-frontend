@@ -11,7 +11,6 @@ import HomeIcon from '@mui/icons-material/Home';
 import DescriptionIcon from '@mui/icons-material/Description';
 import GradeIcon from '@mui/icons-material/Grade';
 import ForumIcon from '@mui/icons-material/Forum';
-import AssignmentIcon from '@mui/icons-material/Assignment';
 import QuizIcon from '@mui/icons-material/Quiz';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
@@ -28,7 +27,6 @@ export default function SideBar() {
   ];
 
   const menuItems2 = [
-    { text: 'Assignments', icon: <AssignmentIcon /> },
     { text: 'Quizzes', icon: <QuizIcon />, link: '/courses/:courseId/quizzes' },
     { text: 'Announcements', icon: <AnnouncementIcon /> },
     { text: 'Resources', icon: <MenuBookIcon /> },
