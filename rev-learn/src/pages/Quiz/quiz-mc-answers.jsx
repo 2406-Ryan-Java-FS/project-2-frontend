@@ -15,7 +15,8 @@ import "./quiz.css";
 import "./mc-answer-line.css";
 
 const QuizMultipleChoiceAnswers = ({item}) => {
-  const [selection, setSelection ] = useState(answerChoiceManager.getCurrentQtnAnswerChoice(item));
+  const [currentChoiceId, setCurrentChoiceId ] = useState(answerChoiceManager.getCurrentQtnAnswerChoice(item));
+  const [selections, setSelections ] = useState(answerChoiceManager.getCurrentQtnAnswerChoice(item));
 
   const answersList1 = quizAnswers[item].answers;
   const correct_choice = 1;
@@ -24,8 +25,9 @@ const QuizMultipleChoiceAnswers = ({item}) => {
 
   useEffect(() => {
     // Log the loaded selections when the component mounts (for debugging purposes)
+    console.log("🎢 ~ QuizMultipleChoiceAnswers ~ selections:", selections);
     console.log("🎢 ~ QuizMultipleChoiceAnswers ~ answerChoiceManager:", answerChoiceManager.getSelections());
-  }, []);
+  }, [selections]);
 
   const handleCheckboxUpdateChange = (event, choiceId) => {
     const curr_user_id = user_id;
@@ -33,8 +35,15 @@ const QuizMultipleChoiceAnswers = ({item}) => {
     
     // Add or update the answerChoice in the manager
     answerChoiceManager.addOrUpdateAnswerChoice(curr_user_id, curr_course_id, questionId, choiceId);
+    if (event.target.checked) {
+      answerChoiceManager.addOrUpdateAnswerChoice(user_id, course_id, questionId, choiceId);
+    } else {
+      answerChoiceManager.removeAnswerChoice(questionId);
+    }
 
-    setSelection(choiceId);
+    setSelections(answerChoiceManager.getSelections());
+
+    setCurrentChoiceId(choiceId);
     // Log the updated selection (for debugging purposes)
     console.log("🎄 ~ QuizMultipleChoiceAnswers ~ answerChoiceManager:", answerChoiceManager.getSelections());
   };

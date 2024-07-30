@@ -65,6 +65,13 @@ class AnswerChoiceManager {
     );
     return selection ? selection.answer_choice : null; // Return answer_choice or null if not found
   }
+  
+  removeAnswerChoice(question_id) {
+    this.studentQuizSelection = this.studentQuizSelection.filter(
+      (choice) => choice.question_id !== question_id
+    );
+    this.saveSelections();
+  }
 
   initializeStorage() {
     // Check if storage is empty or needs initialization
