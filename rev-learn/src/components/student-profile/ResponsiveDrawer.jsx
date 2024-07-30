@@ -42,7 +42,7 @@ export default function ResponsiveDrawer() {
 
   return (
     <div>
-      <Button variant='contained' onClick={toggleDrawer(true)}>Open Menu</Button>
+      <Button variant='contained' onClick={toggleDrawer(true)}>Menu</Button>
 
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
