@@ -59,8 +59,17 @@ export default function EducatorDashboard() {
         {courseDetails.map((course) => (
           <Card
             key={course.courseId}
-            sx={{ position: "relative", width: 440, margin: "8px" }}
-            raised="true"
+            sx={{
+              position: "relative",
+              width: 440,
+              margin: "8px",
+              transition: "transform 0.3s, box-shadow 0.3s",
+              "&:hover": {
+                transform: "translateY(-10px)",
+                boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+              },
+            }}
+            // raised="true"
           >
             <CardMedia
               component="img"
