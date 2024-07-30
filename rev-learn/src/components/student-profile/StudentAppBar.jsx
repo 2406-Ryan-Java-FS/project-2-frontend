@@ -7,13 +7,16 @@ import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
+import { ListItemIcon } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import MailIcon from '@mui/icons-material/Mail';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['Home', 'Courses', 'Grades', 'Discussions', 'Messages'];
+const navItems2 = ['Account', 'Settings', 'Logout']
 
 export default function StudentAppBar() {
 
@@ -37,9 +40,10 @@ export default function StudentAppBar() {
 
         <Drawer
           open={isDrawerOpen}
-          onClose={() => setIsDrawerOpen(false)}>
+          onClose={() => setIsDrawerOpen(false)}
+          sx={{width:drawerWidth}}>
 
-          <Typography variant="h6" sx={{ my: 2 }}>
+          <Typography variant="h6" sx={{ my: 2, textAlign: 'center' }}>
             Navigation
           </Typography>
 
@@ -47,12 +51,34 @@ export default function StudentAppBar() {
 
           {navItems.map((item) => (
             <ListItem key={item} disablePadding>
-              <ListItemButton sx={{ textAlign: 'center' }}>
+              <ListItemButton sx={{ textAlign: 'left' }}>
+
+                <ListItemIcon>
+                  {item === 'Messages' ? <MailIcon /> : ""}
+                </ListItemIcon>
+
                 <ListItemText primary={item} />
               </ListItemButton>
             </ListItem>
           ))
           };
+
+          <Divider />
+
+          {navItems2.map((item) => (
+            <ListItem key={item} disablePadding>
+              <ListItemButton sx={{ textAlign: 'left' }}>
+                {/* <ListItemIcon>
+                  {key === 'Messages' ? <MailIcon /> : ""}
+                </ListItemIcon> */}
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </ListItem>
+          ))
+          };
+
+
+
 
         </Drawer>
       </Toolbar>
