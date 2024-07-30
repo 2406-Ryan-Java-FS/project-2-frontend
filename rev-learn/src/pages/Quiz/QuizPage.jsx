@@ -17,7 +17,7 @@ const QuizPage = () => {
   return (
     <div className='quiz-container'>
       <div className='question-section'>
-        <h3>Quiz Page</h3>
+        <h2>Quiz Page</h2>
         <QuizNavigationBar/>
         <div className='question-item'>
           <QuizItem mode='student' item={quizQuestionId}/>

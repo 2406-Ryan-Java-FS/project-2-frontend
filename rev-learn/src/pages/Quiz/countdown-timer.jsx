@@ -41,14 +41,14 @@ const CountdownTimer = ({ initialHours, initialMinutes, initialSeconds }) => {
   }, []);
 
   return (
-    <div>
-      <h4 style={{color:"brown"}}>Countdown Timer</h4>
-      <div style={{fontWeight:"bolder", color:"brown"}}>
+    <>
+      <h3 style={{color:"crimson"}}>Countdown Timer</h3>
+      <div style={{fontSize:"x-large", fontWeight:"bolder", color:"crimson"}}>
         {String(time.hours).padStart(2, '0')}:
         {String(time.minutes).padStart(2, '0')}:
         {String(time.seconds).padStart(2, '0')}
       </div>
-    </div>
+    </>
   );
 };
 

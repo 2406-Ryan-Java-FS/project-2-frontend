@@ -50,9 +50,7 @@ const QuizItem = ({mode, item}) => {
           </div>
         </div>
         <div>
-          <div>
-            <QuestionScratchPad/>
-          </div>
+          <QuestionScratchPad/>
           <div className='quiz-buttons'>
             <Button id='quiz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Mark</Button>
             <Button id='quiz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Submit</Button>

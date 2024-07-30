@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { Checkbox } from '@mui/material'
 
@@ -13,10 +13,12 @@ import {
 
 import "./quiz.css";
 import "./mc-answer-line.css";
+import { AppContext } from '../../provider/AppProvider';
 
 const QuizMultipleChoiceAnswers = ({item}) => {
   const [currentChoiceId, setCurrentChoiceId ] = useState(answerChoiceManager.getCurrentQtnAnswerChoice(item));
   const [selections, setSelections ] = useState(answerChoiceManager.getCurrentQtnAnswerChoice(item));
+  const { quizStartTimer, startQuizTimer } = useContext(AppContext);
 
   const answersList1 = quizAnswers[item].answers;
   const correct_choice = 1;
@@ -52,6 +54,7 @@ const QuizMultipleChoiceAnswers = ({item}) => {
   // console.log("🚀 ~ QuizMultipleChoiceAnswers ~ quizAnswers[item].answers", quizAnswers[item].answers);
   // console.log("quizAnswers: ", quizAnswers[item].answers);
 
+
   return (
     <div>
       <ol className="numbered-list">
@@ -59,12 +62,14 @@ const QuizMultipleChoiceAnswers = ({item}) => {
           answersList1.map((answer, idxal) => {
             const isChecked = answerChoiceManager.getCurrentQtnAnswerChoice(questionId) === idxal;
             console.log("✨ ~ QuizMultipleChoiceAnswers ~ idxal, questionId, answer:", idxal, questionId, answer);
+            console.log("✨ ~ QuizMultipleChoiceAnswers ~ quizStartTimer:", quizStartTimer);
 
             return (
               <li key={idxal} className='answer-container'>
                 <span className="left-button">
                   <Checkbox 
-                      checked={isChecked } 
+                      checked={ isChecked } 
+                      disabled={ quizStartTimer ? false : true }
                       onClick={(event) => handleCheckboxUpdateChange(event, idxal)}
                     />
                 </span>
@@ -82,7 +87,7 @@ const QuizMultipleChoiceAnswers = ({item}) => {
               </li>
             )
           })
-        };
+        }
       </ol>
     </div>
   )
