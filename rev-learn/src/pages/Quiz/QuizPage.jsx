@@ -6,11 +6,13 @@ import QuizNavigationBar from './quiz-navbar'
 
 import "./quiz.css";
 import { AppContext } from '../../provider/AppProvider';
-import TimerStart from './timer-start';
+import QuizTimer from './quiz-timer';
 
 const QuizPage = () => {
 
   const { quizQuestionId, updateQuizQuestionId } = useContext(AppContext);
+
+  localStorage.clear();
 
   return (
     <div className='quiz-container'>
@@ -20,7 +22,7 @@ const QuizPage = () => {
         <div className='question-item'>
           <QuizItem mode='student' item={quizQuestionId}/>
           <div>
-            <TimerStart />
+            <QuizTimer />
             <div className='qtn-navigation-btn'>
               <QuestionNavigationButton/>
             </div>
@@ -28,7 +30,7 @@ const QuizPage = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default QuizPage

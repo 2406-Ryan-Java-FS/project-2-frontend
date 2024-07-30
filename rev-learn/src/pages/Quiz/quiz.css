@@ -3,6 +3,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: rgb(74, 74, 74);
+  background: linear-gradient(
+    to bottom right, 
+    rgba(255, 132, 0, 0.3),
+    rgba(255, 250, 245, 0.8) 
+  ); /* Gradient background */
 }
 
 .quiz-page {
@@ -18,7 +24,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid #2196f3;
+  border: 1px solid #003866;
   border-radius: 5px;
   padding: 10px;
   margin: 5px;
@@ -41,14 +47,14 @@
 }
 
 .qtn-navigation-btn {
-  border: 1px solid #2196f3;
+  border: 1px solid #8bcbff;
   border-radius: 5px;
   margin: 10px;
 }
 
 .question-item {
   display: flex;
-  border: 1px solid #2196f3;
+  border: 1px solid rgb(74, 74, 74);
   border-radius: 5px;
   margin: 5px;
 }
@@ -72,11 +78,12 @@
   display: flex;
   justify-content:center;
   align-items: center;
-  
 }
+
 .qtn-edit {
   border: 1px solid #2196f3;
 }
+
 .quiz-buttons {
   display: flex;
   justify-content: space-evenly;
@@ -96,15 +103,64 @@
   margin: 72px 5px 40px 5px;
 }
 
-.answer-item {
-  width: 300px;
+.answer-line {
+  width: 580px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
 }
+
+.answer-item {
+  align-items: center;
+}
+
+.answer_result {
+  width: 50px;
+  align-items: center;
+}
+
+ol {
+  padding-left: 20px; /* Adjust to provide space for the numbers */
+}
+
+li {
+  list-style: decimal inside; /* Use decimal list style and position it inside the list item */
+  margin-bottom: 10px; /* Space between list items */
+  display: flex;
+  align-items: center;
+}
+
+.button-container {
+  width: 550px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px; /* Optional padding inside the container */
+  border: 1px solid #ccc; /* Optional border for visualization */
+  box-sizing: border-box;
+}
+
+.button-container button {
+  padding: 0.2rem 0.5rem; /* Adjust the padding for smaller button size */
+  height: 1.5rem; /* Set the height of the buttons */
+  line-height: 1.5rem; /* Set the line-height to match the button height */
+}
+
+.left-button {
+  margin-right: 5px; /* Space between left and middle button */
+}
+
+.middle-button {
+  margin-right: auto; /* Pushes the right button to the right */
+}
+
 #quiz-btn {
   width: 120px;
+  color:#df905d;
+  border: 1px solid #79664d;
+}
+#quiz-nav-btn {
+  background-color: #df905d;
 }
 
 #outlined-multiline-static {

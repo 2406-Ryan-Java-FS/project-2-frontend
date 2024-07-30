@@ -6,7 +6,7 @@ const CountdownTimer = ({ initialHours, initialMinutes, initialSeconds }) => {
     minutes: initialMinutes,
     seconds: initialSeconds
   });
-console.log("initialHours, initialMinutes, initialSeconds", initialHours, initialMinutes, initialSeconds);
+  // console.log("initialHours, initialMinutes, initialSeconds", initialHours, initialMinutes, initialSeconds);
   useEffect(() => {
     // Update the timer every second
     const intervalId = setInterval(() => {
@@ -42,8 +42,8 @@ console.log("initialHours, initialMinutes, initialSeconds", initialHours, initia
 
   return (
     <div>
-      <h4 style={{color:"magenta"}}>Countdown Timer</h4>
-      <div style={{fontWeight:"bolder", color:"magenta"}}>
+      <h4 style={{color:"brown"}}>Countdown Timer</h4>
+      <div style={{fontWeight:"bolder", color:"brown"}}>
         {String(time.hours).padStart(2, '0')}:
         {String(time.minutes).padStart(2, '0')}:
         {String(time.seconds).padStart(2, '0')}

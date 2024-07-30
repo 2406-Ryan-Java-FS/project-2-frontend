@@ -1,9 +1,11 @@
 import React, { useContext } from 'react'
 
-import "./quiz.css";
 import { Button } from '@mui/material';
+
 import { quizQuestions } from './quiz-data';
 import { AppContext } from '../../provider/AppProvider';
+
+import "./quiz.css";
 
 const quizNavigationItems = ['<< first', '<left' ];
 const quizNavigationItemsRight = ['right>', 'last >>'];
@@ -24,8 +26,6 @@ const QuizNavigationBar = () => {
     console.log("final quizQuestionId:", quizQuestionId);
   }
 
-  // console.log("quizQuestionId", quizQuestionId);
-  
   function moveQuestionsRight(id) {
     id = Number(id);      // the arrow id clicked.
 
@@ -57,7 +57,7 @@ const QuizNavigationBar = () => {
         }
       </div>
       <div>
-        <h5>Search Functionality</h5>
+        <h5>Question No. {quizQuestionId + 1}</h5>
       </div>
       <div className='quiz-navbar-right'>
         {
