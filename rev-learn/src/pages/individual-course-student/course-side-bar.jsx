@@ -24,7 +24,7 @@ export default function SideBar() {
     { text: 'Home', icon: <HomeIcon />, link:'/courses/:courseId' },
     { text: 'Syllabus', icon: <DescriptionIcon /> },
     { text: 'Grades', icon: <GradeIcon /> },
-    { text: 'Discussions', icon: <ForumIcon /> },
+    { text: 'Discussions', icon: <ForumIcon />, link: '/courses/:courseId/discussions'},
   ];
 
   const menuItems2 = [
