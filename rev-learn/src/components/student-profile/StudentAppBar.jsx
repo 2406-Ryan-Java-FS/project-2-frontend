@@ -12,7 +12,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import MailIcon from '@mui/icons-material/Mail';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
 
 const drawerWidth = 400;
 const navItems = ['Home', 'Courses', 'Grades', 'Discussions', 'Messages'];
