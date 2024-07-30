@@ -1,11 +1,14 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import '../../styles/course-styles.css'
 import CourseCard from './CourseCard'
+import SearchBar from '../../components/SearchBar';
 import CourseDummyData from './CourseDummyData';
 
 export default function UserCourseCatalog() {
     const [visibleItems, setVisibleItems] = useState(12); // Initial number of items (4 rows x 3 items each)
     const [loading, setLoading] = useState(false);
+    const [filteredCourses, setFilteredCourses] = useState(courseList);
+
     const role = "Student";
     const image = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
     const courseList = CourseDummyData;
@@ -40,14 +43,66 @@ export default function UserCourseCatalog() {
         };
     }, [loadMoreItems]);
 
+    // merging
+
+  
+    const handleSearch = ({ course, category, sortOption }) => {
+      const filtered = courseList.filter((c) => {
+        const matchesCategory = category === "All" || c.category === category;
+        const matchesCourse =
+          course === "" || c.title.toLowerCase().includes(course.toLowerCase());
+        return matchesCategory && matchesCourse;
+      });
+  
+      sortList(sortOption, filtered);
+      setFilteredCourses(filtered);
+    };
+  
+    // Sorts filtered lists by the given sort option
+    function sortList(sortOption, filtered) {
+      switch (sortOption) {
+        case "Price: Low to High":
+          filtered.sort(
+            (a, b) =>
+              //parse the price to remove any character that is not a digit or decimal point
+              parseFloat(a.price.replace(/[^0-9.-]+/g, "")) -
+              parseFloat(b.price.replace(/[^0-9.-]+/g, ""))
+          );
+          break;
+  
+        case "Price: High to Low":
+          filtered.sort(
+            (a, b) =>
+              parseFloat(b.price.replace(/[^0-9.-]+/g, "")) -
+              parseFloat(a.price.replace(/[^0-9.-]+/g, ""))
+          );
+          break;
+  
+        case "Rating: Low to High":
+          filtered.sort((a, b) => a.rating - b.rating);
+          break;
+  
+        case "Rating: High to Low":
+          filtered.sort((a, b) => b.rating - a.rating);
+          break;
+  
+        default:
+          break;
+      }
+    }
+
     return (
         <>
             <div className="userCourseCatalogOutterContainer">
                 <div className='userCourseCatalogMainContainer'>
                     <h1 className='title'>RevLearn Courses</h1>
+                    <div className="searchBarContainer">
+                        <SearchBar onSearch={handleSearch} />
+                    </div>
                     <div className='userCardListContainer'>
                         <div className='userCardList'>
-                            {courseList.slice(0, visibleItems).map((x, index) => (
+                            {/* {courseList.slice(0, visibleItems).map((x, index) => ( */}
+                            {filteredCourses.slice(0, visibleItems).map((x, index) => (
                                 <CourseCard
                                     key={index}
                                     title={x.title}
