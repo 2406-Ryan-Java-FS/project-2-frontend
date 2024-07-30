@@ -12,6 +12,9 @@ import CourseQuizzes from './components/individual-course-student/course-quizzes
 import StudentProfile from './components/student-profile/StudentProfile';
 import SideBar from './pages/individual-course-student/course-side-bar';
 import Payment from './components/Payment';
+import QuizItem from "./pages/Quiz/quiz-item";
+import QuizPage from "./pages/Quiz/QuizPage";
+import UserCourseCatalog from "./components/UserCourseCatalog";
 
 export default function App() {
   return (
@@ -23,6 +26,8 @@ export default function App() {
           <Link to="/register">Register</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/payments">Payment</Link>
+          <Link to="/quizz" style={{ margin: "15px" }}>Quizz</Link>
+          <Link to="/edit-question" style={{ margin: "15px" }}>Edit Question</Link>
           <SignedInAs/>
         </nav>
 
@@ -44,6 +49,9 @@ export default function App() {
           <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
           <Route path='/payments' element = {<Payment />}/>
+          <Route path="/quiz" element={<QuizPage />} />
+          <Route path="/edit-question" element={<QuizItem mode="educator" item={2} />}/>
+          <Route path="/course-catalog" element={<UserCourseCatalog />} />
         </Routes>
       </BrowserRouter>
     </div>
