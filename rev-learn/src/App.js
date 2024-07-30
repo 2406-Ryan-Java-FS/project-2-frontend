@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { BrowserRouter, Link } from 'react-router-dom';
@@ -11,11 +10,15 @@ import CourseHome from './components/individual-course-student/course-home';
 import CourseDiscussions from './components/individual-course-student/course-discussions';
 import CourseQuizzes from './components/individual-course-student/course-quizzes';
 import StudentProfile from './components/student-profile/StudentProfile';
+import SideBar from './pages/individual-course-student/course-side-bar';
+
+
 
 export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <SideBar />
         <nav id="navbar">
           <Link to="/">Home</Link>
           <Link to="/register">Register</Link>
@@ -38,6 +41,8 @@ export default function App() {
           <Route path='/course-discussions' element={<CourseDiscussions />} />
           <Route path='/course-quizzes' element={<CourseQuizzes />} />
           <Route path='/profile' element={<StudentProfile />} />
+          <Route path="/courses/:courseId" element={<CourseHome />} />
+          <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
         </Routes>
       </BrowserRouter>
     </div>
