@@ -8,7 +8,6 @@ body {
 }
 
 .course-card {
-<<<<<<< HEAD
     position: relative;
     width: 400px;
     border-radius: 0.5rem;
@@ -16,13 +15,6 @@ body {
     /* background-color: #e4e4e7; */
     background-color: transparent;
     transition: background-color 0.3s ease;
-=======
-  position: relative;
-  /* width: 440px; */
-  width: 400px;
-  background-color: #d4d4d8;
-  border-radius: 0.5rem;
->>>>>>> 45fc5eab8ecf4d2189cbe8caca5fee8ce6492c64
 }
 
 .course-card:hover {
@@ -37,7 +29,6 @@ body {
 
 
 .course-image {
-<<<<<<< HEAD
     position: absolute;
     overflow: hidden;
     /* border-top-left-radius: 0.5rem;
@@ -57,12 +48,6 @@ body {
 
 .course-card:hover .course-image {
     filter: contrast(0.7); /* Reduce contrast to 0.8 */
-=======
-  overflow: hidden;
-  border-top-left-radius: 0.5rem;
-  border-top-right-radius: 0.5rem;
-  width: 100%;
->>>>>>> 45fc5eab8ecf4d2189cbe8caca5fee8ce6492c64
 }
 
 .three-dots {
@@ -73,17 +58,11 @@ body {
 }
 
 .course-content {
-<<<<<<< HEAD
     display: flex;
     flex-direction: column;
     /* padding: 0.75rem; */
     padding: 1px 20px 20px 20px;
     /* gap:3px; */
-=======
-  display: flex;
-  flex-direction: column;
-  padding: 0.75rem;
->>>>>>> 45fc5eab8ecf4d2189cbe8caca5fee8ce6492c64
 }
 
 .course-header {
@@ -100,7 +79,6 @@ body {
 }
 
 .course-description {
-<<<<<<< HEAD
     height: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -124,16 +102,6 @@ body {
     align-items: center;
     padding-top: 0.75rem;
     font-weight: 700;
-=======
-  word-wrap: break-word;
-}
-
-.course-rating {
-  display: flex;
-  gap: 0.75rem;
-  align-items: center;
-  padding-top: 0.75rem;
->>>>>>> 45fc5eab8ecf4d2189cbe8caca5fee8ce6492c64
 }
 
 .stars {
@@ -157,13 +125,8 @@ body {
 
 /* UserCourseCatalog */
 .userCourseCatalogOutterContainer {
-<<<<<<< HEAD
     display: flex;
     padding-bottom: 160px;
-=======
-  display: flex;
-  justify-content: center;
->>>>>>> 45fc5eab8ecf4d2189cbe8caca5fee8ce6492c64
 }
 
 .userCourseCatalogMainContainer {
@@ -187,7 +150,6 @@ body {
 }
 
 .title {
-<<<<<<< HEAD
     text-align: center;
     /* margin-left: 170px; */
     margin-top: 80px;
@@ -199,11 +161,10 @@ body {
     
 }
 
-=======
-  text-align: center;
+  /* text-align: center;
   margin-top: 80px;
   margin-bottom: 30px;
-}
+} */
 .searchBarContainer {
   display: flex;
   justify-content: center;
@@ -215,7 +176,6 @@ body {
 }
 
 /* FilterSidebar */
->>>>>>> 45fc5eab8ecf4d2189cbe8caca5fee8ce6492c64
 .filterMainContainer {
   width: 220px;
   height: 100vh;
@@ -230,7 +190,6 @@ body {
 }
 
 .searchBar {
-<<<<<<< HEAD
     width: 80px;
 }
 
@@ -294,7 +253,3 @@ body {
         transform: rotate(360deg);
     }
 }
-=======
-  width: 80px;
-}
->>>>>>> 45fc5eab8ecf4d2189cbe8caca5fee8ce6492c64

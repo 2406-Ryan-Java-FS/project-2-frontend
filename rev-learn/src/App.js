@@ -8,8 +8,7 @@ import Login from "./components/Login";
 // import CourseCard from './components/CourseCard';
 import QuizItem from "./pages/Quiz/quiz-item";
 import QuizPage from "./pages/Quiz/QuizPage";
-import UserCourseCatalog from "./components/UserCourseCatalog";
-
+import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
 export default function App() {
   return (
     <div className="App">

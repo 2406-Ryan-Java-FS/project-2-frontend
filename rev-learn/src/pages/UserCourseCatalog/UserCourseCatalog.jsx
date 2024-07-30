@@ -4,6 +4,8 @@ import CourseCard from './CourseCard'
 import SearchBar from '../../components/SearchBar';
 import CourseDummyData from './CourseDummyData';
 
+let courseList = CourseDummyData;
+
 export default function UserCourseCatalog() {
     const [visibleItems, setVisibleItems] = useState(12); // Initial number of items (4 rows x 3 items each)
     const [loading, setLoading] = useState(false);
@@ -11,7 +13,6 @@ export default function UserCourseCatalog() {
 
     const role = "Student";
     const image = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
-    const courseList = CourseDummyData;
 
     // Load more items when user scrolls to the bottom
     const loadMoreItems = useCallback(() => {
