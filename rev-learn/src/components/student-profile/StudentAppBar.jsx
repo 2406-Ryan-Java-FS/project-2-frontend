@@ -57,8 +57,8 @@ export default function StudentAppBar() {
             <ListItem key={item} disablePadding>
               {/* //------------------------------------------------ */}
               {item === 'Home' ? <ListItemButton sx={{ textAlign: 'center' }}
-                component="button"
-                variant="body2"
+                component="a"
+                  href='/'
                 onClick={() => {
                   console.info("HOME BUTTON TEST");
                 }}>
@@ -142,8 +142,8 @@ export default function StudentAppBar() {
                 {/* //------------------------------------------------ */}
 
                 {item === 'Logout' ? <ListItemButton sx={{ textAlign: 'center' }}
-                  component="button"
-                  variant="body2"
+                  component="a"
+                  href='/login'
                   onClick={() => {
                     console.info("LOGOUT BUTTON TEST");
                   }}>
