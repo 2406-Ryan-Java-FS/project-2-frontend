@@ -56,7 +56,7 @@ const QuizNavigationBar = () => {
           ))
         }
       </div>
-      <div>
+      <div className='quiz-navbar-center'>
         <h3>Question No. {quizQuestionId + 1}</h3>
       </div>
       <div className='quiz-navbar-right'>

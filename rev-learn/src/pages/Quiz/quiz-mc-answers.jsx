@@ -16,9 +16,9 @@ import "./mc-answer-line.css";
 import { AppContext } from '../../provider/AppProvider';
 
 const QuizMultipleChoiceAnswers = ({item}) => {
-  const [currentChoiceId, setCurrentChoiceId ] = useState(answerChoiceManager.getCurrentQtnAnswerChoice(item));
+  const [, setCurrentChoiceId ] = useState(answerChoiceManager.getCurrentQtnAnswerChoice(item));
   const [selections, setSelections ] = useState(answerChoiceManager.getCurrentQtnAnswerChoice(item));
-  const { quizStartTimer, startQuizTimer } = useContext(AppContext);
+  const { quizStartTimer } = useContext(AppContext);
 
   const answersList1 = quizAnswers[item].answers;
   const correct_choice = 1;
@@ -53,7 +53,6 @@ const QuizMultipleChoiceAnswers = ({item}) => {
   // console.log("🚀 ~ QuizMultipleChoiceAnswers ~ questionId:", item)
   // console.log("🚀 ~ QuizMultipleChoiceAnswers ~ quizAnswers[item].answers", quizAnswers[item].answers);
   // console.log("quizAnswers: ", quizAnswers[item].answers);
-
 
   return (
     <div>

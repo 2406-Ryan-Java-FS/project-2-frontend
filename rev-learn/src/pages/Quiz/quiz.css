@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgb(74, 74, 74);
+  color: rgb(58, 58, 58);
   background: linear-gradient(
     to bottom right, 
     rgba(255, 132, 0, 0.3),
@@ -26,24 +26,21 @@
   align-items: center;
   border: 1px solid #003866;
   border-radius: 5px;
-  padding: 10px;
-  margin: 5px;
+  padding: 6px;
+  margin: 4px;
 }
-
+.quiz-navbar-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .quiz-navbar-left,
 .quiz-navbar-right {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 30%;
-  margin: 0 30px 0 30px;
-}
-
-.quiz-navbar-search {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 30%
+  margin: 0 20px 0 20px;
 }
 
 .qtn-navigation-btn {

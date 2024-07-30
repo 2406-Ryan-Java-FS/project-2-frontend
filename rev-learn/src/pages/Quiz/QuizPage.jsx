@@ -10,7 +10,7 @@ import QuizTimer from './quiz-timer';
 
 const QuizPage = () => {
 
-  const { quizQuestionId, updateQuizQuestionId } = useContext(AppContext);
+  const { quizQuestionId } = useContext(AppContext);
 
   localStorage.clear();
 

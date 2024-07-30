@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
 
 const QuizAnswerEdit = () => {
-  const [newQuizAnswers, setNewQuizAnswer] = useState([]);
 
   return (
     <div className='qtn-edit'>

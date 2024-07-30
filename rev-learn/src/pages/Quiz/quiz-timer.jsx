@@ -1,7 +1,7 @@
 
 import { Button } from '@mui/material';
 import CountdownTimer from './countdown-timer';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { AppContext } from '../../provider/AppProvider';
 
 const QuizTimer = () => {
