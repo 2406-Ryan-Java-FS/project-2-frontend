@@ -11,8 +11,7 @@ import CourseDiscussions from './components/individual-course-student/course-dis
 import CourseQuizzes from './components/individual-course-student/course-quizzes';
 import StudentProfile from './components/student-profile/StudentProfile';
 import SideBar from './pages/individual-course-student/course-side-bar';
-
-
+import Payment from './components/Payment';
 
 export default function App() {
   return (
@@ -23,6 +22,7 @@ export default function App() {
           <Link to="/">Home</Link>
           <Link to="/register">Register</Link>
           <Link to="/profile">Profile</Link>
+          <Link to="/payments">Payment</Link>
           <SignedInAs/>
         </nav>
 
@@ -43,6 +43,7 @@ export default function App() {
           <Route path='/profile' element={<StudentProfile />} />
           <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
+          <Route path='/payments' element = {<Payment />}/>
         </Routes>
       </BrowserRouter>
     </div>
