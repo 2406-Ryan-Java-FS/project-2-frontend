@@ -45,6 +45,7 @@ export default function CourseQuizzes() {
                 <Link to={defaultQuizPage}>
                     <button>Start Default Quiz</button>
                 </Link>
+                <br/>
             </div>
         );
     }

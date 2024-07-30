@@ -7,6 +7,7 @@ import Login from './components/Login';
 import SideBar from './pages/individual-course-student/course-side-bar';
 import CourseHome from './pages/individual-course-student/course-home';
 import CourseQuizzes from './pages/individual-course-student/course-quizzes';
+import CourseDiscussions from './pages/individual-course-student/course-discussions';
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
+          <Route path="/courses/:courseId/discussions" element={<CourseDiscussions />} />
         </Routes>
       </BrowserRouter>
     </div>
