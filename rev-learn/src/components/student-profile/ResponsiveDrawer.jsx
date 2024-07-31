@@ -1,61 +1,139 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { useState } from 'react';
+import StudentCard from './StudentCard';
+import { Toolbar } from '@mui/material';
+import {IconButton} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+
+
+const navItems = ['Home', 'About', 'Contact Us'];
+const navItems2 = ['Account', 'Settings', 'Logout']
 
 
 export default function ResponsiveDrawer() {
-  const [open, setOpen] = React.useState(false);
 
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [state, setState] = useState(false);
 
-  const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
-      <List>
-        {['Home', 'Courses', 'Discussions', 'Messages'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index === 3 ? <InboxIcon /> : ""}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+  return (<>
+
+  <Toolbar>
+    <IconButton
+      edge="start"
+      color="inherit"
+      aria-label="menu"
+      onClick={() => { setIsDrawerOpen(true) }
+      } >
+
+      <MenuIcon />
+
+    </IconButton>
+
+    <Drawer
+      open={isDrawerOpen}
+      onClose={() => setIsDrawerOpen(false)}
+      // PaperProps allows us to resize the meu
+      PaperProps={{
+        sx: { width: "30%" }
+      }}>
+
+
+      {/* //THIS SECTION HANDLES MENU BUTTON NAVIGATION  */}
+      {navItems.map((item) => (
+        <ListItem key={item} disablePadding>
+
+          {/* //------------------------------------------------ */}
+
+          {item === 'Home' ? <ListItemButton sx={{ textAlign: 'center' }}
+            component="a"
+            href='/'
+            onClick={() => {
+              console.info("HOME BUTTON TEST");
+            }}>
+            <ListItemText primary={item} />
+          </ListItemButton> : ''}
+
+          {/* //------------------------------------------------ */}
+
+          {item === 'About' ? <ListItemButton sx={{ textAlign: 'center' }}
+            component="button"
+            variant="body2"
+            onClick={() => {
+              console.info("ABOUT BUTTON TEST");
+            }}>
+            <ListItemText primary={item} />
+          </ListItemButton> : ''}
+
+          {/* //------------------------------------------------ */}
+
+          {item === 'Contact Us' ? <ListItemButton sx={{ textAlign: 'center' }}
+            component="button"
+            variant="body2"
+            onClick={() => {
+              console.info("CONTACT BUTTON TEST");
+            }}>
+            <ListItemText primary={item} />
+          </ListItemButton> : ''}
+        </ListItem>
+      ))};
+
+      {/* //------------------------------------------------ */}
+
       <Divider />
-      <List>
-        {['Account Settings', 'Logout'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              {/* <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon> */}
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
-  );
 
-  return (
-    <div>
-      <Button variant='contained' onClick={toggleDrawer(true)}>Open Menu</Button>
+      {/* //------------------------------------------------ */}
 
-      <Drawer open={open} onClose={toggleDrawer(false)}>
-        {DrawerList}
-      </Drawer>
-    </div>
+      {navItems2.map((item) => (
+        <ListItem key={item} disablePadding>
+          <ListItemButton sx={{ textAlign: 'left' }}>
+
+            {item === 'Account' ? <ListItemButton sx={{ textAlign: 'center' }}
+              component="button"
+              variant="body2"
+              onClick={() => {
+                console.info("ACCOUNT BUTTON TEST");
+              }}>
+              <ListItemText primary={item} />
+            </ListItemButton> : ''}
+
+            {/* //------------------------------------------------ */}
+
+            {item === 'Settings' ? <ListItemButton sx={{ textAlign: 'center' }}
+              component="button"
+              variant="body2"
+              onClick={() => {
+                console.info("SETTINGS BUTTON TEST");
+                // this.setState(true)
+              }}>
+              {/* {state ? <StudentCard /> : null} */}
+
+              <ListItemText primary={item} />
+            </ListItemButton> : ''}
+
+            {/* //------------------------------------------------ */}
+
+            {item === 'Logout' ? <ListItemButton sx={{ textAlign: 'center' }}
+              component="a"
+              href='/login'
+              onClick={() => {
+                console.info("LOGOUT BUTTON TEST");
+              }}>
+              <ListItemText primary={item} />
+            </ListItemButton> : ''}
+
+          </ListItemButton>
+        </ListItem>
+
+      ))}
+
+    </Drawer>
+    </Toolbar>
+    
+  </>
   );
 }

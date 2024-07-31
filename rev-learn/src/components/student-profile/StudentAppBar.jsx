@@ -10,20 +10,23 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import StudentCard from './StudentCard';
 
-
-const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+const navItems = ['Home', 'Courses', 'Grades', 'Discussions', 'Messages'];
+const navItems2 = ['Account', 'Settings', 'Logout']
 
 export default function StudentAppBar() {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [state, setState] = useState(false);
+
 
   return (
 
     <AppBar variant="outlined" position="static">
 
       <Toolbar>
+
         <IconButton
           edge="start"
           color="inherit"
@@ -37,107 +40,134 @@ export default function StudentAppBar() {
 
         <Drawer
           open={isDrawerOpen}
-          onClose={() => setIsDrawerOpen(false)}>
+          onClose={() => setIsDrawerOpen(false)}
+          // PaperProps allows us to resize the meu
+          PaperProps={{
+            sx: { width: "30%" }
+          }}>
 
-          <Typography variant="h6" sx={{ my: 2 }}>
-            Navigation
+          <Typography variant="h6" sx={{ my: 2, textAlign: 'center' }}>
+            (Student Name)
           </Typography>
 
           <Divider />
 
+          {/* //THIS SECTION HANDLES MENU BUTTON NAVIGATION  */}
           {navItems.map((item) => (
             <ListItem key={item} disablePadding>
-              <ListItemButton sx={{ textAlign: 'center' }}>
+
+              {/* //------------------------------------------------ */}
+
+              {item === 'Home' ? <ListItemButton sx={{ textAlign: 'center' }}
+                component="a"
+                  href='/'
+                onClick={() => {
+                  console.info("HOME BUTTON TEST");
+                }}>
                 <ListItemText primary={item} />
+              </ListItemButton> : ''}
+
+              {/* //------------------------------------------------ */}
+
+              {item === 'Courses' ? <ListItemButton sx={{ textAlign: 'center' }}
+                component="button"
+                variant="body2"
+                onClick={() => {
+                  console.info("COURSES BUTTON TEST");
+                }}>
+                <ListItemText primary={item} />
+              </ListItemButton> : ''}
+
+              {/* //------------------------------------------------ */}
+
+              {item === 'Grades' ? <ListItemButton sx={{ textAlign: 'center' }}
+                component="button"
+                variant="body2"
+                onClick={() => {
+                  console.info("GRADES BUTTON TEST");
+                }}>
+                <ListItemText primary={item} />
+              </ListItemButton> : ''}
+
+              {/* //------------------------------------------------ */}
+
+              {item === 'Discussions' ? <ListItemButton sx={{ textAlign: 'center' }}
+                component="button"
+                variant="body2"
+                onClick={() => {
+                  console.info("DISCUSSIONS BUTTON TEST");
+                }}>
+                <ListItemText primary={item} />
+              </ListItemButton> : ''}
+
+              {/* //------------------------------------------------ */}
+
+              {item === 'Messages' ? <ListItemButton sx={{ textAlign: 'center' }}
+                component="button"
+                variant="body2"
+                onClick={() => {
+                  console.info("MESSAGES BUTTON TEST");
+                }}>
+                {/* <ListItemIcon>
+                  {item === 'Messages' ? <MailIcon /> : ""}
+                </ListItemIcon> */}
+
+                <ListItemText primary={item} />
+              </ListItemButton> : ''}
+
+            </ListItem>
+          ))};
+
+          {/* //------------------------------------------------ */}
+
+          <Divider />
+
+          {/* //------------------------------------------------ */}
+
+          {navItems2.map((item) => (
+            <ListItem key={item} disablePadding>
+              <ListItemButton sx={{ textAlign: 'left' }}>
+
+                {item === 'Account' ? <ListItemButton sx={{ textAlign:'center' }}
+                  component="button"
+                  variant="body2"
+                  onClick={() => {
+                    console.info("ACCOUNT BUTTON TEST");
+                  }}>
+                  <ListItemText primary={item} />
+                </ListItemButton> : ''}
+
+                {/* //------------------------------------------------ */}
+
+                {item === 'Settings' ? <ListItemButton sx={{ textAlign: 'center' }}
+                  component="button"
+                  variant="body2"
+                  onClick={() => {
+                    console.info("SETTINGS BUTTON TEST");
+                    // this.setState(true)
+                  }}>
+                    {/* { state ? StudentCard() : null } */}
+                    
+                  <ListItemText primary={item} />
+                </ListItemButton> : ''}
+
+                {/* //------------------------------------------------ */}
+
+                {item === 'Logout' ? <ListItemButton sx={{ textAlign: 'center' }}
+                  component="a"
+                  href='/login'
+                  onClick={() => {
+                    console.info("LOGOUT BUTTON TEST");
+                  }}>
+                  <ListItemText primary={item} />
+                </ListItemButton> : ''}
               </ListItemButton>
             </ListItem>
-          ))
-          };
+          ))}
 
         </Drawer>
       </Toolbar>
-    </AppBar>
+
+    </AppBar >
   );
 }
-
-
-//------------------------------------------------------------------------
-
-//Broken functionality
-
-
-// export default function StudentAppBar(props) {
-
-//   const { window } = props;
-//   const [mobileOpen, setMobileOpen] = React.useState(false);
-
-//   const handleDrawerToggle = () => {
-//     setMobileOpen((prevState) => !prevState);
-//   };
-
-
-
-//   const container = window !== undefined ? () => window().document.body : undefined;
-
-//   return (
-
-//     <Box sx={{ display: 'flex' }}>
-//       <CssBaseline />
-
-//         <AppBar component="nav">
-//           <Toolbar>
-
-//             <IconButton
-//               color="inherit"
-//               aria-label="menu"
-//               edge="start"
-//               onClick={handleDrawerToggle}
-//               sx={{ mr: 2, display: { sm: 'none' } }}
-//             >
-//               <MenuIcon />
-
-//             </IconButton>
-
-//           <Typography
-//             variant="h6"
-//             component="div"
-//             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-//           >
-//             (Student Name)
-
-//           </Typography>
-
-
-//           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-//             {navItems.map((item) => (
-//               <Button key={item} sx={{ color: '#fff' }}>
-//                 {item}
-//               </Button>
-//             ))}
-//           </Box>
-
-//         </Toolbar>
-//       </AppBar>
-
-//       <nav>
-//         <Drawer
-//           container={container}
-//           variant="temporary"
-//           open={mobileOpen}
-//           onClose={handleDrawerToggle}
-//           ModalProps={{
-//             keepMounted: true, // Better open performance on mobile.
-//           }}
-// sx={{
-//   display: { xs: 'block', sm: 'none' },
-//   '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-// }}
-//         >
-//           {drawer}
-//         </Drawer>
-//       </nav>
-
-//     </Box>
-//   );
-
-// }
