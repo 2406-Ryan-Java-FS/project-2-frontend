@@ -14,19 +14,27 @@ export default function StudentProfile() {
     return (
         <>
             <Box>
-                <Button variant='contained' onClick={() => {setCardState(true)}}>
+                <Button variant='contained' onClick={() => { setCardState(true) }}>
                     Populate Card
                 </Button>
-                <Button variant='contained' onClick={() => {setTableState(true)}}>
+                <Button variant='contained' onClick={() => { setTableState(true) }}>
                     Populate Table
                 </Button>
+            </Box >
+            <Box>
 
-                {<StudentAppBar />}
-
-                { cardState ? <StudentCard /> : null }
-                { tableState ? <BasicTable /> : null }
-
+                <Button variant='outlined' onClick={() => {
+                    setCardState(false);
+                    setTableState(false);
+                }}>
+                    Clear Page
+                </Button>
             </Box>
+            {< StudentAppBar />}
+
+            {cardState ? <StudentCard /> : null}
+            {tableState ? <BasicTable /> : null}
+
         </>
     );
 }
