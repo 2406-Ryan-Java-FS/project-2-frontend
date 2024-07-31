@@ -128,7 +128,8 @@ export default function UserCourseCatalog() {
                         <div className='userCardList'>
                             {filteredCourses.slice(0, visibleItems).map((x, index) => (
                               <Link 
-                                to={`/${x.course_id}`} 
+                                // to={`/${x.course_id}`} 
+                                to={`/course/detail`} 
                                 key={index} 
                                 style={{ textDecoration: 'none', color: 'inherit' }}
                               >
