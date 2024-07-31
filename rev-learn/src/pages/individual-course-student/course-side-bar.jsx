@@ -17,12 +17,12 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { Link } from 'react-router-dom';
 
 export default function SideBar() {
-  const drawerWidth = 350;
+  const drawerWidth = 245;
 
   const menuItems1 = [
     { text: 'Home', icon: <HomeIcon />, link:'/courses/:courseId' },
     { text: 'Syllabus', icon: <DescriptionIcon /> },
-    { text: 'Grades', icon: <GradeIcon /> },
+    { text: 'Grades', icon: <GradeIcon />, link: '/courses/:courseId/grades' },
     { text: 'Discussions', icon: <ForumIcon />, link: '/courses/:courseId/discussions'},
   ];
 
