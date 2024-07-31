@@ -142,8 +142,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  /* need to make flex-start */
-  /* justify-content: flex-start; */
   justify-content: center;
   align-items: center;
   margin: 0px 80px 0px 80px;
