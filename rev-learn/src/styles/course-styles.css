@@ -13,8 +13,11 @@ body {
     border-radius: 0.5rem;
     border: 2px solid #a1a1aa;
     /* background-color: #e4e4e7; */
-    background-color: transparent;
+    background-color: white;
+    
+    /* background-color: transparent; */
     transition: background-color 0.3s ease;
+    text-align: left;
 }
 
 .course-card:hover {
@@ -127,6 +130,7 @@ body {
 .userCourseCatalogOutterContainer {
     display: flex;
     padding-bottom: 160px;
+    justify-content: center;
 }
 
 .userCourseCatalogMainContainer {

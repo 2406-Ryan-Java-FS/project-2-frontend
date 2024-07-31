@@ -34,7 +34,7 @@ export default function CourseCard ( props ) {
                                     </div>
                                 )}
                             </div>
-                            <div className="course-price">{role === "Student" && price}</div>
+                            <div className="course-price">{role === "Student" && `$${price}`}</div>
                         </div>
                     </div>
                 </div>
