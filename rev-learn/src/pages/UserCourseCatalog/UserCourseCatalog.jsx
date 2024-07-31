@@ -1,18 +1,45 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useContext } from 'react';
 import '../../styles/course-styles.css'
 import CourseCard from './CourseCard'
 import SearchBar from '../../components/SearchBar';
 import CourseDummyData from './CourseDummyData';
+import { Link } from 'react-router-dom';
+import { PageContext } from '../../provider/PageProvider';
 
 let courseList = CourseDummyData;
+// let REVLEARN_URL = "https://x.x.x.x"
 
 export default function UserCourseCatalog() {
-    const [visibleItems, setVisibleItems] = useState(12); // Initial number of items (4 rows x 3 items each)
+
+    const { courseId, setCourseId } = useContext(PageContext);
+
+    const [visibleItems, setVisibleItems] = useState(12);
     const [loading, setLoading] = useState(false);
     const [filteredCourses, setFilteredCourses] = useState(courseList);
 
+    // const [courseParam, setCourseParam] = useState();
+
     const role = "Student";
     const image = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
+
+    // const handleCourseSelect = async () => {
+    //   try {
+    //     const response = await fetch(`${REVLEARN_URL}/${courseParam}`,
+    //       {
+    //         method: "GET",
+    //       },
+    //     )
+    //     if (response.ok) {
+    //       const json = await response.json();
+    //       console.log("loading")
+    //     } else {
+    //       console.error("Error")
+    //     }
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // }
+
 
     // Load more items when user scrolls to the bottom
     const loadMoreItems = useCallback(() => {
@@ -20,19 +47,18 @@ export default function UserCourseCatalog() {
 
         setLoading(true);
         setTimeout(() => {
-            setVisibleItems((prev) => Math.min(prev + 12, courseList.length)); // Load 12 more items or the remaining items if less than 12
+            setVisibleItems((prev) => Math.min(prev + 12, courseList.length));
             setLoading(false);
-        }, 500); // Simulate a delay (e.g., for loading from an API)
+        }, 500); // Simulate delay, to remove
     }, [loading, visibleItems]);
 
-    // Add scroll event listener
     useEffect(() => {
         const handleScroll = () => {
             const scrollTop = window.scrollY || window.pageYOffSet || document.documentElement.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight;
             const clientHeight = document.documentElement.clientHeight;
 
-            if (scrollTop + clientHeight >= scrollHeight - 5) { // Trigger when near the bottom
+            if (scrollTop + clientHeight >= scrollHeight - 5) {
                 loadMoreItems();
             }
         };
@@ -44,9 +70,7 @@ export default function UserCourseCatalog() {
         };
     }, [loadMoreItems]);
 
-    // merging
-
-  
+    // course filter
     const handleSearch = ({ course, category, sortOption }) => {
       const filtered = courseList.filter((c) => {
         const matchesCategory = category === "All" || c.category === category;
@@ -102,21 +126,25 @@ export default function UserCourseCatalog() {
                     </div>
                     <div className='userCardListContainer'>
                         <div className='userCardList'>
-                            {/* {courseList.slice(0, visibleItems).map((x, index) => ( */}
                             {filteredCourses.slice(0, visibleItems).map((x, index) => (
+                              <Link 
+                                to={`/${x.course_id}`} 
+                                key={index} 
+                                style={{ textDecoration: 'none', color: 'inherit' }}
+                              >
                                 <CourseCard
-                                    key={index}
+                                    // key={index}
                                     title={x.title}
                                     description={x.description}
                                     category={x.category}
                                     price={x.price}
-                                    // image={x.image}
                                     educator={x.educator}
                                     rating={x.rating}
                                     role={role}
                                     imageStatic={image}
                                     image={x.image}
                                 />
+                                </Link>
                             ))}
                         </div>
                         {loading && (
