@@ -7,14 +7,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import BasicTable from "./BasicTable";
 
-const bull = (
-    <Box
-        component="span"
-        sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-    >
-        •
-    </Box>
-);
+// const bull = (
+//     <Box
+//         component="span"
+//         sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+//     >
+//         •
+//     </Box>
+// );
 
 const card = (
     <>
@@ -54,7 +54,6 @@ export default function StudentCard() {
             <Box textAlign='center' sx={{ minWidth: 275 }}>
                 <Card variant="outlined">
                     {card}
-                    {<BasicTable />}
                 </Card>
             </Box>
         </>
