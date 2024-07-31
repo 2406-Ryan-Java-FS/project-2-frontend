@@ -79,16 +79,15 @@ nav{
   padding: 8px;
   background-color: rgb(91, 133, 145);
 }
-/* selects <Link> in React */
-a{
+/* a{
   font-size: medium;
+  text-align: center;
   text-decoration: none;
   color:black;
-  background-color: rgb(31, 170, 170);
   box-shadow: 0 8px 12px rbga(0,0,0,.2);
 
   padding: 3px 6px;
-  margin: 4px;
+  margin: 2px;
 
   border-radius: 4px;
   border-width: 2px;
@@ -96,4 +95,4 @@ a{
 }
 a:hover{
   background-color: rgb(32, 198, 62);
-}
+} */

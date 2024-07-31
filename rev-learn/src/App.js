@@ -1,6 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import { BrowserRouter, Link } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import HomeComponent from './components/HomeComponent';
 
 import Signup from './components/Signup';
@@ -22,28 +21,47 @@ import QuizPage from "./pages/Quiz/QuizPage";
 import UserCourseCatalog from "./components/UserCourseCatalog";
 import SideBar from './pages/individual-course-student/course-side-bar';
 import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
+import ResponsiveDrawer from './components/student-profile/ResponsiveDrawer';
+import ResponsiveDrawer2 from './components/student-profile/ResponsiveDrawer2';
+import { useState } from 'react';
+import { Divider } from '../node_modules/@mui/joy/index';
+
+let globalStateSetter
 
 export default function App() {
+
+  let [x,setx]=useState(0)
+  globalStateSetter=()=>{setx(x+1)}
+
   return (
     <div className="App">
       <BrowserRouter>
         {/* This was used to navigate through course related components */}
         {/* <SideBar /> */}
         
-        <nav id="navbar">
+        {/* <nav>
+          <Link to="/">Home</Link>{" "}
+          <Link to="/register">Register</Link>{" "}
+          <Link to="/profile">Profile</Link>{" "}
+          <Link to="/educator">Educator</Link>{" "}
+          <Link to="/payments">Payment</Link>{" "}
+          <Link to="/course-catalog">Catalog</Link>{" "}
+          <Link to="/quiz">Quiz</Link>{" "}
+          <Link to="/edit-question">Edit&nbsp;Question</Link>{" "}
+          <SignedInAs/>
+        </nav> */}
+
+        <ResponsiveDrawer2>
           <Link to="/">Home</Link>
           <Link to="/register">Register</Link>
           <Link to="/profile">Profile</Link>
           <Link to="/educator">Educator</Link>
+          <Divider />
           <Link to="/payments">Payment</Link>
           <Link to="/course-catalog">Catalog</Link>
-          {/* <Link to="/courses">Courses</Link> */}
           <Link to="/quiz">Quiz</Link>
-          <Link to="/edit-question">Edit Question</Link>
-          <SignedInAs/>
-        </nav>
-
-
+          <Link to="/edit-question">Edit&nbsp;Question</Link>
+        </ResponsiveDrawer2>
 
 
 
