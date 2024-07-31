@@ -36,9 +36,10 @@ export default function App() {
           <Link to="/profile">Profile</Link>
           <Link to="/educator">Educator</Link>
           <Link to="/payments">Payment</Link>
-          <Link to="/course-home">Courses</Link>
-          <Link to="/quiz" style={{ margin: "15px" }}>Quiz</Link>
-          <Link to="/edit-question" style={{ margin: "15px" }}>Edit Question</Link>
+          <Link to="/course-catalog">Catalog</Link>
+          {/* <Link to="/courses">Courses</Link> */}
+          <Link to="/quiz">Quiz</Link>
+          <Link to="/edit-question">Edit Question</Link>
           <SignedInAs/>
         </nav>
 

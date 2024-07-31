@@ -20,7 +20,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --no-open",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false --runInBand",
     "rsc-test": "react-scripts test --watchAll=false src/registerLogin.test.js",

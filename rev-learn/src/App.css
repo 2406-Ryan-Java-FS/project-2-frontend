@@ -76,17 +76,18 @@ h2{
   padding: 6px 12px;
 }
 nav{
-  padding: 12px;
+  padding: 8px;
   background-color: rgb(91, 133, 145);
 }
 /* selects <Link> in React */
 a{
+  font-size: medium;
   text-decoration: none;
   color:black;
   background-color: rgb(31, 170, 170);
   box-shadow: 0 8px 12px rbga(0,0,0,.2);
 
-  padding: 6px 12px;
+  padding: 3px 6px;
   margin: 4px;
 
   border-radius: 4px;
