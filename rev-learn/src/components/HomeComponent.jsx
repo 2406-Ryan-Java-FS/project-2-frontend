@@ -1,10 +1,10 @@
-import ResponsiveDrawer from "../components/student-profile/ResponsiveDrawer";
+import ResponsiveDrawer from "./NavDrawer";
 
-export default function HomeComponent()
-{
-    return(
-    <>
-    {<ResponsiveDrawer />}
-    </>
+
+export default function HomeComponent() {
+    return (
+        <>
+            {<ResponsiveDrawer />}
+        </>
     );
 }

@@ -38,6 +38,10 @@ export default function StudentAppBar() {
 
         </IconButton>
 
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Profile
+        </Typography>
+
         <Drawer
           open={isDrawerOpen}
           onClose={() => setIsDrawerOpen(false)}
@@ -60,7 +64,7 @@ export default function StudentAppBar() {
 
               {item === 'Home' ? <ListItemButton sx={{ textAlign: 'center' }}
                 component="a"
-                  href='/'
+                href='/'
                 onClick={() => {
                   console.info("HOME BUTTON TEST");
                 }}>
@@ -128,7 +132,7 @@ export default function StudentAppBar() {
             <ListItem key={item} disablePadding>
               <ListItemButton sx={{ textAlign: 'left' }}>
 
-                {item === 'Account' ? <ListItemButton sx={{ textAlign:'center' }}
+                {item === 'Account' ? <ListItemButton sx={{ textAlign: 'center' }}
                   component="button"
                   variant="body2"
                   onClick={() => {
@@ -146,8 +150,8 @@ export default function StudentAppBar() {
                     console.info("SETTINGS BUTTON TEST");
                     // this.setState(true)
                   }}>
-                    {/* { state ? StudentCard() : null } */}
-                    
+                  {/* { state ? StudentCard() : null } */}
+
                   <ListItemText primary={item} />
                 </ListItemButton> : ''}
 

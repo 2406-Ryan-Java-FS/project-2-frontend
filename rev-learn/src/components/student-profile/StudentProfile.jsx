@@ -3,6 +3,7 @@ import StudentAppBar from "./StudentAppBar";
 import StudentCard from "./StudentCard";
 import { useState } from "react";
 import BasicTable from "./BasicTable";
+import { Typography } from "@mui/material";
 
 export default function StudentProfile() {
 
@@ -13,6 +14,9 @@ export default function StudentProfile() {
 
     return (
         <>
+
+            {< StudentAppBar />}
+           
             <Box>
                 <Button variant='contained' onClick={() => { setCardState(true) }}>
                     Populate Card
@@ -30,7 +34,6 @@ export default function StudentProfile() {
                     Clear Page
                 </Button>
             </Box>
-            {< StudentAppBar />}
 
             {cardState ? <StudentCard /> : null}
             {tableState ? <BasicTable /> : null}
