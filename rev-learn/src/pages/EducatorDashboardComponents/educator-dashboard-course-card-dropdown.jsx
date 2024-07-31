@@ -136,6 +136,17 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
                   />
                 </FormControl>
               </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel>Course Image URL</FormLabel>
+                  <TextField
+                    type="text"
+                    value={editedCourse.imageUrl}
+                    onChange={handleInputChange}
+                    fullWidth
+                  />
+                </FormControl>
+              </Grid>
             </Grid>
             <Box
               sx={{
