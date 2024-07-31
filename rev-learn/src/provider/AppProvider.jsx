@@ -12,15 +12,19 @@ export default function AppProvider({ children }) {
       setquizQuestionId(id);
   }
 
-  function startQuizTimer() {
+  function quizTimerButton(start) {
+    if( start === "ON" ) {
       setQuizStartTimer(true);
+    } else if( start === "OFF" ) {
+      setQuizStartTimer(false);
+    }
   }
 
   const data = {
       quizQuestionId: quizQuestionId,
       updateQuizQuestionId: updateQuizQuestionId,
       quizStartTimer: quizStartTimer,
-      startQuizTimer: startQuizTimer,
+      quizTimerButton: quizTimerButton,
   }
 
   return (

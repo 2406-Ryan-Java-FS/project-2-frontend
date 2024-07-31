@@ -7,12 +7,17 @@ import { AppContext } from '../../provider/AppProvider';
 const QuizTimer = () => {
 
   // const [startTimer, setStartTimer] = useState(false)
-  const { quizStartTimer, startQuizTimer } = useContext(AppContext);
+  const { quizStartTimer, quizTimerButton } = useContext(AppContext);
 
   const handleStartTimer = () => {
     // setStartTimer(true);
-    startQuizTimer();
+    quizTimerButton("ON");
   }
+
+  const onTimerZero = () => {
+    quizTimerButton("OFF");
+    alert('Timer has reached zero!');
+  };
 
   return (
     <div className='quiz-start'>

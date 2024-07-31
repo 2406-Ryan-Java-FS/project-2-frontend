@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const CountdownTimer = ({ initialHours, initialMinutes, initialSeconds }) => {
+const CountdownTimer = ({ initialHours, initialMinutes, initialSeconds, onComplete }) => {
+  
+  const [seconds, setSeconds] = useState(initialSeconds);
   const [time, setTime] = useState({
     hours: initialHours,
     minutes: initialMinutes,
@@ -8,8 +10,18 @@ const CountdownTimer = ({ initialHours, initialMinutes, initialSeconds }) => {
   });
   // console.log("initialHours, initialMinutes, initialSeconds", initialHours, initialMinutes, initialSeconds);
   useEffect(() => {
+
+    // if the timer reaches 0, execute onComplete:
+    if( seconds === 0 ) {
+      if( onComplete ) {
+        onComplete();
+      }
+      return;
+    }
+
     // Update the timer every second
     const intervalId = setInterval(() => {
+      
       setTime(prevTime => {
         let { hours, minutes, seconds } = prevTime;
 
@@ -38,7 +50,7 @@ const CountdownTimer = ({ initialHours, initialMinutes, initialSeconds }) => {
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
-  }, []);
+  }, [seconds, onComplete]);
 
   return (
     <>
