@@ -1,12 +1,14 @@
 
 import { useContext } from 'react';
+
+import { AppContext } from '../../provider/AppProvider';
+
 import QuestionNavigationButton from './qstn-navigation-btn';
-import QuizItem from './quiz-item';
 import QuizNavigationBar from './quiz-navbar'
+import QuizTimer from './quiz-timer';
+import QuizItem from './quiz-item';
 
 import "./quiz.css";
-import { AppContext } from '../../provider/AppProvider';
-import QuizTimer from './quiz-timer';
 
 const QuizPage = () => {
 
@@ -17,7 +19,7 @@ const QuizPage = () => {
   return (
     <div className='quiz-container'>
       <div className='question-section'>
-        <h2>Quiz Page</h2>
+        <h1 className='title'>Quiz Page</h1>
         <QuizNavigationBar/>
         <div className='question-item'>
           <QuizItem mode='student' item={quizQuestionId}/>

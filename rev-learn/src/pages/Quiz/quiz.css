@@ -10,7 +10,11 @@
     rgba(255, 250, 245, 0.8) 
   ); /* Gradient background */
 }
-
+.title{
+  background: #efefd0;
+  color: rgb(58, 58, 58);
+  font-size: x-large;
+}
 .quiz-page {
   width: 650px;
   min-width: 500px;
@@ -18,7 +22,6 @@
   justify-content: center;
   align-items: center;
 }
-
 .quiz-navbar
 {
   display: flex;
@@ -75,9 +78,6 @@
   display: flex;
   justify-content:center;
   align-items: center;
-}
-
-.qtn-edit {
   border: 1px solid #2196f3;
 }
 

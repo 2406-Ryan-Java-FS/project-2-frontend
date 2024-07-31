@@ -7,11 +7,16 @@ import { AppContext } from '../../provider/AppProvider';
 const QuizTimer = () => {
 
   // const [startTimer, setStartTimer] = useState(false)
-  const { quizStartTimer, startQuizTimer } = useContext(AppContext);
+  const { quizStartTimer, quizTimerButton } = useContext(AppContext);
 
   const handleStartTimer = () => {
     // setStartTimer(true);
-    startQuizTimer();
+    quizTimerButton("ON");
+  }
+
+  const handleTimerOut = () => {
+    quizTimerButton("OFF");
+    alert('Timer has reached zero!');
   }
 
   return (
@@ -27,7 +32,7 @@ const QuizTimer = () => {
       <div>
         {
           (quizStartTimer === true ) 
-          ? <CountdownTimer initialHours={'2'} initialMinutes={'0'} initialSeconds={'0'} />
+          ? <CountdownTimer initialHours={'0'} initialMinutes={'0'} initialSeconds={'10'} onComplete={handleTimerOut} />
           : <>
               <h3 style={{color:"crimson"}}>Countdown Timer</h3>
               <div style={{fontSize:"x-large", fontWeight:"bolder", color:"crimson"}}>

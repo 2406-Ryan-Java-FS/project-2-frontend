@@ -3,21 +3,19 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { Link } from "react-router-dom";
 import HomeComponent from "./components/HomeComponent";
-import Register from "./components/Register";
-import Login from "./components/Login";
+// import Register from "./components/Register";
+// import Login from "./components/Login";
 // import CourseCard from './components/CourseCard';
-import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
+// import Signup from './components/Signup';
+// import Signin from './components/Signin';
+// import SignedInAs from './components/SignedInAs';
 // import CourseCard from './components/CourseCard';
+// import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
 import QuizPage from './pages/Quiz/QuizPage';
 import QuizItem from './pages/Quiz/quiz-item';
 import CourseDetailView from './pages/course-detail/course-detail-view'
-import Signup from './components/Signup';
-import Signin from './components/Signin';
-import SignedInAs from './components/SignedInAs';
-
-import QuizItem from "./pages/Quiz/quiz-item";
-import QuizPage from "./pages/Quiz/QuizPage";
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
+
 export default function App() {
   return (
     <div className="App">
@@ -36,14 +34,17 @@ export default function App() {
         <Link to="/quiz" style={{ margin: "15px" }}>
           Quiz
         </Link>
-        <Link to="/edit-question" style={{ margin: "15px" }}>
-          Edit Question
+        <Link to="/course/detail" style={{ margin: "15px" }}>
+          Course Details
+        </Link>
+        <Link to="/course-catalog" style={{ margin: "15px" }}>
+          Course Catalog
         </Link>
       </nav>
       <Routes>
         <Route path="" element={<HomeComponent />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        {/* <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} /> */}
         <Route path="/quiz" element={<QuizPage />} />
         <Route
           path="/edit-question"

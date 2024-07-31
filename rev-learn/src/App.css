@@ -43,20 +43,21 @@
 }
 
 body{
+  min-height: 100vh;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: x-large;
-  background-color: #6b989f;
+  background: rgb(255,242,220);
+  background: linear-gradient(0deg, rgba(255,242,220,1) 0%, rgba(255,208,147,1) 100%);
 }
+
 button{
   font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
-  font-size: xx-large;
   margin: 12px auto;
   padding: 12px 24px;
 }
+
 button:hover{
   background-color: rgb(32, 198, 62);
   cursor:pointer;
-  
 }
 table{
   margin: 4px;
@@ -68,22 +69,16 @@ table{
 td{
   padding: 6px 12px;
 }
-h2{
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  background-color: rgb(93, 120, 127);
-  text-align: center;
-  border-radius: 8px;
-  padding: 6px 12px;
-}
+
 nav{
   padding: 12px;
-  background-color: rgb(91, 133, 145);
+  background-color: #efefd0;  
 }
 /* selects <Link> in React */
 a{
   text-decoration: none;
-  color:black;
-  background-color: rgb(31, 170, 170);
+  color:#351c0c;
+  background-color: #ffbb8d;
   box-shadow: 0 8px 12px rbga(0,0,0,.2);
 
   padding: 6px 12px;
@@ -94,5 +89,5 @@ a{
   border-color:black;
 }
 a:hover{
-  background-color: rgb(32, 198, 62);
+  background-color: #fbb02d;
 }

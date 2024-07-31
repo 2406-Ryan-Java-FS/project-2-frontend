@@ -1,44 +1,53 @@
 import React, { useState, useEffect } from 'react';
 
-const CountdownTimer = ({ initialHours, initialMinutes, initialSeconds }) => {
+const CountdownTimer = ({ initialHours, initialMinutes, initialSeconds, onComplete }) => {
   const [time, setTime] = useState({
     hours: initialHours,
     minutes: initialMinutes,
-    seconds: initialSeconds
+    seconds: initialSeconds,
   });
-  // console.log("initialHours, initialMinutes, initialSeconds", initialHours, initialMinutes, initialSeconds);
+
   useEffect(() => {
-    // Update the timer every second
-    const intervalId = setInterval(() => {
-      setTime(prevTime => {
+    // Function to handle the countdown
+    const tick = () => {
+      setTime((prevTime) => {
         let { hours, minutes, seconds } = prevTime;
+
+        if (hours === 0 && minutes === 0 && seconds === 0) {
+          return prevTime;
+        }
 
         if (seconds > 0) {
           seconds -= 1;
-        } else {
-          if (minutes > 0) {
-            seconds = 59;
-            minutes -= 1;
-          } else {
-            if (hours > 0) {
-              seconds = 59;
-              minutes = 59;
-              hours -= 1;
-            } else {
-              // Timer has finished
-              clearInterval(intervalId);
-              return prevTime;
-            }
-          }
+        } else if (minutes > 0) {
+          seconds = 59;
+          minutes -= 1;
+        } else if (hours > 0) {
+          seconds = 59;
+          minutes = 59;
+          hours -= 1;
         }
 
         return { hours, minutes, seconds };
       });
-    }, 1000);
+    };
 
-    // Cleanup interval on component unmount
+    // Set up the interval to call tick every second
+    const intervalId = setInterval(tick, 1000);
+
+    // Clean up the interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
+
+  // Effect to check for timer completion
+  useEffect(() => {
+    const { hours, minutes, seconds } = time;
+    if (hours === 0 && minutes === 0 && seconds === 0) {
+      if (onComplete) {
+        onComplete();
+      }
+    }
+  }, [time, onComplete]);
 
   return (
     <>
