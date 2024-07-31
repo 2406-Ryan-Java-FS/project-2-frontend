@@ -4,14 +4,11 @@ import CourseCard from './CourseCard'
 import SearchBar from '../../components/SearchBar';
 import CourseDummyData from './CourseDummyData';
 import { Link } from 'react-router-dom';
-// import { PageContext } from '../../provider/PageProvider';
 import LoadingSpinner from './LoadingSpinner';
 
 let REVLEARN_URL = "http://localhost:8080"
 
 export default function UserCourseCatalog() {
-
-    // const { courseId, setCourseId } = useContext(PageContext);
 
     const [visibleItems, setVisibleItems] = useState(12);
     const [loading, setLoading] = useState(false);
