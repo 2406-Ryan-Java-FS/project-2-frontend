@@ -43,11 +43,11 @@ export default function StudentAppBar() {
           onClose={() => setIsDrawerOpen(false)}
           // PaperProps allows us to resize the meu
           PaperProps={{
-            sx: { width: "20%" }
+            sx: { width: "30%" }
           }}>
 
           <Typography variant="h6" sx={{ my: 2, textAlign: 'center' }}>
-            Navigation
+            (Student Name)
           </Typography>
 
           <Divider />
