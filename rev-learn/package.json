@@ -6,6 +6,7 @@
     "@emotion/react": "^11.13.0",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^5.16.5",
+    "@mui/joy": "^5.0.0-beta.48",
     "@mui/material": "^5.16.5",
     "@mui/styled-engine-sc": "^6.0.0-alpha.18",
     "@testing-library/jest-dom": "^5.17.0",
@@ -22,7 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false --runInBand",
-    "rsc-test":"react-scripts test --watchAll=false src/registerLogin.test.js",
+    "rsc-test": "react-scripts test --watchAll=false src/registerLogin.test.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
