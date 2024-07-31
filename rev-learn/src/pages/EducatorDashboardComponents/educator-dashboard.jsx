@@ -23,6 +23,8 @@ export default function EducatorDashboard() {
       category: "webDevelopment",
       price: "100",
       creationDate: "2023-01-01",
+      imageUrl:
+        "https://t4.ftcdn.net/jpg/04/80/12/93/360_F_480129384_xkBXyTdVt1R5F7KBwTD2kDURi7hV97Ad.jpg",
     },
     {
       courseId: 2,
@@ -32,6 +34,8 @@ export default function EducatorDashboard() {
       category: "dataScience",
       price: "200",
       creationDate: "2023-02-01",
+      imageUrl:
+        "https://t4.ftcdn.net/jpg/04/80/12/93/360_F_480129384_xkBXyTdVt1R5F7KBwTD2kDURi7hV97Ad.jpg",
     },
     {
       courseId: 3,
@@ -41,6 +45,8 @@ export default function EducatorDashboard() {
       category: "mobileDevelopment",
       price: "150",
       creationDate: "2023-03-01",
+      imageUrl:
+        "https://t4.ftcdn.net/jpg/04/80/12/93/360_F_480129384_xkBXyTdVt1R5F7KBwTD2kDURi7hV97Ad.jpg",
     },
   ];
 
@@ -69,13 +75,12 @@ export default function EducatorDashboard() {
                 boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
               },
             }}
-            // raised="true"
           >
             <CardMedia
               component="img"
               alt="course image"
               height="150"
-              image={placeholderImage}
+              image="https://t4.ftcdn.net/jpg/04/80/12/93/360_F_480129384_xkBXyTdVt1R5F7KBwTD2kDURi7hV97Ad.jpg"
             />
             <EducatorDashboardCoursCardDropdown course={course} />
             <CardContent sx={{ paddingBottom: 0, paddingLeft: 1 }}>
