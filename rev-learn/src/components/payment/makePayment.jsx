@@ -68,7 +68,7 @@ const FormGrid = styled('div')(() => ({
 }));
 
 
-  const [paymentType, setPaymentType] = useState('deditCard');
+  const [paymentType, setPaymentType] = useState('debitCard');
   const [cardNumber, setCardNumber] = useState('');
   const [cvv, setCvv] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
@@ -121,9 +121,9 @@ const FormGrid = styled('div')(() => ({
               flexGrow: 1,
               outline: '1px solid',
               outlineColor:
-                paymentType === 'deditCard' ? 'primary.main' : 'divider',
+                paymentType === 'debitCard' ? 'primary.main' : 'divider',
               backgroundColor:
-                paymentType === 'deditCard' ? 'background.default' : '',
+                paymentType === 'debitCard' ? 'background.default' : '',
             }}
           >
             <CardActionArea onClick={() => setPaymentType('debitCard')}>
@@ -290,7 +290,7 @@ const FormGrid = styled('div')(() => ({
         </Box>
       )}
 
-    {paymentType === 'deditCard' && (
+    {paymentType === 'debitCard' && (
         <Box
           sx={{
             display: 'flex',
