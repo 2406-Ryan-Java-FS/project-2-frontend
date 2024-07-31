@@ -7,19 +7,19 @@ import IconButton from '@mui/material/IconButton';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import { ListItemIcon } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import MailIcon from '@mui/icons-material/Mail';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import StudentCard from './StudentCard';
 
-const drawerWidth = 400;
 const navItems = ['Home', 'Courses', 'Grades', 'Discussions', 'Messages'];
 const navItems2 = ['Account', 'Settings', 'Logout']
 
 export default function StudentAppBar() {
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [state, setState] = useState(false);
+
 
   return (
 
@@ -55,7 +55,9 @@ export default function StudentAppBar() {
           {/* //THIS SECTION HANDLES MENU BUTTON NAVIGATION  */}
           {navItems.map((item) => (
             <ListItem key={item} disablePadding>
+
               {/* //------------------------------------------------ */}
+
               {item === 'Home' ? <ListItemButton sx={{ textAlign: 'center' }}
                 component="a"
                   href='/'
@@ -64,6 +66,7 @@ export default function StudentAppBar() {
                 }}>
                 <ListItemText primary={item} />
               </ListItemButton> : ''}
+
               {/* //------------------------------------------------ */}
 
               {item === 'Courses' ? <ListItemButton sx={{ textAlign: 'center' }}
@@ -74,6 +77,7 @@ export default function StudentAppBar() {
                 }}>
                 <ListItemText primary={item} />
               </ListItemButton> : ''}
+
               {/* //------------------------------------------------ */}
 
               {item === 'Grades' ? <ListItemButton sx={{ textAlign: 'center' }}
@@ -84,6 +88,7 @@ export default function StudentAppBar() {
                 }}>
                 <ListItemText primary={item} />
               </ListItemButton> : ''}
+
               {/* //------------------------------------------------ */}
 
               {item === 'Discussions' ? <ListItemButton sx={{ textAlign: 'center' }}
@@ -94,6 +99,7 @@ export default function StudentAppBar() {
                 }}>
                 <ListItemText primary={item} />
               </ListItemButton> : ''}
+
               {/* //------------------------------------------------ */}
 
               {item === 'Messages' ? <ListItemButton sx={{ textAlign: 'center' }}
@@ -111,6 +117,7 @@ export default function StudentAppBar() {
 
             </ListItem>
           ))};
+
           {/* //------------------------------------------------ */}
 
           <Divider />
@@ -129,6 +136,7 @@ export default function StudentAppBar() {
                   }}>
                   <ListItemText primary={item} />
                 </ListItemButton> : ''}
+
                 {/* //------------------------------------------------ */}
 
                 {item === 'Settings' ? <ListItemButton sx={{ textAlign: 'center' }}
@@ -136,9 +144,13 @@ export default function StudentAppBar() {
                   variant="body2"
                   onClick={() => {
                     console.info("SETTINGS BUTTON TEST");
+                    // this.setState(true)
                   }}>
+                    {/* { state ? StudentCard() : null } */}
+                    
                   <ListItemText primary={item} />
                 </ListItemButton> : ''}
+
                 {/* //------------------------------------------------ */}
 
                 {item === 'Logout' ? <ListItemButton sx={{ textAlign: 'center' }}
