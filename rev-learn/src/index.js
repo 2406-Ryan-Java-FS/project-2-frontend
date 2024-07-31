@@ -13,8 +13,7 @@ root.render(
     <BrowserRouter>
       <PageProvider>
         <AppProvider>
-          {/* <App /> */}
-          <UserCourseCatalog />
+          <App />
         </AppProvider>
       </PageProvider>
     </BrowserRouter>
