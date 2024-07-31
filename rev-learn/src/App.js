@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import HomeComponent from "./components/HomeComponent";
 import Register from "./components/Register";
 import Login from "./components/Login";
@@ -24,8 +24,8 @@ export default function App() {
           Login
         </Link>
         {" ~ "}
-        <Link to="/quizz" style={{ margin: "15px" }}>
-          Quizz
+        <Link to="/quiz" style={{ margin: "15px" }}>
+          Quiz
         </Link>
         <Link to="/edit-question" style={{ margin: "15px" }}>
           Edit Question
