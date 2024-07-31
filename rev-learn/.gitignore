@@ -20,10 +20,7 @@
 
 npm-debug.log*
 yarn-debug.log*
-<<<<<<< HEAD
+
 yarn-error.log*
 
 package-lock.json
-=======
-yarn-error.log*
->>>>>>> content-branch
