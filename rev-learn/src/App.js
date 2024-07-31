@@ -6,6 +6,15 @@ import HomeComponent from "./components/HomeComponent";
 import Register from "./components/Register";
 import Login from "./components/Login";
 // import CourseCard from './components/CourseCard';
+import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
+// import CourseCard from './components/CourseCard';
+import QuizPage from './pages/Quiz/QuizPage';
+import QuizItem from './pages/Quiz/quiz-item';
+import CourseDetailView from './pages/course-detail/course-detail-view'
+import Signup from './components/Signup';
+import Signin from './components/Signin';
+import SignedInAs from './components/SignedInAs';
+
 import QuizItem from "./pages/Quiz/quiz-item";
 import QuizPage from "./pages/Quiz/QuizPage";
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
@@ -41,6 +50,8 @@ export default function App() {
           element={<QuizItem mode="educator" item={2} />}
         />
         <Route path="/course-catalog" element={<UserCourseCatalog />} />
+        {/* TODO: course detail view/ need to add id in the param at the end */}
+        <Route path='course/detail' element={<CourseDetailView/>} />
       </Routes>
     </div>
   );
