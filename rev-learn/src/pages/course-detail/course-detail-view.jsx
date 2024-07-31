@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import CategoryCrumb from "./category-crumb";
 import '../../styles/course-detail/course-detail-view.css';
+import CourseDetailBtn from "./course-detail-btn";
 
 export default function CourseDetailView(){
 
@@ -47,46 +48,7 @@ export default function CourseDetailView(){
         return parsed[0] + ". " + parsed[1]+".";
     }
 
-    function pendingEnroll(){
-    //     // POST Enrollment DATA => for 
-
-    //     const newEnrollment = {
-    //         studentId: user.userId,
-    //         courseId: course.courseId,
-    //         paymentStatus: 'pending',
-            //    enrollmentStatus: false,
-            //    courseRating: null,
-            //    courseReview: null
-
-    //     }
-
-    //     const config = {
-    //         method:"POST",
-    //         header:{
-    //             'content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(newEnrollment)
-    //     };
-
-    //     fetch("http://localhost:8080/enrollments",config)
-    //     .then(res => {
-    //         if(res.ok){
-    //             toast.success("Added to a cart succesfully")
-    //          
-    //         }else{
-    //             return res.json();
-    //         }
-    //     })
-    //     .then(err => {
-    //         if(err){
-    //             toast.error("Adding a course failed :(");
-    //             return Promise.reject(err);
-    //         }
-    //     })
-    //     .catch(errs => {
-    //         console.error(error);
-    //     });
-    }
+    
 
     return(<div className="course-detail-box">
         <CategoryCrumb course={course} />
@@ -99,11 +61,7 @@ export default function CourseDetailView(){
             <div className="course-overview-img">
                 <img src={course.imgUrl} alt="course relate picture" width="300px" />
                 <div className="price-box">${course.price}</div>
-                <div className="enrollBtn">
-                    <Button type="submit" onsubmit={pendingEnroll()}>Add to Cart</Button>
-                    {/* if user has enrolled the course */}
-                    <Link type="button">Go to the course</Link>
-                </div>
+                <CourseDetailBtn />
             </div>
        
         </div>

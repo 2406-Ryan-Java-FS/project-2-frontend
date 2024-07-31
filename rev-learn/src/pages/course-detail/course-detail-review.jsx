@@ -7,14 +7,14 @@ export default function CourseDetailReview({courseId}){
 
     // useEffect(() => {
     //      /*I will fetch enrollment list by courseId, then fecth course_review data in there.*/
-    //      fetch("")
+    //      fetch("http://localhost:8080/enrollments/courses/{courseId}")
     //      .then(res => res.json())
     //      .then(setEnrollmentList)
     //      .error(error => {
     //         console.error(error);
     //      })
 
-    // },[])
+    // },[courseId])
 
     
 
