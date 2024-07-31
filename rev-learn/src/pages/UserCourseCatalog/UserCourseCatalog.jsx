@@ -19,24 +19,52 @@ export default function UserCourseCatalog() {
 
     useEffect(() => {
       const fetchAllCourses = async () => {
-        try {
-          const response = await fetch(`${REVLEARN_URL}/courses`, {
-            method: "GET"
-          })
+          const fetchPromise = fetch(`${REVLEARN_URL}/courses`, { method: 'GET' })
+              .then(response => {
+                  if (response.ok) {
+                      return response.json();
+                  } else {
+                      throw new Error('Network response was not ok');
+                  }
+              });
 
-          if (response.ok) {
-            const json = await response.json()
-            setCourseList(json)
-            console.log(courseList)
-          } else {
-            console.log("ERROR")
+          const timeoutPromise = new Promise((_, reject) =>
+              setTimeout(() => reject(new Error('Request timed out')), 3000)
+          );
+
+          try {
+              const result = await Promise.race([fetchPromise, timeoutPromise]);
+              setCourseList(result);
+              // console.log(result);
+          } catch (error) {
+              console.error(error);
+              setCourseList(CourseDummyData); // Use dummy data on timeout or fetch error
           }
-        } catch (error) {
-          console.error(error)
-        }
-      }
-      fetchAllCourses()
-    }, [])
+      };
+
+      fetchAllCourses();
+    }, []);
+
+    // useEffect(() => {
+    //   const fetchAllCourses = async () => {
+    //     try {
+    //       const response = await fetch(`${REVLEARN_URL}/courses`, {
+    //         method: "GET"
+    //       })
+
+    //       if (response.ok) {
+    //         const json = await response.json()
+    //         setCourseList(json)
+    //         console.log(courseList)
+    //       } else {
+    //         console.log("ERROR")
+    //       }
+    //     } catch (error) {
+    //       console.error(error)
+    //     }
+    //   }
+    //   fetchAllCourses()
+    // }, [])
 
     useEffect(() => {
       setFilteredCourses(courseList)
@@ -163,7 +191,8 @@ export default function UserCourseCatalog() {
                 )}
               </div>
             )
-            :(<LoadingSpinner />)
+            :
+            (<LoadingSpinner />)
           }
         </div>
 
