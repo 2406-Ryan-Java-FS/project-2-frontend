@@ -1,9 +1,9 @@
 import { Button, TextField } from '@mui/material'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import QuizMultipleChoiceAnswers from './quiz-mc-answers'
 import QuestionScratchPad from './qstn_scratch_pad'
 
-import { quizAnswers, quizQuestions } from './quiz-data';
+import { quizQuestions } from './quiz-data';
 
 import "./quiz.css";
 import QuizAnswerEdit from './quiz-edit-answers';
@@ -11,18 +11,22 @@ import { AppContext } from '../../provider/AppProvider';
 // import { ClassSharp } from '@mui/icons-material';
 
 const QuizItem = ({mode, item}) => {
-  const { quizQuestionId, updateQuizQuestionId } = useContext(AppContext);
-  
+  const { quizQuestionId } = useContext(AppContext);
+  const [ questionText, setQuestionText ] = useState("");
+
   const itemId = Number(quizQuestionId);
-  
-  useEffect(() => {
-    updateQuizQuestionId( quizQuestionId ); 
-  }, [quizQuestionId, updateQuizQuestionId]);
   
   const allowEdit = mode === 'student' ? true : false;
   
-  console.log("🚀 ~ QuizItem ~ quizQuestionId:", quizQuestionId)
+  console.log("🎲 ~ QuizItem ~ quizQuestionId:", quizQuestionId)
   console.log("🚀 ~ QuizItem ~ itemId:", itemId)
+  console.log("🚀 ~ QuizItem ~ quizQuestions[itemId]:", quizQuestions[itemId].question)
+
+  useEffect(() => {
+
+    setQuestionText(quizQuestions[itemId].question);
+
+  }, [ itemId, setQuestionText ]);
 
   return (
     <div className='quiz-item'>
@@ -32,7 +36,7 @@ const QuizItem = ({mode, item}) => {
             label="Question:"
             multiline
             rows={4}
-            defaultValue={quizQuestions[itemId]}
+            defaultValue={questionText}
             InputProps={{
               readOnly: allowEdit,
             }}
@@ -46,12 +50,11 @@ const QuizItem = ({mode, item}) => {
           </div>
         </div>
         <div>
-          <div>
-            <QuestionScratchPad/>
-          </div>
+          <QuestionScratchPad/>
           <div className='quiz-buttons'>
-            <Button id='quiz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Mark</Button>
+            {/* <Button id='quiz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Mark</Button> */}
             <Button id='quiz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Submit</Button>
+            <Button id='quiz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Cancel</Button>
           </div>
         </div>
       </div>
