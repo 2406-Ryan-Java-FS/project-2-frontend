@@ -10,6 +10,9 @@ import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dash
 import QuizPage from './pages/Quiz/QuizPage';
 import QuizItem from './pages/Quiz/quiz-item';
 import CourseDetailView from './pages/course-detail/course-detail-view'
+import Signup from './components/Signup';
+import Signin from './components/Signin';
+import SignedInAs from './components/SignedInAs';
 
 export default function App() {
   return (
@@ -27,11 +30,10 @@ export default function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/quiz' element={<QuizPage/>}/>
           <Route path='/edit-question' element={<QuizItem mode='student' item={2} />} />
-
+           <Route path="/course-catalog" element={<UserCourseCatalog />} />
            {/* TODO: course detail view/ need to add id in the param at the end */}
-        <Route path='course/detail' element={<CourseDetailView/>} />
+           <Route path='course/detail' element={<CourseDetailView/>} />
         </Routes>
-      <EducatorDashboard />
     </div>
   );
 }
