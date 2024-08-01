@@ -1,7 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import { BrowserRouter } from 'react-router-dom';
-import HomeComponent from './components/HomeComponent';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 
 import Signup from './components/Signup';
 import Signin from './components/Signin';
@@ -19,27 +17,52 @@ import QuizItem from "./pages/Quiz/quiz-item";
 import QuizPage from "./pages/Quiz/QuizPage";
 
 import UserCourseCatalog from "./components/UserCourseCatalog";
+import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
+import { useState } from 'react';
+import { Divider } from '../node_modules/@mui/joy/index';
+import NavDrawer from './components/navigation/NavDrawer';
+
+let globalStateSetter
 
 export default function App() {
+
+  let [x, setx] = useState(0)
+  globalStateSetter = () => { setx(x + 1) }
+
   return (
     <div className="App">
       {/* Added new Nav Bar and removed Top Test Navigation */}
-      {<HomeComponent />}
+      {/* {<HomeComponent />} */}
 
       <BrowserRouter>
         {/* This was used to navigate through course related components */}
         {/* <SideBar /> */}
 
-        {/* <nav id="navbar">
+        {/* <nav>
+          <Link to="/">Home</Link>{" "}
+          <Link to="/register">Register</Link>{" "}
+          <Link to="/profile">Profile</Link>{" "}
+          <Link to="/educator">Educator</Link>{" "}
+          <Link to="/payments">Payment</Link>{" "}
+          <Link to="/course-catalog">Catalog</Link>{" "}
+          <Link to="/quiz">Quiz</Link>{" "}
+          <Link to="/edit-question">Edit&nbsp;Question</Link>{" "}
+          <SignedInAs/>
+        </nav> */}
+
+        <NavDrawer>
           <Link to="/">Home</Link>
           <Link to="/register">Register</Link>
           <Link to="/profile">Profile</Link>
+          <Link to="/educator">Educator</Link>
+          <Divider />
           <Link to="/payments">Payment</Link>
-          <Link to="/course-home">Courses</Link>
-          <Link to="/quiz" style={{ margin: "15px" }}>Quiz</Link>
-          <Link to="/edit-question" style={{ margin: "15px" }}>Edit Question</Link>
-          <SignedInAs/>
-        </nav> */}
+          <Link to="/course-catalog">Catalog</Link>
+          <Link to="/quiz">Quiz</Link>
+          <Link to="/edit-question">Edit&nbsp;Question</Link>
+        </NavDrawer>
+
+
 
 
         {/* Adding this gap to maybe help with merging, we'll see */}
@@ -52,11 +75,11 @@ export default function App() {
           <Route path='/course-grades' element={<CourseGrades />} />
           <Route path='/course-discussions' element={<CourseDiscussions />} />
           <Route path='/course-quizzes' element={<CourseQuizzes />} />
-
-
           <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
           <Route path="/course-catalog" element={<UserCourseCatalog />} />
+
+          <Route path="/educator" element={<EducatorDashboard />} />
 
 
           <Route path='/profile' element={<StudentProfile />} />
