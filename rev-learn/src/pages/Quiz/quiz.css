@@ -6,7 +6,7 @@
   color: rgb(58, 58, 58);
   background: linear-gradient(
     to bottom right, 
-    rgba(255, 132, 0, 0.3),
+    rgba(255, 132, 0, 0.1),
     rgba(255, 250, 245, 0.8) 
   ); /* Gradient background */
 }
@@ -151,11 +151,14 @@ li {
   margin-right: auto; /* Pushes the right button to the right */
 }
 
-#quiz-btn {
-  width: 120px;
+#quiz-page-button,
+#quiz-description
+ {
+  width: 100px;
   color:#973c00;
   border: 1px solid #79664d;
 }
+
 #quiz-nav-btn {
   background-color: #df905d;
 }

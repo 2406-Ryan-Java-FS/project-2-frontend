@@ -3,24 +3,42 @@ export const user_id = 1001;
 export const course_id = 5001;
 
 export const quizQuestions = [
-  { 'course_id' : 1,
+  { 
     'question_seq': 1, 
     'question': 'What is the correct syntax to output "Hello World" in JavaScript?', 
+    'correct_choice' : 3,
   },
-  {'question_seq': 2, 
+  {
+    'question_seq': 2, 
     'question': 'How do you create a function in JavaScript?', 
+    'correct_choice' : 1,
   },
-  {'question_seq': 3, 
+  {
+    'question_seq': 3, 
     'question': 'What is the correct way to write a for loop in JavaScript?', 
+    'correct_choice' : 4,
   },
-  {'question_seq': 4, 
+  {
+    'question_seq': 4, 
     'question': 'What does the slice method do in JavaScript arrays?', 
+    'correct_choice' : 2,
   },
-  {'question_seq': 5, 
+  {
+    'question_seq': 5, 
     'question': 'How do you convert an array to a string in JavaScript?', 
+    'correct_choice' : 1,
+  },
+  {
+    'question_seq': 6, 
+    'question': 'What is the result of typeof NaN?', 
+    'correct_choice' : 5,
+  },
+  {
+    'question_seq': 7, 
+    'question': 'How do you create an immediately invoked function expression (IIFE) in JavaScript?', 
+    'correct_choice' : 2,
   },
 ]
-
 
 export const multiple_choice_question = {
   "mc_question_id" : 0,
@@ -31,7 +49,6 @@ export const multiple_choice_question = {
   "mc_correct_choice" : 0,
   "version_id" : 0,
 }
-
 
 export const quizAnswers = [
   {'answer-seq': 1, 
@@ -51,27 +68,24 @@ export const quizAnswers = [
       { 'ans_id': 4, 'ans_text': 'function:myFunction() {}'}, 
       { 'ans_id': 5, 'ans_text': 'myFunction function() {}'},
     ],
-    'correct-answer' : 1,
   },
   { 'answer-seq': 3, 
     'answers': [
-      { 'ans_id': 1, 'ans_text': 'for (var i = 0; i < 5; i++) {}'},
-      { 'ans_id': 2, 'ans_text': 'for var i = 0; i < 5; i++ {}'}, 
-      { 'ans_id': 3, 'ans_text': 'for (i < 5; i++) {var i = 0;}'}, 
-      { 'ans_id': 4, 'ans_text': 'for (var i = 0; i++) {}'}, 
+      { 'ans_id': 1, 'ans_text': 'for var i = 0; i < 5; i++ {}'}, 
+      { 'ans_id': 2, 'ans_text': 'for (i < 5; i++) {var i = 0;}'}, 
+      { 'ans_id': 3, 'ans_text': 'for (var i = 0; i++) {}'}, 
+      { 'ans_id': 4, 'ans_text': 'for (var i = 0; i < 5; i++) {}'},
       { 'ans_id': 5, 'ans_text': 'for (i++) {var i = 0; i < 5;'}
     ],
-    'correct-answer' : 1,
   },
   {'answer-seq': 4, 
     'answers': [
       { 'ans_id': 1, 'ans_text': 'Modifies the original array}'},
-      { 'ans_id': 2, 'ans_text': 'Removes elements from the original array}'}, 
-      { 'ans_id': 3, 'ans_text': 'Extracts a section of the original array without modifying it}'},
+      { 'ans_id': 2, 'ans_text': 'Extracts a section of the original array without modifying it}'},
+      { 'ans_id': 3, 'ans_text': 'Removes elements from the original array}'}, 
       { 'ans_id': 4, 'ans_text': 'Adds new elements to the original array}'}, 
       { 'ans_id': 5, 'ans_text': 'Sorts the elements of the array'}
     ],
-    'correct-answer' : 1,
   },
   {'answer-seq': 5, 
     'answers': [
@@ -81,7 +95,23 @@ export const quizAnswers = [
       { 'ans_id': 4, 'ans_text': 'array.convert()'}, 
       { 'ans_id': 5, 'ans_text': 'array.splice()'},
     ],
-    'correct-answer' : 1,
+  },
+  {'answer-seq': 6, 
+    'answers': [
+      { 'ans_id': 1, 'ans_text': 'object'}, 
+      { 'ans_id': 2, 'ans_text': 'undefined'}, 
+      { 'ans_id': 3, 'ans_text': 'NaN'}, 
+      { 'ans_id': 4, 'ans_text': 'null'},
+      { 'ans_id': 5, 'ans_text': 'number'}, 
+    ],
+  },
+  {'answer-seq': 7, 
+    'answers': [
+      { 'ans_id': 1, 'ans_text': 'function() {}();'}, 
+      { 'ans_id': 2, 'ans_text': '(function() {})();'}, 
+      { 'ans_id': 3, 'ans_text': '(()function {})();'}, 
+      { 'ans_id': 4, 'ans_text': '(()function() {});'},
+    ],
   },
 ];
 

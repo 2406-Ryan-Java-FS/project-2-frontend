@@ -12,10 +12,10 @@ const QuizTimer = () => {
   const handleStartTimer = () => {
     // setStartTimer(true);
     quizTimerButton("ON");
+
   }
 
   const handleTimerOut = () => {
-    quizTimerButton("OFF");
     alert('Timer has reached zero!');
   }
 
@@ -32,7 +32,11 @@ const QuizTimer = () => {
       <div>
         {
           (quizStartTimer === true ) 
-          ? <CountdownTimer initialHours={'0'} initialMinutes={'0'} initialSeconds={'10'} onComplete={handleTimerOut} />
+          ? <CountdownTimer 
+                initialHours={'0'} 
+                initialMinutes={'1'} 
+                initialSeconds={'30'} 
+                onComplete={handleTimerOut} />
           : <>
               <h3 style={{color:"crimson"}}>Countdown Timer</h3>
               <div style={{fontSize:"x-large", fontWeight:"bolder", color:"crimson"}}>

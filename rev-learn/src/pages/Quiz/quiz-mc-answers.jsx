@@ -2,6 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 
 import { Checkbox } from '@mui/material'
+import { AppContext } from '../../provider/AppProvider';
 
 import { answerChoiceManager } from './answer-choice-manager';
 
@@ -13,7 +14,6 @@ import {
 
 import "./quiz.css";
 import "./mc-answer-line.css";
-import { AppContext } from '../../provider/AppProvider';
 
 const QuizMultipleChoiceAnswers = ({item}) => {
   const [, setCurrentChoiceId ] = useState(answerChoiceManager.getCurrentQtnAnswerChoice(item));
@@ -60,8 +60,8 @@ const QuizMultipleChoiceAnswers = ({item}) => {
         {
           answersList1.map((answer, idxal) => {
             const isChecked = answerChoiceManager.getCurrentQtnAnswerChoice(questionId) === idxal;
-            console.log("✨ ~ QuizMultipleChoiceAnswers ~ idxal, questionId, answer:", idxal, questionId, answer);
-            console.log("✨ ~ QuizMultipleChoiceAnswers ~ quizStartTimer:", quizStartTimer);
+            // console.log("✨ ~ QuizMultipleChoiceAnswers ~ idxal, questionId, answer:", idxal, questionId, answer);
+            // console.log("✨ ~ QuizMultipleChoiceAnswers ~ quizStartTimer:", quizStartTimer);
 
             return (
               <li key={idxal} className='answer-container'>
