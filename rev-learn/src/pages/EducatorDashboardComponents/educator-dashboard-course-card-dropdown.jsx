@@ -1,5 +1,4 @@
 import {
-  IconButton,
   Modal,
   Box,
   Button,
@@ -13,12 +12,9 @@ import {
   MenuItem,
   TextField,
 } from "@mui/material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Dropdown from "@mui/joy/Dropdown";
-import Menu from "@mui/joy/Menu";
-import MenuButton from "@mui/joy/MenuButton";
 import { useState } from "react";
 import { Textarea } from "@mui/joy";
+import BasicMenu from "./basic-menu";
 
 export default function EducatorDashboardCoursCardDropdown({ course }) {
   const [openEditCourseModal, setOpenEditCourseModal] = useState(false);
@@ -34,24 +30,7 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
 
   return (
     <>
-      <Dropdown>
-        <MenuButton
-          component={IconButton}
-          sx={{
-            position: "absolute",
-            top: 8,
-            right: 8,
-            color: "white",
-            border: "none",
-          }}
-        >
-          <MoreVertIcon />
-        </MenuButton>
-        <Menu>
-          <MenuItem onClick={handleOpenEditCourseModal}>Edit Course</MenuItem>
-          <MenuItem>Delete Course</MenuItem>
-        </Menu>
-      </Dropdown>
+      <BasicMenu handleOpenEditCourseModal={handleOpenEditCourseModal} />
 
       <Modal open={openEditCourseModal} onClose={handleCloseEditCourseModal}>
         <Box
@@ -70,7 +49,7 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              console.log(editedCourse); // Here you can handle the course edit logic
+              console.log(editedCourse); // Handle Edit course logic
               setOpenEditCourseModal(false);
             }}
           >
@@ -154,6 +133,17 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
                     onChange={handleInputChange}
                     fullWidth
                     InputLabelProps={{ shrink: true }} // Ensures the label is displayed correctly
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel>Course Image URL</FormLabel>
+                  <TextField
+                    type="text"
+                    value={editedCourse.imageUrl}
+                    onChange={handleInputChange}
+                    fullWidth
                   />
                 </FormControl>
               </Grid>
