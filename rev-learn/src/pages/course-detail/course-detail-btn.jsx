@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+
 export default function CourseDetailBtn(){
     // const user = useContext();
-    // const [enrollment, setEnrollment] = useState();
+    const [enrollment, setEnrollment] = useState();
 
     function pendingEnroll(){
         //     // POST Enrollment DATA => for 
@@ -46,7 +48,7 @@ export default function CourseDetailBtn(){
 
     return(
         <div className="enrollBtn">
-        {enrollment==null?<Button type="submit" onsubmit={pendingEnroll()}>Add to Cart</Button>
+        {enrollment==null?<button type="submit" onsubmit={pendingEnroll()}>Add to Cart</button>
        :<Link type="button">Go to the course</Link>}
     </div>);
 }
