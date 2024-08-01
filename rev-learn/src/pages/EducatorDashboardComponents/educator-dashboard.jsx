@@ -12,7 +12,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import EditIcon from "@mui/icons-material/Edit";
 import placeholderImage from "../../images/blank.png";
 import EducatorDashboardHeader from "./educator-dashboard-header";
-import EducatorDashboardCoursCardDropdown from "./educator-dashboard-course-card-dropdown";
+import EducatorDashboardCourseCardDropdown from "./educator-dashboard-course-card-dropdown";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
 
 export default function EducatorDashboard() {
@@ -77,7 +77,7 @@ export default function EducatorDashboard() {
               height="150"
               image={course.imgUrl || placeholderImage}
             />
-            <EducatorDashboardCoursCardDropdown course={course} />
+            <EducatorDashboardCourseCardDropdown course={course} />
             <CardContent sx={{ paddingBottom: 0, paddingLeft: 1 }}>
               <Typography sx={{ textAlign: "left" }} variant="h6">
                 {course.courseId} - {course.title} <br />

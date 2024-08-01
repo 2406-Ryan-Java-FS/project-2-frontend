@@ -30,7 +30,10 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
 
   return (
     <>
-      <BasicMenu handleOpenEditCourseModal={handleOpenEditCourseModal} />
+      <BasicMenu
+        handleOpenEditCourseModal={handleOpenEditCourseModal}
+        editedCourse={editedCourse}
+      />
 
       <Modal open={openEditCourseModal} onClose={handleCloseEditCourseModal}>
         <Box

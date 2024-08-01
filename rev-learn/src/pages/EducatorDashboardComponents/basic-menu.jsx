@@ -3,8 +3,12 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { useEducatorDashboardContext } from "./educator-dashboard-context";
+import { deleteCourse } from "./educator-dashboard-api";
 
-export default function BasicMenu({ handleOpenEditCourseModal }) {
+export default function BasicMenu({ handleOpenEditCourseModal, editedCourse }) {
+  const { state, setState } = useEducatorDashboardContext();
+
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
@@ -12,6 +16,22 @@ export default function BasicMenu({ handleOpenEditCourseModal }) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+    console.log(editedCourse);
+    deleteCourse(editedCourse.courseId)
+      .then((response) => {
+        if (response.data) {
+          setState((prevState) => ({
+            ...prevState,
+            courses: prevState.courses.filter(
+              (course) => course.courseId !== editedCourse.courseId
+            ),
+          }));
+          console.log(`Course with ID ${editedCourse.courseId} deleted.`);
+        }
+      })
+      .catch((error) => {
+        console.error("There was an error deleting the course.", error);
+      });
     setAnchorEl(null);
   };
 
