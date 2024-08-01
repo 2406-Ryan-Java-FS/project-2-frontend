@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import HomeComponent from './components/HomeComponent';
 
 import Signup from './components/Signup';
 import Signin from './components/Signin';
@@ -18,29 +17,30 @@ import QuizItem from "./pages/Quiz/quiz-item";
 import QuizPage from "./pages/Quiz/QuizPage";
 
 import UserCourseCatalog from "./components/UserCourseCatalog";
-import SideBar from './pages/individual-course-student/course-side-bar';
 import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
-import ResponsiveDrawer from './components/student-profile/ResponsiveDrawer';
-import ResponsiveDrawer2 from './components/student-profile/ResponsiveDrawer2';
 import { useState } from 'react';
-import { Divider, ListItem, ListItemButton } from '../node_modules/@mui/joy/index';
-import uac from './controllers/userAccountController';
-import { ListItemText } from '../node_modules/@mui/material/index';
+import { Divider } from '../node_modules/@mui/joy/index';
 import Signout from './components/Signout';
+import NavDrawer from './components/navigation/NavDrawer';
+import HomeComponent from './components/HomeComponent';
+import uac from './controllers/userAccountController';
 
 export let globalStateSetter//causes full re-render of App
 
 export default function App() {
 
-  let [x,setx]=useState(0)
-  globalStateSetter=()=>{setx(x+1)}
+  let [x, setx] = useState(0)
+  globalStateSetter = () => { setx(x + 1) }
 
   return (
     <div className="App">
+      {/* Added new Nav Bar and removed Top Test Navigation */}
+      {/* {<HomeComponent />} */}
+
       <BrowserRouter>
         {/* This was used to navigate through course related components */}
         {/* <SideBar /> */}
-        
+
         {/* <nav>
           <Link to="/">Home</Link>{" "}
           <Link to="/register">Register</Link>{" "}
@@ -53,7 +53,7 @@ export default function App() {
           <SignedInAs/>
         </nav> */}
 
-        <ResponsiveDrawer2>
+        <NavDrawer>
           {(uac.loggedInUser==undefined?<Link to="/signin">Sign in</Link>:<Signout/>)}
           <Divider />
           <Link to="/">Home</Link>
@@ -65,7 +65,8 @@ export default function App() {
           <Link to="/course-catalog">Catalog</Link>
           <Link to="/quiz">Quiz</Link>
           <Link to="/edit-question">Edit&nbsp;Question</Link>
-        </ResponsiveDrawer2>
+          <Link to="/login">Logout</Link>
+        </NavDrawer>
 
 
 
@@ -88,11 +89,11 @@ export default function App() {
 
           <Route path='/profile' element={<StudentProfile />} />
 
-          <Route path='/payments' element = {<Payment />}/>
+          <Route path='/payments' element={<Payment />} />
           <Route path="/quiz" element={<QuizPage />} />
-          <Route path="/edit-question" element={<QuizItem mode="educator" item={2} />}/>
+          <Route path="/edit-question" element={<QuizItem mode="educator" item={2} />} />
 
-          
+
         </Routes>
       </BrowserRouter>
     </div>

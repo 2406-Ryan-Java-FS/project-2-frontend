@@ -1,4 +1,4 @@
-import ResponsiveDrawer from "../components/student-profile/ResponsiveDrawer";
+
 import uac from "../controllers/userAccountController";
 
 export default function HomeComponent()

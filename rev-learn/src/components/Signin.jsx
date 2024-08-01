@@ -1,36 +1,49 @@
 import { useNavigate } from "react-router-dom"
 import uac from "../controllers/userAccountController"
+import { Typography } from "../../node_modules/@mui/joy/index"
+import { Button } from "../../node_modules/@mui/joy/index"
 import { globalStateSetter } from "../App"
 
-export default function Signin()
-{
-let naviageUsingReact=useNavigate()
+export default function Signin() {
+    let naviageUsingReact = useNavigate()
 
-return(<>
-<center>
-<table>
-    <tr><td colSpan={2}><h2>Rev Learn Sign in</h2></td></tr>
-    <tr><td>Email</td><td><input id="SigninEmail" type="text"/></td></tr>
-    <tr><td>Password</td><td><input id="SigninPassword" type="password"/></td></tr>
-    <tr>
-    <td colSpan={2}>
-        <button style={{width:'100%'}}
-        onClick={
-            async()=>{
-                await uac.signin(
-                document.getElementById("SigninEmail").value,
-                document.getElementById("SigninPassword").value)
-                naviageUsingReact('/')
-                globalStateSetter()//cause full re-render
-            }
-        }
-        
-        >Sign In</button><br/>
-        <button style={{width:'100%'}} 
-        onClick={()=>naviageUsingReact('/register')}>New Account</button>
-    </td>
-    </tr>
-</table>
-</center>
-</>)
+    return (<>
+        <center>
+            <table style={{ backgroundColor: '#F36928' }}>
+                <tr><td colSpan={2}>
+                    <Typography sx={{ textAlign: 'center' }}>
+                        Rev Learn Login
+                    </Typography>
+                </td></tr>
+                <tr><td><Typography>Email</Typography></td><td><input id="SigninEmail" type="text" /></td></tr>
+                <tr><td><Typography>Password</Typography></td><td><input id="SigninPassword" type="password" /></td></tr>
+                <tr>
+                    <td colSpan={2}>
+                        <center>
+                            <Button
+                                variant='outlined'
+                                sx={{ backgroundColor: 'white' }}
+                                onClick={
+                                    async () => {
+                                    await uac.signin(
+                                        document.getElementById("SigninEmail").value,
+                                        document.getElementById("SigninPassword").value)
+                                    
+                                    naviageUsingReact("/")
+                                    globalStateSetter()//cause re-render
+                                    }
+                                }
+
+                            >Sign In</Button><br />
+                            <Button
+                                variant='outlined'
+                                sx={{ backgroundColor: 'white' }}
+                                onClick={() => naviageUsingReact('/register')}>New Account
+                            </Button>
+                        </center>
+                    </td>
+                </tr>
+            </table>
+        </center>
+    </>)
 }

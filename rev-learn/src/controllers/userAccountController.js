@@ -55,7 +55,7 @@ export default class userAccountController
      */
     static async signin(email,password)
     {
-        console.log(`userAccountController login() ${email} ${password}`)
+        console.log(`userAccountController signin() ${email} ${password}`)
         const response=await fetch(`${userAccountController.baseUrl}/users2/signin`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},

@@ -59,7 +59,7 @@ export default function EducatorDashboard() {
         {courseDetails.map((course) => (
           <Card
             key={course.courseId}
-            sx={{ position: "relative", width: 440, margin: "8px" }}
+            sx={{ backgroundColor: '#F36928', position: "relative", width: 440, margin: "8px" }}
           >
             <CardMedia
               component="img"
