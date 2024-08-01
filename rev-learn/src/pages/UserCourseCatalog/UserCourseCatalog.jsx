@@ -16,50 +16,76 @@ export default function UserCourseCatalog() {
     const [courseList, setCourseList] = useState([])
     const [filteredCourses, setFilteredCourses] = useState([]);
 
+    const [loginDummyId, setLoginDummyId] = useState(0);
+
 
     useEffect(() => {
       const fetchAllCourses = async () => {
-          const fetchPromise = fetch(`${REVLEARN_URL}/courses`, { method: 'GET' })
+        const fetchCoursesPromise = fetch(`${REVLEARN_URL}/courses`, { method: 'GET' })
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error('Network response was not ok');
+            }
+          });
+    
+        const timeoutPromise = new Promise((_, reject) =>
+          setTimeout(() => reject(new Error('Request timed out')), 3000)
+        );
+    
+        try {
+          const coursesResult = await Promise.race([fetchCoursesPromise, timeoutPromise]);
+    
+          let completedEnrollments = [];
+          if (loginDummyId) {
+            const fetchEnrollmentsPromise = fetch(`http://localhost:8080/enrollments/students/${loginDummyId}/completed`, { method: 'GET' })
               .then(response => {
-                  if (response.ok) {
-                      return response.json();
-                  } else {
-                      throw new Error('Network response was not ok');
-                  }
+                if (response.ok) {
+                  return response.json();
+                } else {
+                  throw new Error('Network response was not ok');
+                }
               });
-
-          const timeoutPromise = new Promise((_, reject) =>
+    
+            const enrollmentsTimeoutPromise = new Promise((_, reject) =>
               setTimeout(() => reject(new Error('Request timed out')), 3000)
-          );
-
-          try {
-            const result = await Promise.race([fetchPromise, timeoutPromise]);
-            // Merge result with enrollmentStatusDummyData
-            const mergedCourseData = result.map(course => {
-              const status = enrollmentStatusDummyData.find(status => status.courseId === course.courseId);
-              return {
-                ...course,
-                enrolled: status ? status.enrolled : false
-              };
-            });
-            setCourseList(mergedCourseData);
-            setFilteredCourses(mergedCourseData); // Initialize filteredCourses with merged data
-          } catch (error) {
-            console.error(error);
-            const mergedDummyData = CourseDummyData.map(course => {
-              const status = enrollmentStatusDummyData.find(status => status.courseId === course.courseId);
-              return {
-                ...course,
-                enrolled: status ? status.enrolled : false
-              };
-            });
-            setCourseList(mergedDummyData);
-            setFilteredCourses(mergedDummyData); // Use dummy data on error
+            );
+    
+            completedEnrollments = await Promise.race([fetchEnrollmentsPromise, enrollmentsTimeoutPromise]);
           }
+    
+          const mergedCourseData = coursesResult.map(course => {
+            const status = completedEnrollments.find(status => status.courseId === course.courseId);
+            return {
+              ...course,
+              enrolled: status ? status.enrolled : false,
+              completed: false
+            };
+          });
+    
+          setCourseList(mergedCourseData);
+          setFilteredCourses(mergedCourseData); // Initialize filteredCourses with merged data
+    
+        } catch (error) {
+          console.error(error);
+    
+          const mergedDummyData = CourseDummyData.map(course => {
+            const status = enrollmentStatusDummyData.find(status => status.courseId === course.courseId);
+            return {
+              ...course,
+              enrolled: status ? status.enrolled : false,
+              completed: false
+            };
+          });
+    
+          setCourseList(mergedDummyData);
+          setFilteredCourses(mergedDummyData); // Use dummy data on error
+        }
       };
-
+    
       fetchAllCourses();
-    }, []);
+    }, [loginDummyId]);
 
     // useEffect(() => {
     //   setFilteredCourses(courseList)
@@ -141,6 +167,8 @@ export default function UserCourseCatalog() {
       <div className="userCourseCatalogOutterContainer">
         <div className='userCourseCatalogMainContainer'>
           <h1 className='title'>RevLearn Courses</h1>
+          <button onClick={() => setLoginDummyId(1)}>Login as userId 1</button>
+          <div>Loggedin: {loginDummyId && loginDummyId}</div>
           <div className="searchBarContainer">
             <SearchBar onSearch={handleSearch} />
           </div>
