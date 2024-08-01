@@ -13,6 +13,7 @@ import Signup from './components/Signup';
 import Signin from './components/Signin';
 import SignedInAs from './components/SignedInAs';
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
+import QuizCreate from "./pages/Quiz/quiz-create";
 
 export default function App() {
   return (
@@ -35,6 +36,9 @@ export default function App() {
         <Link to="/edit-question" style={{ margin: "15px" }}>
           Edit Question
         </Link>
+        <Link to="/create-quiz" style={{ margin: "15px" }}>
+          Create New Quiz
+        </Link>
       </nav>
       <Routes>
         <Route path="" element={<HomeComponent />} />
@@ -45,6 +49,7 @@ export default function App() {
           path="/edit-question"
           element={<QuizItem mode="educator" item={2} />}
         />
+        <Route path="/create-quiz" element={<QuizCreate />} />
         <Route path="/course-catalog" element={<UserCourseCatalog />} />
         {/* TODO: course detail view/ need to add id in the param at the end */}
         <Route path='course/detail' element={<CourseDetailView/>} />
