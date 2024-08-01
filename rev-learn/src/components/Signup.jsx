@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Typography } from "../../node_modules/@mui/joy/index";
 
 export default function Signup() {
-    let naviageUsingReact = useNavigate()
+    let navigateUsingReact = useNavigate()
     return (<>
         <center>
             {/* <Card varient="outlined" sx={{ maxWidth: 345 }}>
@@ -13,7 +13,7 @@ export default function Signup() {
     Can't apply a color to this from App.css
 </CardContent>
 </Card> */}
-            <table style={{ backgroundColor: '#F36928' }}>
+            <table style={{ backgroundColor: '#F36928', border: 'solid black 1px'  }}>
                 <tr><td colSpan={2}>
                     <Typography sx={{ textAlign: 'center' }}>
                         Rev Learn Registration
@@ -39,7 +39,7 @@ export default function Signup() {
                                         document.getElementById("SignupPassword").value,
                                         document.getElementById("SignupPasswordConfirm").value
                                     )
-                                    naviageUsingReact('/signin')
+                                    navigateUsingReact('/signin')
                                 }
                             }>Register</Button>
                     </center>

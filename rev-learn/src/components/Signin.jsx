@@ -9,7 +9,7 @@ export default function Signin() {
 
     return (<>
         <center>
-            <table style={{ backgroundColor: '#F36928' }}>
+            <table style={{ backgroundColor: '#F36928', border: 'solid black 1px'  }}>
                 <tr><td colSpan={2}>
                     <Typography sx={{ textAlign: 'center' }}>
                         Rev Learn Login

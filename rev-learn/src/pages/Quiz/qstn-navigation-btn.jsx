@@ -7,7 +7,7 @@ import { Button } from '@mui/material';
 const QuestionNavigationButton = () => {
   const questionButton = quizQuestions;
   
-  console.log("🚀 ~ QuestionNavigationButton ~ questionButton:", questionButton)
+  // console.log("🚀 ~ QuestionNavigationButton ~ questionButton:", questionButton)
   
   return (
     <div className='questions-nav-buttons'>
@@ -15,8 +15,11 @@ const QuestionNavigationButton = () => {
       {
         questionButton.map((item, idxqb) => (
           <div key={idxqb} style={{margin:'5px'}}>
-            <Button variant="contained" href="#contained-buttons" size="small">
-              {item.seq}
+            <Button variant="contained" 
+                href="#contained-buttons" 
+                size="small" 
+                id='quiz-nav-btn'>
+              {item.question_seq}
             </Button>
           </div>
         ))

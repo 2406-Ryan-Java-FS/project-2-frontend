@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-
-## Tailwind css
-
-https://ui.shadcn.com/docs/installation/manual
-
-```npm i``` should do the job, but in case you need this
-
-```npx tailwindcss -i ./src/index.css -o ./src/output.css --watch```
-
-=======
 # Technology Project Requirements for Project **RevLearn**
 ## Presentation date: July 19th 2024
 -	You will be working in small groups to create an application of your choice.
@@ -56,4 +45,12 @@ Suggested stretch goals (not limited to):
 ## Presentations
 
 Presentations will occur on the morning of July 19th 2024. All team members must have a speaking role in the presentation of the application, and a PowerPoint slideshow must accompany your presentation.
->>>>>>> search-bar
+
+## Tailwind css
+
+https://ui.shadcn.com/docs/installation/manual
+
+```npm i``` should do the job, but in case you need this
+
+```npx tailwindcss -i ./src/index.css -o ./src/output.css --watch```
+
