@@ -1,54 +1,99 @@
-/* body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-} */
+body {
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; */
+    /* font-family: OpenSans, Arial, sans-serif; */
+    }
 
 .container {
-    padding: 3rem;
+  /* padding: 3rem; */
 }
 
 .course-card {
     position: relative;
-    width: 440px;
-    background-color: #d4d4d8;
+    width: 400px;
     border-radius: 0.5rem;
+    border: 2px solid #a1a1aa;
+    /* background-color: #e4e4e7; */
+    background-color: transparent;
+    transition: background-color 0.3s ease;
 }
+
+.course-card:hover {
+    background-color: #e4e4e7;
+    cursor: pointer;
+}
+
+.courseImageContainer {
+    position: relative;
+    height:200px;
+}
+
 
 .course-image {
+    position: absolute;
     overflow: hidden;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    width: 440px;
+    /* border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem; */
+    border-radius: 0.5rem;
+    width: 94%;
+    height: 88%;
+    object-fit:cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* filter: contrast(0.9); */
+    transition: filter 0.3s ease; 
+
+
 }
 
+.course-card:hover .course-image {
+    filter: contrast(0.7); /* Reduce contrast to 0.8 */
+}
 
 .three-dots {
-    color: white;
-    position: absolute;
-    top: 0.5rem;
-    right: 0.25rem;
+  color: white;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.25rem;
 }
 
 .course-content {
     display: flex;
     flex-direction: column;
-    padding: 0.75rem;
+    /* padding: 0.75rem; */
+    padding: 1px 20px 20px 20px;
+    /* gap:3px; */
 }
 
 .course-header {
-    padding-bottom: 1rem;
+  padding-bottom: 1rem;
 }
 
 .course-title {
-    font-size: 1.25rem;
-    font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .course-educator {
-    color: #737373;
+  color: #737373;
 }
 
 .course-description {
-    word-wrap: break-word;
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    /* line-height: 1.5; */
+    max-height: 5.4em; /* (line-height * number of lines) */
+    color:#71717a;
+    /* margin-bottom: 10px; */
+    font-size: 14px;
+}
+
+.descriptionSpan {
+    color: black;
 }
 
 .course-rating {
@@ -56,18 +101,153 @@
     gap: 0.75rem;
     align-items: center;
     padding-top: 0.75rem;
+    font-weight: 700;
 }
 
 .stars {
-    display: flex;
-    gap: 0.125rem;
+  display: flex;
+  gap: 0.125rem;
 }
 
 .reviews {
-    color: #525252;
+  color: #525252;
+}
+
+.noReviews {
+    font-weight:400;
+    /* color:#71717a; */
 }
 
 .course-price {
-    font-weight: bold;
-    padding-top: 1rem;
+  font-weight: bold;
+  padding-top: 1rem;
+}
+
+/* UserCourseCatalog */
+.userCourseCatalogOutterContainer {
+    display: flex;
+    padding-bottom: 160px;
+}
+
+.userCourseCatalogMainContainer {
+  padding: 30px;
+}
+
+/* .userCardListContainer {
+    display: flex;
+    justify-content: center;
+} */
+
+.userCardList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 80px 0px 80px;
+}
+
+.title {
+    text-align: center;
+    /* margin-left: 170px; */
+    margin-top: 80px;
+    margin-bottom: 80px;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    font-family: OpenSans, Arial, sans-serif;
+
+    
+}
+
+  /* text-align: center;
+  margin-top: 80px;
+  margin-bottom: 30px;
+} */
+.searchBarContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px; /* Ensures the container has a maximum width */
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+/* FilterSidebar */
+.filterMainContainer {
+  width: 220px;
+  height: 100vh;
+  border-right: solid 2px grey;
+}
+
+.filterSearchContainer {
+  display: flex;
+  padding: 8px;
+  gap: 10px;
+  margin-top: 80px;
+}
+
+.searchBar {
+    width: 80px;
+}
+
+/* Loading Component Styles */
+
+.loadingIndicator {
+    display: flex;
+    text-align: center;
+    height:200px;
+    align-items:center;
+    justify-content: center;
+}
+
+
+/* Define the container and spinner styles */
+.spinner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    /* height:200px; */
+    /* padding-bottom: 150px; */
+    left: 50%;
+    transform: translate(-50%);
+    margin-top:66px;
+}
+
+.spinner {
+    width: 4rem;
+    height: 4rem;
+    color: #d1d5db;
+    animation: spin 0.5s linear infinite;
+    fill: #fbbf24;
+}
+
+.spinner-dark {
+    color: #4b5563;
+}
+
+.spinner-path {
+    fill: currentColor;
+}
+
+.spinner-path-second {
+    fill: #fbbf24;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
