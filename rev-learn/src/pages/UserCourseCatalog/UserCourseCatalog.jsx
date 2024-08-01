@@ -164,14 +164,17 @@ export default function UserCourseCatalog() {
     return (
     <>
 
-      <div className="userCourseCatalogOutterContainer">
-        <div className='userCourseCatalogMainContainer'>
-          <h1 className='title'>RevLearn Courses</h1>
-          <button onClick={() => setLoginDummyId(1)}>Login as userId 1</button>
-          <div>Loggedin: {loginDummyId && loginDummyId}</div>
-          <div className="searchBarContainer">
-            <SearchBar onSearch={handleSearch} />
-          </div>
+        <div className="userCourseCatalogOutterContainer">
+          <div className='userCourseCatalogMainContainer'>
+            <h1 className='title'>RevLearn Courses</h1>
+            <div style={{ position:"absolute", top:"210px", display:"flex" }}>
+              <button onClick={() => setLoginDummyId(1)}>Login as userId 1</button>
+              <button onClick={() => setLoginDummyId(2)}>Login as userId 2</button>
+              <div>Loggedin: {loginDummyId && loginDummyId}</div>
+            </div>
+            <div className="searchBarContainer">
+              <SearchBar onSearch={handleSearch} />
+            </div>
 
           {courseList.length > 0 ?
             (
@@ -179,13 +182,12 @@ export default function UserCourseCatalog() {
                 <div className='userCardList'>
                   {filteredCourses.slice(0, visibleItems).map((x, index) => (
                     <Link
-                      to={`/course/${x.courseId}`}
+                      to={`/course/detail/${x.courseId}`}
                       // to={`/course/detail`} 
                       key={index}
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
                       <CourseCard
-                        // key={index}
                         title={x.title}
                         description={x.description}
                         category={x.category}
@@ -197,6 +199,7 @@ export default function UserCourseCatalog() {
                         // image={x.image}
                         image={x.imgUrl}
                         enrolled={x.enrolled}
+                        courseId={x.courseId}
                       />
                     </Link>
                   ))}
