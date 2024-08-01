@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import QuizItem from "./pages/Quiz/quiz-item";
 import QuizPage from "./pages/Quiz/QuizPage";
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
+import EducatorDashboard from "./pages/EducatorDashboardComponents/educator-dashboard";
 export default function App() {
   return (
     <div className="App">
