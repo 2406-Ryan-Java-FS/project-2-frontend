@@ -40,7 +40,7 @@ export default function ResponsiveDrawer2(props) {
       open={isDrawerOpen}
       onClose={() => setIsDrawerOpen(false)}
       // PaperProps allows us to resize the meu
-      PaperProps={{sx: { width: "30%" }}}>
+      PaperProps={{sx: { width: "20%" }}}>
 
       {/* Length {props.children.length} */}
 

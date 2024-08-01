@@ -64,7 +64,7 @@ button:hover{
 table{
   margin: 4px;
   padding: 6px 12px;
-  background-color: rgb(91, 133, 145);
+  background-color: '#F36928';
   border-radius: 8px;
   box-shadow: 4px 8px 2px rbga(0,0,0,.2);
 }
@@ -73,7 +73,7 @@ td{
 }
 h2{
   font-family: Georgia, 'Times New Roman', Times, serif;
-  background-color: rgb(93, 120, 127);
+  background-color: '#F36928';
   text-align: center;
   border-radius: 8px;
   padding: 6px 12px;

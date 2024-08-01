@@ -23,7 +23,7 @@ export default function StudentAppBar() {
 
   return (
 
-    <AppBar variant="outlined" position="static">
+    <AppBar sx={{backgroundColor:'#F36928'}}variant="outlined" position="static">
 
       <Toolbar>
 
@@ -38,7 +38,8 @@ export default function StudentAppBar() {
 
         </IconButton>
 
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" component="div" 
+        sx={{ flexGrow: 1, color: 'black' }}>
           Profile
         </Typography>
 

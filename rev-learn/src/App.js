@@ -60,6 +60,7 @@ export default function App() {
           <Link to="/course-catalog">Catalog</Link>
           <Link to="/quiz">Quiz</Link>
           <Link to="/edit-question">Edit&nbsp;Question</Link>
+          <Link to="/login">Logout</Link>
         </NavDrawer>
 
 
