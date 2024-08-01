@@ -42,10 +42,6 @@ export default function EducatorDashboard() {
       };
 
       fetchCourses();
-
-      return () => {
-        // Cleanup function: No need for cleanup in this case, but you can add if necessary
-      };
     }
   }, [userData]);
 

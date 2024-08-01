@@ -12,7 +12,7 @@ export const getCoursesByEducatorIdApi = (educatorId) => {
 export const getLoggedInUserInformationApi = () => {
   return axios.get(`${API_BASE_URL}/users`, {
     headers: {
-      'Authorization': `Bearer ${token}`, // Correct template literal usage
+      'Authorization': `Bearer ${token}`,
     },
   });
 };

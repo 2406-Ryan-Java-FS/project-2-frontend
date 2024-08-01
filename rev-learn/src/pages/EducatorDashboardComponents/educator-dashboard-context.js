@@ -53,6 +53,18 @@ export const EducatorDashboardProvider = ({ children }) => {
       );
   };
 
+const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setState((prevState) => ({
+    ...prevState,
+    newCourse: {
+        ...prevState.newCourse,
+        [name]: value,
+    },
+    }));
+};
+
+
   return (
     <EducatorDashboardContext.Provider
       value={{
@@ -61,6 +73,7 @@ export const EducatorDashboardProvider = ({ children }) => {
         userData, // Provide userData
         educatorData, // Provide educatorData
         getLoggedInUserInformation, // Provide the function to fetch user info
+        handleInputChange,
       }}
     >
       {children}
