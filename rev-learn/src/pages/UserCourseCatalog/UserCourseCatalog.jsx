@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import '../../styles/course-styles.css'
 import CourseCard from './CourseCard'
 import SearchBar from '../../components/SearchBar';
-import CourseDummyData from './CourseDummyData';
+import { CourseDummyData, enrollmentStatusDummyData } from './CourseDummyData';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -33,12 +33,28 @@ export default function UserCourseCatalog() {
           );
 
           try {
-              const result = await Promise.race([fetchPromise, timeoutPromise]);
-              setCourseList(result);
-              // console.log(result);
+            const result = await Promise.race([fetchPromise, timeoutPromise]);
+            // Merge result with enrollmentStatusDummyData
+            const mergedCourseData = result.map(course => {
+              const status = enrollmentStatusDummyData.find(status => status.courseId === course.courseId);
+              return {
+                ...course,
+                enrolled: status ? status.enrolled : false
+              };
+            });
+            setCourseList(mergedCourseData);
+            setFilteredCourses(mergedCourseData); // Initialize filteredCourses with merged data
           } catch (error) {
-              console.error(error);
-              setCourseList(CourseDummyData); // Use dummy data on timeout or fetch error
+            console.error(error);
+            const mergedDummyData = CourseDummyData.map(course => {
+              const status = enrollmentStatusDummyData.find(status => status.courseId === course.courseId);
+              return {
+                ...course,
+                enrolled: status ? status.enrolled : false
+              };
+            });
+            setCourseList(mergedDummyData);
+            setFilteredCourses(mergedDummyData); // Use dummy data on error
           }
       };
 
@@ -46,29 +62,8 @@ export default function UserCourseCatalog() {
     }, []);
 
     // useEffect(() => {
-    //   const fetchAllCourses = async () => {
-    //     try {
-    //       const response = await fetch(`${REVLEARN_URL}/courses`, {
-    //         method: "GET"
-    //       })
-
-    //       if (response.ok) {
-    //         const json = await response.json()
-    //         setCourseList(json)
-    //         console.log(courseList)
-    //       } else {
-    //         console.log("ERROR")
-    //       }
-    //     } catch (error) {
-    //       console.error(error)
-    //     }
-    //   }
-    //   fetchAllCourses()
-    // }, [])
-
-    useEffect(() => {
-      setFilteredCourses(courseList)
-    }, [courseList])
+    //   setFilteredCourses(courseList)
+    // }, [courseList])
 
 
     const role = "Student";
@@ -120,20 +115,11 @@ export default function UserCourseCatalog() {
     function sortList(sortOption, filtered) {
       switch (sortOption) {
         case "Price: Low to High":
-          filtered.sort(
-            (a, b) =>
-              //parse the price to remove any character that is not a digit or decimal point
-              parseFloat(a.price.replace(/[^0-9.-]+/g, "")) -
-              parseFloat(b.price.replace(/[^0-9.-]+/g, ""))
-          );
+          filtered.sort((a, b) => a.price - b.price);
           break;
-  
+    
         case "Price: High to Low":
-          filtered.sort(
-            (a, b) =>
-              parseFloat(b.price.replace(/[^0-9.-]+/g, "")) -
-              parseFloat(a.price.replace(/[^0-9.-]+/g, ""))
-          );
+          filtered.sort((a, b) => b.price - a.price);
           break;
   
         case "Rating: Low to High":
@@ -182,6 +168,7 @@ export default function UserCourseCatalog() {
                         imageStatic={image}
                         // image={x.image}
                         image={x.imgUrl}
+                        enrolled={x.enrolled}
                       />
                     </Link>
                   ))}

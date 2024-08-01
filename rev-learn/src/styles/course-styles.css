@@ -255,3 +255,26 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.enrolledContinueButton {
+    background-color: #3b82f6;
+    display:flex;
+    border-radius: 0.5rem;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    margin-top: 20px;
+    transition: background-color 0.1s ease;
+}
+
+.enrolledContinueButtonText {
+    margin-bottom: 4px;
+}
+
+.enrolledContinueButton:hover {
+    background-color: #34d399;
+    cursor: pointer;
+}
