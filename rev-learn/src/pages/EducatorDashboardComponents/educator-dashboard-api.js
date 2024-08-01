@@ -16,3 +16,7 @@ export const getLoggedInUserInformationApi = () => {
     },
   });
 };
+
+export const createNewCourse = (newCourse) => {
+    return axios.post(`${API_BASE_URL}/courses`, newCourse);
+};

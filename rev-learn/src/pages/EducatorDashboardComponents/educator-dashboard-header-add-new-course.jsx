@@ -17,9 +17,10 @@ import Textarea from "@mui/joy/Textarea";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
+import { createNewCourse } from "./educator-dashboard-api";
 
 export default function EducatorDashboardHeaderAddNewCourse() {
-  const { state, handleInputChange } = useEducatorDashboardContext();
+  const { state, setState, handleInputChange } = useEducatorDashboardContext();
 
   const [openModal, setOpenModal] = useState(false);
 
@@ -29,7 +30,26 @@ export default function EducatorDashboardHeaderAddNewCourse() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Logic to submit new course data
-    
+    createNewCourse(state.newCourse)
+      .then((response) => {
+        setState((prevState) => ({
+          ...prevState,
+          courses: [...prevState.courses, response.data],
+          newAccount: {
+            courseId: "",
+            educatorId: "",
+            title: "",
+            description: "",
+            category: "",
+            price: "",
+            imgUrl: "",
+            creationDate: "",
+          },
+        }));
+      })
+      .catch((error) => {
+        console.error("There was an error creating the course.", error);
+      });
     console.log(state.newCourse); // For testing the new course data
     setOpenModal(false);
   };
@@ -81,6 +101,7 @@ export default function EducatorDashboardHeaderAddNewCourse() {
                   <FormLabel>Educator ID</FormLabel>
                   <Input
                     required
+                    type="number"
                     name="educatorId"
                     value={state.newCourse.educatorId}
                     onChange={handleInputChange}

@@ -69,6 +69,7 @@ const handleInputChange = (event) => {
     <EducatorDashboardContext.Provider
       value={{
         state,
+        setState,
         getCoursesByEducatorId,
         userData, // Provide userData
         educatorData, // Provide educatorData
