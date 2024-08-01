@@ -72,6 +72,8 @@ const FormGrid = styled('div')(() => ({
   const [cardNumber, setCardNumber] = useState('');
   const [cvv, setCvv] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
+  const [accountNumber, setAccountNumber] = useState();
+  const [routingNumber, setRoutingNumber] = useState();
 
   const handlePaymentTypeChange = (event) => {
     setPaymentType(event.target.value);
@@ -387,45 +389,65 @@ const FormGrid = styled('div')(() => ({
 
       {paymentType === 'bankTransfer' && (
         <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2,
+        }}
+      >
+        <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 2,
+            //justifyContent: 'space-between',
+            p: 3,
+            height: { xs: 300, sm: 350, md: 375 },
+            width: '100%',
+            borderRadius: '20px',
+            border: '1px solid ',
+            borderColor: 'divider',
+            backgroundColor: 'background.paper',
+            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)',
           }}
         >
-          <Alert severity="warning" >
-            Your order will be processed once we receive the funds.
-          </Alert>
-          <Typography variant="subtitle1" fontWeight="medium">
-            Bank account
-          </Typography>
-          <Typography variant="body1" gutterBottom>
-            Please transfer the payment to the bank account details shown below.
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <Typography variant="body1" color="text.secondary">
-              Bank:
-            </Typography>
-            <Typography variant="body1" fontWeight="medium">
-              Mastercredit
-            </Typography>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography variant="subtitle2">Bank Transfer</Typography>
           </Box>
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <Typography variant="body1" color="text.secondary">
-              Account number:
-            </Typography>
-            <Typography variant="body1" fontWeight="medium">
-              123456789
-            </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              width: '100%',
+              gap: 2,
+            }}
+          >
+            <FormGrid sx={{ flexGrow: 1 }}>
+              <FormLabel htmlFor="account-number" required>
+                Account number
+              </FormLabel>
+              <OutlinedInput
+                id="account-number"
+                autoComplete="account-number"
+                placeholder=""
+                required
+                value={accountNumber}
+              />
+            </FormGrid>
+            <FormGrid sx={{ flexGrow: 1}}>
+              <FormLabel htmlFor="routing-number" required>
+                Routing Number
+              </FormLabel>
+              <OutlinedInput
+                id="routing_number"
+                autoComplete="routing-number"
+                placeholder=""
+                required
+                value={routingNumber}
+                
+              />
+            </FormGrid>
           </Box>
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <Typography variant="body1" color="text.secondary">
-              Routing number:
-            </Typography>
-            <Typography variant="body1" fontWeight="medium">
-              987654321
-            </Typography>
-          </Box>
+        </Box>
         </Box>
       )}
 
