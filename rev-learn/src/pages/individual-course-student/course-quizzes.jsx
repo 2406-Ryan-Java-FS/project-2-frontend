@@ -41,10 +41,10 @@ export default function CourseQuizzes() {
     if (error || quizzes.length === 0) {
         return (
             <div>
-                <p>No quizzes available for this course.</p>
+                <p>No quizzes available for this course. </p>
                 <Link to={defaultQuizPage}>
-                    <button>Start Default Quiz</button>
-                </Link>
+                    <text>   Start Default Quiz </text>
+                </Link> 
                 <br/>
             </div>
         );

@@ -38,6 +38,7 @@ const CourseDiscussions = ({ courseId }) => {
               <button onClick={() => handleContributeClick(discussion.thread_id)}>
                 Contribute
               </button>
+              <hr/>
             </li>
           ))
         ) : (
@@ -46,6 +47,7 @@ const CourseDiscussions = ({ courseId }) => {
             <button onClick={handleDefaultDiscussionClick}>
               Contribute to the default discussion
             </button>
+            <hr/>
           </li>
         )}
       </ul>
