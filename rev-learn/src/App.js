@@ -47,7 +47,7 @@ export default function App() {
         />
         <Route path="/course-catalog" element={<UserCourseCatalog />} />
         {/* TODO: course detail view/ need to add id in the param at the end */}
-        <Route path='course/detail' element={<CourseDetailView/>} />
+        <Route path='/course-catalog/:courseId' element={<CourseDetailView/>} />
       </Routes>
     </div>
   );
