@@ -1,6 +1,7 @@
 import '../../styles/course-styles.css'
+import { Typography } from '../../../node_modules/@mui/joy/index';
 
-export default function CourseCard ( props ) {
+export default function CourseCard(props) {
 
     // Student props
     // const { image, role, title, description, category, price, rating } = props;
@@ -21,7 +22,9 @@ export default function CourseCard ( props ) {
                             <div className="course-header">
                                 <div className="course-title">{title}</div>
                             </div>
-                            <div className="course-description"> <span className='descriptionSpan'>Description:</span> {description}</div>
+                            <div className="course-description"> <span className='descriptionSpan'>Description:</span>
+                                    {description}
+                            </div>
                             <div className="course-rating">
                                 <div>{rating ? rating : <span className='noReviews'>No reviews</span>}</div>
                                 {rating && (
