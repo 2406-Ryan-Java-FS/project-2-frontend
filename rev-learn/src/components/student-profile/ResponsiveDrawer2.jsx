@@ -50,7 +50,7 @@ export default function ResponsiveDrawer2(props) {
         //Looping over Links <Link to="/register">Register</Link>
       props.children.map((child)=>{
 
-        if(child.type.render.name=="LinkWithRef")//if it's a <Link>
+        if(child.type?.render?.name=="LinkWithRef")//if it's a <Link>
         {
           //console.log(`child=`,child)
           // console.log(`child.props.children=`,child.props.children)

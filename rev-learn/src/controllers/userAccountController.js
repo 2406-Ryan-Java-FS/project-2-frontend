@@ -14,6 +14,7 @@ export default class userAccountController
 {
     static loggedInUser=null
     static newUserCreated=null
+    static baseUrl=`/project-2-back` //uses nginx to re-direct on local and on server
 
     /**
      * Registers a new user initialized with the given username and password
@@ -23,7 +24,7 @@ export default class userAccountController
         //Need to do password confirm check
 
         console.log(`userAccountController signup() ${firstName} ${lastName} ${email} ${password}`)
-        const response=await fetch(`/project-2-back/users2/signup`,{
+        const response=await fetch(`${userAccountController.baseUrl}/users2/signup`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
@@ -55,7 +56,7 @@ export default class userAccountController
     static async signin(email,password)
     {
         console.log(`userAccountController login() ${email} ${password}`)
-        const response=await fetch(`/project-2-back/users2/signin`,{
+        const response=await fetch(`${userAccountController.baseUrl}/users2/signin`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
@@ -86,15 +87,14 @@ export default class userAccountController
      */
     static async signout()
     {
-        console.log(`userAccountController logout()`)
+        console.log(`userAccountController signout()`)
         if(userAccountController.loggedInUser==null)return
 
-        const response=await fetch(`${userAccountController.tempUrl}/users2/signout`,{
+        const response=await fetch(`${userAccountController.baseUrl}/users2/signout`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
-                tokenId:        userAccountController.loggedInUser.tokenId,
-                tokenPassword:  userAccountController.loggedInUser.tokenPassword
+                token:userAccountController.loggedInUser.token
             }
         })
         let body=await response.json()

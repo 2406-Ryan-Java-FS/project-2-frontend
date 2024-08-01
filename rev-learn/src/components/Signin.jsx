@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import uac from "../controllers/userAccountController"
+import { globalStateSetter } from "../App"
 
 export default function Signin()
 {
@@ -15,10 +16,12 @@ return(<>
     <td colSpan={2}>
         <button style={{width:'100%'}}
         onClick={
-            ()=>{
-                uac.signin(
+            async()=>{
+                await uac.signin(
                 document.getElementById("SigninEmail").value,
                 document.getElementById("SigninPassword").value)
+                naviageUsingReact('/')
+                globalStateSetter()//cause full re-render
             }
         }
         

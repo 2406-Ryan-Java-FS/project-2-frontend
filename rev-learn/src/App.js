@@ -4,7 +4,6 @@ import HomeComponent from './components/HomeComponent';
 
 import Signup from './components/Signup';
 import Signin from './components/Signin';
-import SignedInAs from './components/SignedInAs';
 
 import CourseGrades from './pages/individual-course-student/course-grades';
 import CourseHome from './pages/individual-course-student/course-home';
@@ -24,9 +23,12 @@ import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dash
 import ResponsiveDrawer from './components/student-profile/ResponsiveDrawer';
 import ResponsiveDrawer2 from './components/student-profile/ResponsiveDrawer2';
 import { useState } from 'react';
-import { Divider } from '../node_modules/@mui/joy/index';
+import { Divider, ListItem, ListItemButton } from '../node_modules/@mui/joy/index';
+import uac from './controllers/userAccountController';
+import { ListItemText } from '../node_modules/@mui/material/index';
+import Signout from './components/Signout';
 
-let globalStateSetter
+export let globalStateSetter//causes full re-render of App
 
 export default function App() {
 
@@ -52,6 +54,8 @@ export default function App() {
         </nav> */}
 
         <ResponsiveDrawer2>
+          {(uac.loggedInUser==undefined?<Link to="/signin">Sign in</Link>:<Signout/>)}
+          <Divider />
           <Link to="/">Home</Link>
           <Link to="/register">Register</Link>
           <Link to="/profile">Profile</Link>
@@ -66,11 +70,10 @@ export default function App() {
 
 
 
-        {/* Adding this gap to maybe help with merging, we'll see */}
         <Routes>
           <Route path='' element={<HomeComponent />} />
           <Route path='/register' element={<Signup/>}/>
-          <Route path='/login' element={<Signin/>}/>
+          <Route path='/signin' element={<Signin/>}/>
 
           <Route path='/course-home' element={<CourseHome />} />
           <Route path='/course-grades' element={<CourseGrades />} />
