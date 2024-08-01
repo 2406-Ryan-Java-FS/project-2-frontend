@@ -8,6 +8,7 @@ import CourseGrades from './pages/individual-course-student/course-grades';
 import CourseHome from './pages/individual-course-student/course-home';
 import CourseDiscussions from './pages/individual-course-student/course-discussions';
 import CourseQuizzes from './pages/individual-course-student/course-quizzes';
+import UserCourseCatalog from './pages/UserCourseCatalog/UserCourseCatalog';
 
 import StudentProfile from './components/student-profile/StudentProfile';
 
@@ -16,7 +17,6 @@ import Payment from './components/Payment';
 import QuizItem from "./pages/Quiz/quiz-item";
 import QuizPage from "./pages/Quiz/QuizPage";
 
-import UserCourseCatalog from "./components/UserCourseCatalog";
 import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
 import { useState } from 'react';
 import { Divider } from '../node_modules/@mui/joy/index';

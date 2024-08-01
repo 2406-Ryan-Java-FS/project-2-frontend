@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState } from 'react';
-import AppBar from '@mui/material/AppBar';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
@@ -10,7 +9,6 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import StudentCard from './StudentCard';
 
 const navItems = ['Home', 'Courses', 'Grades', 'Discussions', 'Messages'];
 const navItems2 = ['Account', 'Settings', 'Logout']
@@ -22,10 +20,16 @@ export default function StudentAppBar() {
 
 
   return (
+    <>
 
-    <AppBar sx={{backgroundColor:'#F36928'}}variant="outlined" position="static">
-
-      <Toolbar>
+      <Toolbar sx={{
+        flexGrow: 1, backgroundColor: '#F36928',
+        borderRadius: '25px', color: 'black', fontSize: '32px',
+        border: 'solid black 1px'
+      }}
+        variant="outlined"
+        position="static"
+      >
 
         <IconButton
           edge="start"
@@ -38,9 +42,12 @@ export default function StudentAppBar() {
 
         </IconButton>
 
-        <Typography variant="h6" component="div" 
-        sx={{ flexGrow: 1, color: 'black' }}>
-          Profile
+        <Typography
+          sx={{
+            flexGrow: 1, backgroundColor: '#F36928',
+            borderRadius: '25px', color: 'black', fontSize: '32px'
+          }}>
+          Student Dashboard
         </Typography>
 
         <Drawer
@@ -48,7 +55,7 @@ export default function StudentAppBar() {
           onClose={() => setIsDrawerOpen(false)}
           // PaperProps allows us to resize the meu
           PaperProps={{
-            sx: { width: "30%" }
+            sx: { width: "25%" }
           }}>
 
           <Typography variant="h6" sx={{ my: 2, textAlign: 'center' }}>
@@ -172,7 +179,10 @@ export default function StudentAppBar() {
 
         </Drawer>
       </Toolbar>
+      <hr style={{ marginLeft: "8px", marginRight: "8px" }} />
 
-    </AppBar >
+    </>
   );
+
+
 }

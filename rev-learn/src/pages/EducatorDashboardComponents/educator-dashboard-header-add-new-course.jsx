@@ -21,6 +21,7 @@ export default function EducatorDashboardHeaderAddNewCourse() {
   const [openModal, setOpenModal] = useState(false);
   const [category, setCategory] = useState("");
   const [courseDate, setCourseDate] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleOpenModal = () => setOpenModal(true);
   const handleCloseModal = () => setOpenModal(false);
@@ -33,13 +34,17 @@ export default function EducatorDashboardHeaderAddNewCourse() {
     setCourseDate(event.target.value);
   };
 
+  const handleImageUrlChange= (event) => {
+    setImageUrl(event.target.value);
+  };
+
   return (
     <>
       <IconButton
         onClick={handleOpenModal}
         sx={{
           position: "absolute",
-          right: 8,
+          right: 30,
           color: "black",
           border: "none",
         }}
@@ -121,6 +126,17 @@ export default function EducatorDashboardHeaderAddNewCourse() {
                     onChange={handleDateChange}
                     fullWidth
                     InputLabelProps={{ shrink: true }} // Ensures the label is displayed correctly
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel>Course Image URL (default)</FormLabel>
+                  <TextField
+                    type="text"
+                    value="https://t4.ftcdn.net/jpg/04/80/12/93/360_F_480129384_xkBXyTdVt1R5F7KBwTD2kDURi7hV97Ad.jpg"
+                    onChange={handleImageUrlChange}
+                    fullWidth
                   />
                 </FormControl>
               </Grid>
