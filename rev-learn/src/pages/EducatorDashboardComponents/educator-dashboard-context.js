@@ -47,6 +47,7 @@ export const EducatorDashboardProvider = ({ children }) => {
         if (user.role === "educator") {
           setEducatorData(educator);
         }
+        console.log("Educator Data:", educator);
       })
       .catch((error) =>
         console.error("There was an error fetching the logged in user.", error)

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   IconButton,
   Modal,
@@ -15,17 +16,34 @@ import {
 } from "@mui/material";
 import Textarea from "@mui/joy/Textarea";
 import AddIcon from "@mui/icons-material/Add";
-import { useState } from "react";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
 import { createNewCourse } from "./educator-dashboard-api";
 
 export default function EducatorDashboardHeaderAddNewCourse() {
-  const { state, setState, handleInputChange } = useEducatorDashboardContext();
-
+  const { state, setState, handleInputChange, educatorData } = useEducatorDashboardContext();
   const [openModal, setOpenModal] = useState(false);
 
-  const handleOpenModal = () => setOpenModal(true);
+  const handleOpenModal = () => {
+    resetNewCourse();
+    setOpenModal(true);
+  };
   const handleCloseModal = () => setOpenModal(false);
+
+  const resetNewCourse = () => {
+    setState((prevState) => ({
+      ...prevState,
+      newCourse: {
+        courseId: "",
+        educatorId: "",
+        title: "",
+        description: "",
+        category: "",
+        price: "",
+        imgUrl: "",
+        creationDate: "",
+      },
+    }));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,7 +53,7 @@ export default function EducatorDashboardHeaderAddNewCourse() {
         setState((prevState) => ({
           ...prevState,
           courses: [...prevState.courses, response.data],
-          newAccount: {
+          newCourse: {
             courseId: "",
             educatorId: "",
             title: "",

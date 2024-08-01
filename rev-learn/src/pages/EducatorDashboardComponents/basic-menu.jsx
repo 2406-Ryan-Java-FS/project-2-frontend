@@ -15,8 +15,12 @@ export default function BasicMenu({ handleOpenEditCourseModal, editedCourse }) {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
-    console.log(editedCourse);
+    setAnchorEl(null);
+  };
+
+  const handleDeleteCourse = () => {
     deleteCourse(editedCourse.courseId)
       .then((response) => {
         if (response.data) {
@@ -32,14 +36,14 @@ export default function BasicMenu({ handleOpenEditCourseModal, editedCourse }) {
       .catch((error) => {
         console.error("There was an error deleting the course.", error);
       });
-    setAnchorEl(null);
+    handleClose();
   };
 
   return (
     <div>
       <Button
         id="basic-button"
-        onClick={handleClick} // Open the menu when the button is clicked
+        onClick={handleClick}
         sx={{
           position: "absolute",
           top: 8,
@@ -51,11 +55,7 @@ export default function BasicMenu({ handleOpenEditCourseModal, editedCourse }) {
       >
         <MoreVertIcon />
       </Button>
-      <Menu
-        anchorEl={anchorEl} // Anchor the menu to the button element
-        open={open} // Control the visibility of the menu based on the value of open
-        onClose={handleClose} // Close the menu when the user clicks outside of it or selects an item
-      >
+      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
         <MenuItem
           onClick={() => {
             handleOpenEditCourseModal();
@@ -64,7 +64,7 @@ export default function BasicMenu({ handleOpenEditCourseModal, editedCourse }) {
         >
           Edit Course
         </MenuItem>
-        <MenuItem onClick={handleClose}>Delete Course</MenuItem>
+        <MenuItem onClick={handleDeleteCourse}>Delete Course</MenuItem>
       </Menu>
     </div>
   );

@@ -24,3 +24,7 @@ export const createNewCourse = (newCourse) => {
 export const deleteCourse = (courseId) => {
     return axios.delete(`${API_BASE_URL}/courses/${courseId}`);
 };
+
+export const updateCourse = (courseId, newCourse) => {
+    return axios.put(`${API_BASE_URL}/courses/${courseId}`, newCourse);
+};
