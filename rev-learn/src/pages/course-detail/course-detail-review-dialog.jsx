@@ -14,7 +14,7 @@ import "../../styles/course-detail/course-detail-view.css";
 
 export default function ReviewDialog({ open, onClose, onSubmit }) {
   const [reviewText, setReviewText] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
 
   const handleRatingChange = (event, newValue) => {
     setRating(newValue);

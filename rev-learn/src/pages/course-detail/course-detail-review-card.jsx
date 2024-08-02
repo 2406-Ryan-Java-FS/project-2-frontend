@@ -1,7 +1,9 @@
 import Rating from "@mui/material/Rating";
 import "../../styles/course-detail/review-card.css";
 
-export default function CourseDetailReviewCard({ enrollment, user }) {
+export default function CourseDetailReviewCard({ enrollment, currUser }) {
+  console.log("User in Card Component:", currUser); // Log user details in card component
+
   return (
     <div className="review-card">
       <div className="review-top">
@@ -16,7 +18,7 @@ export default function CourseDetailReviewCard({ enrollment, user }) {
         <div className="review-rates">
           <div className="review-username">
             <span>
-              {user.firstName} {user.lastName}
+              {currUser.firstName} {currUser.lastName}
             </span>
           </div>
           <div className="star-rating">
