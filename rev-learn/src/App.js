@@ -17,6 +17,8 @@ import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
 import QuizCreate from "./pages/Quiz/quiz-create";
+import { EducatorDashboardProvider } from "./pages/EducatorDashboardComponents/educator-dashboard-context";
+import EducatorDashboard from "./pages/EducatorDashboardComponents/educator-dashboard";
 
 export default function App() {
   const location = useLocation();
@@ -78,17 +80,14 @@ export default function App() {
             element={<CourseDiscussions />}
           />
           <Route path="/courses/:courseId/grades" element={<CourseGrades />} />
-
-          <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route
-            path="/courses/:courseId/quizzes"
-            element={<CourseQuizzes />}
+            path="/educatordashboard"
+            element={
+              <EducatorDashboardProvider>
+                <EducatorDashboard />
+              </EducatorDashboardProvider>
+            }
           />
-          <Route
-            path="/courses/:courseId/discussions"
-            element={<CourseDiscussions />}
-          />
-          <Route path="/courses/:courseId/grades" element={<CourseGrades />} />
         </Routes>
       </div>
     </div>

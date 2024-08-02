@@ -15,10 +15,26 @@ import {
 import { useState } from "react";
 import { Textarea } from "@mui/joy";
 import BasicMenu from "./basic-menu";
+import { updateCourse } from "./educator-dashboard-api";
+import { useEducatorDashboardContext } from "./educator-dashboard-context";
 
-export default function EducatorDashboardCoursCardDropdown({ course }) {
+export default function EducatorDashboardCourseCardDropdown({ course }) {
+  // Ensure all course fields have default values that are not null
+  const initialCourseState = {
+    ...course,
+    title: course.title || "",
+    educatorId: course.educatorId || "",
+    description: course.description || "",
+    category: course.category || "",
+    price: course.price || "",
+    creationDate: course.creationDate || "",
+    imgUrl: course.imgUrl || "",
+  };
+
+  const { state, setState } = useEducatorDashboardContext();
+
   const [openEditCourseModal, setOpenEditCourseModal] = useState(false);
-  const [editedCourse, setEditedCourse] = useState(course);
+  const [editedCourse, setEditedCourse] = useState(initialCourseState);
 
   const handleOpenEditCourseModal = () => setOpenEditCourseModal(true);
   const handleCloseEditCourseModal = () => setOpenEditCourseModal(false);
@@ -28,9 +44,39 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
     setEditedCourse({ ...editedCourse, [name]: value });
   };
 
+  const handleEditCourseSubmit = (event) => {
+    event.preventDefault();
+    console.log(editedCourse.imgUrl, "image url");
+    updateCourse(editedCourse.courseId, editedCourse)
+      .then((response) => {
+        handleUpdateCourse(response.data); // Update the state in parent component
+        setOpenEditCourseModal(false); // Close the modal
+      })
+      .catch((error) => {
+        console.error("Error updating course: ", error);
+      });
+    console.log(editedCourse); // Handle Edit course logic
+  };
+
+  const handleUpdateCourse = (updatedCourseFromDB) => {
+    // Update the accounts list in state with the updated account
+    const updatedCourses = state.courses.map((course) =>
+      course.courseId === updatedCourseFromDB.courseId
+        ? updatedCourseFromDB
+        : course
+    );
+    setState((prevState) => ({
+      ...prevState,
+      courses: updatedCourses,
+    }));
+  };
+
   return (
     <>
-      <BasicMenu handleOpenEditCourseModal={handleOpenEditCourseModal} />
+      <BasicMenu
+        handleOpenEditCourseModal={handleOpenEditCourseModal}
+        editedCourse={editedCourse}
+      />
 
       <Modal open={openEditCourseModal} onClose={handleCloseEditCourseModal}>
         <Box
@@ -46,13 +92,7 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
         >
           <DialogTitle>Edit Course</DialogTitle>
           <DialogContent>Edit the course information.</DialogContent>
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              console.log(editedCourse); // Handle Edit course logic
-              setOpenEditCourseModal(false);
-            }}
-          >
+          <form onSubmit={handleEditCourseSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <FormControl fullWidth>
@@ -60,8 +100,8 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
                   <Input
                     autoFocus
                     required
-                    name="cardTitle"
-                    value={editedCourse.cardTitle}
+                    name="title"
+                    value={editedCourse.title}
                     onChange={handleInputChange}
                   />
                 </FormControl>
@@ -71,9 +111,10 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
                   <FormLabel>Educator ID</FormLabel>
                   <Input
                     required
-                    name="educatorName"
-                    value={editedCourse.educatorName}
+                    name="educatorId"
+                    value={editedCourse.educatorId}
                     onChange={handleInputChange}
+                    disabled
                   />
                 </FormControl>
               </Grid>
@@ -99,14 +140,14 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
                       "aria-label": "Course Category",
                       name: "category",
                     }}
-                    sx={{ zIndex: 1300 }} // Ensures it's above the modal content
+                    sx={{ zIndex: 1300 }}
                   >
                     <MenuItem value="" disabled>
                       Select a category
                     </MenuItem>
-                    <MenuItem value="webDevelopment">Web Development</MenuItem>
-                    <MenuItem value="dataScience">Data Science</MenuItem>
-                    <MenuItem value="mobileDevelopment">
+                    <MenuItem value="Web Development">Web Development</MenuItem>
+                    <MenuItem value="Data Science">Data Science</MenuItem>
+                    <MenuItem value="Mobile Development">
                       Mobile Development
                     </MenuItem>
                   </Select>
@@ -118,6 +159,7 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
                   <Input
                     required
                     name="price"
+                    type="number"
                     value={editedCourse.price}
                     onChange={handleInputChange}
                   />
@@ -132,7 +174,7 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
                     value={editedCourse.creationDate}
                     onChange={handleInputChange}
                     fullWidth
-                    InputLabelProps={{ shrink: true }} // Ensures the label is displayed correctly
+                    InputLabelProps={{ shrink: true }}
                   />
                 </FormControl>
               </Grid>
@@ -141,7 +183,8 @@ export default function EducatorDashboardCoursCardDropdown({ course }) {
                   <FormLabel>Course Image URL</FormLabel>
                   <TextField
                     type="text"
-                    value={editedCourse.imageUrl}
+                    name="imgUrl"
+                    value={editedCourse.imgUrl}
                     onChange={handleInputChange}
                     fullWidth
                   />
