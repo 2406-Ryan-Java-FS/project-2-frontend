@@ -28,7 +28,7 @@ export default function EducatorDashboardCourseCardDropdown({ course }) {
     category: course.category || "",
     price: course.price || "",
     creationDate: course.creationDate || "",
-    imageUrl: course.imageUrl || "",
+    imgUrl: course.imgUrl || "",
   };
 
   const { state, setState } = useEducatorDashboardContext();
@@ -46,6 +46,7 @@ export default function EducatorDashboardCourseCardDropdown({ course }) {
 
   const handleEditCourseSubmit = (event) => {
     event.preventDefault();
+    console.log(editedCourse.imgUrl, "image url");
     updateCourse(editedCourse.courseId, editedCourse)
       .then((response) => {
         handleUpdateCourse(response.data); // Update the state in parent component
@@ -113,6 +114,7 @@ export default function EducatorDashboardCourseCardDropdown({ course }) {
                     name="educatorId"
                     value={editedCourse.educatorId}
                     onChange={handleInputChange}
+                    disabled
                   />
                 </FormControl>
               </Grid>
@@ -143,9 +145,9 @@ export default function EducatorDashboardCourseCardDropdown({ course }) {
                     <MenuItem value="" disabled>
                       Select a category
                     </MenuItem>
-                    <MenuItem value="webDevelopment">Web Development</MenuItem>
-                    <MenuItem value="dataScience">Data Science</MenuItem>
-                    <MenuItem value="mobileDevelopment">
+                    <MenuItem value="Web Development">Web Development</MenuItem>
+                    <MenuItem value="Data Science">Data Science</MenuItem>
+                    <MenuItem value="Mobile Development">
                       Mobile Development
                     </MenuItem>
                   </Select>
@@ -157,6 +159,7 @@ export default function EducatorDashboardCourseCardDropdown({ course }) {
                   <Input
                     required
                     name="price"
+                    type="number"
                     value={editedCourse.price}
                     onChange={handleInputChange}
                   />
@@ -180,8 +183,8 @@ export default function EducatorDashboardCourseCardDropdown({ course }) {
                   <FormLabel>Course Image URL</FormLabel>
                   <TextField
                     type="text"
-                    name="imageUrl"
-                    value={editedCourse.imageUrl}
+                    name="imgUrl"
+                    value={editedCourse.imgUrl}
                     onChange={handleInputChange}
                     fullWidth
                   />

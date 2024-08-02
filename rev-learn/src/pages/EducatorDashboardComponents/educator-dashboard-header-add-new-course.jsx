@@ -34,7 +34,7 @@ export default function EducatorDashboardHeaderAddNewCourse() {
       ...prevState,
       newCourse: {
         courseId: "",
-        educatorId: "",
+        educatorId: educatorData ? educatorData.educatorId : "",
         title: "",
         description: "",
         category: "",
@@ -55,7 +55,7 @@ export default function EducatorDashboardHeaderAddNewCourse() {
           courses: [...prevState.courses, response.data],
           newCourse: {
             courseId: "",
-            educatorId: "",
+            educatorId: educatorData ? educatorData.educatorId : "",
             title: "",
             description: "",
             category: "",
@@ -121,8 +121,11 @@ export default function EducatorDashboardHeaderAddNewCourse() {
                     required
                     type="number"
                     name="educatorId"
-                    value={state.newCourse.educatorId}
+                    value={
+                      educatorData ? educatorData.educatorId : "Loading..."
+                    }
                     onChange={handleInputChange}
+                    disabled
                   />
                 </FormControl>
               </Grid>
@@ -151,9 +154,9 @@ export default function EducatorDashboardHeaderAddNewCourse() {
                     <MenuItem value="" disabled>
                       Select a category
                     </MenuItem>
-                    <MenuItem value="webDevelopment">Web Development</MenuItem>
-                    <MenuItem value="dataScience">Data Science</MenuItem>
-                    <MenuItem value="mobileDevelopment">
+                    <MenuItem value="Web Development">Web Development</MenuItem>
+                    <MenuItem value="Data Science">Data Science</MenuItem>
+                    <MenuItem value="Mobile Development">
                       Mobile Development
                     </MenuItem>
                   </Select>
@@ -165,6 +168,7 @@ export default function EducatorDashboardHeaderAddNewCourse() {
                   <Input
                     required
                     name="price"
+                    type="number"
                     value={state.newCourse.price}
                     onChange={handleInputChange}
                   />
@@ -185,7 +189,7 @@ export default function EducatorDashboardHeaderAddNewCourse() {
               </Grid>
               <Grid item xs={12}>
                 <FormControl fullWidth>
-                  <FormLabel>Course Image URL (default)</FormLabel>
+                  <FormLabel>Course Image URL</FormLabel>
                   <TextField
                     type="text"
                     name="imgUrl"
