@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -19,7 +19,7 @@ import { styled } from '@mui/system';
 
 export default function MakePayment() {
     
-    
+
     // const [paymentMethodsRows, setPaymentMethodRows] = useState(<></>);
     // const ioption1 = useRef();
     // const ioption2 = useRef();
@@ -103,8 +103,8 @@ const FormGrid = styled('div')(() => ({
   };
 
   return (
-    <Stack spacing={{ xs: 3, sm: 6 }} useFlexGap>
-      <FormControl component="fieldset" fullWidth>
+    <Stack spacing={{ xs: 3, sm: 6 }} useFlexGap width= "50%">
+      <FormControl component="fieldset">
         <RadioGroup
           aria-label="Payment options"
           name="paymentType"
@@ -112,7 +112,7 @@ const FormGrid = styled('div')(() => ({
           onChange={handlePaymentTypeChange}
           sx={{
             flexDirection: { sm: 'column', md: 'row' },
-            gap: 2,
+            gap: 2
           }}
         >
 
@@ -122,10 +122,7 @@ const FormGrid = styled('div')(() => ({
               maxWidth: { sm: '100%', md: '50%' },
               flexGrow: 1,
               outline: '1px solid',
-              outlineColor:
-                paymentType === 'debitCard' ? 'primary.main' : 'divider',
-              backgroundColor:
-                paymentType === 'debitCard' ? 'background.default' : '',
+              backgroundColor:  '#F36928'
             }}
           >
             <CardActionArea onClick={() => setPaymentType('debitCard')}>
@@ -142,15 +139,16 @@ const FormGrid = styled('div')(() => ({
               maxWidth: { sm: '100%', md: '50%' },
               flexGrow: 1,
               outline: '1px solid',
-              outlineColor:
-                paymentType === 'creditCard' ? 'primary.main' : 'divider',
-              backgroundColor:
-                paymentType === 'creditCard' ? 'background.default' : '',
+              backgroundColor:  '#F36928'
+            //   outlineColor:
+            //     paymentType === 'creditCard' ? 'primary.main' : 'divider',
+            //   backgroundColor:
+            //     paymentType === 'creditCard' ? 'background.default' : '',
             }}
           >
             <CardActionArea onClick={() => setPaymentType('creditCard')}>
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Typography fontWeight="medium">Credit Card</Typography>
+                <Typography fontWeight="medium" fontSize="14">Credit Card</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -159,13 +157,10 @@ const FormGrid = styled('div')(() => ({
           <Card
             raised={paymentType === 'bankTransfer'}
             sx={{
-              maxWidth: { sm: '100%', md: '50%' },
-              flexGrow: 1,
-              outline: '1px solid',
-              outlineColor:
-                paymentType === 'bankTransfer' ? 'primary.main' : 'divider',
-              backgroundColor:
-                paymentType === 'bankTransfer' ? 'background.default' : '',
+                maxWidth: { sm: '100%', md: '50%' },
+                flexGrow: 1,
+                outline: '1px solid',
+                backgroundColor:  '#F36928'
             }}
           >
             <CardActionArea onClick={() => setPaymentType('bankTransfer')}>
@@ -179,13 +174,10 @@ const FormGrid = styled('div')(() => ({
           <Card
             raised={paymentType === 'cash'}
             sx={{
-              maxWidth: { sm: '100%', md: '50%' },
-              flexGrow: 1,
-              outline: '1px solid',
-              outlineColor:
-                paymentType === 'cash' ? 'primary.main' : 'divider',
-              backgroundColor:
-                paymentType === 'cash' ? 'background.default' : '',
+                maxWidth: { sm: '100%', md: '50%' },
+                flexGrow: 1,
+                outline: '1px solid',
+                backgroundColor:  '#F36928'
             }}
           >
             <CardActionArea onClick={() => setPaymentType('cash')}>
@@ -216,7 +208,7 @@ const FormGrid = styled('div')(() => ({
               borderRadius: '20px',
               border: '1px solid ',
               borderColor: 'divider',
-              backgroundColor: 'background.paper',
+              backgroundColor: '#F36928',
               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)',
             }}
           >
@@ -298,21 +290,23 @@ const FormGrid = styled('div')(() => ({
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
+            justifyContent: 'center'
           }}
         >
           <Box
             sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              p: 3,
-              height: { xs: 300, sm: 350, md: 375 },
-              width: '100%',
-              borderRadius: '20px',
-              border: '1px solid ',
-              borderColor: 'divider',
-              backgroundColor: 'background.paper',
-              boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                justify: 'center',
+                p: 3,
+                height: { xs: 300, sm: 350, md: 375 },
+                width: '100%',
+                borderRadius: '20px',
+                border: '1px solid ',
+                borderColor: 'divider',
+                backgroundColor: '#F36928',
+                boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)',
             }}
           >
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -406,7 +400,7 @@ const FormGrid = styled('div')(() => ({
             borderRadius: '20px',
             border: '1px solid ',
             borderColor: 'divider',
-            backgroundColor: 'background.paper',
+            backgroundColor: '#F36928',
             boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.05)',
           }}
         >
@@ -458,6 +452,7 @@ const FormGrid = styled('div')(() => ({
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
+            backgroundColor: '#F36928',
           }}
         >
           <Alert severity="warning" >

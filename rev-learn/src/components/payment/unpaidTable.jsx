@@ -23,11 +23,14 @@ export default function UnpaidTable() {
     let total = 0;
     total = paymentInfo.reduce((p,c) => p.price + c.price, 0);
     return ( <>
+    
         <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <Table sx={{ width: '50%', justify:'center', backgroundColor:  '#F36928', fontSize: 14 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell align="center">Payments</TableCell>
+                  <TableCell align="center" fontSize="20">Course ID</TableCell>
+                  <TableCell align="center">Name</TableCell>
+                  <TableCell align="center">Price</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

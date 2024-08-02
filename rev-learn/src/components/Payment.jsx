@@ -1,11 +1,16 @@
-//import { useRef, useState } from "react"
+import { useEffect } from "react"
 import UnpaidTable from "./payment/unpaidTable"
 import MakePayment from "./payment/makePayment"
 export default function Payment() {
-    
+
 return(<>
-<UnpaidTable />
-<MakePayment />
+    <h1>Payments</h1>
+    <center>
+   <UnpaidTable />
+   
+
+    <MakePayment />
+    </center>
 </>)
 
     // const ioption1 = useRef();
