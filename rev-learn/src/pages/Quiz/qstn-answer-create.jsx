@@ -51,6 +51,7 @@ export default function AnswerCreate() {
                         color="primary"
                         type="text"
                         sx={{mb: 3}}
+                        name="answerText"
                         value={input.answerText}
                         onChange={event => handleAnswerChange(index, event)}
                     /><br/>

@@ -29,7 +29,7 @@ export default function QuizCreate() {
 
   const handleQuestionChange = (index, event) => {
     let data = [...questionFields];
-    data[index][event.target.questionText] = event.target.value;
+    data[index][event.target.name] = event.target.value;
     setQuestionFields(data);
   }
 
@@ -97,6 +97,7 @@ export default function QuizCreate() {
                             color="primary"
                             type="text"
                             sx={{mb: 3}}
+                            name="questionText"
                             value={input.questionText}
                             onChange={event => handleQuestionChange(index, event)}
                         /><br/>
