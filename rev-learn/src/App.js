@@ -1,23 +1,34 @@
+import './App.css';
+import {Route, Routes, useLocation} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import HomeComponent from './components/HomeComponent';
+import SideBar from './pages/individual-course-student/course-side-bar';
+import CourseHome from './pages/individual-course-student/course-home';
+import CourseQuizzes from './pages/individual-course-student/course-quizzes';
+import CourseDiscussions from './pages/individual-course-student/course-discussions';
+import CourseGrades from './pages/individual-course-student/course-grades';
 // import logo from './logo.svg';
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
-import { Link } from "react-router-dom";
-import HomeComponent from "./components/HomeComponent";
 // import CourseCard from './components/CourseCard';
-import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
 // import CourseCard from './components/CourseCard';
 import QuizPage from './pages/Quiz/QuizPage';
 import QuizItem from './pages/Quiz/quiz-item';
 import CourseDetailView from './pages/course-detail/course-detail-view'
 import Signup from './components/Signup';
 import Signin from './components/Signin';
-import SignedInAs from './components/SignedInAs';
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
 import QuizCreate from "./pages/Quiz/quiz-create";
 
+
 export default function App() {
+
+  const location = useLocation();
+  const showSideBar = location.pathname.startsWith('/courses');
+
+
   return (
-    <div className="App">
+    <div className="App" style={{ display: 'flex' }}>
+      {showSideBar && <SideBar />}
+      <div style={{ marginLeft: showSideBar ? '240px' : '0', padding: '20px', flexGrow: 1 }}>
       <nav id="navbar">
         <Link to="/" style={{ margin: "15px" }}>
           Home
@@ -53,7 +64,14 @@ export default function App() {
         <Route path="/course-catalog" element={<UserCourseCatalog />} />
         {/* TODO: course detail view/ need to add id in the param at the end */}
         <Route path='course/detail' element={<CourseDetailView/>} />
+        
+          <Route path="/courses/:courseId" element={<CourseHome />} />
+          <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
+          <Route path="/courses/:courseId/discussions" element={<CourseDiscussions />} />
+          <Route path="/courses/:courseId/grades" element={<CourseGrades />} />
+
       </Routes>
+      </div>
     </div>
   );
 }
