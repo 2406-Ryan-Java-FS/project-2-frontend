@@ -12,7 +12,6 @@
 
 export default class userAccountController
 {
-    static loggedInUser=null
     static newUserCreated=null
     static baseUrl=`/project-2-back` //uses nginx to re-direct on local and on server
 
@@ -77,9 +76,36 @@ export default class userAccountController
             throw new Error(JSON.stringify(response,null,2))
 
         let body=await response.json()
-        userAccountController.loggedInUser=body.user
-        userAccountController.loggedInUser.token=body.token
-        console.log(`userAccountController.loggedInUser=`,userAccountController.loggedInUser)
+        let loggerInUser=body.user
+        loggerInUser.token=`Bearer ${body.token}`
+        localStorage.setItem("getLoggedInUser()",JSON.stringify(loggerInUser))
+        console.log(`userAccountController.getLoggedInUser()=`,userAccountController.getLoggedInUser())
+    }
+
+    /**
+     * Returns the logged in user object:
+     * @example
+     * {
+     *  "token":"Bearer thisIsTheBase64encodedJWT"
+     *  "user" : {
+            "userId" : 0,
+            "firstName" : null,
+            "lastName" : null,
+            "email" : null,
+            "role" : null
+        },
+        "educator" : {
+            "educatorId" : 0,
+            "degreeLevel" : null,
+            "degreeMajor" : null,
+            "almaMater" : null,
+            "year" : null
+        }
+
+     */
+    static getLoggedInUser()
+    {
+        return JSON.parse(localStorage.getItem("getLoggedInUser()"))
     }
 
     /**
@@ -88,19 +114,19 @@ export default class userAccountController
     static async signout()
     {
         console.log(`userAccountController signout()`)
-        if(userAccountController.loggedInUser==null)return
+        if(userAccountController.getLoggedInUser()==null)return
 
         const response=await fetch(`${userAccountController.baseUrl}/users2/signout`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
-                token:`Bearer ${userAccountController.loggedInUser.token}`
+                token:userAccountController.getLoggedInUser().token
             }
         })
         let body=await response.json()
 
         //error or not, frontend is logging out
-        userAccountController.loggedInUser=null
+        localStorage.removeItem("getLoggedInUser()")
 
         if(response.status!=200)
             throw new Error(`response status ${response.status} `+JSON.stringify(body.errorMessage))

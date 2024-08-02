@@ -24,12 +24,15 @@ import Signout from './components/Signout';
 import NavDrawer from './components/navigation/NavDrawer';
 import HomeComponent from './components/HomeComponent';
 import uac from './controllers/userAccountController';
+import AppProvider from './provider/AppProvider';
 
 export let globalStateSetter//causes full re-render of App
 
 export default function App() {
 
   let [x, setx] = useState(0)
+
+  //WATCH OUT!!!! MUST change the value of a variable to cause re-render
   globalStateSetter = () => { setx(x + 1) }
 
   return (
@@ -38,6 +41,8 @@ export default function App() {
       {/* {<HomeComponent />} */}
 
       <BrowserRouter>
+      {/* Placing Provider here so useNaviagtion will not error */}
+      <AppProvider>
         {/* This was used to navigate through course related components */}
         {/* <SideBar /> */}
 
@@ -54,7 +59,7 @@ export default function App() {
         </nav> */}
 
         <NavDrawer>
-          {(uac.loggedInUser==undefined?<Link to="/signin">Sign in</Link>:<Signout/>)}
+          {(uac.getLoggedInUser()==undefined?<Link to="/signin">Sign in</Link>:<Signout/>)}
           <Divider />
           <Link to="/">Home</Link>
           <Link to="/register">Register</Link>
@@ -94,6 +99,7 @@ export default function App() {
 
 
         </Routes>
+        </AppProvider>
       </BrowserRouter>
     </div>
   );

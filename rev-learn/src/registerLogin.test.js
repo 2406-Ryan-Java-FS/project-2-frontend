@@ -17,11 +17,14 @@ it('Registers, signs in, signs out',async()=>
     expect(uac.newUserCreated.password) .toBe(undefined)
 
     await uac.signin("testEmail","testPass")
-    console.log(`uac.loggedInUser=`,uac.loggedInUser)
-    expect(uac.loggedInUser.firstName).toBe("testFirstName")
-    expect(uac.loggedInUser.lastName) .toBe("testLastName")
-    expect(uac.loggedInUser.email)    .toBe("testEmail")
-    expect(uac.loggedInUser.password) .toBe(undefined)
+    console.log(`uac.getLoggedInUser()=`,uac.getLoggedInUser())
+    expect(uac.getLoggedInUser().firstName).toBe("testFirstName")
+    expect(uac.getLoggedInUser().lastName) .toBe("testLastName")
+    expect(uac.getLoggedInUser().email)    .toBe("testEmail")
+    expect(uac.getLoggedInUser().password) .toBe(undefined)
+
+
+    
 
     
     await uac.signout()
