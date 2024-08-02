@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Rating from "@mui/material/Rating";
 import "../../styles/course-detail/review-card.css";
 

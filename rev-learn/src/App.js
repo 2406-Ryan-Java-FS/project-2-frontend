@@ -67,8 +67,10 @@ export default function App() {
           />
           <Route path="/create-quiz" element={<QuizCreate />} />
           <Route path="/course-catalog" element={<UserCourseCatalog />} />
-          {/* TODO: course detail view/ need to add id in the param at the end */}
-          <Route path="course/detail" element={<CourseDetailView />} />
+          <Route
+            path="/course/detail/:courseId"
+            element={<CourseDetailView />}
+          />
 
           <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route

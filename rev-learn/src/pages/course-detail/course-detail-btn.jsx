@@ -1,0 +1,90 @@
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+export default function CourseDetailBtn({ courseId }) {
+  const [enrollment, setEnrollment] = useState(null);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    setUser(loggedInUser);
+
+    if (loggedInUser) {
+      fetchEnrollment(loggedInUser, courseId);
+    }
+
+  }, [courseId]);
+
+  const fetchEnrollment = async (loggedInUser, courseId) => {
+    try {
+      const response = await fetch(`http://localhost:8080/enrollments/students/${loggedInUser.userId}/courses/${courseId}`, {
+        method: "GET",
+        headers: {
+          'Authorization': "Bearer " + loggedInUser.token,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const data = await response.json();
+      setEnrollment(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const pendingEnroll = async (evt) => {
+    evt.preventDefault();
+    if (!user) return;
+
+    const newEnrollment = {
+      studentId: user.userId,
+      courseId: courseId,
+      paymentStatus: "pending",
+      enrolled: false,
+      courseReview: null,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/enrollments", {
+        method: "POST",
+        headers: {
+          'Content-Type': "application/json",
+          'Authorization': "Bearer " + user.token,
+        },
+        body: JSON.stringify(newEnrollment),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData);
+      }
+
+      const data = await response.json();
+      setEnrollment(data);  // Update the state with the new enrollment data
+      navigate(`/course/detail/${courseId}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div className="enrollBtn">
+      {enrollment === null ? (
+        <button type="button" onClick={pendingEnroll}>
+          Add to Cart
+        </button>
+      ) : enrollment.enrolled === false ? (
+        <button type="button" disabled>
+          Already added to cart
+        </button>
+      ) : (
+        <Link to={`/course/detail/${courseId}`} type="button">
+          Go to the course
+        </Link>
+      )}
+    </div>
+  );
+}
