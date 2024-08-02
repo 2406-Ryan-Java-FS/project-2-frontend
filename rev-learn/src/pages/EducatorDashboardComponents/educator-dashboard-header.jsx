@@ -1,28 +1,30 @@
-import { Typography } from "../../../node_modules/@mui/joy/index";
-import { Toolbar } from "../../../node_modules/@mui/material/index";
+import React from "react";
+import { Box } from "@mui/material";
 import EducatorDashboardHeaderAddNewCourse from "./educator-dashboard-header-add-new-course";
+import { useEducatorDashboardContext } from "./educator-dashboard-context";
 
 export default function EducatorDashboardHeader() {
+  const { userData } = useEducatorDashboardContext();
+
   return (
-    <>
-
-      <Toolbar
-        sx={{
-          flexGrow: 1, backgroundColor: '#F36928',
-          borderRadius: '25px', border: 'solid black 1px',
-          justifyContent: 'center'
-        }}
-        variant="outlined"
-        position="relative">
-
-        
-        <Typography sx={{ color: 'black', fontSize: '32px' }}>
-          Educator Dashboard
-        </Typography>
-
-        <EducatorDashboardHeaderAddNewCourse />
-
-      </Toolbar>
-    </>
+    <Box
+      sx={{
+        position: "relative",
+        textAlign: "left",
+        margin: "8px",
+        display: "flex",
+        flexDirection: "column", // Ensure header and <hr> are stacked vertically
+        alignItems: "flex-start", // Align items to the start of the container
+      }}
+    >
+      <h1 style={{ margin: 0 }}>
+        {userData ? `${userData.firstName}'s Dashboard` : "Loading..."}
+      </h1>
+      <EducatorDashboardHeaderAddNewCourse />
+      <hr
+        style={{ width: "100%", border: "1px solid black", margin: "8px 0" }}
+      />
+      
+    </Box>
   );
 }

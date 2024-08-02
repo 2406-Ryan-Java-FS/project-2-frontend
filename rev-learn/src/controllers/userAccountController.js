@@ -1,4 +1,3 @@
-
 /*
     Attemping to use controllers on the frontend.
     These can manage state/data.
@@ -10,103 +9,131 @@
     as dumb as possible so we aren't tangled in state management hell.
 */
 
-export default class userAccountController
-{
-    static loggedInUser=null
-    static newUserCreated=null
+export default class userAccountController {
+  static loggedInUser = null;
+  static newUserCreated = null;
 
-    /**
-     * Registers a new user initialized with the given username and password
-     */
-    static async signup(firstName,lastName,email,password,passwordConfirm)
-    {
-        //Need to do password confirm check
+  /**
+   * Registers a new user initialized with the given username and password
+   */
+  static async signup(firstName, lastName, email, password, passwordConfirm) {
+    //Need to do password confirm check
 
-        console.log(`userAccountController signup() ${firstName} ${lastName} ${email} ${password}`)
-        const response=await fetch(`/project-2-back/users2/signup`,{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({
-                "user":{
-                    "firstName":firstName,
-                    "lastName":lastName,
-                    "email":email,
-                    "password":password
-                },
-                "educator":{
+    console.log(
+      `userAccountController signup() ${firstName} ${lastName} ${email} ${password}`
+    );
+    const response = await fetch(`/project-2-back/users`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      }),
+    });
 
-                }
-            })
-        })
-        
-        if(response.status!=201)
-            throw new Error(JSON.stringify(response,null,2))
-            //throw new Error(`response status ${response.status} ${response.statusText} ${await response.text()}`)
+    if (response.status != 201)
+      throw new Error(JSON.stringify(response, null, 2));
+    //throw new Error(`response status ${response.status} ${response.statusText} ${await response.text()}`)
 
-        let body=await response.json()
-        userAccountController.newUserCreated=body.user
-        userAccountController.newUserCreated.token=body.token
-        console.log(`newUserCreated=`,userAccountController.newUserCreated)
-    }
+    let body = await response.json();
 
-    /**
-     * Sets the logged in user if the username and password works
-     */
-    static async signin(email,password)
-    {
-        console.log(`userAccountController login() ${email} ${password}`)
-        const response=await fetch(`/project-2-back/users2/signin`,{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({
-                "user":{
-                    "firstName":"Dont have it",
-                    "lastName":"Dont have it",
-                    "email":email,
-                    "username":"Dont have it",
-                    "password":password
-                },
-                "educator":{
+    userAccountController.newUserCreated = body;
+    console.log(
+      `userAccountController.newUserCreated=`,
+      userAccountController.newUserCreated
+    );
+  }
 
-                }
-            })
-        })
-        
-        if(response.status!=200)
-            throw new Error(JSON.stringify(response,null,2))
+  /**
+   * Sets the logged in user if the username and password works
+   */
+  static async signin(email, password) {
+    console.log(`userAccountController login() ${email} ${password}`);
+    const response = await fetch(`http://localhost:8080/users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: "Dont have it",
+        lastName: "Dont have it",
+        email: email,
+        username: "Dont have it",
+        password: password,
+      }),
+    });
 
-        let body=await response.json()
-        userAccountController.loggedInUser=body.user
-        userAccountController.loggedInUser.token=body.token
-        console.log(`userAccountController.loggedInUser=`,userAccountController.loggedInUser)
-    }
+    if (response.status != 200)
+      throw new Error(JSON.stringify(response, null, 2));
 
-    /**
-     * Logs out the currently logged in user
-     */
-    static async signout()
-    {
-        console.log(`userAccountController logout()`)
-        if(userAccountController.loggedInUser==null)return
+    let body = await response.json();
+    userAccountController.loggedInUser = body.user;
+    userAccountController.loggedInUser.token = body.token;
+    console.log(
+      `userAccountController.loggedInUser=`,
+      userAccountController.loggedInUser
+    );
+    localStorage.setItem("loggedInUser", JSON.stringify(this.loggedInUser)); // Save as JSON string
+  }
 
-        const response=await fetch(`${userAccountController.tempUrl}/users2/signout`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-                tokenId:        userAccountController.loggedInUser.tokenId,
-                tokenPassword:  userAccountController.loggedInUser.tokenPassword
-            }
-        })
-        let body=await response.json()
+  /**
+   * Fetches and stores the private information of the currently logged in user
+   */
+  static async myPrivateInfo() {
+    console.log(`userAccountController myPrivateInfo()`);
+    if (userAccountController.loggedInUser == null) return "";
 
-        //error or not, frontend is logging out
-        userAccountController.loggedInUser=null
+    const response = await fetch(
+      `${userAccountController.tempUrl}/users/my-private-info`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          tokenId: userAccountController.loggedInUser.tokenId,
+          tokenPassword: userAccountController.loggedInUser.tokenPassword,
+        },
+      }
+    );
+    let body = await response.json();
 
-        if(response.status!=200)
-            throw new Error(`response status ${response.status} `+JSON.stringify(body.errorMessage))
-        
-        return body.message
-    }
+    if (response.status != 200)
+      throw new Error(
+        `response status ${response.status} ` +
+          JSON.stringify(body.errorMessage)
+      );
+    userAccountController.loggedInUser.secretInformation =
+      body.secretInformation;
+  }
 
-    
+  /**
+   * Logs out the currently logged in user
+   */
+  static async logout() {
+    console.log(`userAccountController logout()`);
+    if (userAccountController.loggedInUser == null) return;
+
+    const response = await fetch(
+      `${userAccountController.tempUrl}/users/logout`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          tokenId: userAccountController.loggedInUser.tokenId,
+          tokenPassword: userAccountController.loggedInUser.tokenPassword,
+        },
+      }
+    );
+    let body = await response.json();
+
+    //error or not, frontend is logging out
+    userAccountController.loggedInUser = null;
+
+    if (response.status != 200)
+      throw new Error(
+        `response status ${response.status} ` +
+          JSON.stringify(body.errorMessage)
+      );
+
+    return body.message;
+  }
 }

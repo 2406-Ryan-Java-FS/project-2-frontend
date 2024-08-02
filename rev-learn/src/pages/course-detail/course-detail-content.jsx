@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 export default function CourseDetailContent(){
 
     return(<>
+      <h2>Course Modules</h2>
         <div>
       <Accordion defaultExpanded>
         <AccordionSummary
