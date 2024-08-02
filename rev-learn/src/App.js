@@ -16,6 +16,8 @@ import CourseDetailView from "./pages/course-detail/course-detail-view";
 import Signup from "./components/Signup";
 import Signin from "./components/Signin";
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
+import { EducatorDashboardProvider } from "./pages/EducatorDashboardComponents/educator-dashboard-context";
+import EducatorDashboard from "./pages/EducatorDashboardComponents/educator-dashboard";
 
 export default function App() {
   const location = useLocation();
@@ -73,6 +75,14 @@ export default function App() {
             element={<CourseDiscussions />}
           />
           <Route path="/courses/:courseId/grades" element={<CourseGrades />} />
+          <Route
+            path="/educatordashboard"
+            element={
+              <EducatorDashboardProvider>
+                <EducatorDashboard />
+              </EducatorDashboardProvider>
+            }
+          />
         </Routes>
       </div>
     </div>

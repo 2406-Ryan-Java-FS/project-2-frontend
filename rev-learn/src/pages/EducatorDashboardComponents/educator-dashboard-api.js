@@ -2,9 +2,19 @@ import axios from "axios";
 
 const API_BASE_URL = "http://localhost:8080";
 
-const token =
-  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNzIyNjA5NzA5LCJleHAiOjE3MjI2NTI5MDl9.STdiqArgqSRSQjVjg-qYj8Uuw6KGCogoJ709di8a5Yy_9IbKJ7S7Zx3h0by1d6KmYx8STIizAa2Ioq56yZXVjQ";
-  
+let token; // Declare token variable outside the block
+
+const loggedInUserString = localStorage.getItem("loggedInUser");
+
+if (loggedInUserString) {
+  const loggedInUser = JSON.parse(loggedInUserString);
+  token = loggedInUser.token; // Assign the token value
+
+  console.log("Token: ", token);
+} else {
+  console.log("No loggedInUser found in localStorage");
+}
+
 export const getCoursesByEducatorIdApi = (educatorId) => {
   return axios.get(`${API_BASE_URL}/courses/educators/${educatorId}`);
 };
