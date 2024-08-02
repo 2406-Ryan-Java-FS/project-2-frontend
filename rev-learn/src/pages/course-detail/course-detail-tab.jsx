@@ -37,7 +37,7 @@ function CustomTabPanel(props) {
     };
   }
 
-export default function CourseDetailTabs({course}){
+export default function CourseDetailTabs({course, educator}){
     const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -58,7 +58,7 @@ export default function CourseDetailTabs({course}){
         <CourseDetailDescription description={course.description} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <CourseDetailEducator educatorId={course.educatorId}/>
+        <CourseDetailEducator educator={educator}/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
         <CourseDetailContent />
