@@ -4,70 +4,63 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import ReviewDialog from "./course-detail-review-dialog";
 import "../../styles/course-detail/course-detail-view.css";
-import userAccountController from "../../controllers/userAccountController";
 
 export default function CourseDetailReview({ courseId }) {
   const [enrollmentList, setEnrollmentList] = useState([]);
   const [userDetails, setUserDetails] = useState({});
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [user, setUser] = useState({});
-  const [isUserEnrolled, setIsUserEnrolled] = useState(false);
+  const [enrollment, setEnrollment] = useState(null);
 
+  // Sets the current user from local storage (to make sure it's logged in)
   useEffect(() => {
-    // const loggedInUser = userAccountController.loggedInUser;
-    // if (loggedInUser) {
-    //   setUser(loggedInUser);
-    //   console.log(loggedInUser)
-    setUser(JSON.parse(localStorage.getItem("loggedInUser")));
-    console.log(user);
-  }, [user.userId]);
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (loggedInUser) {
+      setUser(loggedInUser);
+    }
+  }, []);
 
+  // Sets the enrollments list for the course
+  // We also have to fetch users for each enrollment in the course
   useEffect(() => {
     const fetchEnrollments = async () => {
-      // Simulated API call to fetch enrollments
-      const enrollments = [
-        {
-          enrollmentId: 1,
-          studentId: 2,
-          courseId: courseId,
-          enrollmentDate: "2024-08-01",
-          paymentStatus: "complete",
-          enrollmentStatus: true,
-          courseReview: "Great course!",
-          courseRating: 4,
-        },
-      ];
+      try {
+        // Fetch enrollments for the course
+        const enrollmentsResponse = await fetch(
+          `http://localhost:8080/enrollments/courses/${courseId}`
+        );
+        const enrollments = await enrollmentsResponse.json();
 
-      // Fetch user details for each enrollment
-      const userDetailsMap = {};
-      await Promise.all(
-        enrollments.map(async (enrollment) => {
-          const userResponse = await fetchUserDetails(enrollment.studentId);
-          userDetailsMap[enrollment.studentId] = userResponse;
-        })
-      );
+        // Fetch user details for each enrollment
+        const userDetailsMap = {};
+        await Promise.all(
+          enrollments.map(async (enrollment) => {
+            const userResponse = await fetch(
+              `http://localhost:8080/users/${enrollment.studentId}`
+            );
+            const user = await userResponse.json();
+            userDetailsMap[enrollment.studentId] = user;
+          })
+        );
 
-      setEnrollmentList(enrollments);
-      setUserDetails(userDetailsMap);
+        console.log("Fetched user details:", userDetailsMap); // Log user details
 
-      // Check if user is enrolled in the course
-      const enrolled = enrollments.some(
-        (enrollment) => enrollment.studentId === user.userId
-      );
-      setIsUserEnrolled(enrolled);
+        setEnrollmentList(enrollments);
+        setUserDetails(userDetailsMap);
+
+        // Find enrollment for the logged-in user
+        const userEnrollment = enrollments.find(
+          (enrollment) => enrollment.studentId === user.userId
+        );
+        setEnrollment(userEnrollment);
+      } catch (error) {
+        console.error("Error fetching enrollments or user details:", error);
+      }
     };
 
-    const fetchUserDetails = async (userId) => {
-      // Simulated API call to fetch user details
-      const userResponse = {
-        userId: userId,
-        firstName: "John",
-        lastName: "Doe",
-      };
-      return userResponse;
-    };
-
-    fetchEnrollments();
+    if (user.userId) {
+      fetchEnrollments();
+    }
   }, [courseId, user.userId]);
 
   const handleDialogOpen = () => {
@@ -79,32 +72,43 @@ export default function CourseDetailReview({ courseId }) {
   };
 
   const handleReviewSubmit = async (newReview) => {
-    // Simulated API call to update the enrollment with the new review
-    const updatedEnrollment = {
-      enrollmentId: enrollmentList.length + 1,
-      studentId: user.userId,
-      courseId: courseId,
-      enrollmentDate: new Date().toISOString().split("T")[0], // Current date
-      paymentStatus: "complete",
-      enrollmentStatus: true,
-      courseReview: newReview.reviewText,
-      courseRating: newReview.rating,
-    };
+    newReview.rating = newReview.rating === 0 ? 1 : newReview.rating; // ensures there are no 0 stars selected
+    try {
+      // Update the existing enrollment with the new review
+      const updatedEnrollment = {
+        courseRating: newReview.rating,
+        courseReview: newReview.reviewText,
+      };
+      // Update the backend with the new review
+      const response = await fetch(
+        `http://localhost:8080/enrollments/review/${enrollment.enrollmentId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`, // Correctly format the Authorization header
+          },
+          body: JSON.stringify(updatedEnrollment),
+        }
+      );
 
-    // Fetch user details for the new enrollment
-    const userResponse = {
-      userId: user.userId,
-      firstName: user.firstName,
-      lastName: user.lastName,
-    };
+      if (!response.ok) {
+        throw new Error("Failed to update the enrollment on the backend");
+      }
 
-    // Update the local state
-    setEnrollmentList((prevList) => [updatedEnrollment, ...prevList]);
-    setUserDetails((prevDetails) => ({
-      ...prevDetails,
-      [user.userId]: userResponse,
-    }));
-    handleDialogClose();
+      const updatedEnrollmentResponse = await response.json();
+
+      // Update the local state
+      setEnrollmentList((prevList) => [
+        updatedEnrollmentResponse,
+        ...prevList.filter(
+          (en) => en.enrollmentId !== updatedEnrollmentResponse.enrollmentId
+        ),
+      ]);
+      handleDialogClose();
+    } catch (error) {
+      console.error("Error submitting review:", error);
+    }
   };
 
   return (
@@ -112,14 +116,16 @@ export default function CourseDetailReview({ courseId }) {
       <div className="reviews-header">
         <h2>Reviews ({enrollmentList.length})</h2>
         {console.log(user)}
-        <Fab
-          onClick={handleDialogOpen}
-          size="small"
-          aria-label="add"
-          className="fab"
-        >
-          <AddIcon />
-        </Fab>
+        {enrollment && (
+          <Fab
+            onClick={handleDialogOpen}
+            size="small"
+            aria-label="add"
+            className="fab"
+          >
+            <AddIcon />
+          </Fab>
+        )}
       </div>
       <ReviewDialog
         open={isDialogOpen}
@@ -127,13 +133,20 @@ export default function CourseDetailReview({ courseId }) {
         onSubmit={handleReviewSubmit}
       />
       {enrollmentList.length > 0 &&
-        enrollmentList.map((enrollment) => (
-          <CourseDetailReviewCard
-            key={enrollment.enrollmentId}
-            enrollment={enrollment}
-            user={userDetails[enrollment.studentId]}
-          />
-        ))}
+        enrollmentList.map((enrollment) => {
+          console.log("Rendering enrollment:", enrollment);
+          console.log(
+            "User details for enrollment:",
+            userDetails[enrollment.studentId]
+          );
+          return (
+            <CourseDetailReviewCard
+              key={enrollment.enrollmentId}
+              enrollment={enrollment}
+              currUser={userDetails[enrollment.studentId]} // Pass user details here
+            />
+          );
+        })}
     </>
   );
 }

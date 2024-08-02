@@ -52,9 +52,9 @@ export default function App() {
           <Link to="/edit-question" style={{ margin: "15px" }}>
             Edit Question
           </Link>
-        <Link to="/create-quiz" style={{ margin: "15px" }}>
-          Create New Quiz
-        </Link>
+          <Link to="/create-quiz" style={{ margin: "15px" }}>
+            Create New Quiz
+          </Link>
         </nav>
         <Routes>
           <Route path="" element={<HomeComponent />} />
@@ -65,10 +65,13 @@ export default function App() {
             path="/edit-question"
             element={<QuizItem mode="educator" item={2} />}
           />
-        <Route path="/create-quiz" element={<QuizCreate />} />
-        <Route path="/course-catalog" element={<UserCourseCatalog />} />
-        <Route path='/course/detail/:courseId' element={<CourseDetailView/>} />
-        
+          <Route path="/create-quiz" element={<QuizCreate />} />
+          <Route path="/course-catalog" element={<UserCourseCatalog />} />
+          <Route
+            path="/course/detail/:courseId"
+            element={<CourseDetailView />}
+          />
+
           <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route
             path="/courses/:courseId/quizzes"
