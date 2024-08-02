@@ -94,7 +94,7 @@ export default class userAccountController
             method:"POST",
             headers:{
                 "Content-Type":"application/json",
-                token:userAccountController.loggedInUser.token
+                token:`Bearer ${userAccountController.loggedInUser.token}`
             }
         })
         let body=await response.json()
