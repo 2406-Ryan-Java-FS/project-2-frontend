@@ -15,6 +15,7 @@ import SignedInAs from './components/SignedInAs';
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
 
 export default function App() {
+
   return (
     <div className="App">
       <nav id="navbar">
@@ -35,6 +36,7 @@ export default function App() {
         <Link to="/edit-question" style={{ margin: "15px" }}>
           Edit Question
         </Link>
+        
       </nav>
       <Routes>
         <Route path="" element={<HomeComponent />} />

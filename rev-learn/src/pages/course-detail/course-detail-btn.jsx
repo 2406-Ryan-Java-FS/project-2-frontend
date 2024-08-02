@@ -1,78 +1,90 @@
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function CourseDetailBtn({courseId}){
-    // const user = useContext();
-    const {user} = useContext();
-    const [enrollment, setEnrollment] = useState();
-    const userId = 2;
+export default function CourseDetailBtn({ courseId }) {
+  const [enrollment, setEnrollment] = useState(null);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-    //Check if the user has enrolled to the course or not.
-    useEffect(() => {
-        // const jwtToken = localStorage.getItem('token');
-        // if(!token){
-        //     return Promise.reject('Unauthorized.');
-        // }
-        // const init = {
-        //     headers: {
-        //         "Authorization": "Bearer "+token
-        //     }
-        // }
+  useEffect(() => {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    setUser(loggedInUser);
 
-        
-        fetch(`http://localhost:8080/enrollments/${userId}/courses/${courseId}`)
-            .then(res => res.json())
-            .then(body => {
-                setEnrollment(body);
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    },[courseId, userId])
+    if (loggedInUser) {
+      fetchEnrollment(loggedInUser, courseId);
+    }
 
-    function pendingEnroll(){
-            // POST Enrollment DATA => for 
-    
-            const newEnrollment = {
-                // studentId: user.userId,
-                studentId: userId,
-                courseId: courseId,
-                paymentStatus: 'pending',
-                enrollmentStatus: false,
-                courseRating: null,
-                courseReview: null
-    
-            }
-    
-            const config = {
-                method:"POST",
-                header:{
-                    'content-Type': 'application/json',
-                },
-                body: JSON.stringify(newEnrollment)
-            };
-    
-            fetch("http://localhost:8080/enrollments",config)
-            .then(res => {
-                if(res.ok){
-                 
-                }else{
-                    return res.json();
-                }
-            })
-            .then(err => {
-                if(err){
-                    return Promise.reject(err);
-                }
-            })
-            .catch(errs => {
-                console.error(errs);
-            });
-        }
+  }, [courseId]);
 
-    return(
-        <div className="enrollBtn">
-        {enrollment==null?<button type="submit" onsubmit={pendingEnroll()}>Add to Cart</button>
-       :<Link type="button">Go to the course</Link>}
-    </div>);
+  const fetchEnrollment = async (loggedInUser, courseId) => {
+    try {
+      const response = await fetch(`http://localhost:8080/enrollments/students/${loggedInUser.userId}/courses/${courseId}`, {
+        method: "GET",
+        headers: {
+          'Authorization': "Bearer " + loggedInUser.token,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+      const data = await response.json();
+      setEnrollment(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const pendingEnroll = async (evt) => {
+    evt.preventDefault();
+    if (!user) return;
+
+    const newEnrollment = {
+      studentId: user.userId,
+      courseId: courseId,
+      paymentStatus: "pending",
+      enrolled: false,
+      courseReview: null,
+    };
+
+    try {
+      const response = await fetch("http://localhost:8080/enrollments", {
+        method: "POST",
+        headers: {
+          'Content-Type': "application/json",
+          'Authorization': "Bearer " + user.token,
+        },
+        body: JSON.stringify(newEnrollment),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData);
+      }
+
+      const data = await response.json();
+      setEnrollment(data);  // Update the state with the new enrollment data
+      navigate(`/course/detail/${courseId}`);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div className="enrollBtn">
+      {enrollment === null ? (
+        <button type="button" onClick={pendingEnroll}>
+          Add to Cart
+        </button>
+      ) : enrollment.enrolled === false ? (
+        <button type="button" disabled>
+          Already added to cart
+        </button>
+      ) : (
+        <Link to={`/course/detail/${courseId}`} type="button">
+          Go to the course
+        </Link>
+      )}
+    </div>
+  );
 }
