@@ -13,8 +13,11 @@ body {
     border-radius: 0.5rem;
     border: 2px solid #a1a1aa;
     /* background-color: #e4e4e7; */
-    background-color: transparent;
+    background-color: white;
+    
+    /* background-color: transparent; */
     transition: background-color 0.3s ease;
+    text-align: left;
 }
 
 .course-card:hover {
@@ -127,6 +130,7 @@ body {
 .userCourseCatalogOutterContainer {
     display: flex;
     padding-bottom: 160px;
+    justify-content: center;
 }
 
 .userCourseCatalogMainContainer {
@@ -142,8 +146,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  /* need to make flex-start */
-  /* justify-content: flex-start; */
   justify-content: center;
   align-items: center;
   margin: 0px 80px 0px 80px;
@@ -252,4 +254,27 @@ body {
     to {
         transform: rotate(360deg);
     }
+}
+
+.enrolledContinueButton {
+    background-color: #3b82f6;
+    display:flex;
+    border-radius: 0.5rem;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    margin-top: 20px;
+    transition: background-color 0.1s ease;
+}
+
+.enrolledContinueButtonText {
+    margin-bottom: 4px;
+}
+
+.enrolledContinueButton:hover {
+    background-color: #34d399;
+    cursor: pointer;
 }

@@ -1,4 +1,3 @@
-
 /*
     Attemping to use controllers on the frontend.
     These can manage state/data.
@@ -10,110 +9,131 @@
     as dumb as possible so we aren't tangled in state management hell.
 */
 
-export default class userAccountController
-{
-    static loggedInUser=null
-    static newUserCreated=null
-    ///project1-back
-    //this should be removed and a gateway on the server should re-direct requests
-    static tempUrl="http://localhost:8080"
+export default class userAccountController {
+  static loggedInUser = null;
+  static newUserCreated = null;
 
-    /**
-     * Registers a new user initialized with the given username and password
-     */
-    static async register(username,password,secretInformation="default secret info")
-    {
-        console.log(`userAccountController register() ${username} ${password} ${secretInformation}`)
-        const response=await fetch(`${userAccountController.tempUrl}/users/register`,{
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({
-                "name":username,
-                "password":password,
-                "secretInformation":secretInformation
-            })
-        })
-        let body=await response.json()
+  /**
+   * Registers a new user initialized with the given username and password
+   */
+  static async signup(firstName, lastName, email, password, passwordConfirm) {
+    //Need to do password confirm check
 
-        if(response.status!=200)
-            throw new Error(`response status ${response.status} `+JSON.stringify(body.errorMessage))
+    console.log(
+      `userAccountController signup() ${firstName} ${lastName} ${email} ${password}`
+    );
+    const response = await fetch(`/project-2-back/users`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password,
+      }),
+    });
 
-        userAccountController.newUserCreated=body
-        console.log(`userAccountController.newUserCreated=`,userAccountController.newUserCreated)
-    }
+    if (response.status != 201)
+      throw new Error(JSON.stringify(response, null, 2));
+    //throw new Error(`response status ${response.status} ${response.statusText} ${await response.text()}`)
 
-    /**
-     * Sets the logged in user if the username and password works
-     */
-    static async login(username,password)
-    {
-        console.log(`userAccountController login() ${username} ${password}`)
-        const response=await fetch(`${userAccountController.tempUrl}/users/login`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-                "username":username,
-                "password":password
-            }
-        })
-        let body=await response.json()
+    let body = await response.json();
 
-        if(response.status!=200)
-            throw new Error(`response status ${response.status} `+JSON.stringify(body.errorMessage))
+    userAccountController.newUserCreated = body;
+    console.log(
+      `userAccountController.newUserCreated=`,
+      userAccountController.newUserCreated
+    );
+  }
 
-        userAccountController.loggedInUser=body
-        console.log(`userAccountController.loggedInUser=`,userAccountController.loggedInUser)
-    }
+  /**
+   * Sets the logged in user if the username and password works
+   */
+  static async signin(email, password) {
+    console.log(`userAccountController login() ${email} ${password}`);
+    const response = await fetch(`http://localhost:8080/users/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstName: "Dont have it",
+        lastName: "Dont have it",
+        email: email,
+        username: "Dont have it",
+        password: password,
+      }),
+    });
 
-    /**
-     * Fetches and stores the private information of the currently logged in user
-     */
-    static async myPrivateInfo()
-    {
-        console.log(`userAccountController myPrivateInfo()`)
-        if(userAccountController.loggedInUser==null)return ""
+    if (response.status != 200)
+      throw new Error(JSON.stringify(response, null, 2));
 
-        const response=await fetch(`${userAccountController.tempUrl}/users/my-private-info`,{
-            method:"GET",
-            headers:{
-                "Content-Type":"application/json",
-                tokenId:        userAccountController.loggedInUser.tokenId,
-                tokenPassword:  userAccountController.loggedInUser.tokenPassword
-            }
-        })
-        let body=await response.json()
+    let body = await response.json();
+    userAccountController.loggedInUser = body.user;
+    userAccountController.loggedInUser.token = body.token;
+    console.log(
+      `userAccountController.loggedInUser=`,
+      userAccountController.loggedInUser
+    );
+    localStorage.setItem("loggedInUser", JSON.stringify(this.loggedInUser)); // Save as JSON string
+  }
 
-        if(response.status!=200)
-            throw new Error(`response status ${response.status} `+JSON.stringify(body.errorMessage))
-        userAccountController.loggedInUser.secretInformation=body.secretInformation
-    }
+  /**
+   * Fetches and stores the private information of the currently logged in user
+   */
+  static async myPrivateInfo() {
+    console.log(`userAccountController myPrivateInfo()`);
+    if (userAccountController.loggedInUser == null) return "";
 
-    /**
-     * Logs out the currently logged in user
-     */
-    static async logout()
-    {
-        console.log(`userAccountController logout()`)
-        if(userAccountController.loggedInUser==null)return
+    const response = await fetch(
+      `${userAccountController.tempUrl}/users/my-private-info`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          tokenId: userAccountController.loggedInUser.tokenId,
+          tokenPassword: userAccountController.loggedInUser.tokenPassword,
+        },
+      }
+    );
+    let body = await response.json();
 
-        const response=await fetch(`${userAccountController.tempUrl}/users/logout`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-                tokenId:        userAccountController.loggedInUser.tokenId,
-                tokenPassword:  userAccountController.loggedInUser.tokenPassword
-            }
-        })
-        let body=await response.json()
+    if (response.status != 200)
+      throw new Error(
+        `response status ${response.status} ` +
+          JSON.stringify(body.errorMessage)
+      );
+    userAccountController.loggedInUser.secretInformation =
+      body.secretInformation;
+  }
 
-        //error or not, frontend is logging out
-        userAccountController.loggedInUser=null
+  /**
+   * Logs out the currently logged in user
+   */
+  static async logout() {
+    console.log(`userAccountController logout()`);
+    if (userAccountController.loggedInUser == null) return;
 
-        if(response.status!=200)
-            throw new Error(`response status ${response.status} `+JSON.stringify(body.errorMessage))
-        
-        return body.message
-    }
+    const response = await fetch(
+      `${userAccountController.tempUrl}/users/logout`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          tokenId: userAccountController.loggedInUser.tokenId,
+          tokenPassword: userAccountController.loggedInUser.tokenPassword,
+        },
+      }
+    );
+    let body = await response.json();
 
-    
+    //error or not, frontend is logging out
+    userAccountController.loggedInUser = null;
+
+    if (response.status != 200)
+      throw new Error(
+        `response status ${response.status} ` +
+          JSON.stringify(body.errorMessage)
+      );
+
+    return body.message;
+  }
 }
