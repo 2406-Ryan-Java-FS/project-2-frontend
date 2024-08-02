@@ -1,5 +1,3 @@
-
-export default function HomeComponent()
-{
-    return(<>Home</>)
+export default function HomeComponent() {
+  return <>Home</>;
 }
