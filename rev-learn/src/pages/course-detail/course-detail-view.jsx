@@ -1,6 +1,6 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import CourseDetailTabs from "./course-detail-tab";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CategoryCrumb from "./category-crumb";
 import '../../styles/course-detail/course-detail-view.css';
 import CourseDetailBtn from "./course-detail-btn";
@@ -32,11 +32,6 @@ export default function CourseDetailView(){
         fetchCourse();
         
     },[courseId])
-
-
-
-    
-    const educatorName = "Educator's Full name"
 
     // function parseDescription(description){
     //     // const parsed = description.split('.');

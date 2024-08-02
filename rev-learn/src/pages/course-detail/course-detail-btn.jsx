@@ -3,20 +3,32 @@ import { Link } from "react-router-dom";
 
 export default function CourseDetailBtn({courseId}){
     // const user = useContext();
+    const {user} = useContext();
     const [enrollment, setEnrollment] = useState();
     const userId = 2;
 
     //Check if the user has enrolled to the course or not.
-    // useEffect(() => {
-    //     fetch(`http://localhost:8080/enrollments/courses/${courseId}/${userId}`)
-    //         .then(res => res.json())
-    //         .then(body => {
-    //             setEnrollment(body);
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         });
-    // },[courseId, userId])
+    useEffect(() => {
+        // const jwtToken = localStorage.getItem('token');
+        // if(!token){
+        //     return Promise.reject('Unauthorized.');
+        // }
+        // const init = {
+        //     headers: {
+        //         "Authorization": "Bearer "+token
+        //     }
+        // }
+
+        
+        fetch(`http://localhost:8080/enrollments/${userId}/courses/${courseId}`)
+            .then(res => res.json())
+            .then(body => {
+                setEnrollment(body);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    },[courseId, userId])
 
     function pendingEnroll(){
             // POST Enrollment DATA => for 
