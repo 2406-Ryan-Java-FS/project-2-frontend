@@ -20,7 +20,8 @@ import { useEducatorDashboardContext } from "./educator-dashboard-context";
 import { createNewCourse } from "./educator-dashboard-api";
 
 export default function EducatorDashboardHeaderAddNewCourse() {
-  const { state, setState, handleInputChange, educatorData } = useEducatorDashboardContext();
+  const { state, setState, handleInputChange, educatorData } =
+    useEducatorDashboardContext();
   const [openModal, setOpenModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -47,7 +48,6 @@ export default function EducatorDashboardHeaderAddNewCourse() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Logic to submit new course data
     createNewCourse(state.newCourse)
       .then((response) => {
         setState((prevState) => ({
@@ -68,7 +68,6 @@ export default function EducatorDashboardHeaderAddNewCourse() {
       .catch((error) => {
         console.error("There was an error creating the course.", error);
       });
-    console.log(state.newCourse); // For testing the new course data
     setOpenModal(false);
   };
 
@@ -78,7 +77,9 @@ export default function EducatorDashboardHeaderAddNewCourse() {
         onClick={handleOpenModal}
         sx={{
           position: "absolute",
-          right: 8,
+          right: 0,
+          top: "50%",
+          transform: "translateY(-50%)",
           color: "black",
           border: "none",
         }}
