@@ -1,20 +1,28 @@
+import { Typography } from "../../../node_modules/@mui/joy/index";
+import { Toolbar } from "../../../node_modules/@mui/material/index";
 import EducatorDashboardHeaderAddNewCourse from "./educator-dashboard-header-add-new-course";
 
 export default function EducatorDashboardHeader() {
   return (
     <>
-      <h1
-        style={{
-          position: "relative",
-          textAlign: "left",
-          marginLeft: "8px",
-          marginRight: "8px",
+
+      <Toolbar
+        sx={{
+          flexGrow: 1, backgroundColor: '#F36928',
+          borderRadius: '25px', border: 'solid black 1px',
+          justifyContent: 'center'
         }}
-      >
-        Educator's Dashboard
+        variant="outlined"
+        position="relative">
+
+        
+        <Typography sx={{ color: 'black', fontSize: '32px' }}>
+          Educator Dashboard
+        </Typography>
+
         <EducatorDashboardHeaderAddNewCourse />
-      </h1>
-      <hr style={{ marginLeft: "8px", marginRight: "8px" }} />
+
+      </Toolbar>
     </>
   );
 }

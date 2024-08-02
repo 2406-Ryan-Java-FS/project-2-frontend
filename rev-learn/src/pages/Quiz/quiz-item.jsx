@@ -29,7 +29,7 @@ const QuizItem = ({mode, item}) => {
   }, [ itemId, setQuestionText ]);
 
   return (
-    <div className='quiz-item'>
+    <div className='quiz-item' >
       <div>
         <TextField
             id="outlined-multiline-static"
@@ -37,12 +37,14 @@ const QuizItem = ({mode, item}) => {
             multiline
             rows={4}
             defaultValue={questionText}
+            // sx={{backgroundColor: 'white'}}
             InputProps={{
               readOnly: allowEdit,
             }}
           />
-        <div className='qi-middle-row'>
-          <div className='question-mcq'>
+        <div className='qi-middle-row' >
+          <div className='question-mcq' style={{backgroundColor: 'white', 
+            borderRadius: '25px', topMargin: '5px'}}>
             { mode === 'student' 
               ? <QuizMultipleChoiceAnswers item={itemId}/>
               : <QuizAnswerEdit />
@@ -53,8 +55,8 @@ const QuizItem = ({mode, item}) => {
           <QuestionScratchPad/>
           <div className='quiz-buttons'>
             {/* <Button id='quiz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Mark</Button> */}
-            <Button id='quiz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Submit</Button>
-            <Button id='quiz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Cancel</Button>
+            <Button id='quiz-btn' variant="contained" style={{margin:'2px 5px 2px 2px', color: 'black'}}>Submit</Button>
+            <Button id='quiz-btn' variant="contained" style={{margin:'2px 5px 2px 2px', color: 'black'}}>Cancel</Button>
           </div>
         </div>
       </div>
