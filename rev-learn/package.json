@@ -31,6 +31,7 @@
     "start": "react-scripts start --no-open",
     "build": "react-scripts build",
     "test": "react-scripts test --watchAll=false --runInBand",
+    "rsc-test": "react-scripts test --watchAll=false src/registerLogin.test.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

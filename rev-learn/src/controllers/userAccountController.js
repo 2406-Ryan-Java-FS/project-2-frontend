@@ -137,4 +137,3 @@ export default class userAccountController {
     return body.message;
   }
 }
-

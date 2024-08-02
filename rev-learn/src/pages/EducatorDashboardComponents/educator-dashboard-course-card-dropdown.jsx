@@ -88,6 +88,7 @@ export default function EducatorDashboardCourseCardDropdown({ course }) {
             width: "auto",
             maxWidth: 600,
             margin: "auto",
+            border: 'solid black 1px' 
           }}
         >
           <DialogTitle>Edit Course</DialogTitle>

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import '../../styles/course-styles.css'
+import { Typography } from '../../../node_modules/@mui/joy/index';
 
-export default function CourseCard ( props ) {
+export default function CourseCard(props) {
 
     // Student props
     // const { image, role, title, description, category, price, rating } = props;

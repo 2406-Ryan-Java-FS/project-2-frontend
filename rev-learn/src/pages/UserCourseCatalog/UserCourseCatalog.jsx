@@ -92,12 +92,12 @@ export default function UserCourseCatalog() {
     // }, [courseList])
 
 
-    const role = "Student";
-    const image = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
+  const role = "Student";
+  const image = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
 
-    // Load more items when user scrolls to the bottom
-    const loadMoreItems = useCallback(() => {
-        if (loading || visibleItems >= courseList.length) return; // Avoid multiple loads and ensure we don't load beyond the available items
+  // Load more items when user scrolls to the bottom
+  const loadMoreItems = useCallback(() => {
+    if (loading || visibleItems >= courseList.length) return; // Avoid multiple loads and ensure we don't load beyond the available items
 
         setLoading(true);
         setTimeout(() => {
@@ -117,12 +117,12 @@ export default function UserCourseCatalog() {
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-    }, [loadMoreItems]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [loadMoreItems]);
 
     // course filter
     const handleSearch = ({ course, category, sortOption }) => {

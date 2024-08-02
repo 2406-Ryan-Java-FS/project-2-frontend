@@ -9,6 +9,7 @@
     rgba(255, 132, 0, 0.3),
     rgba(255, 250, 245, 0.8) 
   ); /* Gradient background */
+  
 }
 
 .quiz-page {
@@ -22,36 +23,39 @@
 .quiz-navbar
 {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center;
-  border: 1px solid #003866;
-  border-radius: 5px;
-  padding: 6px;
-  margin: 4px;
+  /* border: 1px solid black; */
+  /* border-radius: 5px; */
+  /* padding: 6px; */
+  /* margin: 4px; */
 }
 .quiz-navbar-center {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 }
 .quiz-navbar-left,
 .quiz-navbar-right {
   display: flex;
-  justify-content: space-between;
+  justify-content: right;
   align-items: center;
-  width: 30%;
+  /* width: 30%; */
   margin: 0 20px 0 20px;
 }
 
 .qtn-navigation-btn {
-  border: 1px solid #8bcbff;
+  /* border: 1px solid black; */
   border-radius: 5px;
   margin: 10px;
 }
 
+.question-section {
+}
+
 .question-item {
   display: flex;
-  border: 1px solid rgb(74, 74, 74);
+  border: 1px solid black;
   border-radius: 5px;
   margin: 5px;
 }

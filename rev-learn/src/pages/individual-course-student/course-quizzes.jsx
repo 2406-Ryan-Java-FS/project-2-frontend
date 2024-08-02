@@ -10,7 +10,7 @@ export default function CourseQuizzes() {
     useEffect(() => {
         const fetchQuizzes = async () => {
             try {
-                const response = await fetch(`/api/courses/${courseId}/quizzes`);
+                const response = await fetch(`/project-2-back/courses/${courseId}/quizzes`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch quizzes');
                 }

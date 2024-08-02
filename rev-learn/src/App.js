@@ -1,78 +1,88 @@
-import "./App.css";
-import { Route, Routes, useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
-import HomeComponent from "./components/HomeComponent";
-import SideBar from "./pages/individual-course-student/course-side-bar";
-import CourseHome from "./pages/individual-course-student/course-home";
-import CourseQuizzes from "./pages/individual-course-student/course-quizzes";
-import CourseDiscussions from "./pages/individual-course-student/course-discussions";
-import CourseGrades from "./pages/individual-course-student/course-grades";
+import './App.css';
+import {Route,Routes, Link, BrowserRouter} from 'react-router-dom';
+// import HomeComponent from './components/HomeComponent';
+import SideBar from './pages/individual-course-student/course-side-bar';
+import CourseHome from './pages/individual-course-student/course-home';
+import CourseQuizzes from './pages/individual-course-student/course-quizzes';
 // import logo from './logo.svg';
+import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
 // import CourseCard from './components/CourseCard';
-// import CourseCard from './components/CourseCard';
-import QuizPage from "./pages/Quiz/QuizPage";
-import QuizItem from "./pages/Quiz/quiz-item";
-import CourseDetailView from "./pages/course-detail/course-detail-view";
-import Signup from "./components/Signup";
-import Signin from "./components/Signin";
+import QuizPage from './pages/Quiz/QuizPage';
+import QuizItem from './pages/Quiz/quiz-item';
+import CourseDetailView from './pages/course-detail/course-detail-view'
+import Signup from './components/Signup';
+import Signin from './components/Signin';
+import SignedInAs from './components/SignedInAs';
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
-import QuizCreate from "./pages/Quiz/quiz-create";
-import { EducatorDashboardProvider } from "./pages/EducatorDashboardComponents/educator-dashboard-context";
-import EducatorDashboard from "./pages/EducatorDashboardComponents/educator-dashboard";
+import { useState } from 'react';
+import { useLocation } from '../node_modules/react-router-dom/dist/index';
+import CourseDiscussions from './pages/individual-course-student/course-discussions';
+import CourseGrades from './pages/individual-course-student/course-grades';
+import { EducatorDashboardProvider } from './pages/EducatorDashboardComponents/educator-dashboard-context';
 
 export default function App() {
-  const location = useLocation();
-  const showSideBar = location.pathname.startsWith("/courses");
+
+  let [x, setx] = useState(0)
+  // globalStateSetter = () => { setx(x + 1) }
+
+  // const location = useLocation();
+  // const showSideBar = location.pathname.startsWith("/courses");
 
   return (
-    <div className="App" style={{ display: "flex" }}>
-      {showSideBar && <SideBar />}
-      <div
-        style={{
-          marginLeft: showSideBar ? "240px" : "0",
-          padding: "20px",
-          flexGrow: 1,
-        }}
-      >
+    <div className="App">
+      {/* <BrowserRouter> */}
+      <SideBar />
         <nav id="navbar">
-          <Link to="/" style={{ margin: "15px" }}>
-            Home
-          </Link>
-          {" ~ "}
-          <Link to="/register" style={{ margin: "15px" }}>
-            Register
-          </Link>
-          <Link to="/login" style={{ margin: "15px" }}>
-            Login
-          </Link>
-          {" ~ "}
-          <Link to="/quiz" style={{ margin: "15px" }}>
-            Quiz
-          </Link>
-          <Link to="/edit-question" style={{ margin: "15px" }}>
-            Edit Question
-          </Link>
-          <Link to="/create-quiz" style={{ margin: "15px" }}>
-            Create New Quiz
-          </Link>
+          <Link to="/">Home</Link>{" ~ "}
+          <Link to="/login">Login</Link>{" ~ "}
+          <Link to="/register">Register</Link>
         </nav>
         <Routes>
-          <Route path="" element={<HomeComponent />} />
-          <Route path="/register" element={<Signup />} />
-          <Route path="/login" element={<Signin />} />
-          <Route path="/quiz" element={<QuizPage />} />
-          <Route
-            path="/edit-question"
-            element={<QuizItem mode="educator" item={2} />}
-          />
-          <Route path="/create-quiz" element={<QuizCreate />} />
-          <Route path="/course-catalog" element={<UserCourseCatalog />} />
-          <Route
+          {/* <Route path='' element={<HomeComponent />} /> */}
+          {/* <Route path='/register' element={<Register/>}/>
+          <Route path='/login' element={<Login/>}/> */}
+          <Route path="/courses/:courseId" element={<CourseHome />} />
+          <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
+        </Routes>
+      {/* </BrowserRouter> */}
+      <nav id="navbar">
+        <Link to="/" style={{ margin: "15px" }}>
+          Home
+        </Link>
+        {" ~ "}
+        <Link to="/register" style={{ margin: "15px" }}>
+          Register
+        </Link>
+        <Link to="/login" style={{ margin: "15px" }}>
+          Login
+        </Link>
+        {" ~ "}
+        <Link to="/quiz" style={{ margin: "15px" }}>
+          Quiz
+        </Link>
+        <Link to="/create-quiz" style={{ margin: "15px" }}>
+            Create New Quiz
+          </Link>
+        <Link to="/edit-question" style={{ margin: "15px" }}>
+          Edit Question
+        </Link>
+      </nav>
+      <Routes>
+        {/* <Route path="" element={<HomeComponent />} /> */}
+        <Route path="/register" element={<Signup />} />
+        <Route path="/login" element={<Signin />} />
+        <Route path="/quiz" element={<QuizPage />} />
+        <Route
+          path="/edit-question"
+          element={<QuizItem mode="educator" item={2} />}
+        />
+        <Route path="/course-catalog" element={<UserCourseCatalog />} />
+        {/* TODO: course detail view/ need to add id in the param at the end */}
+        <Route
             path="/course/detail/:courseId"
             element={<CourseDetailView />}
           />
-
-          <Route path="/courses/:courseId" element={<CourseHome />} />
+        <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route
             path="/courses/:courseId/quizzes"
             element={<CourseQuizzes />}
@@ -81,8 +91,8 @@ export default function App() {
             path="/courses/:courseId/discussions"
             element={<CourseDiscussions />}
           />
-          <Route path="/courses/:courseId/grades" element={<CourseGrades />} />
-          <Route
+          <Route path="/courses/:courseId/grades" element={<CourseGrades />} />  
+        <Route
             path="/educatordashboard"
             element={
               <EducatorDashboardProvider>
@@ -90,8 +100,7 @@ export default function App() {
               </EducatorDashboardProvider>
             }
           />
-        </Routes>
-      </div>
+      </Routes>
     </div>
   );
 }

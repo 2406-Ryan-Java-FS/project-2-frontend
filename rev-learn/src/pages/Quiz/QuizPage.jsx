@@ -16,11 +16,11 @@ const QuizPage = () => {
 
   return (
     <div className='quiz-container'>
-      <div className='question-section'>
-        <h2>Quiz Page</h2>
+      <div className='question-section' >
+        {/* <h2>Quiz Page</h2> */}
         <QuizNavigationBar/>
-        <div className='question-item'>
-          <QuizItem mode='student' item={quizQuestionId}/>
+        <div className='question-item' style={{backgroundColor: '#F36928'}}>
+          <QuizItem mode='student' item={quizQuestionId} style={{backgroundColor: 'white'}}/>
           <div>
             <QuizTimer />
             <div className='qtn-navigation-btn'>

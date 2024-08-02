@@ -90,7 +90,7 @@ body {
     -webkit-box-orient: vertical;
     /* line-height: 1.5; */
     max-height: 5.4em; /* (line-height * number of lines) */
-    color:#71717a;
+    color: 'black';
     /* margin-bottom: 10px; */
     font-size: 14px;
 }
@@ -174,7 +174,7 @@ body {
   width: 100%;
   max-width: 800px; /* Ensures the container has a maximum width */
   margin: 0 auto;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 
 /* FilterSidebar */
