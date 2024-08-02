@@ -57,7 +57,7 @@ export default function CourseDetailView(){
             <div className="course-overview-img">
                 <img src={course.imgUrl} alt="course relate picture" width="300px" />
                 <div className="price-box">${course.price}</div>
-                <CourseDetailBtn />
+                <CourseDetailBtn courseId = {courseId} />
             </div>
        
         </div>
