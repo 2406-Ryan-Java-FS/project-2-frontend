@@ -31,25 +31,12 @@ export default function App() {
 
   return (
     <div className="App">
-      {/* Added new Nav Bar and removed Top Test Navigation */}
-      {/* {<HomeComponent />} */}
 
       <BrowserRouter>
+
         {/* This was used to navigate through course related components */}
         {/* <SideBar /> */}
-
-        {/* <nav>
-          <Link to="/">Home</Link>{" "}
-          <Link to="/register">Register</Link>{" "}
-          <Link to="/profile">Profile</Link>{" "}
-          <Link to="/educator">Educator</Link>{" "}
-          <Link to="/payments">Payment</Link>{" "}
-          <Link to="/course-catalog">Catalog</Link>{" "}
-          <Link to="/quiz">Quiz</Link>{" "}
-          <Link to="/edit-question">Edit&nbsp;Question</Link>{" "}
-          <SignedInAs/>
-        </nav> */}
-
+       
         <NavDrawer>
           <Link to="/">Home</Link>
           <Link to="/register">Register</Link>
@@ -92,6 +79,6 @@ export default function App() {
 
         </Routes>
       </BrowserRouter>
-    </div>
+     </div> 
   );
 }

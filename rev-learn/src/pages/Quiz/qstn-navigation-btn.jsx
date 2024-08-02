@@ -11,14 +11,15 @@ const QuestionNavigationButton = () => {
   
   return (
     <div className='questions-nav-buttons'>
-      <p style={{margin:'15px'}}>Question Nav Buttons</p>
+      <p style={{margin:'15px', color: 'black'}}>Question Nav Buttons</p>
       {
         questionButton.map((item, idxqb) => (
           <div key={idxqb} style={{margin:'5px'}}>
             <Button variant="contained" 
                 href="#contained-buttons" 
                 size="small" 
-                id='quiz-nav-btn'>
+                // id='quiz-nav-btn'
+                >
               {item.question_seq}
             </Button>
           </div>

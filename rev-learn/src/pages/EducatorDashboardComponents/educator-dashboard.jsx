@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import EditIcon from "@mui/icons-material/Edit";
-import placeholderImage from "../../images/blank.png";
 import EducatorDashboardHeader from "./educator-dashboard-header";
 import EducatorDashboardCoursCardDropdown from "./educator-dashboard-course-card-dropdown";
 
@@ -64,7 +63,7 @@ export default function EducatorDashboard() {
       
       <hr style={{ marginLeft: "8px", marginRight: "8px" }} />
 
-      <Box sx={{ display: "flex", flexWrap: "wrap",  }}>
+      <Box sx={{ display: 'flex', flexWrap: "wrap" }} >
         {courseDetails.map((course) => (
           <Card
             key={course.courseId}

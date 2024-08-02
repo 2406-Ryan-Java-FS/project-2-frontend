@@ -1,8 +1,6 @@
 import { Typography } from "../../../node_modules/@mui/joy/index";
 import { Toolbar } from "../../../node_modules/@mui/material/index";
 import EducatorDashboardHeaderAddNewCourse from "./educator-dashboard-header-add-new-course";
-import { IconButton } from "../../../node_modules/@mui/joy/index";
-import MenuIcon from '@mui/icons-material/Menu';
 
 export default function EducatorDashboardHeader() {
   return (
@@ -15,7 +13,7 @@ export default function EducatorDashboardHeader() {
           justifyContent: 'center'
         }}
         variant="outlined"
-        position="static">
+        position="relative">
 
         
         <Typography sx={{ color: 'black', fontSize: '32px' }}>

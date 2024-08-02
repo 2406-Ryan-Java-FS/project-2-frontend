@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
-import '../../styles/course-styles.css'
-import CourseCard from './CourseCard'
+import { useState, useEffect, useCallback } from 'react';
+import '../../styles/course-styles.css';
+import CourseCard from './CourseCard';
 import SearchBar from '../../components/SearchBar';
 import CourseDummyData from './CourseDummyData';
 import { Box, Toolbar } from '../../../node_modules/@mui/material/index';
@@ -96,9 +96,9 @@ export default function UserCourseCatalog() {
 
   return (
     <>
-      <div className="userCourseCatalogOutterContainer">
-        <div className='userCourseCatalogMainContainer'>
-
+      {/* <div className="userCourseCatalogOutterContainer">
+        <div className='userCourseCatalogMainContainer'> */}
+        
           <Toolbar
             sx={{
               flexGrow: 1, backgroundColor: '#F36928',
@@ -119,14 +119,15 @@ export default function UserCourseCatalog() {
 
           <Box style={{
             backgroundColor: '#F36928', border: 'solid black 1px',
-            borderRadius: '25px'
+            borderRadius: '25px', margin: '8px'
           }}>
 
             <Box style={{
-              backgroundColor: 'white', border: 'solid black 2px',
+              backgroundColor: 'lightgrey', border: 'solid black 2px',
               borderRadius: '25px', justifyContent: 'center',
               alignContent: 'center'
             }}>
+
               <div className="searchBarContainer">
                 <SearchBar onSearch={handleSearch} />
               </div>
@@ -163,8 +164,8 @@ export default function UserCourseCatalog() {
             </div>
 
           </Box>
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
     </>
   )
 }
