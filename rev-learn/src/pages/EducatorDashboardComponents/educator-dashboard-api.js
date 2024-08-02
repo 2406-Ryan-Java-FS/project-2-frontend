@@ -3,8 +3,8 @@ import axios from "axios";
 const API_BASE_URL = "http://localhost:8080";
 
 const token =
-  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNzIyNTgwNzMyLCJleHAiOjE3MjI2MjM5MzJ9.vkVVlWf_g62HHeMZVj71c7MjbBlxBUNb9SvWDxUBRmr01XeJymMOo2RSs0mbezJwVtH4SISW8wofHcamDHc-nw";
-
+  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzIiwiaWF0IjoxNzIyNjA5NzA5LCJleHAiOjE3MjI2NTI5MDl9.STdiqArgqSRSQjVjg-qYj8Uuw6KGCogoJ709di8a5Yy_9IbKJ7S7Zx3h0by1d6KmYx8STIizAa2Ioq56yZXVjQ";
+  
 export const getCoursesByEducatorIdApi = (educatorId) => {
   return axios.get(`${API_BASE_URL}/courses/educators/${educatorId}`);
 };
