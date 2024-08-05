@@ -25,6 +25,7 @@ import NavDrawer from './components/navigation/NavDrawer';
 import HomeComponent from './components/HomeComponent';
 import uac from './controllers/userAccountController';
 import AppProvider from './provider/AppProvider';
+import { Navigate } from '../node_modules/react-router-dom/dist/index';
 
 export let globalStateSetter//causes full re-render of App
 
@@ -76,7 +77,8 @@ export default function App() {
 
 
         <Routes>
-          <Route path='' element={<HomeComponent />} />
+          <Route path="/s3" element={<Navigate to="/" />} />
+          <Route path='/' element={<HomeComponent />} />
           <Route path='/register' element={<Signup/>}/>
           <Route path='/signin' element={<Signin/>}/>
 
