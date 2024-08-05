@@ -183,13 +183,13 @@ export default function QuizCreate() {
                             </div>
                         )
                         })}
-                        <Button variant="outlined" onClick={addAnswer(qIndex)}>Add an Answer</Button><br/>
+                        <Button variant="outlined" onClick={() => addAnswer(qIndex)}>Add an Answer</Button><br/>
                         {/* <AnswerCreate/> */}
                         <Button variant="outlined" onClick={() => removeQuestion(qIndex)}>Remove Question</Button>
                     </div>
                     )
                 })}
-                <Button variant="outlined" onClick={addQuestion}>Add a Question</Button><br/>
+                <Button variant="outlined" onClick={() => addQuestion()}>Add a Question</Button><br/>
               <Button variant="outlined" type="submit">Create Quiz</Button>
           </form>
         </div>
