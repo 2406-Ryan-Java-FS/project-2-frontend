@@ -6,25 +6,50 @@ import AnswerCreate from './qstn-answer-create';
 export default function QuizCreate() {
 
   const [title, setTitle] = useState('')
-  const [titleError, setTitleError] = useState(false)
 
   const [time, setTime] = useState('')
-  const [timeError, setTimeError] = useState(false)
 
   const [attempts, setAttempts] = useState('')
-  const [attemptsError, setAttemptsError] = useState(false)
 
   const [questionFields, setQuestionFields] = useState([
     { questionText: '' }
   ])
   
 
-  const createQuiz = (event) => {
-      event.preventDefault()
- 
-        setTitleError(false)
-        setTimeError(false)
-        setAttemptsError(false)
+  const createQuiz = async (event) => {
+    event.preventDefault();
+
+    const data = {
+      course_id: '',
+      title: title.current.value,
+      timer: time.current.value,
+      attempts_allowed: attempts.current.value,
+      open: true,
+      questions: questionFields
+    }
+
+    console.log(data);
+    const url = "http://localhost:8080/auctions";
+
+    const options = {
+      method: "POST",
+      headers: {
+         'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+  
+    try {
+      const httpResponse = await fetch(url, options);
+      const body = await httpResponse.json();
+
+      console.log(body);
+      if (body) {
+          alert("Quiz has been created!");
+      }
+    } catch (error) {
+      alert("There was an error creating the quiz.");
+    }
   }
 
   const handleQuestionChange = (index, event) => {
@@ -58,7 +83,6 @@ export default function QuizCreate() {
                     type="text"
                     sx={{mb: 3}}
                     value={title}
-                    error={titleError}
                  /><br/>
                  <TextField 
                     label="Time Limit"
@@ -69,7 +93,6 @@ export default function QuizCreate() {
                     type="number"
                     sx={{mb: 3}}
                     value={time}
-                    error={timeError}
                  /><br/>
                  <TextField 
                     label="# of Attempts"
@@ -80,7 +103,6 @@ export default function QuizCreate() {
                     type="number"
                     sx={{mb: 3}}
                     value={attempts}
-                    error={attemptsError}
                  /><br/>
                 <h4>Questions:</h4>
                 {questionFields.map((input, index) => {
