@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   IconButton,
   Modal,
@@ -15,22 +16,59 @@ import {
 } from "@mui/material";
 import Textarea from "@mui/joy/Textarea";
 import AddIcon from "@mui/icons-material/Add";
-import { useState } from "react";
+import { useEducatorDashboardContext } from "./educator-dashboard-context";
+import { createNewCourse } from "./educator-dashboard-api";
 
 export default function EducatorDashboardHeaderAddNewCourse() {
+  const { state, setState, handleInputChange, educatorData } =
+    useEducatorDashboardContext();
   const [openModal, setOpenModal] = useState(false);
-  const [category, setCategory] = useState("");
-  const [courseDate, setCourseDate] = useState("");
 
-  const handleOpenModal = () => setOpenModal(true);
+  const handleOpenModal = () => {
+    resetNewCourse();
+    setOpenModal(true);
+  };
   const handleCloseModal = () => setOpenModal(false);
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value);
+  const resetNewCourse = () => {
+    setState((prevState) => ({
+      ...prevState,
+      newCourse: {
+        courseId: "",
+        educatorId: educatorData ? educatorData.educatorId : "",
+        title: "",
+        description: "",
+        category: "",
+        price: "",
+        imgUrl: "",
+        creationDate: "",
+      },
+    }));
   };
 
-  const handleDateChange = (event) => {
-    setCourseDate(event.target.value);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    createNewCourse(state.newCourse)
+      .then((response) => {
+        setState((prevState) => ({
+          ...prevState,
+          courses: [...prevState.courses, response.data],
+          newCourse: {
+            courseId: "",
+            educatorId: educatorData ? educatorData.educatorId : "",
+            title: "",
+            description: "",
+            category: "",
+            price: "",
+            imgUrl: "",
+            creationDate: "",
+          },
+        }));
+      })
+      .catch((error) => {
+        console.error("There was an error creating the course.", error);
+      });
+    setOpenModal(false);
   };
 
   return (
@@ -39,7 +77,9 @@ export default function EducatorDashboardHeaderAddNewCourse() {
         onClick={handleOpenModal}
         sx={{
           position: "absolute",
-          right: 8,
+          right: 0,
+          top: "50%",
+          transform: "translateY(-50%)",
           color: "black",
           border: "none",
         }}
@@ -60,37 +100,54 @@ export default function EducatorDashboardHeaderAddNewCourse() {
         >
           <DialogTitle>Create New Course</DialogTitle>
           <DialogContent>Fill in the course information.</DialogContent>
-          <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              setOpenModal(false);
-            }}
-          >
+          <form onSubmit={handleSubmit}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
                 <FormControl fullWidth>
                   <FormLabel>Course Title</FormLabel>
-                  <Input autoFocus required />
+                  <Input
+                    autoFocus
+                    required
+                    type="text"
+                    name="title"
+                    value={state.newCourse.title}
+                    onChange={handleInputChange}
+                  />
                 </FormControl>
               </Grid>
               <Grid item xs={6}>
                 <FormControl fullWidth>
                   <FormLabel>Educator ID</FormLabel>
-                  <Input required />
+                  <Input
+                    required
+                    type="number"
+                    name="educatorId"
+                    value={
+                      educatorData ? educatorData.educatorId : "Loading..."
+                    }
+                    onChange={handleInputChange}
+                    disabled
+                  />
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <FormControl fullWidth>
                   <FormLabel>Course Description</FormLabel>
-                  <Textarea minRows={7} />
+                  <Textarea
+                    minRows={7}
+                    name="description"
+                    value={state.newCourse.description}
+                    onChange={handleInputChange}
+                  />
                 </FormControl>
               </Grid>
               <Grid item xs={12}>
                 <FormControl fullWidth>
                   <FormLabel>Course Category</FormLabel>
                   <Select
-                    value={category}
-                    onChange={handleCategoryChange}
+                    name="category"
+                    value={state.newCourse.category}
+                    onChange={handleInputChange}
                     displayEmpty
                     inputProps={{ "aria-label": "Course Category" }}
                     sx={{ zIndex: 1300 }} // Ensures it's above the modal content
@@ -98,9 +155,9 @@ export default function EducatorDashboardHeaderAddNewCourse() {
                     <MenuItem value="" disabled>
                       Select a category
                     </MenuItem>
-                    <MenuItem value="webDevelopment">Web Development</MenuItem>
-                    <MenuItem value="dataScience">Data Science</MenuItem>
-                    <MenuItem value="mobileDevelopment">
+                    <MenuItem value="Web Development">Web Development</MenuItem>
+                    <MenuItem value="Data Science">Data Science</MenuItem>
+                    <MenuItem value="Mobile Development">
                       Mobile Development
                     </MenuItem>
                   </Select>
@@ -109,7 +166,13 @@ export default function EducatorDashboardHeaderAddNewCourse() {
               <Grid item xs={6}>
                 <FormControl fullWidth>
                   <FormLabel>Course Price</FormLabel>
-                  <Input required />
+                  <Input
+                    required
+                    name="price"
+                    type="number"
+                    value={state.newCourse.price}
+                    onChange={handleInputChange}
+                  />
                 </FormControl>
               </Grid>
               <Grid item xs={6}>
@@ -117,10 +180,23 @@ export default function EducatorDashboardHeaderAddNewCourse() {
                   <FormLabel>Course Creation Date</FormLabel>
                   <TextField
                     type="date"
-                    value={courseDate}
-                    onChange={handleDateChange}
+                    name="creationDate"
+                    value={state.newCourse.creationDate}
+                    onChange={handleInputChange}
                     fullWidth
                     InputLabelProps={{ shrink: true }} // Ensures the label is displayed correctly
+                  />
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <FormLabel>Course Image URL</FormLabel>
+                  <TextField
+                    type="text"
+                    name="imgUrl"
+                    value={state.newCourse.imgUrl}
+                    onChange={handleInputChange}
+                    fullWidth
                   />
                 </FormControl>
               </Grid>

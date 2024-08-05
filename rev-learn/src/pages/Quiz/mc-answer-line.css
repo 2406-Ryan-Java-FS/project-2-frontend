@@ -1,0 +1,75 @@
+.numbered-list {
+  counter-reset: list-counter; /* Reset the counter */
+  padding-left: 40px; /* Add some padding to the left */
+  border-radius: 8px; /* Optional: Add rounded corners for a softer look */
+  list-style-type: decimal; /* Ensure numbers are displayed */
+}
+
+.numbered-list li {
+  counter-increment: list-counter; /* Increment the counter */
+  margin-bottom: 5px; /* Space between list items */
+  display: flex;
+  align-items: center;
+  position: relative;
+  border: none; /* Remove border if any */
+  line-height: 1.2rem; /* Set a smaller line-height for the list items */
+  padding: 0; /* Optional: Remove any extra padding */
+}
+
+.numbered-list li::before {
+  content: counter(list-counter) ". "; /* Use the counter value */
+  position: absolute;
+  left: -30px; /* Position the number to the left */
+}
+
+.answer-container {
+  width: 550px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px; /* Optional padding inside the container */
+  box-sizing: border-box;
+}
+
+.button-container button {
+  padding: 0.2rem 0.5rem; /* Adjust the padding for smaller button size */
+  height: 1.5rem; /* Set the height of the buttons */
+  line-height: 1.5rem; /* Set the line-height to match the button height */
+}
+
+.left-button {
+  margin-right: 5px; /* Space between left and middle button */
+}
+
+.choice-text {
+  margin-right: auto; /* Pushes the right button to the right */
+  font-size: 1rem;
+  color: black;
+}
+
+.right-circle-x {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: auto; /* Pushes the circle x to the right */
+}
+
+.right-checkmark {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(0, 142, 0);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: auto; /* Pushes the circle x to the right */
+}

@@ -1,0 +1,104 @@
+.course-detail-box {
+  margin: 10px 20%;
+  text-align: start;
+}
+
+.course-overview {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.course-overview-text {
+  margin-right: 10px;
+}
+.course-overview-text h2 {
+  text-align: center;
+}
+
+.course-overview-text p {
+  font-size: 20px;
+}
+
+.course-overview-img {
+  margin-top: 10px;
+}
+
+.course-overview-img img {
+  border-radius: 10px;
+}
+.price-box {
+  background-color: orange;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+.reviews-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.reviews-header h2 {
+  flex: 1;
+}
+
+.reviews-header .MuiFab-root {
+  margin-left: 10px;
+}
+
+.dialog-paper {
+  width: 500px;
+  height: 450px;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-title {
+  flex-shrink: 0;
+  background-color: #f66a28;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  margin-top: 5%;
+}
+
+.rating-container {
+  margin-bottom: 16px;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.dialog-textfield {
+  flex-grow: 1;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 16px;
+  margin-top: 30px;
+}
+
+.dialog-button {
+  width: 120px;
+  margin: 0 8px;
+  background-color: #f66a28 !important;
+}
+
+.fab {
+  background-color: #f66a28 !important; /* Use !important to override MUI default styles */
+  color: black !important; /* This sets the icon color */
+}
+
+.fab:hover {
+  background-color: #e65a20 !important; /* Optional: Darken the background color on hover */
+}
