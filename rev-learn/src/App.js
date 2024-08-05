@@ -18,6 +18,7 @@ import CourseDiscussions from './pages/individual-course-student/course-discussi
 import CourseGrades from './pages/individual-course-student/course-grades';
 import { EducatorDashboardProvider } from './pages/EducatorDashboardComponents/educator-dashboard-context';
 import HomeComponent from './components/HomeComponent';
+import NavBar from './components/navigation/NavBar';
 
 export default function App() {
 
@@ -29,26 +30,8 @@ export default function App() {
 
   return (
     <div className="App">
-      {/* <BrowserRouter> */}
-    
-        {/* <nav id="navbar">
-          <Link to="/">Home</Link>{" ~ "}
-          <Link to="/login">Login</Link>{" ~ "}
-          <Link to="/register">Register</Link>
-        </nav> */}
 
-        <Routes>
-          <Route path='' element={<HomeComponent />} />
-          {/* <Route path='/register' element={<Register/>}/>
-          <Route path='/login' element={<Login/>}/> */}
-          <Route path="/courses/:courseId" element={<CourseHome />} />
-          <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
-        </Routes>
-
-      {/* </BrowserRouter> */}
-
-      <nav id="navbar">
-        <Link to="/" style={{ margin: "15px" }}>
+        {/* <Link to="/" style={{ margin: "15px" }}>
           Home
         </Link>
         {" ~ "}
@@ -67,13 +50,13 @@ export default function App() {
           </Link>
         <Link to="/edit-question" style={{ margin: "15px" }}>
           Edit Question
-        </Link>
-      </nav>
+        </Link> */}
 
+      {<NavBar />}
       <SideBar />
-      
+
       <Routes>
-        {/* <Route path="" element={<HomeComponent />} /> */}
+        <Route path="" element={<HomeComponent />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/login" element={<Signin />} />
         <Route path="/quiz" element={<QuizPage />} />
@@ -106,6 +89,7 @@ export default function App() {
             }
           />
       </Routes>
-    </div>
+      </div>
+
   );
 }
