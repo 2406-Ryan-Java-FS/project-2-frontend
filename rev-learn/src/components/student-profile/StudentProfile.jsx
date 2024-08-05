@@ -4,6 +4,7 @@ import StudentCard from "./StudentCard";
 import { useState } from "react";
 import BasicTable from "./BasicTable";
 import { Typography } from "@mui/material";
+import SideBar from "../../pages/individual-course-student/course-side-bar";
 
 export default function StudentProfile() {
 
@@ -15,7 +16,9 @@ export default function StudentProfile() {
     return (
         <>
 
-            {< StudentAppBar />}
+            {/* {< StudentAppBar />} */}
+            <SideBar />
+
            
             <Box>
                 <Button variant='contained' onClick={() => { setCardState(true) }}>

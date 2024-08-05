@@ -19,6 +19,7 @@ import CourseGrades from './pages/individual-course-student/course-grades';
 import { EducatorDashboardProvider } from './pages/EducatorDashboardComponents/educator-dashboard-context';
 import HomeComponent from './components/HomeComponent';
 import NavBar from './components/navigation/NavBar';
+import StudentProfile from './components/student-profile/StudentProfile';
 
 export default function App() {
 
@@ -32,13 +33,12 @@ export default function App() {
     <div className="App">
 
       {<NavBar />}
-      <SideBar />
 
       <Routes>
         <Route path="" element={<HomeComponent />} />
         <Route path="/register" element={<Signup />} />
         <Route path="/login" element={<Signin />} />
-        <Route path="/quiz" element={<QuizPage />} />
+        <Route path="/student" element={<StudentProfile />} />
         <Route
           path="/edit-question"
           element={<QuizItem mode="educator" item={2} />}
@@ -67,7 +67,7 @@ export default function App() {
               </EducatorDashboardProvider>
             }
           />
-          
+
       </Routes>
       </div>
 

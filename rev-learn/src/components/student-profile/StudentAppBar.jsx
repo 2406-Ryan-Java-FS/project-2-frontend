@@ -46,7 +46,7 @@ export default function StudentAppBar() {
         <Typography
           sx={{
             flexGrow: 1, backgroundColor: '#F36928',
-            borderRadius: '25px', color: 'black', fontSize: '32px'
+            color: 'black', fontSize: '32px'
           }}>
           Student Dashboard
         </Typography>
