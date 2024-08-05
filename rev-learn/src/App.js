@@ -20,6 +20,7 @@ import { EducatorDashboardProvider } from './pages/EducatorDashboardComponents/e
 import HomeComponent from './components/HomeComponent';
 import NavBar from './components/navigation/NavBar';
 import StudentProfile from './components/student-profile/StudentProfile';
+import Payment from './components/Payment';
 
 export default function App() {
 
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/register" element={<Signup />} />
         <Route path="/login" element={<Signin />} />
         <Route path="/student" element={<StudentProfile />} />
+        <Route path="/payment" element={<Payment />} />
         <Route
           path="/edit-question"
           element={<QuizItem mode="educator" item={2} />}
