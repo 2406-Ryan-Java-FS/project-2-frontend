@@ -9,7 +9,7 @@ import {useState} from 'react';
 export default function AnswerCreate() {
 
     const [answerFields, setAnswerFields] = useState([
-        { answerText: '', correct: false }
+        { text: '', correct: false }
     ])
 
     const handleAnswerChange = (index, event) => {
@@ -51,8 +51,8 @@ export default function AnswerCreate() {
                         color="primary"
                         type="text"
                         sx={{mb: 3}}
-                        name="answerText"
-                        value={input.answerText}
+                        name="text"
+                        value={input.text}
                         onChange={event => handleAnswerChange(index, event)}
                     /><br/>
                     <FormControlLabel
