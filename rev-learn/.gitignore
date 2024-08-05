@@ -2,6 +2,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/s3
 
 # testing
 /coverage
