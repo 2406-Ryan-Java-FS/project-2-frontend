@@ -31,27 +31,6 @@ export default function App() {
   return (
     <div className="App">
 
-        {/* <Link to="/" style={{ margin: "15px" }}>
-          Home
-        </Link>
-        {" ~ "}
-        <Link to="/register" style={{ margin: "15px" }}>
-          Register
-        </Link>
-        <Link to="/login" style={{ margin: "15px" }}>
-          Login
-        </Link>
-        {" ~ "}
-        <Link to="/quiz" style={{ margin: "15px" }}>
-          Quiz
-        </Link>
-        <Link to="/create-quiz" style={{ margin: "15px" }}>
-            Create New Quiz
-          </Link>
-        <Link to="/edit-question" style={{ margin: "15px" }}>
-          Edit Question
-        </Link> */}
-
       {<NavBar />}
       <SideBar />
 
@@ -88,6 +67,7 @@ export default function App() {
               </EducatorDashboardProvider>
             }
           />
+          
       </Routes>
       </div>
 
