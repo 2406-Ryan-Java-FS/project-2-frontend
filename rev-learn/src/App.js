@@ -1,5 +1,5 @@
 import './App.css';
-import {Route,Routes, Link, BrowserRouter} from 'react-router-dom';
+import {Route,Routes, Link} from 'react-router-dom';
 // import HomeComponent from './components/HomeComponent';
 import SideBar from './pages/individual-course-student/course-side-bar';
 import CourseHome from './pages/individual-course-student/course-home';
@@ -12,13 +12,12 @@ import QuizItem from './pages/Quiz/quiz-item';
 import CourseDetailView from './pages/course-detail/course-detail-view'
 import Signup from './components/Signup';
 import Signin from './components/Signin';
-import SignedInAs from './components/SignedInAs';
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
 import { useState } from 'react';
-import { useLocation } from '../node_modules/react-router-dom/dist/index';
 import CourseDiscussions from './pages/individual-course-student/course-discussions';
 import CourseGrades from './pages/individual-course-student/course-grades';
 import { EducatorDashboardProvider } from './pages/EducatorDashboardComponents/educator-dashboard-context';
+import HomeComponent from './components/HomeComponent';
 
 export default function App() {
 
@@ -31,20 +30,23 @@ export default function App() {
   return (
     <div className="App">
       {/* <BrowserRouter> */}
-      <SideBar />
-        <nav id="navbar">
+    
+        {/* <nav id="navbar">
           <Link to="/">Home</Link>{" ~ "}
           <Link to="/login">Login</Link>{" ~ "}
           <Link to="/register">Register</Link>
-        </nav>
+        </nav> */}
+
         <Routes>
-          {/* <Route path='' element={<HomeComponent />} /> */}
+          <Route path='' element={<HomeComponent />} />
           {/* <Route path='/register' element={<Register/>}/>
           <Route path='/login' element={<Login/>}/> */}
           <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
         </Routes>
+
       {/* </BrowserRouter> */}
+
       <nav id="navbar">
         <Link to="/" style={{ margin: "15px" }}>
           Home
@@ -67,6 +69,9 @@ export default function App() {
           Edit Question
         </Link>
       </nav>
+
+      <SideBar />
+      
       <Routes>
         {/* <Route path="" element={<HomeComponent />} /> */}
         <Route path="/register" element={<Signup />} />
