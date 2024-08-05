@@ -20,6 +20,7 @@ import { Menu } from '@mui/icons-material';
 import { Typography } from '../../../node_modules/@mui/joy/index';
 import { useState } from 'react';
 import { Toolbar } from '../../../node_modules/@mui/material/index';
+import { AddCard } from '../../../node_modules/@mui/icons-material/index';
 
 export default function SideBar() {
   const drawerWidth = 245;
@@ -38,6 +39,7 @@ export default function SideBar() {
     { text: 'Quizzes', icon: <QuizIcon />, link: '/courses/:courseId/quizzes' },
     { text: 'Announcements', icon: <AnnouncementIcon /> },
     { text: 'Resources', icon: <MenuBookIcon /> },
+    { text: 'Payment Method', icon: <AddCard />, link: '/payment'}
   ];
 
   const DrawerList = (
@@ -98,7 +100,7 @@ export default function SideBar() {
           flexGrow: 1, backgroundColor: '#F36928',
           borderRadius: '25px', color: 'black', fontSize: '32px'
         }}>
-        Student Courses
+        Student Profile
       </Typography>
 
       <Drawer

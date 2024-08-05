@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import SideBar from './course-side-bar';
 
 export default function CourseQuizzes() {
     const { courseId } = useParams();
@@ -40,6 +41,8 @@ export default function CourseQuizzes() {
 
     if (error || quizzes.length === 0) {
         return (
+            <>
+            {<SideBar />}
             <div>
                 <p>No quizzes available for this course. </p>
                 <Link to={defaultQuizPage}>
@@ -47,10 +50,13 @@ export default function CourseQuizzes() {
                 </Link> 
                 <br/>
             </div>
+            </>
         );
     }
 
     return (
+        <>
+        {<SideBar />}
         <div>
             <h1>Quizzes for Course {courseId}</h1>
             <ul>
@@ -63,5 +69,6 @@ export default function CourseQuizzes() {
                 ))}
             </ul>
         </div>
+        </>
     );
 }

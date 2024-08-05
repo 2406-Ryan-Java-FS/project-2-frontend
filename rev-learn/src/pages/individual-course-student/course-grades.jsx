@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Box, Card, CardContent, Container, Typography } from '@mui/material';
+import SideBar from './course-side-bar';
 
 const CourseGrades = () => {
   const { courseId } = useParams();
@@ -41,6 +42,9 @@ const CourseGrades = () => {
 const gradesToShow = error ? defaultGrades : grades;
 
   return (
+    <>
+    {<SideBar />}
+    
    <Container sx={{ display: 'flex', justifyContent: 'center', marginTop: 4 }}>
         <Box sx={{ width: '100%', maxWidth: 600, padding: 2 }}>
         <Typography variant="h4" component="div" gutterBottom>
@@ -62,6 +66,7 @@ const gradesToShow = error ? defaultGrades : grades;
         </Card>
         </Box>
     </Container>
+    </>
   );
 };
 
