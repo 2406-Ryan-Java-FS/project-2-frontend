@@ -15,17 +15,16 @@ export default function Signup() {
 </Card> */}
             <table style={{ backgroundColor: '#F36928', border: 'solid black 1px'  }}>
                 <tr><td colSpan={2}>
-                    <Typography sx={{ textAlign: 'center' }}>
+                    <Typography sx={{ textAlign: 'center', color: '#fff', fontSize: '20px' }}>
                         Rev Learn Registration
                     </Typography>
                 </td></tr>
-                <tr><td><Typography>First Name</Typography></td>         <td><input id="SignupFirstName" type="text" /></td></tr>
-                <tr><td><Typography>Last Name</Typography></td>          <td><input id="SignupLastName" type="text" /></td></tr>
-                <tr><td><Typography>Email</Typography></td>              <td><input id="SignupEmail" type="text" /></td></tr>
-                <tr><td><Typography>Password</Typography></td>           <td><input id="SignupPassword" type="password" /></td></tr>
-                <tr><td><Typography>Confirm Password</Typography></td>   <td><input id="SignupPasswordConfirm" type="password" /></td></tr>
+                <tr><td><Typography sx={{color: '#fff'}}>First Name</Typography></td>         <td><input id="SignupFirstName" type="text" /></td></tr>
+                <tr><td><Typography sx={{color: '#fff'}}>Last Name</Typography></td>          <td><input id="SignupLastName" type="text" /></td></tr>
+                <tr><td><Typography sx={{color: '#fff'}}>Email</Typography></td>              <td><input id="SignupEmail" type="text" /></td></tr>
+                <tr><td><Typography sx={{color: '#fff'}}>Password</Typography></td>           <td><input id="SignupPassword" type="password" /></td></tr>
+                <tr><td><Typography sx={{color: '#fff'}}>Confirm Password</Typography></td>   <td><input id="SignupPasswordConfirm" type="password" /></td></tr>
                 <tr><td colSpan={2}>
-
                     <center>
                         <Button
                             variant='outlined'
@@ -41,7 +40,10 @@ export default function Signup() {
                                     )
                                     navigateUsingReact('/signin')
                                 }
-                            }>Register</Button>
+                            }
+                        >
+                            Register
+                        </Button>
                     </center>
                 </td></tr>
             </table>

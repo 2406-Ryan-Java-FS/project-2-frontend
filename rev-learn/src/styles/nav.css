@@ -1,0 +1,34 @@
+#navbar {
+    background-color: #f36928;
+    /* background-color: orange; */
+    margin-top: 5%;
+    padding: 15px 5%;
+    margin-bottom: 20px;
+
+}
+#nav-inner-box{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.nav-link{
+    padding-right: 50px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-link:hover{
+    color:#494b57;
+}
+
+.loggedin-box{
+    display: flex;
+
+}
+.usernameBadge{
+    padding: 0 20px;
+}
+.usernameBadge span{
+    font-weight: 600;
+}

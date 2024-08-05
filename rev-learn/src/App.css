@@ -43,13 +43,16 @@
 }
 
 body{
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: x-large;
   background-color: #a9edf7;
   background-image: url("../images/BG/Revature Hexagon.jpg");
   background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  color: #494b57;
 }
-button{
+/* button{
   font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
   font-size: xx-large;
   margin: 12px auto;
@@ -59,7 +62,7 @@ button:hover{
   background-color: rgb(32, 198, 62);
   cursor:pointer;
   
-}
+} */
 table{
   margin: 4px;
   padding: 6px 12px;
@@ -70,17 +73,65 @@ table{
 td{
   padding: 6px 12px;
 }
-h2{
+.orange-btn{
+  background-color: #F36928;
+  color: white;
+  font-weight: 500;
+  border:none;
+
+}
+.orange-outline-btn{
+  border: 1px solid #F36928;
+  color: #F36928;
+  background-color: white;
+  font-weight: 700;
+}
+.grey-btn{
+  background-color: #494b57;
+  color: white;
+  font-weight: 700;
+  border:none;
+}
+.grey-outline-btn{
+  border: 1px solid #494b57;
+  color: #494b57;
+  font-weight: 700;
+}
+
+.orange-outline-btn:hover{
+  background-color: #f48b5b;
+  color: white;
+  cursor: pointer;
+}
+
+.orange-btn:hover{
+  background-color: #45776227;
+  color: #F36928;
+  cursor: pointer;
+}
+
+.grey-outline-btn:hover{
+  background-color: #282c34;
+  color: white;
+  cursor: pointer;
+}
+
+.grey-btn:hover{
+  background-color: #45776227;
+  color: #494b57;
+  cursor: pointer;
+}
+/* h2{
   font-family: Georgia, 'Times New Roman', Times, serif;
   background-color: '#F36928';
   text-align: center;
   border-radius: 8px;
   padding: 6px 12px;
-}
-nav{
+} */
+/* nav{
   padding: 8px;
   background-color: rgb(91, 133, 145);
-}
+} */
 /* a{
   font-size: medium;
   text-align: center;

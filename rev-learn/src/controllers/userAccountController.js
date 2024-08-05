@@ -8,7 +8,6 @@
     make things look pretty, but I would like it to be 
     as dumb as possible so we aren't tangled in state management hell.
 */
-
 export default class userAccountController {
   static loggedInUser = null;
   static newUserCreated = null;

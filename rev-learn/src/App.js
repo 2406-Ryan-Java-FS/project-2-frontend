@@ -1,5 +1,5 @@
 import './App.css';
-import {Route,Routes, Link, BrowserRouter} from 'react-router-dom';
+import {Route,Routes, BrowserRouter} from 'react-router-dom';
 // import HomeComponent from './components/HomeComponent';
 import SideBar from './pages/individual-course-student/course-side-bar';
 import CourseHome from './pages/individual-course-student/course-home';
@@ -19,49 +19,20 @@ import { useLocation } from '../node_modules/react-router-dom/dist/index';
 import CourseDiscussions from './pages/individual-course-student/course-discussions';
 import CourseGrades from './pages/individual-course-student/course-grades';
 import { EducatorDashboardProvider } from './pages/EducatorDashboardComponents/educator-dashboard-context';
+import NavBar from './components/NavBar';
 
 export default function App() {
 
   let [x, setx] = useState(0)
   // globalStateSetter = () => { setx(x + 1) }
 
-  // const location = useLocation();
-  // const showSideBar = location.pathname.startsWith("/courses");
+  const location = useLocation();
+  const showSideBar = location.pathname.startsWith("/courses");
 
   return (
     <div className="App">
-      <SideBar />
-        <nav id="navbar">
-          <Link to="/">Home</Link>{" ~ "}
-          <Link to="/login">Login</Link>{" ~ "}
-          <Link to="/register">Register</Link>
-        </nav>
-        <Routes>
-          {/* <Route path='' element={<HomeComponent />} /> */}
-          {/* <Route path='/register' element={<Register/>}/>
-          <Route path='/login' element={<Login/>}/> */}
-          <Route path="/courses/:courseId" element={<CourseHome />} />
-          <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
-        </Routes>
-      <nav id="navbar">
-        <Link to="/" style={{ margin: "15px" }}>
-          Home
-        </Link>
-        {" ~ "}
-        <Link to="/register" style={{ margin: "15px" }}>
-          Register
-        </Link>
-        <Link to="/login" style={{ margin: "15px" }}>
-          Login
-        </Link>
-        {" ~ "}
-        <Link to="/quiz" style={{ margin: "15px" }}>
-          Quiz
-        </Link>
-        <Link to="/create-quiz" style={{ margin: "15px" }}>
-            Create New Quiz
-          </Link>
-      </nav>
+      {/* <SideBar /> */}
+      <NavBar />
       <Routes>
         {/* <Route path="" element={<HomeComponent />} /> */}
         <Route path="/register" element={<Signup />} />
