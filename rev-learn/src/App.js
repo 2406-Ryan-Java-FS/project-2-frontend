@@ -30,7 +30,6 @@ export default function App() {
 
   return (
     <div className="App">
-      {/* <BrowserRouter> */}
       <SideBar />
         <nav id="navbar">
           <Link to="/">Home</Link>{" ~ "}
@@ -44,7 +43,6 @@ export default function App() {
           <Route path="/courses/:courseId" element={<CourseHome />} />
           <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
         </Routes>
-      {/* </BrowserRouter> */}
       <nav id="navbar">
         <Link to="/" style={{ margin: "15px" }}>
           Home
@@ -63,19 +61,12 @@ export default function App() {
         <Link to="/create-quiz" style={{ margin: "15px" }}>
             Create New Quiz
           </Link>
-        <Link to="/edit-question" style={{ margin: "15px" }}>
-          Edit Question
-        </Link>
       </nav>
       <Routes>
         {/* <Route path="" element={<HomeComponent />} /> */}
         <Route path="/register" element={<Signup />} />
         <Route path="/login" element={<Signin />} />
         <Route path="/quiz" element={<QuizPage />} />
-        <Route
-          path="/edit-question"
-          element={<QuizItem mode="educator" item={2} />}
-        />
         <Route path="/course-catalog" element={<UserCourseCatalog />} />
         {/* TODO: course detail view/ need to add id in the param at the end */}
         <Route
