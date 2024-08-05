@@ -9,6 +9,7 @@ import {IconButton} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../provider/AppProvider';
+import { globalStateSetter } from '../../App';
 
 
 const navItems = ['Home', 'About', 'Contact Us'];
@@ -29,10 +30,10 @@ export default function NavDrawer(props) {
       color="inherit"
       aria-label="menu"
       onClick={() => { 
-        console.log(`AppContext=`,AppContext)
-        console.log(`globalContext=`,globalContext)
-        console.log(`setIsDrawerOpen=`,globalContext.setIsDrawerOpen)
-        globalContext.setIsDrawerOpen(true) 
+        // console.log(`AppContext=`,AppContext)
+        // console.log(`globalContext=`,globalContext)
+        // console.log(`setIsDrawerOpen=`,globalContext.setIsDrawerOpen)
+        globalContext.setIsDrawerOpen(true)
       }
       } >
 
@@ -51,15 +52,16 @@ export default function NavDrawer(props) {
       {
         //Looping over Links <Link to="/register">Register</Link>
       props.children.map((child)=>{
+        //console.log(`child=`,child)
+        let theToInsideTheLinkTag=child?.props?.to    //  /register
 
-        if(child.type?.render?.name=="LinkWithRef")//if it's a <Link>
+        if(theToInsideTheLinkTag!=undefined)//it's a <Link> if it has a 'to' prop
         {
           //console.log(`child=`,child)
           // console.log(`child.props.children=`,child.props.children)
+
+          let theTextInsideTheLinkTag=child?.props?.children  //  "Register"
           
-          
-          let theTextInsideTheLinkTag=child.props.children  //  "Register"
-          let theToInsideTheLinkTag=child.props.to          //  /register
           // console.log(`theToInsideTheLinkTag=`,theToInsideTheLinkTag)
 
           return(<ListItem key={Math.random()} disablePadding>
