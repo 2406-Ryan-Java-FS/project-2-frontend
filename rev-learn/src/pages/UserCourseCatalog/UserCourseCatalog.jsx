@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback } from 'react';
 import '../../styles/course-styles.css'
 import CourseCard from './CourseCard'
 import SearchBar from '../../components/SearchBar';
-// import { CourseDummyData, enrollmentStatusDummyData } from './CourseDummyData';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -12,7 +11,6 @@ export default function UserCourseCatalog() {
 
     const [visibleItems, setVisibleItems] = useState(12);
     const [loading, setLoading] = useState(false);
-    // let courseList = CourseDummyData;
     const [courseList, setCourseList] = useState([])
     const [filteredCourses, setFilteredCourses] = useState([]);
     const [userId, setUserId] = useState(0);
