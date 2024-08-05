@@ -20,16 +20,16 @@ export default function QuizCreate() {
     event.preventDefault();
 
     const data = {
-      course_id: '',
-      title: title.current.value,
-      timer: time.current.value,
-      attempts_allowed: attempts.current.value,
+      course_id: 1,
+      title: title,
+      timer: time,
+      attempts_allowed: attempts,
       open: true,
       questions: questionFields
     }
 
     console.log(data);
-    const url = "http://localhost:8080/auctions";
+    const url = "http://localhost:8080/quizzes";
 
     const options = {
       method: "POST",
