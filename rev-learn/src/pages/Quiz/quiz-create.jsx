@@ -5,11 +5,10 @@ import Checkbox from '@mui/material/Checkbox';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import { FormControlLabel } from '@mui/material';
-import { AppContext } from '../../provider/AppProvider';
 
 export default function QuizCreate() {
 
-  const { currentCourse } = useContext(AppContext);
+  const [courseId, setCourseId] = useState(0)
 
   const [title, setTitle] = useState('')
 
@@ -26,7 +25,7 @@ export default function QuizCreate() {
     event.preventDefault();
 
     const data = {
-      course_id: currentCourse,
+      course_id: courseId,
       title: title,
       timer: time,
       attempts_allowed: attempts,
@@ -35,9 +34,17 @@ export default function QuizCreate() {
     }
 
     console.log(data);
-    const url = "http://localhost:8080/quizzes";
 
-    const options = {
+    const url1 = `http://localhost:8080/courses/${courseId}`;
+    const url2 = "http://localhost:8080/quizzes";
+
+    const options1 = {
+      method: "GET",
+      headers: {
+         'Content-Type': 'application/json'
+      }
+    }
+    const options2 = {
       method: "POST",
       headers: {
          'Content-Type': 'application/json'
@@ -46,15 +53,21 @@ export default function QuizCreate() {
     }
   
     try {
-      const httpResponse = await fetch(url, options);
-      const body = await httpResponse.json();
-
-      console.log(body);
-      if (body) {
-          alert("Quiz has been created!");
+      const httpResponse1 = await fetch(url1, options1);
+      const body1 = await httpResponse1.json();
+      
+      console.log(body1);
+      if (body1) {
+          const httpResponse2 = await fetch(url2, options2);
+          const body2 = await httpResponse2.json();
+      
+          console.log(body2);
+          if (body2){
+            alert("Quiz has been created!");
+          }
       }
     } catch (error) {
-      alert("There was an error creating the quiz.");
+      alert("There is no course with that ID.");
     }
   }
 
@@ -99,6 +112,16 @@ export default function QuizCreate() {
         <div>
           <h3>New Quiz</h3>
           <form autoComplete="off" onSubmit={createQuiz}>
+                  <TextField 
+                    label="Course ID"
+                    onChange={e => setCourseId(e.target.value)}
+                    required
+                    variant="outlined"
+                    color="primary"
+                    type="text"
+                    sx={{mb: 3}}
+                    value={courseId}
+                 /><br/>
                 <TextField 
                     label="Quiz Title"
                     onChange={e => setTitle(e.target.value)}
