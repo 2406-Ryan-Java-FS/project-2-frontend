@@ -4,6 +4,8 @@ import { Button } from "../../../node_modules/@mui/material/index"
 
 export default function NavBar() {
 
+    
+
     return (<>
 
         {
@@ -29,6 +31,10 @@ export default function NavBar() {
                 <Button variant='contained' sx={{margin: '10px'}}
                 component={Link} to='/login'>
                     Login
+                </Button>
+                <Button variant='contained' sx={{margin: '10px'}}
+                component={Link} to='/course-catalog'>
+                    Catalog
                 </Button>
                 <Button variant='contained' sx={{margin: '10px'}}
                 component={Link} to='/quiz'>

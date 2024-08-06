@@ -116,7 +116,7 @@ export default function CourseDetailReview({ courseId }) {
       <div className="reviews-header">
         <h2>Reviews ({enrollmentList.length})</h2>
         {console.log(user)}
-        {enrollment && (
+        {enrollmentList.length > 0 && (
           <Fab
             onClick={handleDialogOpen}
             size="small"
@@ -134,19 +134,23 @@ export default function CourseDetailReview({ courseId }) {
       />
       {enrollmentList.length > 0 &&
         enrollmentList.map((enrollment) => {
-          console.log("Rendering enrollment:", enrollment);
-          console.log(
-            "User details for enrollment:",
-            userDetails[enrollment.studentId]
-          );
-          return (
-            <CourseDetailReviewCard
-              key={enrollment.enrollmentId}
-              enrollment={enrollment}
-              currUser={userDetails[enrollment.studentId]} // Pass user details here
-            />
-          );
+          if (enrollment.reviewRate !== 0) {
+            console.log("Rendering enrollment:", enrollment);
+            console.log(
+              "User details for enrollment:",
+              userDetails[enrollment.studentId]
+            );
+            return (
+              <CourseDetailReviewCard
+                key={enrollment.enrollmentId}
+                enrollment={enrollment}
+                currUser={userDetails[enrollment.studentId]} // Pass user details here
+              />
+            );
+          }
+          return null;
         })}
     </>
   );
+
 }

@@ -73,15 +73,15 @@ export default function CourseDetailBtn({ courseId }) {
   return (
     <div className="enrollBtn">
       {enrollment === null ? (
-        <button type="button" onClick={pendingEnroll}>
+        <button className="grey-btn add-cart-btn" type="button" onClick={pendingEnroll}>
           Add to Cart
         </button>
       ) : enrollment.enrolled === false ? (
-        <button type="button" disabled>
+        <button className="grey-btn add-cart-btn"  type="button" disabled>
           Already added to cart
         </button>
       ) : (
-        <Link to={`/course/detail/${courseId}`} type="button">
+        <Link to={`/courses/${courseId}`} type="button" className="grey-btn add-cart-btn go-to-course">
           Go to the course
         </Link>
       )}

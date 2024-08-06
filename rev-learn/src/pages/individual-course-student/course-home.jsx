@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import "../../styles/individual-course/home.css"
 
 export default function CourseHome() {
     const { courseId } = useParams();
@@ -11,11 +12,12 @@ export default function CourseHome() {
         // Fetch course data from the backend
         const fetchCourse = async () => {
             try {
-                const response = await fetch(`/project-2-back/courses/${courseId}`);
+                const response = await fetch(`http://localhost:8080/courses/${courseId}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch course details');
                 }
                 const data = await response.json();
+                console.log(data);
                 setCourse(data);
             } catch (error) {
                 console.error('Error fetching course:', error);
@@ -37,7 +39,7 @@ export default function CourseHome() {
     }
 
     return (
-        <div>
+        <div className="student-home-box">
         <h1>{error ? defaultCourse.title : course.title}</h1>
         <p>{error ? defaultCourse.description : course.description}</p>
     </div>
