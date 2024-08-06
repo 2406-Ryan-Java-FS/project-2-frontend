@@ -10,7 +10,7 @@ import {
 import ChatIcon from "@mui/icons-material/Chat";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
-import placeholderImage from "../../images/blank.png";
+import placeholderImage from "../../images/placeholder-image.jpg";
 import EducatorDashboardCourseCardDropdown from "./educator-dashboard-course-card-dropdown";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
 

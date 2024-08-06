@@ -19,6 +19,9 @@ import AddIcon from "@mui/icons-material/Add";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
 import { createNewCourse } from "./educator-dashboard-api";
 
+const DEFAULT_IMAGE_URL =
+  "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
+
 export default function EducatorDashboardHeaderAddNewCourse() {
   const { state, setState, handleInputChange, educatorData } =
     useEducatorDashboardContext();
@@ -48,7 +51,14 @@ export default function EducatorDashboardHeaderAddNewCourse() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createNewCourse(state.newCourse)
+
+    // Ensure imgUrl has a default value if not provided
+    const courseData = {
+      ...state.newCourse,
+      imgUrl: state.newCourse.imgUrl.trim() || DEFAULT_IMAGE_URL,
+    };
+
+    createNewCourse(courseData)
       .then((response) => {
         setState((prevState) => ({
           ...prevState,
@@ -60,7 +70,7 @@ export default function EducatorDashboardHeaderAddNewCourse() {
             description: "",
             category: "",
             price: "",
-            imgUrl: "",
+            imgUrl: "", // Reset imgUrl for next course creation
             creationDate: "",
           },
         }));
@@ -68,6 +78,7 @@ export default function EducatorDashboardHeaderAddNewCourse() {
       .catch((error) => {
         console.error("There was an error creating the course.", error);
       });
+
     setOpenModal(false);
   };
 
