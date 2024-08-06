@@ -27,10 +27,13 @@ export const EducatorDashboardProvider = ({ children }) => {
     const fetchUserData = async () => {
       try {
         const response = await getLoggedInUserInformationApi();
-        const { user, educator } = response.data;
+        const data = response.data;
+        const user = data.user;
+        const educator = data.educator;
+
         setUserData(user);
-        if (user.role === "educator") {
-          setEducatorData(educator);
+        if (user && user.role === "educator") {
+          setEducatorData(educator || {}); // Default to an empty object if educator is undefined
           fetchCourses(user.userId);
         }
       } catch (error) {
