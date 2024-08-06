@@ -35,8 +35,8 @@ export default function QuizCreate() {
 
     console.log(data);
 
-    const url1 = `http://localhost:8080/courses/${courseId}`;
-    const url2 = "http://localhost:8080/quizzes";
+    const url1 = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/courses/${courseId}`;
+    const url2 = "http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/quizzes";
 
     const options1 = {
       method: "GET",
