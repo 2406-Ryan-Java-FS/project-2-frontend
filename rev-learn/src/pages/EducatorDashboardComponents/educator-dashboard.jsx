@@ -1,11 +1,15 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import EducatorDashboardHeader from "./educator-dashboard-header";
 import EducatorDashboardCourseCard from "./educator-dashboard-course-card";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
 
 export default function EducatorDashboard() {
-  const { state } = useEducatorDashboardContext();
+  const { state, loading } = useEducatorDashboardContext();
+
+  if (loading) {
+    return <Typography>Loading...</Typography>; // Show loading state
+  }
 
   return (
     <>
