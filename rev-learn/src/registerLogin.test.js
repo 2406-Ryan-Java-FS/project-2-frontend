@@ -11,17 +11,17 @@ it('Registers, signs in, signs out',async()=>
     expect(await response.text()).toBe("Cleared all database tables");
 
     await uac.signup("testFirstName","testLastName","testEmail","testPass","testPass")
-    expect(uac.newUserCreated.firstName).toBe("testFirstName")
-    expect(uac.newUserCreated.lastName) .toBe("testLastName")
-    expect(uac.newUserCreated.email)    .toBe("testEmail")
-    expect(uac.newUserCreated.password) .toBe(undefined)
+    expect(uac.newUserCreated.user.firstName).toBe("testFirstName")
+    expect(uac.newUserCreated.user.lastName) .toBe("testLastName")
+    expect(uac.newUserCreated.user.email)    .toBe("testEmail")
+    expect(uac.newUserCreated.user.password) .toBe(undefined)
 
     await uac.signin("testEmail","testPass")
     console.log(`uac.getLoggedInUser()=`,uac.getLoggedInUser())
-    expect(uac.getLoggedInUser().firstName).toBe("testFirstName")
-    expect(uac.getLoggedInUser().lastName) .toBe("testLastName")
-    expect(uac.getLoggedInUser().email)    .toBe("testEmail")
-    expect(uac.getLoggedInUser().password) .toBe(undefined)
+    expect(uac.getLoggedInUser().user.firstName).toBe("testFirstName")
+    expect(uac.getLoggedInUser().user.lastName) .toBe("testLastName")
+    expect(uac.getLoggedInUser().user.email)    .toBe("testEmail")
+    expect(uac.getLoggedInUser().user.password) .toBe(undefined)
 
 
     

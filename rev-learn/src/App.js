@@ -24,6 +24,7 @@ import Payment from './components/Payment';
 import { EducatorDashboardProvider } from './pages/EducatorDashboardComponents/educator-dashboard-context';
 
 export let globalStateSetter//causes full re-render of App
+export let globalx;
 
 export default function App() {
 
@@ -31,7 +32,8 @@ export default function App() {
 
   //WATCH OUT!!!! MUST change the value of a variable to cause re-render
   globalStateSetter = () => { setx(x + 1) }
-
+  globalx=x
+  
   return (
     <div className="App">
 
@@ -46,13 +48,13 @@ export default function App() {
           <Link to="/">Home</Link>
           <Link to="/register">Register</Link>
           <Link to="/profile">Profile</Link>
-          <Link to="/educator">Educator Dashboard</Link>
+          <Link to="/educator">Educator&nbsp;Dashboard</Link>
           <Divider />
           <Link to="/payments">Payment</Link>
           <Link to="/course-catalog">Catalog</Link>
           <Link to="/quiz">Quiz</Link>
           <Link to="/edit-question">Edit&nbsp;Question</Link>
-          <Link to="/student">Student Profile</Link>
+          <Link to="/student">Student&nbsp;Profile</Link>
         </NavDrawer>
 
 

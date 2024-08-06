@@ -3,6 +3,7 @@ import {
   getCoursesByEducatorIdApi,
   getLoggedInUserInformationApi,
 } from "./educator-dashboard-api";
+import { globalx } from "../../App";
 
 const EducatorDashboardContext = createContext();
 
@@ -39,7 +40,7 @@ export const EducatorDashboardProvider = ({ children }) => {
     };
 
     fetchUserData();
-  }, []);
+  }, [globalx]);//globalx changes, so this useEffect will trigger
 
   const fetchCourses = async (educatorId) => {
     try {

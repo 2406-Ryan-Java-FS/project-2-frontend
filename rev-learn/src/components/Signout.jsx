@@ -12,7 +12,7 @@ return(<>
     <ListItem key={Math.random()} disablePadding>
     <ListItemText 
       sx={{ textAlign: 'center' }} 
-      primary={"Signed in as: "+uac.getLoggedInUser()?.firstName}
+      primary={"Signed in as: "+uac.getLoggedInUser()?.user?.firstName}
     />
     </ListItem>
     <ListItem key={Math.random()} disablePadding>

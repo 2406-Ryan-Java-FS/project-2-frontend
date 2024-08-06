@@ -27,24 +27,28 @@ export default class userAccountController
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
-                "user":{
-                    "firstName":firstName,
-                    "lastName":lastName,
-                    "email":email,
-                    "password":password
+                user:{
+                    firstName:firstName,
+                    lastName:lastName,
+                    email:email,
+                    password:password,
+                    role:`educator`
                 },
-                "educator":{
-
+                educator:{
+                    degreeLevel : "Dont have it",
+                    degreeMajor : "Dont have it",
+                    almaMater : "Dont have it",
+                    yearOfHire : "Dont have it"
                 }
             })
         })
         
         if(response.status!=201)
-            throw new Error(JSON.stringify(response,null,2))
+            throw new Error(await response.text())
             //throw new Error(`response status ${response.status} ${response.statusText} ${await response.text()}`)
 
         let body=await response.json()
-        userAccountController.newUserCreated=body.user
+        userAccountController.newUserCreated=body
         userAccountController.newUserCreated.token=body.token
         console.log(`newUserCreated=`,userAccountController.newUserCreated)
     }
@@ -59,30 +63,33 @@ export default class userAccountController
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
-                "user":{
-                    "firstName":"Dont have it",
-                    "lastName":"Dont have it",
-                    "email":email,
-                    "username":"Dont have it",
-                    "password":password
+                user:{
+                    firstName:"Dont have it",
+                    lastName:"Dont have it",
+                    email:email,
+                    username:"Dont have it",
+                    password:password
                 },
-                "educator":{
-
+                educator:{
+                    degreeLevel : "Dont have it",
+                    degreeMajor : "Dont have it",
+                    almaMater : "Dont have it",
+                    yearOfHire : "Dont have it"
                 }
             })
         })
         
         if(response.status!=200)
-            throw new Error(JSON.stringify(response,null,2))
+            throw new Error(await response.text())
 
-        let body=await response.json()
-        let loggerInUser=body.user
-        loggerInUser.token=`Bearer ${body.token}`
-        localStorage.setItem("getLoggedInUser()",JSON.stringify(loggerInUser))
+        let loggerInUser=await response.json()
+        loggerInUser.token=`Bearer ${loggerInUser.token}`
+        localStorage.setItem("loggedInUser",JSON.stringify(loggerInUser))
         console.log(`userAccountController.getLoggedInUser()=`,userAccountController.getLoggedInUser())
     }
 
     /**
+     * Bearer is already prepended to the token
      * Returns the logged in user object:
      * @example
      * {
@@ -105,7 +112,9 @@ export default class userAccountController
      */
     static getLoggedInUser()
     {
-        return JSON.parse(localStorage.getItem("getLoggedInUser()"))
+        let loggedInUser=JSON.parse(localStorage.getItem("loggedInUser"))
+        console.log(`getLoggedInUser() loggedInUser=`,loggedInUser)
+        return loggedInUser
     }
 
     /**
@@ -126,10 +135,10 @@ export default class userAccountController
         let body=await response.json()
 
         //error or not, frontend is logging out
-        localStorage.removeItem("getLoggedInUser()")
+        localStorage.removeItem("loggedInUser")
 
         if(response.status!=200)
-            throw new Error(`response status ${response.status} `+JSON.stringify(body.errorMessage))
+            throw new Error(await response.text())
         
         return body.message
     }
