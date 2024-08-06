@@ -18,9 +18,9 @@ const QuizTimer = () => {
     <div className='quiz-start'>
       <Button 
           id='quiz-btn' 
-          variant="outlined" 
+          variant="contained" 
           onClick={handleStartTimer}
-          style={{margin:'2px 5px 2px 2px'}}
+          style={{margin:'2px 5px 2px 2px', color: 'black'}}
         >
         Start Quiz
       </Button>

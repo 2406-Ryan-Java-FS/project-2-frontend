@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import SideBar from './course-side-bar';
 
 export default function CourseHome() {
     const { courseId } = useParams();
@@ -36,10 +37,12 @@ export default function CourseHome() {
         return <div>Loading...</div>;
     }
 
-    return (
+    return (<>
+        {<SideBar />}
         <div>
         <h1>{error ? defaultCourse.title : course.title}</h1>
         <p>{error ? defaultCourse.description : course.description}</p>
     </div>
+    </>
     );
 }

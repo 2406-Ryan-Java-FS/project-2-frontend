@@ -13,8 +13,11 @@ body {
     border-radius: 0.5rem;
     border: 2px solid #a1a1aa;
     /* background-color: #e4e4e7; */
-    background-color: transparent;
+    background-color: white;
+    
+    /* background-color: transparent; */
     transition: background-color 0.3s ease;
+    text-align: left;
 }
 
 .course-card:hover {
@@ -87,7 +90,7 @@ body {
     -webkit-box-orient: vertical;
     /* line-height: 1.5; */
     max-height: 5.4em; /* (line-height * number of lines) */
-    color:#71717a;
+    color: 'black';
     /* margin-bottom: 10px; */
     font-size: 14px;
 }
@@ -127,6 +130,7 @@ body {
 .userCourseCatalogOutterContainer {
     display: flex;
     padding-bottom: 160px;
+    justify-content: center;
 }
 
 .userCourseCatalogMainContainer {
@@ -170,7 +174,7 @@ body {
   width: 100%;
   max-width: 800px; /* Ensures the container has a maximum width */
   margin: 0 auto;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
 }
 
 /* FilterSidebar */
@@ -250,4 +254,27 @@ body {
     to {
         transform: rotate(360deg);
     }
+}
+
+.enrolledContinueButton {
+    background-color: #3b82f6;
+    display:flex;
+    border-radius: 0.5rem;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    margin-top: 20px;
+    transition: background-color 0.1s ease;
+}
+
+.enrolledContinueButtonText {
+    margin-bottom: 4px;
+}
+
+.enrolledContinueButton:hover {
+    background-color: #34d399;
+    cursor: pointer;
 }

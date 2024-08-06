@@ -80,6 +80,15 @@ code {
   }
 }
 
+body{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: x-large;
+  background-color: #a9edf7;
+  background-image: url("../images/BG/Revature-Hexagon.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 @layer base {
   * {
     @apply border-border;
