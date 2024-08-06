@@ -67,6 +67,7 @@ export default function App() {
             </EducatorDashboardProvider>
           }
         />
+        <Route path="/quiz/:quiz_id" element={ <QuizPage/> } />
       </Routes>
     </div>
   );
