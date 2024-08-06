@@ -28,14 +28,14 @@ export default function UserCourseCatalog() {
     useEffect(() => {
       const fetchAllCourses = async () => {
         try {
-          const coursesResponse = await fetch(`http://localhost:8080/courses`, { method: 'GET' });
+          const coursesResponse = await fetch(`${REVLEARN_URL}/courses`, { method: 'GET' });
           const coursesResult = await coursesResponse.json();
     
           let completedEnrollments = [];
     
           // If logged in, fetch enrollments as well
           if (userId && token) {
-            const enrollmentsResponse = await fetch(`http://localhost:8080/enrollments/students/${userId}/completed`, {
+            const enrollmentsResponse = await fetch(`${REVLEARN_URL}/enrollments/students/${userId}/completed`, {
               method: 'GET',
               headers: {
                 'Authorization': `Bearer ${token}`,

@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
 import '../../styles/course-styles.css'
-import { Typography } from '../../../node_modules/@mui/joy/index';
 
 export default function CourseCard(props) {
 
     // Student props
-    // const { image, role, title, description, category, price, rating } = props;
     const { image, imageStatic, role, title, description, price, rating, enrolled, courseId } = props;
     // const courseImage = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
 
@@ -28,12 +26,11 @@ export default function CourseCard(props) {
                             {enrolled ?
 
                                 (
-                                    <div className="enrolledContinueButton">
-
-                                        <Link to={`/courses/${courseId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                        <div className="enrolledContinueButtonText">Continue Course</div>
-                                        </Link>
-                                    </div>
+                                    <Link to={`/courses/${courseId}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <div className="enrolledContinueButton">
+                                            <div className="enrolledContinueButtonText">Continue Course</div>
+                                        </div>
+                                    </Link>
                                 )
                                 :
                                 (
