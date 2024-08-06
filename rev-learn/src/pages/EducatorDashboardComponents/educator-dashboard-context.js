@@ -28,11 +28,15 @@ export const EducatorDashboardProvider = ({ children }) => {
     const fetchUserData = async () => {
       try {
         const response = await getLoggedInUserInformationApi();
-        const data = response.data;
-        const user = data.user;
-        const educator = data.educator;
-
-        setUserData(user);
+        if (response.data.user === undefined) {
+          setUserData(response.data);
+        } else {
+          var data = response.data;
+          var user = data.user;
+          var educator = data.educator;
+          setUserData(user);
+        }
+        
         if (user && user.role === "educator") {
           setEducatorData(educator || {}); // Default to an empty object if educator is undefined
           await fetchCourses(user.userId); // Wait for courses to be fetched
