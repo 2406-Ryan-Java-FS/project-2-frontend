@@ -1,13 +1,30 @@
+import { useEffect, useState } from "react"
 import { Link } from "../../node_modules/react-router-dom/dist/index"
+import EducatorDashboard from "../pages/EducatorDashboardComponents/educator-dashboard"
+import UserCourseCatalog from "../pages/UserCourseCatalog/UserCourseCatalog"
+import { EducatorDashboardProvider } from "../pages/EducatorDashboardComponents/educator-dashboard-context";
 
 export default function HomeComponent() {
 
+    const [role, setRole] = useState("");
 
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (loggedInUser) {
+            const userObject = JSON.parse(loggedInUser);
+            setRole(userObject.role);
+        }
+    }, []);
 
-    return(
+    return (
         <>
-
-      
+            {role && role === "educator" ?
+                <EducatorDashboardProvider>
+                    <EducatorDashboard />
+                </EducatorDashboardProvider>
+                :
+                <UserCourseCatalog />
+            }
 
         </>
     )
