@@ -5,9 +5,11 @@ import Checkbox from '@mui/material/Checkbox';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import { FormControlLabel } from '@mui/material';
-import AnswerCreate from './qstn-answer-create';
+import { AppContext } from '../../provider/AppProvider';
 
 export default function QuizCreate() {
+
+  const { currentCourse } = useContext(AppContext);
 
   const [title, setTitle] = useState('')
 
@@ -24,7 +26,7 @@ export default function QuizCreate() {
     event.preventDefault();
 
     const data = {
-      course_id: 1,
+      course_id: currentCourse,
       title: title,
       timer: time,
       attempts_allowed: attempts,
@@ -184,7 +186,6 @@ export default function QuizCreate() {
                         )
                         })}
                         <Button variant="outlined" onClick={() => addAnswer(qIndex)}>Add an Answer</Button><br/>
-                        {/* <AnswerCreate/> */}
                         <Button variant="outlined" onClick={() => removeQuestion(qIndex)}>Remove Question</Button>
                     </div>
                     )
