@@ -170,30 +170,9 @@ export const getQuizAttemptByStudentId = async (userId) => {
   }
 }
 
-export const getQuizDetails = async ({quizId}) => {
-  try {
-    const response = await fetch(`http://127.0.0.1:8010/quizzes/${quizId}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-    });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
+export const getSingleIdQuiz = async (quizId) => {
 
-    const data = await response.json();
-
-    return unpackQuizDTO(data);
-  } catch (error) {
-    console.error('Fetch error:', error);
-  }
-}
-
-
-export const getSingleIdQuiz = async ({quizId}) => {
   try {
     const response = await fetch(`http://127.0.0.1:8010/quizzes/${quizId}`, {
       method: 'GET',
