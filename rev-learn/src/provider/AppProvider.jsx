@@ -7,6 +7,7 @@ export default function AppProvider({ children }) {
   //you want your Components to have access to.
   const [quizQuestionId, setquizQuestionId] = useState(0);
   const [quizStartTimer, setQuizStartTimer] = useState(false);
+  const [currentCourse, setCurrentCourse] = useState(1);
 
   function updateQuizQuestionId(id) {
       setquizQuestionId(id);
@@ -16,11 +17,17 @@ export default function AppProvider({ children }) {
       setQuizStartTimer(true);
   }
 
+  function updateCurrentCourse(id) {
+      setCurrentCourse(id);
+  }
+
   const data = {
       quizQuestionId: quizQuestionId,
       updateQuizQuestionId: updateQuizQuestionId,
       quizStartTimer: quizStartTimer,
       startQuizTimer: startQuizTimer,
+      currentCourse: currentCourse,
+      updateCurrentCourse: updateCurrentCourse
   }
 
   return (
