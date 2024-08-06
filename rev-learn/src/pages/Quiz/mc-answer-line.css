@@ -40,8 +40,10 @@
   margin-right: 5px; /* Space between left and middle button */
 }
 
-.middle-button {
+.choice-text {
   margin-right: auto; /* Pushes the right button to the right */
+  font-size: 1rem;
+  color: black;
 }
 
 .right-circle-x {

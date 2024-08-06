@@ -1,26 +1,34 @@
-import React from 'react'
+
+import React, { useContext } from 'react'
 
 import "./quiz.css";
-import { quizQuestions } from './quiz-data';
 import { Button } from '@mui/material';
+import { QuizContext } from '../../provider/QuizProvider';
 
-const QuestionNavigationButton = () => {
-  const questionButton = quizQuestions;
-  
-  // console.log("🚀 ~ QuestionNavigationButton ~ questionButton:", questionButton)
-  
+const QuestionNavigationButton = ({quiz:quizData}) => {
+  const questionButton = quizData.questions;
+  const { updateQuizQuestionId, quizStartTimer } = useContext(QuizContext);
+
+  const handleQuestionButton = (button) => { 
+    // console.log("🏈 ~ handleQuestionButton ~ handleQuestionButton  button:", button.target.textContent);
+    updateQuizQuestionId(button.target.textContent - 1 );
+  }
+
   return (
     <div className='questions-nav-buttons'>
-      <p style={{margin:'15px', color: 'black'}}>Question Nav Buttons</p>
+      <p className="question-btn-label" style={{margin:'15px'}}>Question Buttons</p>
       {
         questionButton.map((item, idxqb) => (
           <div key={idxqb} style={{margin:'5px'}}>
-            <Button variant="contained" 
+            <Button 
+                variant="contained" 
+                id='quiz-nav-btn'
+                onClick={(e) => handleQuestionButton(e)}
                 href="#contained-buttons" 
                 size="small" 
-                // id='quiz-nav-btn'
-                >
-              {item.question_seq}
+                disabled={ quizStartTimer ? false : true }
+              >
+              {idxqb+1}
             </Button>
           </div>
         ))
