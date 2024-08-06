@@ -23,7 +23,7 @@ export default function EducatorDashboardCourseCard({ course }) {
   };
 
   const handleQuizIconClick = () => {
-    navigate("/edit-question");
+    navigate("/quiz-create");
   };
 
   return (
