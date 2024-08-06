@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import SideBar from './course-side-bar';
+
+import "../Quiz/quiz.css";
+
 
 export default function CourseQuizzes() {
     const { courseId } = useParams();
@@ -10,7 +14,7 @@ export default function CourseQuizzes() {
     useEffect(() => {
         const fetchQuizzes = async () => {
             try {
-                const response = await fetch(`/project-2-back/courses/${courseId}/quizzes`);
+                const response = await fetch('http://localhost:8010/quizzes');
                 if (!response.ok) {
                     throw new Error('Failed to fetch quizzes');
                 }
@@ -40,6 +44,8 @@ export default function CourseQuizzes() {
 
     if (error || quizzes.length === 0) {
         return (
+            <>
+            {<SideBar />}
             <div>
                 <p>No quizzes available for this course. </p>
                 <Link to={defaultQuizPage}>
@@ -47,21 +53,28 @@ export default function CourseQuizzes() {
                 </Link> 
                 <br/>
             </div>
+            </>
         );
     }
 
     return (
-        <div>
-            <h1>Quizzes for Course {courseId}</h1>
+        <>
+        {<SideBar />}
+        <div className='course-quizzes'>
+            <br/>
+            <br/>
+            <br/>
+            <h3>Quizzes for Course</h3>
             <ul>
                 {quizzes.map((quiz) => (
                     <li key={quiz.quiz_id}>
-                        <Link to={`/quizzes/${quiz.quiz_id}`}>
+                        <Link to={`/quiz/${quiz.quizId}`}>
                             {quiz.title}
                         </Link>
                     </li>
                 ))}
             </ul>
         </div>
+        </>
     );
 }

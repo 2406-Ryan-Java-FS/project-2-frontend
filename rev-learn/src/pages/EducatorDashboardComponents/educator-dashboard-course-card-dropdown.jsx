@@ -18,6 +18,9 @@ import BasicMenu from "./basic-menu";
 import { updateCourse } from "./educator-dashboard-api";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
 
+const DEFAULT_IMAGE_URL =
+  "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
+
 export default function EducatorDashboardCourseCardDropdown({ course }) {
   // Ensure all course fields have default values that are not null
   const initialCourseState = {
@@ -46,8 +49,16 @@ export default function EducatorDashboardCourseCardDropdown({ course }) {
 
   const handleEditCourseSubmit = (event) => {
     event.preventDefault();
-    console.log(editedCourse.imgUrl, "image url");
-    updateCourse(editedCourse.courseId, editedCourse)
+
+    // Ensure imgUrl has a default value if not provided
+    const courseData = {
+      ...editedCourse,
+      imgUrl: editedCourse.imgUrl.trim() || DEFAULT_IMAGE_URL,
+    };
+
+    // console.log(courseData.imgUrl, "image url");
+
+    updateCourse(courseData.courseId, courseData)
       .then((response) => {
         handleUpdateCourse(response.data); // Update the state in parent component
         setOpenEditCourseModal(false); // Close the modal
@@ -55,7 +66,8 @@ export default function EducatorDashboardCourseCardDropdown({ course }) {
       .catch((error) => {
         console.error("Error updating course: ", error);
       });
-    console.log(editedCourse); // Handle Edit course logic
+
+    console.log(courseData); // Handle Edit course logic
   };
 
   const handleUpdateCourse = (updatedCourseFromDB) => {
@@ -88,7 +100,7 @@ export default function EducatorDashboardCourseCardDropdown({ course }) {
             width: "auto",
             maxWidth: 600,
             margin: "auto",
-            border: 'solid black 1px' 
+            border: "solid black 1px",
           }}
         >
           <DialogTitle>Edit Course</DialogTitle>

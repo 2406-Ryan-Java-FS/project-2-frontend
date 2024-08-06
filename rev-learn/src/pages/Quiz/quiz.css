@@ -1,4 +1,11 @@
 
+.course-quizzes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .quiz-container {
   display: flex;
   justify-content: center;

@@ -46,12 +46,13 @@ body{
   font-family: "Roboto", sans-serif;
   font-size: x-large;
   background-color: #a9edf7;
-  background-image: url("../images/BG/Revature Hexagon.jpg");
-  background-size: cover;background-attachment: fixed;
+  background-image: url("../images/BG/DesignBG.png");
+  background-size: cover;
+  background-attachment: fixed;
   background-position: center;
   color: #494b57;
 }
-/* button{
+button{
   font-family: Impact, Haettenschweiler, 'Arial Narrow', sans-serif;
   font-size: xx-large;
   margin: 12px auto;
@@ -61,7 +62,7 @@ button:hover{
   background-color: rgb(32, 198, 62);
   cursor:pointer;
   
-} */
+}
 table{
   margin: 4px;
   padding: 6px 12px;

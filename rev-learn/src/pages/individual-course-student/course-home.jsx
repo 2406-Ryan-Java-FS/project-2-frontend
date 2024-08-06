@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import "../../styles/individual-course/home.css"
+import "../../styles/individual-course/home.css";
+import SideBar from './course-side-bar';
+
 
 export default function CourseHome() {
     const { courseId } = useParams();
@@ -38,10 +40,12 @@ export default function CourseHome() {
         return <div>Loading...</div>;
     }
 
-    return (
-        <div className="student-home-box">
+    return (<>
+        {<SideBar />}
+        <div>
         <h1>{error ? defaultCourse.title : course.title}</h1>
         <p>{error ? defaultCourse.description : course.description}</p>
     </div>
+    </>
     );
 }

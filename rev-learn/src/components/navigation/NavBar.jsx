@@ -33,10 +33,15 @@ export default function NavBar() {
                     Login
                 </Button>
                 <Button variant='contained' sx={{margin: '10px'}}
-                component={Link} to='/course-catalog'>
-                    Catalog
+                component={Link} to='/student'>
+                    Student
                 </Button>
                 <Button variant='contained' sx={{margin: '10px'}}
+                component={Link} to='/educatordashboard'>
+                    Educator
+                </Button>
+                
+                {/* <Button variant='contained' sx={{margin: '10px'}}
                 component={Link} to='/quiz'>
                     Quiz
                 </Button>
@@ -47,7 +52,7 @@ export default function NavBar() {
                 <Button variant='contained' sx={{margin: '10px'}}
                 component={Link} to='/edit-question'>
                     Edit Question
-                </Button>
+                </Button> */}
 
             </Toolbar>
 
