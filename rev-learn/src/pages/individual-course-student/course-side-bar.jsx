@@ -15,24 +15,35 @@ import QuizIcon from '@mui/icons-material/Quiz';
 import AnnouncementIcon from '@mui/icons-material/Announcement';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { Link } from 'react-router-dom';
+import { IconButton } from '../../../node_modules/@mui/joy/index';
+import { Menu } from '@mui/icons-material';
+import { Typography } from '../../../node_modules/@mui/joy/index';
+import { useState } from 'react';
+import { Toolbar } from '../../../node_modules/@mui/material/index';
+import { AddCard } from '../../../node_modules/@mui/icons-material/index';
 
 export default function SideBar() {
   const drawerWidth = 245;
 
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [state, setState] = useState(false);
+
   const menuItems1 = [
-    { text: 'Home', icon: <HomeIcon />, link:'/courses/:courseId' },
+    { text: 'Home', icon: <HomeIcon />, link: '/courses/:courseId' },
     { text: 'Syllabus', icon: <DescriptionIcon /> },
     { text: 'Grades', icon: <GradeIcon />, link: '/courses/:courseId/grades' },
-    { text: 'Discussions', icon: <ForumIcon />, link: '/courses/:courseId/discussions'},
+    { text: 'Discussions', icon: <ForumIcon />, link: '/courses/:courseId/discussions' },
   ];
 
   const menuItems2 = [
     { text: 'Quizzes', icon: <QuizIcon />, link: '/courses/:courseId/quizzes' },
     { text: 'Announcements', icon: <AnnouncementIcon /> },
     { text: 'Resources', icon: <MenuBookIcon /> },
+    { text: 'Payment Method', icon: <AddCard />, link: '/payment'}
   ];
 
-  const DrawerList= (
+  const DrawerList = (
+    
     <Box sx={{ width: drawerWidth }} role="presentation">
       <List>
         {menuItems1.map((item, index) => (
@@ -63,19 +74,51 @@ export default function SideBar() {
   )
 
   return (
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        '& .MuiDrawer-paper': {
-          width: drawerWidth,
-          boxSizing: 'border-box',
-        },
-      }}
-      variant="permanent"
-      anchor="left"
+
+    <Toolbar sx={{
+      flexGrow: 1, backgroundColor: '#F36928',
+      color: 'black', fontSize: '32px',
+      border: 'solid black 1px'
+    }}
+      variant="outlined"
+      position="static"
     >
-      {DrawerList}
-    </Drawer>
+
+      <IconButton
+        edge="start"
+        color="inherit"
+        aria-label="menu"
+        onClick={() => { setIsDrawerOpen(true) }
+        } >
+
+        <Menu />
+
+      </IconButton>
+
+      <Typography
+        sx={{
+          flexGrow: 1, backgroundColor: '#F36928',
+          borderRadius: '25px', color: 'black', fontSize: '32px'
+        }}>
+        Student Profile
+      </Typography>
+
+      <Drawer
+      open={isDrawerOpen}
+      onClose={() => setIsDrawerOpen(false)}
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
+            width: drawerWidth,
+            boxSizing: 'border-box',
+          },
+        }}
+        // variant="permanent"
+        // anchor="left"
+      >
+        {DrawerList}
+      </Drawer>
+    </Toolbar>
   );
 }

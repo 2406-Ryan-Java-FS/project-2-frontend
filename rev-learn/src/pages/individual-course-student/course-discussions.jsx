@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SideBar from './course-side-bar';
 
 const CourseDiscussions = ({ courseId }) => {
   const [discussions, setDiscussions] = useState([]);
@@ -28,6 +29,9 @@ const CourseDiscussions = ({ courseId }) => {
   };
 
   return (
+    <>
+    {<SideBar />}
+    
     <div>
       <h2>Course Discussions</h2>
       <ul>
@@ -52,6 +56,7 @@ const CourseDiscussions = ({ courseId }) => {
         )}
       </ul>
     </div>
+    </>
   );
 };
 
