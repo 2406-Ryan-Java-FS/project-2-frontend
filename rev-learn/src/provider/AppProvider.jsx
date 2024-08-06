@@ -53,6 +53,9 @@ export default function AppProvider({ children }) {
             "isDrawerOpen":isDrawerOpen,
             "navBarGoto":navBarGoto,
             "setIsDrawerOpen":setIsDrawerOpen,
+            //in child components
+            //const globalContext=useContext(AppContext)
+            //globalContext.setIsDrawerOpen()
         }
 
       } >
