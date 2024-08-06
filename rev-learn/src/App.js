@@ -21,6 +21,7 @@ import HomeComponent from './components/HomeComponent';
 import NavBar from './components/navigation/NavBar';
 import StudentProfile from './components/student-profile/StudentProfile';
 import Payment from './components/Payment';
+import QuizCreate from './pages/Quiz/quiz-create';
 
 export default function App() {
 
@@ -32,7 +33,6 @@ export default function App() {
 
   return (
     <div className="App">
-
       {<NavBar />}
 
       <Routes>
@@ -45,33 +45,29 @@ export default function App() {
           path="/edit-question"
           element={<QuizItem mode="educator" item={2} />}
         />
+        <Route
+          path="/quiz-create"
+          element={<QuizCreate />}
+        />
         <Route path="/course-catalog" element={<UserCourseCatalog />} />
         {/* TODO: course detail view/ need to add id in the param at the end */}
-        <Route
-            path="/course/detail/:courseId"
-            element={<CourseDetailView />}
-          />
+        <Route path="/course/detail/:courseId" element={<CourseDetailView />} />
         <Route path="/courses/:courseId" element={<CourseHome />} />
-          <Route
-            path="/courses/:courseId/quizzes"
-            element={<CourseQuizzes />}
-          />
-          <Route
-            path="/courses/:courseId/discussions"
-            element={<CourseDiscussions />}
-          />
-          <Route path="/courses/:courseId/grades" element={<CourseGrades />} />  
+        <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
         <Route
-            path="/educatordashboard"
-            element={
-              <EducatorDashboardProvider>
-                <EducatorDashboard />
-              </EducatorDashboardProvider>
-            }
-          />
-
+          path="/courses/:courseId/discussions"
+          element={<CourseDiscussions />}
+        />
+        <Route path="/courses/:courseId/grades" element={<CourseGrades />} />
+        <Route
+          path="/educatordashboard"
+          element={
+            <EducatorDashboardProvider>
+              <EducatorDashboard />
+            </EducatorDashboardProvider>
+          }
+        />
       </Routes>
-      </div>
-
+    </div>
   );
 }
