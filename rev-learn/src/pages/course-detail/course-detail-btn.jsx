@@ -6,6 +6,7 @@ export default function CourseDetailBtn({ courseId }) {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
+  console.log(process.env.APP_URL)
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
     setUser(loggedInUser);
