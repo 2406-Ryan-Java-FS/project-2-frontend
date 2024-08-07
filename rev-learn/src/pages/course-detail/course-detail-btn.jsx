@@ -29,6 +29,7 @@ export default function CourseDetailBtn({ courseId }) {
         throw new Error(`Error: ${response.statusText}`);
       }
       const data = await response.json();
+      console.log("enrollment: " + data);
       setEnrollment(data);
     } catch (error) {
       console.error(error);
@@ -37,10 +38,14 @@ export default function CourseDetailBtn({ courseId }) {
 
   const pendingEnroll = async (evt) => {
     evt.preventDefault();
-    if (!user) return;
+    // if (!user) return;
+    if (!user) {
+      navigate('/login');
+      return;
+    }
 
-    const newEnrollment = {
-      studentId: user.userId,
+    const newEnrollment = { 
+      studentId: user?.userId,
       courseId: courseId,
       paymentStatus: "pending",
       enrolled: false,
@@ -67,21 +72,33 @@ export default function CourseDetailBtn({ courseId }) {
       navigate(`/course/detail/${courseId}`);
     } catch (error) {
       console.error(error);
+      navigate('/login');
     }
   };
 
+  if(!user){
+    return(
+      <div className="enrollBtn">
+        <Link to={`/login`} type="button" className="grey-btn add-cart-btn go-to-course">
+          Add to Cart
+        </Link>
+      </div>
+    );
+  }
   return (
     <div className="enrollBtn">
       {enrollment === null ? (
-        <button type="button" onClick={pendingEnroll}>
+        <button className="grey-btn add-cart-btn" type="button" onClick={pendingEnroll}>
           Add to Cart
         </button>
       ) : enrollment.enrolled === false ? (
-        <button type="button" disabled>
-          Already added to cart
-        </button>
+        <Link to={`/payment`} type="button" className="grey-btn add-cart-btn go-to-course">
+          Already added to cart<br/>
+          Go to cart
+        </Link>
+      
       ) : (
-        <Link to={`/course/detail/${courseId}`} type="button">
+        <Link to={`/courses/${courseId}`} type="button" className="grey-btn add-cart-btn go-to-course">
           Go to the course
         </Link>
       )}

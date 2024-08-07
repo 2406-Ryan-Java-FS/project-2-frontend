@@ -1,0 +1,11 @@
+[33m54588a2b[m[33m ([m[1;36mHEAD -> [m[1;32mcontent-branch[m[33m, [m[1;31morigin/utkarsh-branch[m[33m, [m[1;31morigin/create-quiz[m[33m, [m[1;31morigin/content-branch[m[33m)[m HEAD@{0}: pull: Fast-forward
+[33m6eede5c7[m HEAD@{1}: checkout: moving from course-detail to content-branch
+[33m33653e9b[m[33m ([m[1;31morigin/course-detail[m[33m, [m[1;32mcourse-detail[m[33m)[m HEAD@{2}: commit: updated reveiw form
+[33m4609b598[m HEAD@{3}: commit: updated course detailed page
+[33m85654726[m HEAD@{4}: commit: updating course detail page
+[33m6eede5c7[m HEAD@{5}: checkout: moving from content-branch to course-detail
+[33m6eede5c7[m HEAD@{6}: checkout: moving from main to content-branch
+[33m7d54cc7f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/eric[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{7}: checkout: moving from courseDetail to main
+[33m7d54cc7f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/eric[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{8}: checkout: moving from main to courseDetail
+[33m7d54cc7f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/eric[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{9}: pull: Fast-forward
+[33mb6800fd3[m HEAD@{10}: clone: from https://github.com/2406-Ryan-Java-FS/project-2-frontend.git

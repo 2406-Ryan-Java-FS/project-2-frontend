@@ -5,6 +5,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import { FormControlLabel } from '@mui/material';
+import "../../styles/quiz/quiz-create.css";
 
 export default function QuizCreate() {
 
@@ -109,8 +110,9 @@ export default function QuizCreate() {
     setQuestionFields(data)
   }
       return (
-        <div>
-          <h3>New Quiz</h3>
+        <div className='quiz-create-container'>
+          <div className='quiz-create-inner-container'>
+          <h2>New Quiz</h2>
           <form autoComplete="off" onSubmit={createQuiz}>
                   <TextField 
                     label="Course ID"
@@ -216,6 +218,7 @@ export default function QuizCreate() {
                 <Button variant="outlined" onClick={() => addQuestion()}>Add a Question</Button><br/>
               <Button variant="outlined" type="submit">Create Quiz</Button>
           </form>
+        </div>
         </div>
       );
 

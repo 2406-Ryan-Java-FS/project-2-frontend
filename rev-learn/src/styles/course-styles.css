@@ -107,12 +107,19 @@ margin: 80px 80px 0px 80px;
 }
 
 .course-title {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
 .course-educator {
   color: #737373;
+}
+
+.course-instructor{
+  margin-top: -14px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color:#6b7280;
 }
 
 .course-description {
@@ -126,7 +133,7 @@ margin: 80px 80px 0px 80px;
     max-height: 5.4em; /* (line-height * number of lines) */
     color: 'black';
     /* margin-bottom: 10px; */
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .descriptionSpan {
