@@ -40,7 +40,7 @@ export default function Signup() {
                                         document.getElementById("SignupPassword").value,
                                         document.getElementById("SignupPasswordConfirm").value
                                     )
-                                    navigateUsingReact('/login')
+                                    navigateUsingReact('/signin')
                                 }
                             }>Register</Button>
                     </center>
