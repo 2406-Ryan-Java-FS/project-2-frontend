@@ -1,10 +1,27 @@
 import { Link } from "../../../node_modules/react-router-dom/dist/index"
 import { Toolbar } from "../../../node_modules/@mui/material/index"
 import { Button } from "../../../node_modules/@mui/material/index"
+import {useEffect, useState} from "react";
 
 export default function NavBar() {
-
     
+    const [user,setUser] = useState(null);
+
+    useEffect(() => {
+        // const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+        // setUser(loggedInUser);
+        const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+      setUser(JSON.parse(loggedInUser));
+    }
+    
+      }, []);
+
+      function logout(){
+        console.log(user);
+        localStorage.removeItem('loggedInUser');
+        setUser(null);
+      }
 
     return (<>
 
@@ -31,6 +48,10 @@ export default function NavBar() {
                 <Button variant='contained' sx={{margin: '10px'}}
                 component={Link} to='/signin'>
                     Login
+                </Button>
+                <Button variant='contained' sx={{margin: '10px'}}
+                component={Link} onClick={logout} >
+                    Logout
                 </Button>
                 <Button variant='contained' sx={{margin: '10px'}}
                 component={Link} to='/student'>
