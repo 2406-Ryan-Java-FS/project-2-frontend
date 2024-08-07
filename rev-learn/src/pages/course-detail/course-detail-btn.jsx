@@ -18,7 +18,7 @@ export default function CourseDetailBtn({ courseId }) {
 
   const fetchEnrollment = async (loggedInUser, courseId) => {
     try {
-      const response = await fetch(`http://localhost:8080/enrollments/students/${loggedInUser.userId}/courses/${courseId}`, {
+      const response = await fetch(`http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/students/${loggedInUser.userId}/courses/${courseId}`, {
         method: "GET",
         headers: {
           'Authorization': "Bearer " + loggedInUser.token,
@@ -52,7 +52,7 @@ export default function CourseDetailBtn({ courseId }) {
     };
 
     try {
-      const response = await fetch("http://localhost:8080/enrollments", {
+      const response = await fetch("http://ec2-100-26-249-35.compute-1.amazonaws.com:8080   /enrollments", {
         method: "POST",
         headers: {
           'Content-Type': "application/json",
