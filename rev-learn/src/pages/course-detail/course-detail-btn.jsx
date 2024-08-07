@@ -8,6 +8,8 @@ export default function CourseDetailBtn({ courseId }) {
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    console.log("user: " + loggedInUser.userId)
+    console.log("user.token: " + loggedInUser.token)
     setUser(loggedInUser);
 
     if (loggedInUser) {
@@ -29,6 +31,7 @@ export default function CourseDetailBtn({ courseId }) {
         throw new Error(`Error: ${response.statusText}`);
       }
       const data = await response.json();
+      console.log("enrollment: " + data);
       setEnrollment(data);
     } catch (error) {
       console.error(error);
@@ -37,9 +40,13 @@ export default function CourseDetailBtn({ courseId }) {
 
   const pendingEnroll = async (evt) => {
     evt.preventDefault();
-    if (!user) return;
+    // if (!user) return;
+    if (!user) {
+      navigate('/login');
+      return;
+    }
 
-    const newEnrollment = {
+    const newEnrollment = { 
       studentId: user.userId,
       courseId: courseId,
       paymentStatus: "pending",
@@ -67,9 +74,19 @@ export default function CourseDetailBtn({ courseId }) {
       navigate(`/course/detail/${courseId}`);
     } catch (error) {
       console.error(error);
+      navigate('/login');
     }
   };
 
+  if(!user){
+    return(
+      <div className="enrollBtn">
+        <Link to={`/login`} type="button" className="grey-btn add-cart-btn go-to-course">
+          Add to Cart
+        </Link>
+      </div>
+    );
+  }
   return (
     <div className="enrollBtn">
       {enrollment === null ? (
