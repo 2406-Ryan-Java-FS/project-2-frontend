@@ -29,7 +29,6 @@ export default function CourseDetailBtn({ courseId }) {
         throw new Error(`Error: ${response.statusText}`);
       }
       const data = await response.json();
-      console.log("enrollment: " + data);
       setEnrollment(data);
     } catch (error) {
       console.error(error);
