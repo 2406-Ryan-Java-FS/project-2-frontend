@@ -36,8 +36,12 @@ export default function AppProvider({ children }) {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const navigateTrigger=useNavigate()
 
-    function navBarGoto(browserUriHack){
-        navigateTrigger(browserUriHack)
+    /**
+     * Navigates to the given browserReactUri
+     * Closes the navbar and re-renders React components
+     */
+    function navBarGoto(browserReactUri){
+        navigateTrigger(browserReactUri)
         setIsDrawerOpen(false)
         globalStateSetter()//<-causes re-render because of x+1
     }
