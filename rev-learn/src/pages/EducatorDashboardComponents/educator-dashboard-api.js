@@ -1,7 +1,7 @@
 import axios from "axios";
 import uac from "../../controllers/userAccountController";
 
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL = "http://ec2-100-26-249-35.compute-1.amazonaws.com:8080";
 
 // Get courses by educator ID
 export const getCoursesByEducatorIdApi = (educatorId) => {

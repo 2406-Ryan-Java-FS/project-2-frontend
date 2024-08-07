@@ -15,12 +15,12 @@ export default function CourseDetailView(){
     useEffect(() => {
         const fetchCourse = async () => {
             try {
-                const courseResponse = await fetch(`http://localhost:8080/courses/${courseId}`);
+                const courseResponse = await fetch(`http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/courses/${courseId}`);
                 const courseData = await courseResponse.json();
                 setCourse(courseData);
     
                 if (courseData) {
-                    const educatorResponse = await fetch(`http://localhost:8080/users/${courseData.educatorId}`);
+                    const educatorResponse = await fetch(`http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/users/${courseData.educatorId}`);
                     const educatorData = await educatorResponse.json();
                     setEducator(educatorData);
                 }

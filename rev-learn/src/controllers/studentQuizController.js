@@ -2,7 +2,7 @@ import { quizDescription, QuizDescriptionDTO } from "../pages/Quiz/quiz-data";
 
 export const getAllQuizzes = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8010/quizzes", {
+    const response = await fetch("http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/quizzes", {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const getAllQuizzes = async () => {
 
 export const getAllQuizDetails = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8010/quizzes", {
+    const response = await fetch("http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/quizzes", {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -126,7 +126,7 @@ export const getAllQuizQuestions = async () => {
 
 export const getAllQuizAnswers = async () => {
   try {
-    const response = await fetch("http://127.0.0.1:8010/choices", {
+    const response = await fetch("http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/choices", {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ export const getAllQuizAnswers = async () => {
 export const getQuizAttemptByStudentId = async (userId) => {
 
   try {
-    const response = await fetch(`http://127.0.0.1:8010/quizAttemptsFromUser/${userId}`, {
+    const response = await fetch(`http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/quizAttemptsFromUser/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ export const getQuizAttemptByStudentId = async (userId) => {
 export const getSingleIdQuiz = async (quizId) => {
 
   try {
-    const response = await fetch(`http://127.0.0.1:8010/quizzes/${quizId}`, {
+    const response = await fetch(`http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/quizzes/${quizId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -198,7 +198,7 @@ export const getSingleIdQuiz = async (quizId) => {
 export const submitQuizAttempt = async (quizAttempt) => {
 
   const requestUrl = 
-    "http://127.0.0.1:8010/newQuizAttempts";
+    "http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/newQuizAttempts";
 
   console.log( "Submit Quiz Attempt", quizAttempt );
 
@@ -242,7 +242,7 @@ export const submitQuizAttempt = async (quizAttempt) => {
 
 
 export const simpleTest = async () => {
-  fetch("http://127.0.0.1:8010/answers", {mode: 'no-cors'})
+  fetch("http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/answers", {mode: 'no-cors'})
     .then(response => response.text())
     .then(data => {
       console.log("simpleTest()", data);

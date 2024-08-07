@@ -5,7 +5,7 @@ import CourseQuizzes from './pages/individual-course-student/course-quizzes';
 import EducatorDashboard from './pages/EducatorDashboardComponents/educator-dashboard';
 import QuizPage from './pages/Quiz/QuizPage';
 import QuizItem from './pages/Quiz/quiz-item';
-import CourseDetailView from './pages/course-detail/course-detail-view'
+import CourseDetailView from './pages/course-detail/course-detail-view';
 import Signup from './components/Signup';
 import Signin from './components/Signin';
 import UserCourseCatalog from "./pages/UserCourseCatalog/UserCourseCatalog";
