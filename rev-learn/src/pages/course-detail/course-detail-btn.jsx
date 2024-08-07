@@ -39,7 +39,7 @@ export default function CourseDetailBtn({ courseId }) {
     evt.preventDefault();
     // if (!user) return;
     if (!user) {
-      navigate('/login');
+      navigate('/signin');
       return;
     }
 
@@ -71,14 +71,14 @@ export default function CourseDetailBtn({ courseId }) {
       navigate(`/course/detail/${courseId}`);
     } catch (error) {
       console.error(error);
-      navigate('/login');
+      navigate('/signin');
     }
   };
 
   if(!user){
     return(
       <div className="enrollBtn">
-        <Link to={`/login`} type="button" className="grey-btn add-cart-btn go-to-course">
+        <Link to={`/signin`} type="button" className="grey-btn add-cart-btn go-to-course">
           Add to Cart
         </Link>
       </div>
