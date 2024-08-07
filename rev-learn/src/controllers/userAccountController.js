@@ -26,11 +26,12 @@ export default class userAccountController {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-      }),
+        user: {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+      }}),
     });
 
     if (response.status != 201)
