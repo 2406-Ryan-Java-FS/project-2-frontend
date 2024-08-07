@@ -3,9 +3,17 @@ import '../../styles/course-styles.css'
 
 export default function CourseCard(props) {
 
-    // Student props
-    const { image, imageStatic, role, title, description, price, rating, enrolled, courseId } = props;
-    // const courseImage = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
+    const { image, 
+        title, 
+        description, 
+        price, 
+        rating, 
+        enrolled, 
+        courseId,
+        educatorFirstName,
+        educatorLastName,
+        educatorDegreeLevel
+    } = props;
 
     return (
 
@@ -14,13 +22,14 @@ export default function CourseCard(props) {
                 <div className="course-card">
                     <div>
                         <div className='courseImageContainer'>
-                            <img className="course-image" src={image ? image : imageStatic} alt={title} draggable='false'
+                            <img className="course-image" src={image} alt="course_image" draggable='false'
                             />
                         </div>
                         <div className="course-content">
                             <div className="course-header">
                                 <div className="course-title">{title}</div>
                             </div>
+                            <div className='course-instructor'>{educatorFirstName} {educatorLastName}, {educatorDegreeLevel}</div>
                             <div className="course-description"> <span className='descriptionSpan'>Description:</span> {description}</div>
 
                             {enrolled ?
@@ -47,7 +56,7 @@ export default function CourseCard(props) {
                                                 </div>
                                             )}
                                         </div>
-                                        <div className="course-price">{role === "Student" && `$${price}`}</div>
+                                        <div className="course-price">{`$${price}`}</div>
                                     </div>
                                 )
 

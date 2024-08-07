@@ -16,6 +16,8 @@ export default function UserCourseCatalog() {
     const [userId, setUserId] = useState(0);
     const [token, setToken] = useState('');
 
+    const [uniqueCategories, setUniqueCategories] = useState([]);
+
     useEffect(() => {
       const loggedInUser = localStorage.getItem('loggedInUser');
       if (loggedInUser) {
@@ -33,7 +35,7 @@ export default function UserCourseCatalog() {
     
           let completedEnrollments = [];
     
-          // If logged in, fetch enrollments as well
+          // If logged in, fetch enrollments
           if (userId && token) {
             const enrollmentsResponse = await fetch(`${REVLEARN_URL}/enrollments/students/${userId}/completed`, {
               method: 'GET',
@@ -45,15 +47,51 @@ export default function UserCourseCatalog() {
             completedEnrollments = await enrollmentsResponse.json();
           }
     
+          const uniqueEducatorIds = [...new Set(coursesResult.map(course => course.educatorId))];
+    
+          // Fetch educator details for all unique IDs
+          const educatorDetails = await fetchEducatorDetails(uniqueEducatorIds);
+    
+          // Create a map of educator details by educatorId
+          const educatorDetailsMap = new Map();
+          educatorDetails.forEach(detail => {
+            educatorDetailsMap.set(detail.user.userId, detail);
+          });
+    
           const mergedCourseData = coursesResult.map(course => {
             const status = completedEnrollments.find(status => status.courseId === course.courseId);
+            const educatorDetail = educatorDetailsMap.get(course.educatorId);
+    
             return {
               ...course,
               enrolled: status ? status.enrolled : false,
-              completed: false
+              completed: false,
+              educatorFirstName: educatorDetail ? educatorDetail.user.firstName : '',
+              educatorLastName: educatorDetail ? educatorDetail.user.lastName : '',
+              educatorDegreeLevel: educatorDetail ? educatorDetail.educator.degreeLevel : '',
             };
           });
-    
+
+          const categoryCounts = coursesResult.reduce((acc, course) => {
+            if (acc[course.category]) {
+              acc[course.category]++;
+            } else {
+              acc[course.category] = 1;
+            }
+            return acc;
+          }, {});
+  
+          const uniqueCategories = Object.keys(categoryCounts).map(category => ({
+            name: category,
+            count: categoryCounts[category]
+          }));
+
+          const allCategory = {
+            name: "All",
+            count: coursesResult.length
+          };
+
+          setUniqueCategories([allCategory, ...uniqueCategories]);
           setCourseList(mergedCourseData);
           setFilteredCourses(mergedCourseData);
     
@@ -64,31 +102,37 @@ export default function UserCourseCatalog() {
     
       fetchAllCourses();
     }, [userId, token]);
-
-  const role = "Student";
-  const image = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
+    
+    const fetchEducatorDetails = async (educatorIds) => {
+      const responses = await Promise.all(educatorIds.map(educatorId =>
+        fetch(`${REVLEARN_URL}/users/${educatorId}`, {
+          method: 'GET',
+        }).then(response => response.json())
+      ));
+      return responses;
+    };
 
   // Load more items when user scrolls to the bottom
   const loadMoreItems = useCallback(() => {
-    if (loading || visibleItems >= courseList.length) return; // Avoid multiple loads and ensure we don't load beyond the available items
+    if (loading || visibleItems >= courseList.length) return;
 
-        setLoading(true);
-        setTimeout(() => {
-            setVisibleItems((prev) => Math.min(prev + 12, courseList.length));
-            setLoading(false);
-        }, 100); // Simulate delay, to remove
-    }, [loading, visibleItems, courseList.length]);
+    setLoading(true);
+    setTimeout(() => {
+      setVisibleItems((prev) => Math.min(prev + 12, courseList.length));
+      setLoading(false);
+    }, 100);
+  }, [loading, visibleItems, courseList.length]);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollTop = window.scrollY || window.pageYOffSet || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight;
-            const clientHeight = document.documentElement.clientHeight;
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || window.pageYOffSet || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
 
-            if (scrollTop + clientHeight >= scrollHeight - 5) {
-                loadMoreItems();
-            }
-        };
+      if (scrollTop + clientHeight >= scrollHeight - 5) {
+        loadMoreItems();
+      }
+    };
 
     window.addEventListener('scroll', handleScroll);
 
@@ -97,51 +141,18 @@ export default function UserCourseCatalog() {
     };
   }, [loadMoreItems]);
 
-    // course filter
-    const handleSearch = ({ course, category, sortOption }) => {
-      const filtered = courseList.filter((c) => {
-        const matchesCategory = category === "All" || c.category === category;
-        const matchesCourse =
-          course === "" || c.title.toLowerCase().includes(course.toLowerCase());
-        return matchesCategory && matchesCourse;
-      });
-  
-      sortList(sortOption, filtered);
-      setFilteredCourses(filtered);
-    };
-  
-    // Sorts filtered lists by the given sort option
-    function sortList(sortOption, filtered) {
-      switch (sortOption) {
-        case "Price: Low to High":
-          filtered.sort((a, b) => a.price - b.price);
-          break;
-    
-        case "Price: High to Low":
-          filtered.sort((a, b) => b.price - a.price);
-          break;
-  
-        case "Rating: Low to High":
-          filtered.sort((a, b) => a.rating - b.rating);
-          break;
-  
-        case "Rating: High to Low":
-          filtered.sort((a, b) => b.rating - a.rating);
-          break;
-  
-        default:
-          break;
-      }
-    }
-
-    return (
+  return (
     <>
 
-        <div className="userCourseCatalogOutterContainer">
+      <div className="userCourseCatalogOutterContainer">
           <div className='userCourseCatalogMainContainer'>
-            <h1 className='title'>RevLearn Courses</h1>
+            <h1 className='title'><span className='revLearnSpan'>Rev Learn</span> Courses</h1>
             <div className="searchBarContainer">
-              <SearchBar onSearch={handleSearch} />
+              <SearchBar
+                courseList={courseList}
+                setFilteredCourses={setFilteredCourses}
+                uniqueCategories={uniqueCategories}
+              />
             </div>
 
           {courseList.length > 0 ?
@@ -151,7 +162,6 @@ export default function UserCourseCatalog() {
                   {filteredCourses.slice(0, visibleItems).map((x, index) => (
                     <Link
                       to={`/course/detail/${x.courseId}`}
-                      // to={`/course/detail`} 
                       key={index}
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
@@ -162,12 +172,12 @@ export default function UserCourseCatalog() {
                         price={x.price}
                         educator={x.educator}
                         rating={x.rating}
-                        role={role}
-                        imageStatic={image}
-                        // image={x.image}
                         image={x.imgUrl}
                         enrolled={x.enrolled}
                         courseId={x.courseId}
+                        educatorFirstName={x.educatorFirstName}
+                        educatorLastName={x.educatorLastName}
+                        educatorDegreeLevel={x.educatorDegreeLevel}
                       />
                     </Link>
                   ))}
