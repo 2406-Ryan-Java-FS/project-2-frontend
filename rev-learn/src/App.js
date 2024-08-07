@@ -47,7 +47,7 @@ export default function App() {
       <Link to="/profile">Profile</Link>
       <Link to="/educatordashboard">Educator&nbsp;Dashboard</Link>
       <Divider />
-      <Link to="/payments">Payment</Link>
+      <Link to="/payment">Payment</Link>
       <Link to="/course-catalog">Catalog</Link>
       <Link to="/quiz">Quiz</Link>
       <Link to="/quiz-create">Quiz&nbsp;Create</Link>

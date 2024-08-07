@@ -70,7 +70,7 @@ export default function QuizCreate() {
         console.log(`body2=`,body2);
         if (body2) {
           alert("Quiz has been created!");
-          globalContext.navBarGoto(`/quiz/${body2.quiz_id}`)
+          globalContext.navBarGoto(`/`)
         }
       }
     } catch (error) {
