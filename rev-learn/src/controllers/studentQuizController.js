@@ -1,8 +1,10 @@
-import { quizDescription, QuizDescriptionDTO } from "../pages/Quiz/quiz-data";
+import { QuizDescriptionDTO } from "../pages/Quiz/quiz-data";
 
 export const getAllQuizzes = async () => {
+  const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
   try {
-    const response = await fetch("http://127.0.0.1:8010/quizzes", {
+
+    const response = await fetch(`${apiUrl}/quizzes`, {
       method: "GET",
       headers: {
         'Content-Type': 'application/json',
@@ -40,8 +42,10 @@ export const getAllQuizzes = async () => {
 }
 
 export const getAllQuizDetails = async () => {
+  const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
+
   try {
-    const response = await fetch("http://127.0.0.1:8010/quizzes", {
+    const response = await fetch(`${apiUrl}/quizzes`, {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -125,8 +129,10 @@ export const getAllQuizQuestions = async () => {
 }
 
 export const getAllQuizAnswers = async () => {
+  const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
+
   try {
-    const response = await fetch("http://127.0.0.1:8010/choices", {
+    const response = await fetch(`${apiUrl}/choices`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -148,9 +154,10 @@ export const getAllQuizAnswers = async () => {
 }
 
 export const getQuizAttemptByStudentId = async (userId) => {
+  const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
 
   try {
-    const response = await fetch(`http://127.0.0.1:8010/quizAttemptsFromUser/${userId}`, {
+    const response = await fetch(`${apiUrl}/quizAttemptsFromUser/${userId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -170,11 +177,13 @@ export const getQuizAttemptByStudentId = async (userId) => {
   }
 }
 
-
 export const getSingleIdQuiz = async (quizId) => {
+  const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
+
+  console.log("🚀 ~ getSingleIdQuiz ~ apiUrl:", apiUrl);
 
   try {
-    const response = await fetch(`http://127.0.0.1:8010/quizzes/${quizId}`, {
+    const response = await fetch(`${apiUrl}/quizzes/${quizId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -196,9 +205,10 @@ export const getSingleIdQuiz = async (quizId) => {
 
 
 export const submitQuizAttempt = async (quizAttempt) => {
+  const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
 
   const requestUrl = 
-    "http://127.0.0.1:8010/newQuizAttempts";
+    `${apiUrl}/newQuizAttempts`;
 
   console.log( "Submit Quiz Attempt", quizAttempt );
 
@@ -242,7 +252,9 @@ export const submitQuizAttempt = async (quizAttempt) => {
 
 
 export const simpleTest = async () => {
-  fetch("http://127.0.0.1:8010/answers", {mode: 'no-cors'})
+  const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
+
+  fetch(`${apiUrl}/answers`, {mode: 'no-cors'})
     .then(response => response.text())
     .then(data => {
       console.log("simpleTest()", data);

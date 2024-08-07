@@ -423,7 +423,8 @@ const FormGrid = styled('div')(() => ({
     //const si = 1
     let t = userAccountController.loggedInUser.token 
     //let t =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzIzMDQyMzI0LCJleHAiOjE3MjMwODU1MjR9.3hb8h0Qkqhc-FWwNJPBBRdF6V1zeoSfYD52CylmdPAvnCd0r7zSMCKI1dhZVlIU-ywtx-WiE349wyrvk_7nbng"
-    
+    const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
+
     let initialList = [];
     if (paymentType === "debitCard" || paymentType === "creditCard") {
         console.log(cardNumber.current.value)
@@ -440,7 +441,7 @@ const FormGrid = styled('div')(() => ({
         }
         try {
             
-            const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/students/${si}/pending`;
+            const url = `${apiUrl}/enrollments/students/${si}/pending`;
             const httpResponse = await fetch(url, { 
                 method: 'GET',  
                 headers: {
@@ -462,7 +463,7 @@ const FormGrid = styled('div')(() => ({
 
             try {
                 
-              const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/payStatus/${i.enrollmentId}`;
+              const url = `${apiUrl}/enrollments/payStatus/${i.enrollmentId}`;
               console.log(url)
               const httpResponse = await fetch(url, { 
                   method: 'PATCH',  
@@ -497,7 +498,7 @@ const FormGrid = styled('div')(() => ({
 
         try {
             
-            const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/students/${si}/pending`;
+            const url = `${apiUrl}/enrollments/students/${si}/pending`;
             const httpResponse = await fetch(url, { 
                 method: 'GET',  
                 headers: {
@@ -519,7 +520,7 @@ const FormGrid = styled('div')(() => ({
 
             try {
                 
-              const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/payStatus/${i.enrollmentId}`;
+              const url = `${apiUrl}/enrollments/payStatus/${i.enrollmentId}`;
               const httpResponse = await fetch(url, { 
                   method: 'PATCH',  
                   headers: {

@@ -33,11 +33,12 @@ export default function QuizCreate() {
       open: true,
       questions: questionFields
     }
+  const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
 
     console.log(data);
 
-    const url1 = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/courses/${courseId}`;
-    const url2 = "http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/quizzes";
+    const url1 = `${apiUrl}/courses/${courseId}`;
+    const url2 = `${apiUrl}/quizzes`;
 
     const options1 = {
       method: "GET",

@@ -6,15 +6,17 @@ import "../Quiz/quiz.css";
 
 
 export default function CourseQuizzes() {
-    const { courseId } = useParams();
+  const { courseId } = useParams();
+  const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
     const [quizzes, setQuizzes] = useState([]);
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(true);
-
+    
+    
     useEffect(() => {
         const fetchQuizzes = async () => {
             try {
-                const response = await fetch('http://localhost:8010/quizzes');
+                const response = await fetch(`${apiUrl}/quizzes`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch quizzes');
                 }
@@ -48,6 +50,7 @@ export default function CourseQuizzes() {
             {<SideBar />}
             <div>
                 <p>No quizzes available for this course. </p>
+                <p>apiUrl: BASE_AWS_FETCH_URI_ENV {apiUrl}</p>
                 <Link to={defaultQuizPage}>
                     <text>   Start Default Quiz </text>
                 </Link> 

@@ -67,9 +67,11 @@ export default function UnpaidTable() {
       //let t =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzIzMDQyMzI0LCJleHAiOjE3MjMwODU1MjR9.3hb8h0Qkqhc-FWwNJPBBRdF6V1zeoSfYD52CylmdPAvnCd0r7zSMCKI1dhZVlIU-ywtx-WiE349wyrvk_7nbng"
       let initialList = [];
       let infoList = []
+  const apiUrl = process.env.REACT_APP_BASE_AWS_FETCH_URI_ENV;
+
       try {
             
-            const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/students/${studentId}/pending`;
+            const url = `${apiUrl}/enrollments/students/${studentId}/pending`;
             const httpResponse = await fetch(url, { 
                 method: 'GET',  
                 headers: {
@@ -96,7 +98,7 @@ export default function UnpaidTable() {
 
         try {
             
-          const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/courses/${i.courseId}`;
+          const url = `${apiUrl}/courses/${i.courseId}`;
           const httpResponse = await fetch(url, { 
               method: 'GET',  
               headers: {
