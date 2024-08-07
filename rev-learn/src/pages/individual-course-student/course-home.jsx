@@ -42,10 +42,13 @@ export default function CourseHome() {
 
     return (<>
         {<SideBar />}
-        <div>
-        <h1>{error ? defaultCourse.title : course.title}</h1>
-        <p>{error ? defaultCourse.description : course.description}</p>
-    </div>
+        <div className='student-home-box'>
+            <div className="student-home-inner-box">
+            <h1>{error ? defaultCourse.title : course.title}</h1>
+            <p>{error ? defaultCourse.description : course.description}</p>
+            </div>
+        
+        </div>
     </>
     );
 }
