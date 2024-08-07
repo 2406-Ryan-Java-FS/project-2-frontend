@@ -3,10 +3,7 @@ import '../../styles/course-styles.css'
 
 export default function CourseCard(props) {
 
-    // Student props
     const { image, 
-        // imageStatic, 
-        // role, 
         title, 
         description, 
         price, 
@@ -17,7 +14,6 @@ export default function CourseCard(props) {
         educatorLastName,
         educatorDegreeLevel
     } = props;
-    // const courseImage = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
 
     return (
 

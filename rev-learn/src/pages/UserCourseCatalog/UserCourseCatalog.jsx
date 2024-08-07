@@ -16,6 +16,8 @@ export default function UserCourseCatalog() {
     const [userId, setUserId] = useState(0);
     const [token, setToken] = useState('');
 
+    const [uniqueCategories, setUniqueCategories] = useState([]);
+
     useEffect(() => {
       const loggedInUser = localStorage.getItem('loggedInUser');
       if (loggedInUser) {
@@ -33,7 +35,7 @@ export default function UserCourseCatalog() {
     
           let completedEnrollments = [];
     
-          // If logged in, fetch enrollments as well
+          // If logged in, fetch enrollments
           if (userId && token) {
             const enrollmentsResponse = await fetch(`${REVLEARN_URL}/enrollments/students/${userId}/completed`, {
               method: 'GET',
@@ -45,19 +47,17 @@ export default function UserCourseCatalog() {
             completedEnrollments = await enrollmentsResponse.json();
           }
     
-          // Extract unique educator IDs
           const uniqueEducatorIds = [...new Set(coursesResult.map(course => course.educatorId))];
     
           // Fetch educator details for all unique IDs
           const educatorDetails = await fetchEducatorDetails(uniqueEducatorIds);
     
-          // Create a map of educator details by educatorId for quick lookup
+          // Create a map of educator details by educatorId
           const educatorDetailsMap = new Map();
           educatorDetails.forEach(detail => {
             educatorDetailsMap.set(detail.user.userId, detail);
           });
     
-          // Merge course data with educator details
           const mergedCourseData = coursesResult.map(course => {
             const status = completedEnrollments.find(status => status.courseId === course.courseId);
             const educatorDetail = educatorDetailsMap.get(course.educatorId);
@@ -71,7 +71,27 @@ export default function UserCourseCatalog() {
               educatorDegreeLevel: educatorDetail ? educatorDetail.educator.degreeLevel : '',
             };
           });
-    
+
+          const categoryCounts = coursesResult.reduce((acc, course) => {
+            if (acc[course.category]) {
+              acc[course.category]++;
+            } else {
+              acc[course.category] = 1;
+            }
+            return acc;
+          }, {});
+  
+          const uniqueCategories = Object.keys(categoryCounts).map(category => ({
+            name: category,
+            count: categoryCounts[category]
+          }));
+
+          const allCategory = {
+            name: "All",
+            count: coursesResult.length
+          };
+
+          setUniqueCategories([allCategory, ...uniqueCategories]);
           setCourseList(mergedCourseData);
           setFilteredCourses(mergedCourseData);
     
@@ -83,7 +103,6 @@ export default function UserCourseCatalog() {
       fetchAllCourses();
     }, [userId, token]);
     
-    // Function to fetch educator details for an array of educator IDs
     const fetchEducatorDetails = async (educatorIds) => {
       const responses = await Promise.all(educatorIds.map(educatorId =>
         fetch(`${REVLEARN_URL}/users/${educatorId}`, {
@@ -95,7 +114,7 @@ export default function UserCourseCatalog() {
 
   // Load more items when user scrolls to the bottom
   const loadMoreItems = useCallback(() => {
-    if (loading || visibleItems >= courseList.length) return; // Avoid multiple loads and ensure we don't load beyond the available items
+    if (loading || visibleItems >= courseList.length) return;
 
     setLoading(true);
     setTimeout(() => {
@@ -132,6 +151,7 @@ export default function UserCourseCatalog() {
               <SearchBar
                 courseList={courseList}
                 setFilteredCourses={setFilteredCourses}
+                uniqueCategories={uniqueCategories}
               />
             </div>
 
@@ -142,7 +162,6 @@ export default function UserCourseCatalog() {
                   {filteredCourses.slice(0, visibleItems).map((x, index) => (
                     <Link
                       to={`/course/detail/${x.courseId}`}
-                      // to={`/course/detail`} 
                       key={index}
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
@@ -153,9 +172,6 @@ export default function UserCourseCatalog() {
                         price={x.price}
                         educator={x.educator}
                         rating={x.rating}
-                        // role={role}
-                        // imageStatic={image}
-                        // image={x.image}
                         image={x.imgUrl}
                         enrolled={x.enrolled}
                         courseId={x.courseId}
