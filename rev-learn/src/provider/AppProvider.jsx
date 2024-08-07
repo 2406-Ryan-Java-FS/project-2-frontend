@@ -9,6 +9,7 @@ export default function AppProvider({ children }) {
   //you want your Components to have access to.
   const [quizQuestionId, setquizQuestionId] = useState(0);
   const [quizStartTimer, setQuizStartTimer] = useState(false);
+  const [currentCourse, setCurrentCourse] = useState(1);
 
   function updateQuizQuestionId(id) {
       setquizQuestionId(id);
@@ -41,25 +42,32 @@ export default function AppProvider({ children }) {
         globalStateSetter()//<-causes re-render because of x+1
     }
 
-  return (
+    function updateCurrentCourse(id) {
+        setCurrentCourse(id);
+    }
+
+    return (
       <AppContext.Provider value={
         //Pass all the variables and functions to everything else
         {
-            "quizQuestionId": quizQuestionId,
-            "updateQuizQuestionId": updateQuizQuestionId,
-            "quizStartTimer": quizStartTimer,
-            "startQuizTimer": startQuizTimer,
+            quizQuestionId: quizQuestionId,
+            updateQuizQuestionId: updateQuizQuestionId,
+            quizStartTimer: quizStartTimer,
+            startQuizTimer: startQuizTimer,
 
-            "isDrawerOpen":isDrawerOpen,
-            "navBarGoto":navBarGoto,
-            "setIsDrawerOpen":setIsDrawerOpen,
+            currentCourse: currentCourse,
+            updateCurrentCourse: updateCurrentCourse,
+
+            isDrawerOpen:isDrawerOpen,
+            navBarGoto:navBarGoto,
+            setIsDrawerOpen:setIsDrawerOpen,
             //in child components
             //const globalContext=useContext(AppContext)
             //globalContext.setIsDrawerOpen()
         }
 
       } >
-          {children}
+        {children}
       </AppContext.Provider>
-  );
+    );
 }

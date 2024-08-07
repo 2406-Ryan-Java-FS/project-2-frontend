@@ -23,19 +23,29 @@ export const EducatorDashboardProvider = ({ children }) => {
     },
     courses: [],
   });
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await getLoggedInUserInformationApi();
-        const { user, educator } = response.data;
-        setUserData(user);
-        if (user.role === "educator") {
-          setEducatorData(educator);
-          fetchCourses(user.userId);
+        if (response.data.user === undefined) {
+          setUserData(response.data);
+        } else {
+          var data = response.data;
+          var user = data.user;
+          var educator = data.educator;
+          setUserData(user);
+        }
+        
+        if (user && user.role === "educator") {
+          setEducatorData(educator || {}); // Default to an empty object if educator is undefined
+          await fetchCourses(user.userId); // Wait for courses to be fetched
         }
       } catch (error) {
         console.error("There was an error fetching the logged in user.", error);
+      } finally {
+        setLoading(false); // Set loading to false when done
       }
     };
 
@@ -74,6 +84,7 @@ export const EducatorDashboardProvider = ({ children }) => {
         educatorData,
         fetchCourses,
         handleInputChange,
+        loading, // Pass the loading state
       }}
     >
       {children}

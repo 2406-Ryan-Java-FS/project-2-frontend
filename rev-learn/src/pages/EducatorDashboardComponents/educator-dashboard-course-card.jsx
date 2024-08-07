@@ -9,19 +9,21 @@ import {
 } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import EditIcon from "@mui/icons-material/Edit";
-import placeholderImage from "../../images/blank.png";
+import { useNavigate } from "react-router-dom";
+import placeholderImage from "../../images/placeholder-image.jpg";
 import EducatorDashboardCourseCardDropdown from "./educator-dashboard-course-card-dropdown";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
 
 export default function EducatorDashboardCourseCard({ course }) {
   const { userData } = useEducatorDashboardContext();
+  const navigate = useNavigate();
 
   const handleDiscussionIconClick = () => {
     console.log("navigate to destination - discussion page");
   };
 
   const handleQuizIconClick = () => {
-    console.log("navigate to destination - quiz page");
+    navigate("/quiz-create");
   };
 
   return (

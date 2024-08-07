@@ -100,15 +100,15 @@ export default class userAccountController
             "lastName" : null,
             "email" : null,
             "role" : null
-        },
+            },
         "educator" : {
             "educatorId" : 0,
             "degreeLevel" : null,
             "degreeMajor" : null,
             "almaMater" : null,
             "year" : null
+            }
         }
-
      */
     static getLoggedInUser()
     {

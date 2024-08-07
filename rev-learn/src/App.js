@@ -22,6 +22,9 @@ import HomeComponent from './components/HomeComponent';
 import StudentProfile from './components/student-profile/StudentProfile';
 import Payment from './components/Payment';
 import { EducatorDashboardProvider } from './pages/EducatorDashboardComponents/educator-dashboard-context';
+import QuizCreate from './pages/Quiz/quiz-create';
+
+
 
 export let globalStateSetter//causes full re-render of App
 export let globalx;
@@ -35,58 +38,50 @@ export default function App() {
   globalx=x
   
   return (
-    <div className="App">
-
-      <BrowserRouter>
-      {/* Placing Provider here so useNaviagtion will not error */}
-      <AppProvider>
-      <EducatorDashboardProvider>
-
-        <NavDrawer>
-          {(uac.getLoggedInUser()==undefined?<Link to="/signin">Sign in</Link>:<Signout/>)}
-          <Divider />
-          <Link to="/">Home</Link>
-          <Link to="/register">Register</Link>
-          <Link to="/profile">Profile</Link>
-          <Link to="/educator">Educator&nbsp;Dashboard</Link>
-          <Divider />
-          <Link to="/payments">Payment</Link>
-          <Link to="/course-catalog">Catalog</Link>
-          <Link to="/quiz">Quiz</Link>
-          <Link to="/edit-question">Edit&nbsp;Question</Link>
-          <Link to="/student">Student&nbsp;Profile</Link>
-        </NavDrawer>
+  <div className="App">
+    <NavDrawer>
+      {(uac.getLoggedInUser()==undefined?<Link to="/signin">Sign in</Link>:<Signout/>)}
+      <Divider />
+      <Link to="/">Home</Link>
+      <Link to="/register">Register</Link>
+      <Link to="/profile">Profile</Link>
+      <Link to="/educatordashboard">Educator&nbsp;Dashboard</Link>
+      <Divider />
+      <Link to="/payments">Payment</Link>
+      <Link to="/course-catalog">Catalog</Link>
+      <Link to="/quiz">Quiz</Link>
+      <Link to="/quiz-create">Quiz&nbsp;Create</Link>
+      <Link to="/edit-question">Edit&nbsp;Question</Link>
+      <Link to="/student">Student&nbsp;Profile</Link>
+    </NavDrawer>
 
 
+    <Routes>
+      <Route path="/s3" element={<Navigate to="/" />} />
+      <Route path='/' element={<HomeComponent />} />
+      <Route path='/register' element={<Signup/>}/>
+      <Route path='/signin' element={<Signin/>}/>
 
+      <Route path='/course-home' element={<CourseHome />} />
+      <Route path='/course-grades' element={<CourseGrades />} />
+      <Route path="/courses/:courseId" element={<CourseHome />} />
+      <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
+      <Route path='/courses/:courseId/discussions' element={<CourseDiscussions />} />
+      
+      
+      <Route path="/course/detail/:courseId" element={<CourseDetailView />}/>
+      
+      <Route path="/course-catalog" element={<UserCourseCatalog />} />
 
-        <Routes>
-          <Route path="/s3" element={<Navigate to="/" />} />
-          <Route path='/' element={<HomeComponent />} />
-          <Route path='/register' element={<Signup/>}/>
-          <Route path='/signin' element={<Signin/>}/>
+      <Route path="/educatordashboard" element={<EducatorDashboard />} />
 
-          <Route path='/course-home' element={<CourseHome />} />
-          <Route path='/course-grades' element={<CourseGrades />} />
-          <Route path='/course-discussions' element={<CourseDiscussions />} />
-          <Route path='/course-quizzes' element={<CourseQuizzes />} />
-          <Route path="/courses/:courseId" element={<CourseHome />} />
-          <Route path="/course/detail/:courseId" element={<CourseDetailView />}/>
-          <Route path="/courses/:courseId/quizzes" element={<CourseQuizzes />} />
-          <Route path="/course-catalog" element={<UserCourseCatalog />} />
+      <Route path="/quiz/:quiz_id" element={<QuizPage />} />
+      <Route path="/edit-question" element={<QuizItem mode="educator" item={2} />} />
+      <Route path="/quiz-create" element={<QuizCreate />} />
 
-          <Route path="/educator" element={<EducatorDashboard />} />
-
-          <Route path="/quiz" element={<QuizPage />} />
-          <Route path="/edit-question" element={<QuizItem mode="educator" item={2} />} />
-
-          <Route path="/student" element={<StudentProfile />} />
-          <Route path="/payment" element={<Payment />} />
-        </Routes>
-
-        </EducatorDashboardProvider>
-        </AppProvider>
-      </BrowserRouter>
-    </div>
-  );
+      <Route path="/student" element={<StudentProfile />} />
+      <Route path="/payment" element={<Payment />} />
+    </Routes>
+  </div>
+);
 }
