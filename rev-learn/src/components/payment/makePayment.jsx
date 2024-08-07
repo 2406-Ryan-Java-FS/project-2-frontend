@@ -14,7 +14,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
-import userAccountController from '../../controllers/userAccountController'
+//import userAccountController from '../../controllers/userAccountController'
 
 
 export default function MakePayment() {
@@ -419,9 +419,11 @@ const FormGrid = styled('div')(() => ({
   );
 
   async function paymentSubmission() {
-    const si = userAccountController.loggedInUser.userId
+    
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    const si = loggedInUser.userId
     //const si = 1
-    let t = userAccountController.loggedInUser.token 
+    let t = loggedInUser.token 
     //let t =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzIzMDQyMzI0LCJleHAiOjE3MjMwODU1MjR9.3hb8h0Qkqhc-FWwNJPBBRdF6V1zeoSfYD52CylmdPAvnCd0r7zSMCKI1dhZVlIU-ywtx-WiE349wyrvk_7nbng"
     
     let initialList = [];
