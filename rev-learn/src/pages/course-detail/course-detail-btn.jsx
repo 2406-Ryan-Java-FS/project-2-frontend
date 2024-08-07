@@ -94,9 +94,11 @@ export default function CourseDetailBtn({ courseId }) {
           Add to Cart
         </button>
       ) : enrollment.enrolled === false ? (
-        <button className="grey-btn add-cart-btn"  type="button" disabled>
-          Already added to cart
-        </button>
+        <Link to={`/payment`} type="button" className="grey-btn add-cart-btn go-to-course">
+          Already added to cart<br/>
+          Go to cart
+        </Link>
+      
       ) : (
         <Link to={`/courses/${courseId}`} type="button" className="grey-btn add-cart-btn go-to-course">
           Go to the course
