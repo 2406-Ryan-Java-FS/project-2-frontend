@@ -1,11 +1,12 @@
 import { Button, Card, CardContent, CardHeader } from "@mui/material";
 import uac from "../controllers/userAccountController";
-import { useNavigate } from "react-router-dom";
 import { Typography } from "../../node_modules/@mui/joy/index";
 import "../styles/sign.css"
+import { useContext } from "react";
+import { AppContext } from "../provider/AppProvider";
 
 export default function Signup() {
-    let navigateUsingReact = useNavigate()
+    let globalContext = useContext(AppContext)
     return (<>
         <center>
             {/* <Card varient="outlined" sx={{ maxWidth: 345 }}>
@@ -40,7 +41,7 @@ export default function Signup() {
                                         document.getElementById("SignupPassword").value,
                                         document.getElementById("SignupPasswordConfirm").value
                                     )
-                                    navigateUsingReact('/signin')
+                                    globalContext.navBarGoto('/signin')
                                 }
                             }>Register</Button>
                     </center>

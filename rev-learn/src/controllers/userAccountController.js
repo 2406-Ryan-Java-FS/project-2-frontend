@@ -124,22 +124,23 @@ export default class userAccountController
         console.log(`userAccountController signout()`)
         if(userAccountController.getLoggedInUser()==null)return
 
-        const response=await fetch(`/project-2-back/users2/signout`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json",
-                token:userAccountController.getLoggedInUser().token
-            }
-        })
-        let body=await response.json()
+        //There is no sign out on the backend I guess
+        // const response=await fetch(`/project-2-back/users2/signout`,{
+        //     method:"POST",
+        //     headers:{
+        //         "Content-Type":"application/json",
+        //         token:userAccountController.getLoggedInUser().token
+        //     }
+        // })
+        // let body=await response.json()
 
         //error or not, frontend is logging out
         localStorage.removeItem("loggedInUser")
 
-        if(response.status!=200)
-            throw new Error(await response.text())
+        // if(response.status!=200)
+        //     throw new Error(await response.text())
         
-        return body.message
+        // return body.message
     }
 
     

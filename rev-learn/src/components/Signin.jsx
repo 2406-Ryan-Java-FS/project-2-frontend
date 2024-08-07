@@ -1,12 +1,12 @@
-import { useNavigate } from "react-router-dom"
 import uac from "../controllers/userAccountController"
 import { Typography } from "../../node_modules/@mui/joy/index"
 import { Button } from "../../node_modules/@mui/joy/index"
 import "../styles/sign.css"
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AppContext } from "../provider/AppProvider"
 
 export default function Signin() {
-    let naviageUsingReact = useNavigate()
+    let globalContext = useContext(AppContext)
 
     const [loginError, setLoginError] = useState(false);
 
@@ -15,7 +15,7 @@ export default function Signin() {
         const password = document.getElementById("SigninPassword").value
 
         uac.signin(email, password).then(() => {
-            naviageUsingReact('/')
+            globalContext.navBarGoto('/')
         }).catch((error) => {
             console.error("Sign-in failed", error)
             setLoginError(true)
@@ -68,7 +68,7 @@ export default function Signin() {
                             <Button
                                 variant='outlined'
                                 sx={{ backgroundColor: 'white' }}
-                                onClick={() => naviageUsingReact('/register')}>New Account
+                                onClick={() => globalContext.navBarGoto('/register')}>New Account
                             </Button>
                         </center>
                     </td>

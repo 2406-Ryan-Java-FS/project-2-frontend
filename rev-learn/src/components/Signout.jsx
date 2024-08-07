@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { ListItem, ListItemButton, ListItemText } from "../../node_modules/@mui/material/index"
-import { useNavigate } from "../../node_modules/react-router-dom/dist/index"
 import { globalStateSetter } from "../App"
 import uac from "../controllers/userAccountController"
 import { AppContext } from "../provider/AppProvider"
