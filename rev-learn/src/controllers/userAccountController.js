@@ -22,15 +22,16 @@ export default class userAccountController {
     console.log(
       `userAccountController signup() ${firstName} ${lastName} ${email} ${password}`
     );
-    const response = await fetch(`/project-2-back/users`, {
+    const response = await fetch(`http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/users`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        password: password,
-      }),
+        user: {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+      }}),
     });
 
     if (response.status != 201)
