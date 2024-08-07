@@ -4,6 +4,7 @@ import CourseCard from './CourseCard'
 import SearchBar from '../../components/SearchBar';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from './LoadingSpinner';
+import userAccountController from '../../controllers/userAccountController';
 
 let REVLEARN_URL = "http://ec2-100-26-249-35.compute-1.amazonaws.com:8080"
 
@@ -40,7 +41,7 @@ export default function UserCourseCatalog() {
             const enrollmentsResponse = await fetch(`/project-2-back/enrollments/students/${userId}/completed`, {
               method: 'GET',
               headers: {
-                'Authorization': `Bearer ${token}`,
+                Authorization: userAccountController.getLoggedInUser().token,
                 'Content-Type': 'application/json',
               },
             });

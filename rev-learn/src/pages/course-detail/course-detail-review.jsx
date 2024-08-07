@@ -4,6 +4,7 @@ import Fab from "@mui/material/Fab";
 import AddIcon from "@mui/icons-material/Add";
 import ReviewDialog from "./course-detail-review-dialog";
 import "../../styles/course-detail/course-detail-view.css";
+import userAccountController from "../../controllers/userAccountController";
 
 export default function CourseDetailReview({ courseId }) {
   const [enrollmentList, setEnrollmentList] = useState([]);
@@ -85,7 +86,7 @@ export default function CourseDetailReview({ courseId }) {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${user.token}`, // Correctly format the Authorization header
+            Authorization: userAccountController.getLoggedInUser().token
           },
           body: JSON.stringify(updatedEnrollment),
         }

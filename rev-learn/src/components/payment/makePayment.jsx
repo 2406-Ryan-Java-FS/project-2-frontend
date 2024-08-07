@@ -447,7 +447,7 @@ const FormGrid = styled('div')(() => ({
             const httpResponse = await fetch(`/project-2-back/enrollments/students/${si}/pending`, { 
                 method: 'GET',  
                 headers: {
-                   'Authorization':userAccountController.getLoggedInUser().token,
+                   Authorization: userAccountController.getLoggedInUser().token,
                 }})
                 const body = await httpResponse.json();
                 
@@ -470,7 +470,7 @@ const FormGrid = styled('div')(() => ({
               const httpResponse = await fetch(`/project-2-back/enrollments/payStatus/${i.enrollmentId}`, { 
                   method: 'PATCH',  
                   headers: {
-                     'Authorization':userAccountController.getLoggedInUser().token,
+                     Authorization: userAccountController.getLoggedInUser().token,
                   },
                   body: JSON.stringify({
                     "payStatus" : "COMPLETED"
@@ -504,7 +504,7 @@ const FormGrid = styled('div')(() => ({
             const httpResponse = await fetch(`/project-2-back/enrollments/students/${si}/pending`, { 
                 method: 'GET',  
                 headers: {
-                   'Authorization': `Bearer ${t}`,
+                   Authorization: userAccountController.getLoggedInUser().token,
                 }})
                 const body = await httpResponse.json();
                 
@@ -526,7 +526,7 @@ const FormGrid = styled('div')(() => ({
               const httpResponse = await fetch(`/project-2-back/enrollments/payStatus/${i.enrollmentId}`, { 
                   method: 'PATCH',  
                   headers: {
-                     'Authorization': `Bearer ${t}`,
+                     Authorization: userAccountController.getLoggedInUser().token,
                   },
                   body: JSON.stringify({
                     "payStatus" : "COMPLETED"

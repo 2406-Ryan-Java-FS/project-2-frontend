@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import userAccountController from "../../controllers/userAccountController";
 
 export default function CourseDetailBtn({ courseId }) {
   const [enrollment, setEnrollment] = useState(null);
@@ -21,7 +22,7 @@ export default function CourseDetailBtn({ courseId }) {
       const response = await fetch(`/project-2-back/enrollments/students/${loggedInUser.userId}/courses/${courseId}`, {
         method: "GET",
         headers: {
-          'Authorization': "Bearer " + loggedInUser.token,
+          Authorization: userAccountController.getLoggedInUser().token,
         },
       });
 
@@ -56,7 +57,7 @@ export default function CourseDetailBtn({ courseId }) {
         method: "POST",
         headers: {
           'Content-Type': "application/json",
-          'Authorization': "Bearer " + user.token,
+          Authorization: userAccountController.getLoggedInUser().token,
         },
         body: JSON.stringify(newEnrollment),
       });

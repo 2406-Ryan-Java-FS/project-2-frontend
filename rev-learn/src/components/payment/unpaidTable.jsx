@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
+import userAccountController from '../../controllers/userAccountController';
 
 //import userAccountController from '../../controllers/userAccountController';
 
@@ -73,7 +74,7 @@ export default function UnpaidTable() {
             const httpResponse = await fetch(`/project-2-back/enrollments/students/${studentId}/pending`, { 
                 method: 'GET',  
                 headers: {
-                   'Authorization': `Bearer ${t}`,
+                   Authorization: userAccountController.getLoggedInUser().token,
                 }})
                 const body = await httpResponse.json();
                 console.log(httpResponse.status)
@@ -100,7 +101,7 @@ export default function UnpaidTable() {
           const httpResponse = await fetch(`/project-2-back/courses/${i.courseId}`, { 
               method: 'GET',  
               headers: {
-                 'Authorization': `Bearer ${t}`,
+                 Authorization: userAccountController.getLoggedInUser().token,
               }})
               const body = await httpResponse.json();
               
