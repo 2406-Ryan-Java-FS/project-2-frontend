@@ -8,8 +8,6 @@ export default function CourseDetailBtn({ courseId }) {
 
   useEffect(() => {
     const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    console.log("user: " + loggedInUser.userId)
-    console.log("user.token: " + loggedInUser.token)
     setUser(loggedInUser);
 
     if (loggedInUser) {
@@ -47,7 +45,7 @@ export default function CourseDetailBtn({ courseId }) {
     }
 
     const newEnrollment = { 
-      studentId: user.userId,
+      studentId: user?.userId,
       courseId: courseId,
       paymentStatus: "pending",
       enrolled: false,
