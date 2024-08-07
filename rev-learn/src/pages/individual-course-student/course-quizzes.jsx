@@ -14,7 +14,7 @@ export default function CourseQuizzes() {
     useEffect(() => {
         const fetchQuizzes = async () => {
             try {
-                const response = await fetch('http://localhost:8010/quizzes');
+                const response = await fetch('http://localhost:8080/quizzes');
                 if (!response.ok) {
                     throw new Error('Failed to fetch quizzes');
                 }

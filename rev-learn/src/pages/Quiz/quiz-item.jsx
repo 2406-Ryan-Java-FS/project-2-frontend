@@ -34,11 +34,13 @@ const QuizItem = ({ mode, quiz: quizData}) => {
   // console.log("🎲 ~ QuizItem ~ quizData:", quizData)
 
   const handleSubmitQuiz = async () => {
+    console.log("🎲 ~ QuizItem ~ quizData:", quizData)
+
     try {
       updateQuizTimer("OFF");
-      setScore( QuizSubmit({quizData}) );
+      setScore(QuizSubmit({ quizData }));
     } catch (error) {
-      console.error('Error on processing submit:', error);
+      console.error("Error on processing submit:", error);
     }
   }
 
@@ -63,10 +65,6 @@ const QuizItem = ({ mode, quiz: quizData}) => {
         "quiz_id": 1,
         "attempt_date": Date.now(),
       };
-
-      // const attemptsResponse = await getQuizAttemptByStudentId(1);
-      // const submitResponse = await submitQuizAttempt(quizAttempt);
-      // console.log("⚾ ~ handleSubmitQuizAttempt ~ quizAttempt ++ attempts:", submitResponse);
 
       setMessage('Quiz attempt not implemented yet. Coming on next version!');
 
@@ -107,9 +105,7 @@ const QuizItem = ({ mode, quiz: quizData}) => {
           </div>
         </div>
         <div>
-          {/* <QuestionScratchPad/> */}
           <div className='quiz-buttons'>
-            {/* <Button id='quiz-btn' variant="outlined" style={{margin:'2px 5px 2px 2px'}}>Mark</Button> */}
             <Button 
                 id='quiz-page-button' 
                 onClick={handleSubmitQuiz}
@@ -126,18 +122,6 @@ const QuizItem = ({ mode, quiz: quizData}) => {
               >
               Cancel
             </Button>
-            {/* {loading ? (
-              <div>Loading...</div>
-            ) : (
-              <Button 
-                  id='quiz-button'
-                  onClick={handleSubmitQuizAttempt}
-                  variant="outlined" 
-                  style={{margin:'2px 5px 2px 2px'}}
-                >
-                Submit Quiz Attempt
-              </Button>
-            )}                 */}
           </div>
         </div>
         <QuizScore score={score}/>

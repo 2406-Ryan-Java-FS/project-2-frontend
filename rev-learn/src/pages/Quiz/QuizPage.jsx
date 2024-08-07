@@ -31,6 +31,7 @@ const QuizPage = ({ quizId }) => {
         // Clear local storage or selections when a new quiz starts
         answerChoiceManager.clearSelections(); // Implement this method to clear local storage
         
+        console.log("quiz data", quiz);
         setQuizData(quiz);
 
       } catch (error) {
