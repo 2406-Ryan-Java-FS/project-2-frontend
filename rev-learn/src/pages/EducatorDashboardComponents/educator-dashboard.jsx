@@ -11,7 +11,7 @@ export default function EducatorDashboard() {
 
   useEffect(() => {
     // Check if the user is a student
-    if (!loading && userData && userData.role === "student") {
+    if ( (!loading && userData && userData.role === "student") || localStorage.loggedInUser === undefined) {
       // Redirect to the student page if user is a student
       navigate("/student");
     }
