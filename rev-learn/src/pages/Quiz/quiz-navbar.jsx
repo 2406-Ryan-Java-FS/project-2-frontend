@@ -7,8 +7,8 @@ import { QuizContext } from '../../provider/QuizProvider';
 
 import "./quiz.css";
 
-const quizNavigationItems = ['<< first', '<left' ];
-const quizNavigationItemsRight = ['right>', 'last >>'];
+const quizNavigationItems = ['<< first', '<prev' ];
+const quizNavigationItemsRight = ['next>', 'last >>'];
 
 const QuizNavigationBar = ({quizData}) => {
   const { quizStartTimer, quizQuestionId, updateQuizQuestionId } = useContext(QuizContext);
