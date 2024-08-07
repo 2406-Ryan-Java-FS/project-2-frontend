@@ -5,14 +5,13 @@ import {
   Box,
   Button,
   DialogTitle,
-  DialogContent,
   FormControl,
   FormLabel,
-  Input,
   Grid,
   Select,
   MenuItem,
   TextField,
+  Typography,
 } from "@mui/material";
 import Textarea from "@mui/joy/Textarea";
 import AddIcon from "@mui/icons-material/Add";
@@ -100,129 +99,130 @@ export default function EducatorDashboardHeaderAddNewCourse() {
       <Modal open={openModal} onClose={handleCloseModal}>
         <Box
           sx={{
-            position: "relative",
-            bgcolor: "background.paper",
-            boxShadow: 24,
-            p: 4,
-            width: "auto",
-            maxWidth: 600,
-            margin: "auto",
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '100vh',
           }}
         >
-          <DialogTitle>Create New Course</DialogTitle>
-          <DialogContent>Fill in the course information.</DialogContent>
-          <form onSubmit={handleSubmit}>
-            <Grid container spacing={2}>
-              <Grid item xs={6}>
-                <FormControl fullWidth>
-                  <FormLabel>Course Title</FormLabel>
-                  <Input
-                    autoFocus
-                    required
-                    type="text"
-                    name="title"
-                    value={state.newCourse.title}
-                    onChange={handleInputChange}
-                  />
-                </FormControl>
+          <Box
+            sx={{
+              position: "relative",
+              bgcolor: "background.paper",
+              boxShadow: 24,
+              p: 4,
+              width: "auto",
+              maxWidth: 600,
+              margin: "auto",
+              borderRadius: 2,
+            }}
+          >
+            <Typography variant="h6" align="center" gutterBottom>
+              Create New Course
+            </Typography>
+            <form onSubmit={handleSubmit}>
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <FormLabel>Course Title</FormLabel>
+                    <TextField
+                      autoFocus
+                      required
+                      type="text"
+                      name="title"
+                      value={state.newCourse.title}
+                      onChange={handleInputChange}
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <FormLabel>Course Description</FormLabel>
+                    <Textarea
+                      minRows={5}
+                      name="description"
+                      value={state.newCourse.description}
+                      onChange={handleInputChange}
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <FormLabel>Course Category</FormLabel>
+                    <Select
+                      name="category"
+                      value={state.newCourse.category}
+                      onChange={handleInputChange}
+                      displayEmpty
+                      inputProps={{ "aria-label": "Course Category" }}
+                    >
+                      <MenuItem value="" disabled>
+                        Select a category
+                      </MenuItem>
+                      <MenuItem value="Web Development">Web Development</MenuItem>
+                      <MenuItem value="Data Science">Data Science</MenuItem>
+                      <MenuItem value="Mobile Development">Mobile Development</MenuItem>
+                    </Select>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={6}>
+                  <FormControl fullWidth>
+                    <FormLabel>Course Price</FormLabel>
+                    <TextField
+                      required
+                      name="price"
+                      type="number"
+                      value={state.newCourse.price}
+                      onChange={handleInputChange}
+                      variant="outlined"
+                      fullWidth
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={6}>
+                  <FormControl fullWidth>
+                    <FormLabel>Course Creation Date</FormLabel>
+                    <TextField
+                      type="date"
+                      name="creationDate"
+                      value={state.newCourse.creationDate}
+                      onChange={handleInputChange}
+                      fullWidth
+                      InputLabelProps={{ shrink: true }}
+                      variant="outlined"
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                  <FormControl fullWidth>
+                    <FormLabel>Course Image URL</FormLabel>
+                    <TextField
+                      type="text"
+                      name="imgUrl"
+                      value={state.newCourse.imgUrl}
+                      onChange={handleInputChange}
+                      fullWidth
+                      variant="outlined"
+                    />
+                  </FormControl>
+                </Grid>
               </Grid>
-              <Grid item xs={6}>
-                <FormControl fullWidth>
-                  <FormLabel>Educator ID</FormLabel>
-                  <Input
-                    required
-                    type="number"
-                    name="educatorId"
-                    value={
-                      educatorData ? educatorData.educatorId : "Loading..."
-                    }
-                    onChange={handleInputChange}
-                    disabled
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <FormLabel>Course Description</FormLabel>
-                  <Textarea
-                    minRows={7}
-                    name="description"
-                    value={state.newCourse.description}
-                    onChange={handleInputChange}
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <FormLabel>Course Category</FormLabel>
-                  <Select
-                    name="category"
-                    value={state.newCourse.category}
-                    onChange={handleInputChange}
-                    displayEmpty
-                    inputProps={{ "aria-label": "Course Category" }}
-                    sx={{ zIndex: 1300 }} // Ensures it's above the modal content
-                  >
-                    <MenuItem value="" disabled>
-                      Select a category
-                    </MenuItem>
-                    <MenuItem value="Web Development">Web Development</MenuItem>
-                    <MenuItem value="Data Science">Data Science</MenuItem>
-                    <MenuItem value="Mobile Development">
-                      Mobile Development
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={6}>
-                <FormControl fullWidth>
-                  <FormLabel>Course Price</FormLabel>
-                  <Input
-                    required
-                    name="price"
-                    type="number"
-                    value={state.newCourse.price}
-                    onChange={handleInputChange}
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item xs={6}>
-                <FormControl fullWidth>
-                  <FormLabel>Course Creation Date</FormLabel>
-                  <TextField
-                    type="date"
-                    name="creationDate"
-                    value={state.newCourse.creationDate}
-                    onChange={handleInputChange}
-                    fullWidth
-                    InputLabelProps={{ shrink: true }} // Ensures the label is displayed correctly
-                  />
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl fullWidth>
-                  <FormLabel>Course Image URL</FormLabel>
-                  <TextField
-                    type="text"
-                    name="imgUrl"
-                    value={state.newCourse.imgUrl}
-                    onChange={handleInputChange}
-                    fullWidth
-                  />
-                </FormControl>
-              </Grid>
-            </Grid>
-            <Box
-              sx={{ display: "flex", justifyContent: "flex-end", marginTop: 2 }}
-            >
-              <Button onClick={handleCloseModal} sx={{ marginRight: 1 }}>
-                Cancel
-              </Button>
-              <Button variant="contained" type="submit">
-                Create Course
-              </Button>
-            </Box>
-          </form>
+              <Box
+                sx={{ display: "flex", justifyContent: "flex-end", marginTop: 2 }}
+              >
+                <Button onClick={handleCloseModal} sx={{ marginRight: 1 }}>
+                  Cancel
+                </Button>
+                <Button variant="contained" type="submit">
+                  Create Course
+                </Button>
+              </Box>
+            </form>
+          </Box>
         </Box>
       </Modal>
     </>

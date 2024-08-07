@@ -14,7 +14,7 @@ import placeholderImage from "../../images/placeholder-image.jpg";
 import EducatorDashboardCourseCardDropdown from "./educator-dashboard-course-card-dropdown";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
 
-export default function EducatorDashboardCourseCard({ course }) {
+export default function EducatorDashboardCourseCard({ course, index }) {
   const { userData } = useEducatorDashboardContext();
   const navigate = useNavigate();
 
@@ -48,7 +48,7 @@ export default function EducatorDashboardCourseCard({ course }) {
       <EducatorDashboardCourseCardDropdown course={course} />
       <CardContent sx={{ paddingBottom: 0, paddingLeft: 1 }}>
         <Typography sx={{ textAlign: "left" }} variant="h6">
-          {course.courseId} - {course.title} <br />
+          {index}. {course.title} <br />
           Educator - {userData?.firstName}
         </Typography>
       </CardContent>

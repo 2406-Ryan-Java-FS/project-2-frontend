@@ -25,8 +25,8 @@ export default function EducatorDashboard() {
     <>
       <EducatorDashboardHeader />
       <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-        {state.courses.map((course) => (
-          <EducatorDashboardCourseCard key={course.courseId} course={course} />
+        {state.courses.map((course, index) => (
+          <EducatorDashboardCourseCard key={course.courseId} course={course} index={index + 1} />
         ))}
       </Box>
     </>
