@@ -9,7 +9,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button'
 
-import userAccountController from '../../controllers/userAccountController';
+//import userAccountController from '../../controllers/userAccountController';
 
 
 export default function UnpaidTable() {
@@ -60,10 +60,10 @@ export default function UnpaidTable() {
   
     async function getPaymentDetails() {
      
-     
-      setStudentId(userAccountController.loggedInUser.userId)
+      const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+      setStudentId(loggedInUser.userId)
       //setStudentId(1)
-      let t = userAccountController.loggedInUser.token 
+      let t = loggedInUser.token 
       //let t =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzIzMDQyMzI0LCJleHAiOjE3MjMwODU1MjR9.3hb8h0Qkqhc-FWwNJPBBRdF6V1zeoSfYD52CylmdPAvnCd0r7zSMCKI1dhZVlIU-ywtx-WiE349wyrvk_7nbng"
       let initialList = [];
       let infoList = []
