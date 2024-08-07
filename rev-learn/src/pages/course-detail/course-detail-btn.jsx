@@ -52,7 +52,7 @@ export default function CourseDetailBtn({ courseId }) {
     };
 
     try {
-      const response = await fetch("http://ec2-100-26-249-35.compute-1.amazonaws.com:8080   /enrollments", {
+      const response = await fetch("http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments", {
         method: "POST",
         headers: {
           'Content-Type': "application/json",
@@ -90,7 +90,7 @@ export default function CourseDetailBtn({ courseId }) {
         <button className="grey-btn add-cart-btn" type="button" onClick={pendingEnroll}>
           Add to Cart
         </button>
-      ) : enrollment.enrolled === false ? (
+      ) : enrollment.enrolled === false? (
         <Link to={`/payment`} type="button" className="grey-btn add-cart-btn go-to-course">
           Already added to cart<br/>
           Go to cart
