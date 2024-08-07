@@ -61,8 +61,8 @@ export default function UnpaidTable() {
     async function getPaymentDetails() {
      
      
-      //setStudentId(userAccountController.loggedInUser.userId)
-      setStudentId(1)
+      setStudentId(userAccountController.loggedInUser.userId)
+      //setStudentId(1)
       let t = userAccountController.loggedInUser.token 
       //let t =  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNzIzMDQyMzI0LCJleHAiOjE3MjMwODU1MjR9.3hb8h0Qkqhc-FWwNJPBBRdF6V1zeoSfYD52CylmdPAvnCd0r7zSMCKI1dhZVlIU-ywtx-WiE349wyrvk_7nbng"
       let initialList = [];
