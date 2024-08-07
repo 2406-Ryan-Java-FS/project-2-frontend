@@ -9,7 +9,6 @@ export default function Signin() {
 
     const [loginError, setLoginError] = useState(false);
 
-
     const handleSignin = () => {
         const email = document.getElementById("SigninEmail").value
         const password = document.getElementById("SigninPassword").value

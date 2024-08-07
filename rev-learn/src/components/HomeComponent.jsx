@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { Link } from "../../node_modules/react-router-dom/dist/index"
 import EducatorDashboard from "../pages/EducatorDashboardComponents/educator-dashboard"
 import UserCourseCatalog from "../pages/UserCourseCatalog/UserCourseCatalog"
 import { EducatorDashboardProvider } from "../pages/EducatorDashboardComponents/educator-dashboard-context";

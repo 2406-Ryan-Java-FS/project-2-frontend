@@ -45,12 +45,30 @@ export default function UserCourseCatalog() {
             completedEnrollments = await enrollmentsResponse.json();
           }
     
+          // Extract unique educator IDs
+          const uniqueEducatorIds = [...new Set(coursesResult.map(course => course.educatorId))];
+    
+          // Fetch educator details for all unique IDs
+          const educatorDetails = await fetchEducatorDetails(uniqueEducatorIds);
+    
+          // Create a map of educator details by educatorId for quick lookup
+          const educatorDetailsMap = new Map();
+          educatorDetails.forEach(detail => {
+            educatorDetailsMap.set(detail.user.userId, detail);
+          });
+    
+          // Merge course data with educator details
           const mergedCourseData = coursesResult.map(course => {
             const status = completedEnrollments.find(status => status.courseId === course.courseId);
+            const educatorDetail = educatorDetailsMap.get(course.educatorId);
+    
             return {
               ...course,
               enrolled: status ? status.enrolled : false,
-              completed: false
+              completed: false,
+              educatorFirstName: educatorDetail ? educatorDetail.user.firstName : '',
+              educatorLastName: educatorDetail ? educatorDetail.user.lastName : '',
+              educatorDegreeLevel: educatorDetail ? educatorDetail.educator.degreeLevel : '',
             };
           });
     
@@ -64,9 +82,19 @@ export default function UserCourseCatalog() {
     
       fetchAllCourses();
     }, [userId, token]);
+    
+    // Function to fetch educator details for an array of educator IDs
+    const fetchEducatorDetails = async (educatorIds) => {
+      const responses = await Promise.all(educatorIds.map(educatorId =>
+        fetch(`${REVLEARN_URL}/users/${educatorId}`, {
+          method: 'GET',
+        }).then(response => response.json())
+      ));
+      return responses;
+    };
 
-  const role = "Student";
-  const image = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
+  // const role = "Student";
+  // const image = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
 
   // Load more items when user scrolls to the bottom
   const loadMoreItems = useCallback(() => {
@@ -139,7 +167,7 @@ export default function UserCourseCatalog() {
 
         <div className="userCourseCatalogOutterContainer">
           <div className='userCourseCatalogMainContainer'>
-            <h1 className='title'>RevLearn Courses</h1>
+            <h1 className='title'><span className='revLearnSpan'>Rev Learn</span> Courses</h1>
             <div className="searchBarContainer">
               <SearchBar onSearch={handleSearch} />
             </div>
@@ -162,12 +190,15 @@ export default function UserCourseCatalog() {
                         price={x.price}
                         educator={x.educator}
                         rating={x.rating}
-                        role={role}
-                        imageStatic={image}
+                        // role={role}
+                        // imageStatic={image}
                         // image={x.image}
                         image={x.imgUrl}
                         enrolled={x.enrolled}
                         courseId={x.courseId}
+                        educatorFirstName={x.educatorFirstName}
+                        educatorLastName={x.educatorLastName}
+                        educatorDegreeLevel={x.educatorDegreeLevel}
                       />
                     </Link>
                   ))}
