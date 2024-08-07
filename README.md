@@ -2,7 +2,7 @@
 RevLearn is a platform designed to facilitate learning and teaching by providing comprehensive features for both students and educators. The platform supports various functionalities, including account management, course enrollment, progress tracking, and payment processing. Institutions can also use the platform to create and manage courses, monitor student progress, and receive payments.
 
 ### Backend Repository
-For the backend code, please visit the [RevLearn Backend Repository](https://github.com/2406-Ryan-Java-FS/project-2-frontend).
+For the backend code, please visit the [RevLearn Backend Repository](https://github.com/2406-Ryan-Java-FS/project-2-backend).
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
