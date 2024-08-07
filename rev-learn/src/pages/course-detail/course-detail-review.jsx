@@ -50,7 +50,9 @@ export default function CourseDetailReview({ courseId }) {
 
         // Find enrollment for the logged-in user
         const userEnrollment = enrollments.find(
-          (enrollment) => enrollment.studentId === user.userId
+          (enrollment) =>
+            enrollment.studentId === user.userId &&
+            enrollment.paymentStatus === "completed"
         );
         setEnrollment(userEnrollment);
       } catch (error) {
@@ -116,7 +118,7 @@ export default function CourseDetailReview({ courseId }) {
       <div className="reviews-header">
         <h2>Reviews ({enrollmentList.length})</h2>
         {console.log(user)}
-        {enrollmentList.length > 0 && (
+        {enrollment && (
           <Fab
             onClick={handleDialogOpen}
             size="small"
@@ -152,5 +154,4 @@ export default function CourseDetailReview({ courseId }) {
         })}
     </>
   );
-
 }
