@@ -51,7 +51,7 @@ export default class userAccountController {
    */
   static async signin(email, password) {
     console.log(`userAccountController login() ${email} ${password}`);
-    const response = await fetch(`http://localhost:8080/users/login`, {
+    const response = await fetch(`http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

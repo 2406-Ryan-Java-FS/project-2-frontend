@@ -48,6 +48,7 @@ body{
   background-color: #a9edf7;
   background-image: url("../images/BG/DesignBG.png");
   background-size: cover;
+  background-repeat: repeat;
   background-attachment: fixed;
   background-position: center;
   color: #494b57;
