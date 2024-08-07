@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import "../../styles/individual-course/home.css";
 import SideBar from './course-side-bar';
+
 
 export default function CourseHome() {
     const { courseId } = useParams();
@@ -17,6 +19,7 @@ export default function CourseHome() {
                     throw new Error('Failed to fetch course details');
                 }
                 const data = await response.json();
+                console.log(data);
                 setCourse(data);
             } catch (error) {
                 console.error('Error fetching course:', error);
@@ -39,10 +42,13 @@ export default function CourseHome() {
 
     return (<>
         {<SideBar />}
-        <div>
-        <h1>{error ? defaultCourse.title : course.title}</h1>
-        <p>{error ? defaultCourse.description : course.description}</p>
-    </div>
+        <div className='student-home-box'>
+            <div className="student-home-inner-box">
+            <h1>{error ? defaultCourse.title : course.title}</h1>
+            <p>{error ? defaultCourse.description : course.description}</p>
+            </div>
+        
+        </div>
     </>
     );
 }

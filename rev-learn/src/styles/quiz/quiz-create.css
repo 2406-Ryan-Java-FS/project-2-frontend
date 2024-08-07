@@ -1,0 +1,12 @@
+.quiz-create-container{
+    display: flex;
+    justify-content: center;
+}
+
+.quiz-create-inner-container{
+    background-color: #fff;
+    border: 1px solid #eee;
+    margin: 5%;
+    width: 80%;
+    padding: 10px 15px;
+}
