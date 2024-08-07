@@ -15,7 +15,7 @@ const QuizPage = ({ quizId }) => {
   const { quiz_id } = useParams();
 
   const [ loading, setLoading ] = useState(true);
-  const [ quizData, setQuizData ] = useState(null);
+  const [ quizData, setQuizData ] = useState(1);
   const [ error, setError ] = useState(null);
 
   useEffect(() => {

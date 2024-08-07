@@ -5,7 +5,7 @@ import SearchBar from '../../components/SearchBar';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from './LoadingSpinner';
 
-let REVLEARN_URL = "http://localhost:8080"
+let REVLEARN_URL = "http://ec2-100-26-249-35.compute-1.amazonaws.com:8080"
 
 export default function UserCourseCatalog() {
 

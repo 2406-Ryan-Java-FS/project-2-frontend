@@ -92,7 +92,12 @@ export default function QuizCreate() {
 
   const handleAnswerChange = (qIndex, aIndex, event) => {
     let data = [...questionFields];
-    data[qIndex].question_choices[aIndex][event.target.name] = event.target.value;
+    const { name, type, checked, value } = event.target;
+    if (type === 'checkbox') {
+      data[qIndex].question_choices[aIndex][name] = checked;
+    } else {
+      data[qIndex].question_choices[aIndex][name] = value;
+    }
     setQuestionFields(data);
   }
 
@@ -201,8 +206,9 @@ export default function QuizCreate() {
                                 label="Correct Answer?"
                                 control={
                                 <Checkbox
-                                    value={aInput.correct}
-                                    onChange={event => handleAnswerChange(qIndex, aIndex, event)}
+                                    name="correct"
+                                    checked={aInput.correct}
+                                    onClick={event => handleAnswerChange(qIndex, aIndex, event)}
                                 />
                                 }/><br/>
                                 <Button variant="outlined" onClick={() => removeAnswer(qIndex, aIndex)}>Remove Answer</Button>
