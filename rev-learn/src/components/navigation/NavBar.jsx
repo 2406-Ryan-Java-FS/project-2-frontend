@@ -29,7 +29,7 @@ export default function NavBar() {
                     Register
                 </Button>
                 <Button variant='contained' sx={{margin: '10px'}}
-                component={Link} to='/login'>
+                component={Link} to='/signin'>
                     Login
                 </Button>
                 <Button variant='contained' sx={{margin: '10px'}}
