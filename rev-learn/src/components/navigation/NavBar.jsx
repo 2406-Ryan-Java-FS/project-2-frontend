@@ -1,10 +1,17 @@
 import { Link } from "../../../node_modules/react-router-dom/dist/index"
 import { Toolbar } from "../../../node_modules/@mui/material/index"
 import { Button } from "../../../node_modules/@mui/material/index"
+import { useEffect, useState } from "react";
 
-export default function NavBar() {
+export default function NavBar({ loggedIn, setLoggedIn }) {
 
-    
+
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem('loggedInUser');
+        if (loggedInUser) {
+            setLoggedIn(true);
+        }
+      }, []);
 
     return (<>
 
@@ -28,10 +35,16 @@ export default function NavBar() {
                     >
                     Register
                 </Button>
-                <Button variant='contained' sx={{margin: '10px'}}
-                component={Link} to='/signin'>
-                    Login
-                </Button>
+
+                { !loggedIn && 
+                (
+                    <Button variant='contained' sx={{margin: '10px'}}
+                    component={Link} to='/signin'>
+                        Login
+                    </Button>
+                )
+                }
+
                 <Button variant='contained' sx={{margin: '10px'}}
                 component={Link} to='/student'>
                     Student
@@ -53,6 +66,24 @@ export default function NavBar() {
                 component={Link} to='/edit-question'>
                     Edit Question
                 </Button> */}
+
+                {loggedIn &&
+                    (
+                        <Button
+                            variant='contained'
+                            sx={{ margin: '10px' }}
+                            onClick={() => {
+                                localStorage.clear();
+                                alert('Logging out, redirecting to login page...');
+                                window.location.href = '/signin';
+                            }}
+                        >
+                            Logout
+                        </Button>
+                    )
+
+}
+
 
             </Toolbar>
 
