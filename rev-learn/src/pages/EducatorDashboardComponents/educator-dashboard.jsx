@@ -25,9 +25,12 @@ export default function EducatorDashboard() {
     <>
       <EducatorDashboardHeader />
       <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-        {state.courses.map((course) => (
-          <EducatorDashboardCourseCard key={course.courseId} course={course} />
-        ))}
+        {
+        state.courses.length==0?<h3>No Courses</h3>
+        :state.courses.map((course) => (
+            <EducatorDashboardCourseCard key={course.courseId} course={course} />
+          ))
+        }
       </Box>
     </>
   );

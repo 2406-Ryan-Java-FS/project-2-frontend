@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "@mui/material";
 import EducatorDashboardHeaderAddNewCourse from "./educator-dashboard-header-add-new-course";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
+import userAccountController from "../../controllers/userAccountController";
 
 export default function EducatorDashboardHeader() {
   const { userData } = useEducatorDashboardContext();
@@ -18,7 +19,9 @@ export default function EducatorDashboardHeader() {
       }}
     >
       <h1 style={{ margin: 0 }}>
-        {userData ? `${userData.firstName}'s Dashboard` : "Loading..."}
+        {/* Changed because re-render wasn't happening */}
+        {userAccountController.getLoggedInUser()?.user?.firstName} Dashboard
+        {/* {userData ? `${userAccountController.getLoggedInUser().user.firstName}'s Dashboard` : "Loading..."} */}
       </h1>
       <EducatorDashboardHeaderAddNewCourse />
       <hr
