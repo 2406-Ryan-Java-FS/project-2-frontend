@@ -12,6 +12,7 @@ import {
   MenuItem,
   TextField,
   Typography,
+  Tooltip,
 } from "@mui/material";
 import Textarea from "@mui/joy/Textarea";
 import AddIcon from "@mui/icons-material/Add";
@@ -83,19 +84,21 @@ export default function EducatorDashboardHeaderAddNewCourse() {
 
   return (
     <>
-      <IconButton
-        onClick={handleOpenModal}
-        sx={{
-          position: "absolute",
-          right: 0,
-          top: "50%",
-          transform: "translateY(-50%)",
-          color: "black",
-          border: "none",
-        }}
-      >
-        <AddIcon />
-      </IconButton>
+      <Tooltip title="Add New Course">
+        <IconButton
+          onClick={handleOpenModal}
+          sx={{
+            position: "absolute",
+            right: 0,
+            top: "50%",
+            transform: "translateY(-50%)",
+            color: "black",
+            border: "none",
+          }}
+        >
+          <AddIcon />
+        </IconButton>
+      </Tooltip>
       <Modal open={openModal} onClose={handleCloseModal}>
         <Box
           sx={{
