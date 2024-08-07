@@ -23,7 +23,7 @@ export default function EducatorDashboardCourseCard({ course }) {
   };
 
   const handleQuizIconClick = () => {
-    navigate("/quiz-create");
+    navigate(`/quiz-create/${course.courseId}`);
   };
 
   return (
