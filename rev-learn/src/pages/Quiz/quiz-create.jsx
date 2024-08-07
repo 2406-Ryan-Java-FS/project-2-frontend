@@ -98,12 +98,6 @@ export default function QuizCreate() {
     } else {
       data[qIndex].question_choices[aIndex][name] = value;
     }
-    const { name, type, checked, value } = event.target;
-    if (type === 'checkbox') {
-      data[qIndex].question_choices[aIndex][name] = checked;
-    } else {
-      data[qIndex].question_choices[aIndex][name] = value;
-    }
     setQuestionFields(data);
   };
 
