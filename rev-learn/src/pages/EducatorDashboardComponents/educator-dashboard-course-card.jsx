@@ -6,6 +6,7 @@ import {
   Typography,
   IconButton,
   Card,
+  Tooltip,
 } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import EditIcon from "@mui/icons-material/Edit";
@@ -14,7 +15,7 @@ import placeholderImage from "../../images/placeholder-image.jpg";
 import EducatorDashboardCourseCardDropdown from "./educator-dashboard-course-card-dropdown";
 import { useEducatorDashboardContext } from "./educator-dashboard-context";
 
-export default function EducatorDashboardCourseCard({ course }) {
+export default function EducatorDashboardCourseCard({ course, index }) {
   const { userData } = useEducatorDashboardContext();
   const navigate = useNavigate();
 
@@ -48,17 +49,19 @@ export default function EducatorDashboardCourseCard({ course }) {
       <EducatorDashboardCourseCardDropdown course={course} />
       <CardContent sx={{ paddingBottom: 0, paddingLeft: 1 }}>
         <Typography sx={{ textAlign: "left" }} variant="h6">
-          {course.courseId} - {course.title} <br />
-          Educator - {userData?.firstName}
+          {index}. {course.title} <br/>
+          Educator: {userData?.firstName}
         </Typography>
       </CardContent>
       <CardActions sx={{ padding: 0 }}>
         <IconButton onClick={handleDiscussionIconClick}>
           <ChatIcon sx={{ color: "black" }} />
         </IconButton>
-        <IconButton onClick={handleQuizIconClick}>
-          <EditIcon sx={{ color: "black" }} />
-        </IconButton>
+        <Tooltip title="Create a New Quiz">
+          <IconButton onClick={handleQuizIconClick}>
+            <EditIcon sx={{ color: "black" }} />
+          </IconButton>
+        </Tooltip>
       </CardActions>
     </Card>
   );
