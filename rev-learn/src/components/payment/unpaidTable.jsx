@@ -69,8 +69,8 @@ export default function UnpaidTable() {
       let infoList = []
       try {
             
-            const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/students/${studentId}/pending`;
-            const httpResponse = await fetch(url, { 
+            //const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/students/${studentId}/pending`;
+            const httpResponse = await fetch(`/project-2-back/enrollments/students/${studentId}/pending`, { 
                 method: 'GET',  
                 headers: {
                    'Authorization': `Bearer ${t}`,
@@ -96,8 +96,8 @@ export default function UnpaidTable() {
 
         try {
             
-          const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/courses/${i.courseId}`;
-          const httpResponse = await fetch(url, { 
+          //const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/courses/${i.courseId}`;
+          const httpResponse = await fetch(`/project-2-back/courses/${i.courseId}`, { 
               method: 'GET',  
               headers: {
                  'Authorization': `Bearer ${t}`,

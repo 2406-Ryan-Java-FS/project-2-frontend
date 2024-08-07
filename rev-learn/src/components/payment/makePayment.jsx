@@ -14,6 +14,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
+import userAccountController from '../../controllers/userAccountController';
 //import userAccountController from '../../controllers/userAccountController'
 
 
@@ -442,11 +443,11 @@ const FormGrid = styled('div')(() => ({
         }
         try {
             
-            const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/students/${si}/pending`;
-            const httpResponse = await fetch(url, { 
+            //const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/students/${si}/pending`;
+            const httpResponse = await fetch(`/project-2-back/enrollments/students/${si}/pending`, { 
                 method: 'GET',  
                 headers: {
-                   'Authorization': `Bearer ${t}`,
+                   'Authorization':userAccountController.getLoggedInUser().token,
                 }})
                 const body = await httpResponse.json();
                 
@@ -464,12 +465,12 @@ const FormGrid = styled('div')(() => ({
 
             try {
                 
-              const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/payStatus/${i.enrollmentId}`;
-              console.log(url)
-              const httpResponse = await fetch(url, { 
+              //const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/payStatus/${i.enrollmentId}`;
+              //console.log(url)
+              const httpResponse = await fetch(`/project-2-back/enrollments/payStatus/${i.enrollmentId}`, { 
                   method: 'PATCH',  
                   headers: {
-                     'Authorization': `Bearer ${t}`,
+                     'Authorization':userAccountController.getLoggedInUser().token,
                   },
                   body: JSON.stringify({
                     "payStatus" : "COMPLETED"
@@ -499,8 +500,8 @@ const FormGrid = styled('div')(() => ({
 
         try {
             
-            const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/students/${si}/pending`;
-            const httpResponse = await fetch(url, { 
+            //const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/students/${si}/pending`;
+            const httpResponse = await fetch(`/project-2-back/enrollments/students/${si}/pending`, { 
                 method: 'GET',  
                 headers: {
                    'Authorization': `Bearer ${t}`,
@@ -521,8 +522,8 @@ const FormGrid = styled('div')(() => ({
 
             try {
                 
-              const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/payStatus/${i.enrollmentId}`;
-              const httpResponse = await fetch(url, { 
+              //const url = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/payStatus/${i.enrollmentId}`;
+              const httpResponse = await fetch(`/project-2-back/enrollments/payStatus/${i.enrollmentId}`, { 
                   method: 'PATCH',  
                   headers: {
                      'Authorization': `Bearer ${t}`,

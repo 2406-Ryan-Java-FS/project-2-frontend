@@ -19,7 +19,7 @@ const CourseGrades = () => {
   useEffect(() => {
     const fetchGrades = async () => {
       try {
-        const response = await fetch(`/api/courses/${courseId}/grades`);
+        const response = await fetch(`/project-2-back/courses/${courseId}/grades`);
         if (!response.ok) {
           throw new Error('Failed to fetch grades');
         }

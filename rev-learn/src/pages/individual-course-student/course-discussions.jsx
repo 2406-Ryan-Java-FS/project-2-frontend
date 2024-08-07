@@ -10,7 +10,7 @@ const CourseDiscussions = ({ courseId }) => {
   useEffect(() => {
     const fetchDiscussions = async () => {
       try {
-        const response = await fetch(`/api/courses/${courseId}/discussions`);
+        const response = await fetch(`/project-2-back/courses/${courseId}/discussions`);
         const data = await response.json();
         setDiscussions(data);
       } catch (error) {

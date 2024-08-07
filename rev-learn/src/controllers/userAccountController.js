@@ -13,7 +13,6 @@
 export default class userAccountController
 {
     static newUserCreated=null
-    static baseUrl=`/project-2-back` //uses nginx to re-direct on local and on server
 
     /**
      * Registers a new user initialized with the given username and password
@@ -23,7 +22,7 @@ export default class userAccountController
         //Need to do password confirm check
 
         console.log(`userAccountController signup() ${firstName} ${lastName} ${email} ${password}`)
-        const response=await fetch(`${userAccountController.baseUrl}/users2/signup`,{
+        const response=await fetch(`/project-2-back/users2/signup`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
@@ -59,7 +58,7 @@ export default class userAccountController
     static async signin(email,password)
     {
         console.log(`userAccountController signin() ${email} ${password}`)
-        const response=await fetch(`${userAccountController.baseUrl}/users2/signin`,{
+        const response=await fetch(`/project-2-back/users2/signin`,{
             method:"POST",
             headers:{"Content-Type":"application/json"},
             body:JSON.stringify({
@@ -113,7 +112,7 @@ export default class userAccountController
     static getLoggedInUser()
     {
         let loggedInUser=JSON.parse(localStorage.getItem("loggedInUser"))
-        console.log(`getLoggedInUser() loggedInUser=`,loggedInUser)
+        //console.log(`getLoggedInUser() loggedInUser=`,loggedInUser)
         return loggedInUser
     }
 
@@ -125,7 +124,7 @@ export default class userAccountController
         console.log(`userAccountController signout()`)
         if(userAccountController.getLoggedInUser()==null)return
 
-        const response=await fetch(`${userAccountController.baseUrl}/users2/signout`,{
+        const response=await fetch(`/project-2-back/users2/signout`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",

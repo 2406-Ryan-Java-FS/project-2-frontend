@@ -14,7 +14,7 @@ export default function CourseHome() {
         // Fetch course data from the backend
         const fetchCourse = async () => {
             try {
-                const response = await fetch(`http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/courses/${courseId}`);
+                const response = await fetch(`/project-2-back/courses/${courseId}`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch course details');
                 }

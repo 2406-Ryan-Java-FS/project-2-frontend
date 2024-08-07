@@ -26,8 +26,7 @@ export default function CourseDetailReview({ courseId }) {
     const fetchEnrollments = async () => {
       try {
         // Fetch enrollments for the course
-        const enrollmentsResponse = await fetch(
-          `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/courses/${courseId}`
+        const enrollmentsResponse = await fetch(`/project-2-back/enrollments/courses/${courseId}`
         );
         const enrollments = await enrollmentsResponse.json();
 
@@ -35,8 +34,7 @@ export default function CourseDetailReview({ courseId }) {
         const userDetailsMap = {};
         await Promise.all(
           enrollments.map(async (enrollment) => {
-            const userResponse = await fetch(
-              `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/users/${enrollment.studentId}`
+            const userResponse = await fetch(`/project-2-back/users/${enrollment.studentId}`
             );
             const user = await userResponse.json();
             userDetailsMap[enrollment.studentId] = user;
@@ -82,8 +80,7 @@ export default function CourseDetailReview({ courseId }) {
         courseReview: newReview.reviewText,
       };
       // Update the backend with the new review
-      const response = await fetch(
-        `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/enrollments/review/${enrollment.enrollmentId}`,
+      const response = await fetch(`/project-2-back/enrollments/review/${enrollment.enrollmentId}`,
         {
           method: "PATCH",
           headers: {

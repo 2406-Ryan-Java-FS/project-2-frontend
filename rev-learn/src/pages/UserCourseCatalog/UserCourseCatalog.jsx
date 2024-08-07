@@ -30,14 +30,14 @@ export default function UserCourseCatalog() {
     useEffect(() => {
       const fetchAllCourses = async () => {
         try {
-          const coursesResponse = await fetch(`${REVLEARN_URL}/courses`, { method: 'GET' });
+          const coursesResponse = await fetch(`/project-2-back/courses`, { method: 'GET' });
           const coursesResult = await coursesResponse.json();
     
           let completedEnrollments = [];
     
           // If logged in, fetch enrollments
           if (userId && token) {
-            const enrollmentsResponse = await fetch(`${REVLEARN_URL}/enrollments/students/${userId}/completed`, {
+            const enrollmentsResponse = await fetch(`/project-2-back/enrollments/students/${userId}/completed`, {
               method: 'GET',
               headers: {
                 'Authorization': `Bearer ${token}`,
@@ -105,7 +105,7 @@ export default function UserCourseCatalog() {
     
     const fetchEducatorDetails = async (educatorIds) => {
       const responses = await Promise.all(educatorIds.map(educatorId =>
-        fetch(`${REVLEARN_URL}/users/${educatorId}`, {
+        fetch(`/project-2-back/users/${educatorId}`, {
           method: 'GET',
         }).then(response => response.json())
       ));

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   TextField,
   Button,
@@ -44,9 +44,6 @@ export default function QuizCreate() {
     // const url1 = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/courses/${courseId}`;
     // const url2 = "http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/quizzes";
 
-    const url1 = `/project-2-back/courses/${courseId}`;
-    const url2 = "/project-2-back/quizzes";
-
     const options1 = {
       method: "GET",
       headers: {
@@ -62,12 +59,12 @@ export default function QuizCreate() {
     };
 
     try {
-      const httpResponse1 = await fetch(url1, options1);
+      const httpResponse1 = await fetch(`/project-2-back/courses/${courseId}`, options1);
       const body1 = await httpResponse1.json();
 
       console.log(body1);
       if (body1) {
-        const httpResponse2 = await fetch(url2, options2);
+        const httpResponse2 = await fetch(`/project-2-back/quizzes`, options2);
         const body2 = await httpResponse2.json();
 
         console.log(`body2=`,body2);
