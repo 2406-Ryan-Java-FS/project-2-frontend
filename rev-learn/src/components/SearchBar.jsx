@@ -20,7 +20,10 @@ const sortOptions = [
   "Rating: High to Low",
 ];
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = (props) => {
+
+  const { courseList, setFilteredCourses } = props;
+
   const [course, setCourse] = useState("");
   const [category, setCategory] = useState("All");
   const [sortOption, setSortOption] = useState("None");
@@ -28,6 +31,44 @@ const SearchBar = ({ onSearch }) => {
   const handleSearch = () => {
     onSearch({ course, category, sortOption });
   };
+
+  // course filter
+  const onSearch = ({ course, category, sortOption }) => {
+    const filtered = courseList.filter((c) => {
+      const matchesCategory = category === "All" || c.category === category;
+      const matchesCourse =
+        course === "" || c.title.toLowerCase().includes(course.toLowerCase());
+      return matchesCategory && matchesCourse;
+    });
+
+    sortList(sortOption, filtered);
+    setFilteredCourses(filtered);
+  };
+
+
+  // Sorts filtered lists by the given sort option
+  function sortList(sortOption, filtered) {
+    switch (sortOption) {
+      case "Price: Low to High":
+        filtered.sort((a, b) => a.price - b.price);
+        break;
+
+      case "Price: High to Low":
+        filtered.sort((a, b) => b.price - a.price);
+        break;
+
+      case "Rating: Low to High":
+        filtered.sort((a, b) => a.rating - b.rating);
+        break;
+
+      case "Rating: High to Low":
+        filtered.sort((a, b) => b.rating - a.rating);
+        break;
+
+      default:
+        break;
+    }
+  }
 
   return (
     <Box

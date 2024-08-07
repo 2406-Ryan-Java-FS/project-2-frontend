@@ -93,30 +93,27 @@ export default function UserCourseCatalog() {
       return responses;
     };
 
-  // const role = "Student";
-  // const image = "https://www.fourpaws.com/-/media/Project/OneWeb/FourPaws/Images/articles/cat-corner/cats-that-dont-shed/siamese-cat.jpg";
-
   // Load more items when user scrolls to the bottom
   const loadMoreItems = useCallback(() => {
     if (loading || visibleItems >= courseList.length) return; // Avoid multiple loads and ensure we don't load beyond the available items
 
-        setLoading(true);
-        setTimeout(() => {
-            setVisibleItems((prev) => Math.min(prev + 12, courseList.length));
-            setLoading(false);
-        }, 100); // Simulate delay, to remove
-    }, [loading, visibleItems, courseList.length]);
+    setLoading(true);
+    setTimeout(() => {
+      setVisibleItems((prev) => Math.min(prev + 12, courseList.length));
+      setLoading(false);
+    }, 100);
+  }, [loading, visibleItems, courseList.length]);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollTop = window.scrollY || window.pageYOffSet || document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight;
-            const clientHeight = document.documentElement.clientHeight;
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || window.pageYOffSet || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const clientHeight = document.documentElement.clientHeight;
 
-            if (scrollTop + clientHeight >= scrollHeight - 5) {
-                loadMoreItems();
-            }
-        };
+      if (scrollTop + clientHeight >= scrollHeight - 5) {
+        loadMoreItems();
+      }
+    };
 
     window.addEventListener('scroll', handleScroll);
 
@@ -125,51 +122,17 @@ export default function UserCourseCatalog() {
     };
   }, [loadMoreItems]);
 
-    // course filter
-    const handleSearch = ({ course, category, sortOption }) => {
-      const filtered = courseList.filter((c) => {
-        const matchesCategory = category === "All" || c.category === category;
-        const matchesCourse =
-          course === "" || c.title.toLowerCase().includes(course.toLowerCase());
-        return matchesCategory && matchesCourse;
-      });
-  
-      sortList(sortOption, filtered);
-      setFilteredCourses(filtered);
-    };
-  
-    // Sorts filtered lists by the given sort option
-    function sortList(sortOption, filtered) {
-      switch (sortOption) {
-        case "Price: Low to High":
-          filtered.sort((a, b) => a.price - b.price);
-          break;
-    
-        case "Price: High to Low":
-          filtered.sort((a, b) => b.price - a.price);
-          break;
-  
-        case "Rating: Low to High":
-          filtered.sort((a, b) => a.rating - b.rating);
-          break;
-  
-        case "Rating: High to Low":
-          filtered.sort((a, b) => b.rating - a.rating);
-          break;
-  
-        default:
-          break;
-      }
-    }
-
-    return (
+  return (
     <>
 
-        <div className="userCourseCatalogOutterContainer">
+      <div className="userCourseCatalogOutterContainer">
           <div className='userCourseCatalogMainContainer'>
             <h1 className='title'><span className='revLearnSpan'>Rev Learn</span> Courses</h1>
             <div className="searchBarContainer">
-              <SearchBar onSearch={handleSearch} />
+              <SearchBar
+                courseList={courseList}
+                setFilteredCourses={setFilteredCourses}
+              />
             </div>
 
           {courseList.length > 0 ?
