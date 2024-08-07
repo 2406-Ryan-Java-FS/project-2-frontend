@@ -1,13 +1,16 @@
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import { FormControlLabel } from '@mui/material';
 import "../../styles/quiz/quiz-create.css";
+import { AppContext } from '../../provider/AppProvider';
 
 export default function QuizCreate() {
+
+  let globalContext=useContext(AppContext)
 
   const [courseId, setCourseId] = useState(0)
 
@@ -36,8 +39,11 @@ export default function QuizCreate() {
 
     console.log(data);
 
-    const url1 = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/courses/${courseId}`;
-    const url2 = "http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/quizzes";
+    // const url1 = `http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/courses/${courseId}`;
+    // const url2 = "http://ec2-100-26-249-35.compute-1.amazonaws.com:8080/quizzes";
+
+    const url1 = `/project-2-back/courses/${courseId}`;
+    const url2 = "/project-2-back/quizzes";
 
     const options1 = {
       method: "GET",
@@ -62,9 +68,10 @@ export default function QuizCreate() {
           const httpResponse2 = await fetch(url2, options2);
           const body2 = await httpResponse2.json();
       
-          console.log(body2);
+          console.log(`Quiz created body2=`,body2);
           if (body2){
             alert("Quiz has been created!");
+            globalContext.navBarGoto("/quiz/")
           }
       }
     } catch (error) {
