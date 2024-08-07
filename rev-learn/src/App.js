@@ -23,14 +23,16 @@ import QuizCreate from './pages/Quiz/quiz-create';
 export default function App() {
   let [x, setx] = useState(0);
 
+  const [loggedIn, setLoggedIn] = useState(false);
+
   return (
     <div className="App">
-      <NavBar />
+      <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
 
       <Routes>
         <Route path="" element={<HomeComponent />} />
         <Route path="/register" element={<Signup />} />
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/signin" element={<Signin setLoggedIn={setLoggedIn} />} />
         <Route path="/student" element={<StudentProfile />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/edit-question" element={<QuizItem mode="educator" item={2} />} />

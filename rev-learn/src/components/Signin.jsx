@@ -5,7 +5,7 @@ import { Button } from "../../node_modules/@mui/joy/index"
 import "../styles/sign.css"
 import { useState } from "react"
 
-export default function Signin() {
+export default function Signin({ setLoggedIn }) {
     let naviageUsingReact = useNavigate()
 
     const [loginError, setLoginError] = useState(false);
@@ -15,6 +15,7 @@ export default function Signin() {
         const password = document.getElementById("SigninPassword").value
 
         uac.signin(email, password).then(() => {
+            setLoggedIn(true)
             naviageUsingReact('/')
         }).catch((error) => {
             console.error("Sign-in failed", error)
